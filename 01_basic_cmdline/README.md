@@ -5,10 +5,7 @@ Demonstrates a simple cmdline application
 Setup typescript for a basic nodejs project
 ```sh
 npm init -y   
-npm install typescript --save-dev  
-npm install @types/node --save-dev
-npm install ts-node nodemon --save-dev 
-npm install rimraf --save-dev 
+npm install typescript @types/node ts-node nodemon rimraf --save-dev  
 
 npx tsc --init --rootDir src --outDir build \
 --esModuleInterop --resolveJsonModule --lib es6 \
