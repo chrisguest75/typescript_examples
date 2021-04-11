@@ -17,8 +17,14 @@ Demonstrates a simple cmdline application
 Demonstrates how to use typescript to template a file
 [README.md](./02_templating/README.md)  
 
+## Testing
+Demonstrates how to test typescript code  
+[README.md](./03_testing/README.md)  
 
 ## Resources
+https://basarat.gitbook.io/typescript/
+
+
 cmdline args
 https://walrus.ai/blog/2019/11/typescript-cli/
 
