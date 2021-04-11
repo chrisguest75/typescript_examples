@@ -17,10 +17,20 @@ npx tsc --init --rootDir src --outDir build \
 npm run start:dev
 ```
 
+## Using EJS
+Have to import the types and the library 
+```sh
+npm install --save ejs 
+npm install --save @types/ejs
+```
 
 ## Resources
 * Typescript [node-starter-project](https://khalilstemmler.com/blogs/typescript/node-starter-project/)
-* ESLint [eslint-for-typescript](https://khalilstemmler.com/blogs/typescript/eslint-for-typescript/)  
-https://levelup.gitconnected.com/create-your-own-advanced-cli-with-typescript-5868ae3df397
+* ESLint [eslint-for-typescript](https://khalilstemmler.com/blogs/
+typescript/eslint-for-typescript/)  
+* [AdvancedCLI](https://levelup.gitconnected.com/
+create-your-own-advanced-cli-with-typescript-5868ae3df397) 
+* [Templating](https://colorlib.com/wp/top-templating-engines-for-javascript/)
+* Building app in [Typescript](https://www.freecodecamp.org/news/how-to-build-a-todo-app-with-react-typescript-nodejs-and-mongodb/)
 
-https://colorlib.com/wp/top-templating-engines-for-javascript/
+
