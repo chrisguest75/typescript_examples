@@ -27,6 +27,8 @@ npm run test
 
 
 ## Resources
+https://jestjs.io/
+
 
 https://medium.com/@RupaniChirag/writing-unit-tests-in-typescript-d4719b8a0a40
 
