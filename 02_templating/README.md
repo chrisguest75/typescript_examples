@@ -1,5 +1,5 @@
 # README
-Demonstrates a simple cmdline application  
+Demonstrates how to use typescript to template a file
 
 ## How to build
 Setup typescript for a basic nodejs project
@@ -29,3 +29,5 @@ npm install --save-dev eslint @typescript-eslint/parser @typescript-eslint/eslin
 ## Resources
 * Typescript [node-starter-project](https://khalilstemmler.com/blogs/typescript/node-starter-project/)
 * ESLint [eslint-for-typescript](https://khalilstemmler.com/blogs/typescript/eslint-for-typescript/)  
+https://levelup.gitconnected.com/create-your-own-advanced-cli-with-typescript-5868ae3df397
+
