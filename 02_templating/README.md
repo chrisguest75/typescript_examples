@@ -17,17 +17,10 @@ npx tsc --init --rootDir src --outDir build \
 npm run start:dev
 ```
 
-# Add linting 
-Add a basic linter
-
-```sh
-npm install --save-dev eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin
-
-# add an .eslintrc
-```
 
 ## Resources
 * Typescript [node-starter-project](https://khalilstemmler.com/blogs/typescript/node-starter-project/)
 * ESLint [eslint-for-typescript](https://khalilstemmler.com/blogs/typescript/eslint-for-typescript/)  
 https://levelup.gitconnected.com/create-your-own-advanced-cli-with-typescript-5868ae3df397
 
+https://colorlib.com/wp/top-templating-engines-for-javascript/

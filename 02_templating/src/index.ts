@@ -1,9 +1,14 @@
+import * as fs from 'fs';
+import * as path from 'path';
 
+function main() {
+    var filePath = path.join(__dirname, "template.md")
+    console.log('Path: "' + filePath + '"') 
 
-function main() 
-{
-    // var a = 0
-    console.log('Hello world!')
+    fs.readFile(filePath, (err, data) => {
+        if (err) throw err;
+        console.log(data);
+    })    
 }
 
 main()
