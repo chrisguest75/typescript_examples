@@ -33,3 +33,5 @@ https://jestjs.io/
 https://medium.com/@RupaniChirag/writing-unit-tests-in-typescript-d4719b8a0a40
 
 https://github.com/kulshekhar/ts-jest
+
+https://itnext.io/testing-with-jest-in-typescript-cc1cd0095421

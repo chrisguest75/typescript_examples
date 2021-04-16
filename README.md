@@ -2,12 +2,13 @@
 A set of simple Typescript examples. 
 
 TODO:
-* Debugging 
+* Debugging in vscode..
 * cmdlines
 * dockerise
 * rest client
 * swagger api
 * testing 
+* Write a fibonacci generator 
 
 ## Basic cmdline 
 Demonstrates a simple cmdline application  
