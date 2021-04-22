@@ -7,6 +7,10 @@ Setup typescript for a basic nodejs project
 npm init -y   
 npm install typescript @types/node ts-node nodemon rimraf --save-dev  
 
+# get typescript version
+./node_modules/typescript/bin/tsc --version 
+
+# create tsconfig.json
 npx tsc --init --rootDir src --outDir build \
 --esModuleInterop --resolveJsonModule --lib es6 \
 --module commonjs --allowJs true --noImplicitAny true
