@@ -16,8 +16,18 @@ npx tsc --init --rootDir src --outDir build \
 --module commonjs --allowJs true --noImplicitAny true
 ```
 
+Add a nodemon.json  
+```json
+{
+  "watch": ["src", "nodemon.json", "tsconfig.json", "package.json"],
+  "ext": ".ts,.js",
+  "ignore": [],
+  "exec": "ts-node ./src/index.ts"
+}
+```
+
 ```sh
-#add a nodemon.json and run
+#run
 npm run start:dev
 ```
 
