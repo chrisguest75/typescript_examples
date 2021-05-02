@@ -12,7 +12,8 @@
                 "<node_internals>/**"
             ],
             "preLaunchTask": "tsc: build - 04_git_analysis/tsconfig.json",
-            "program": "${file}"
+            "program": "${file}",
+            "args": ["./.git"]
         }
     ]
 }

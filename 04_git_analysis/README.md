@@ -4,6 +4,7 @@ Demonstrates a using nodegit and typescript-dotnet
 ## Learning
 * To import the TimeSpan I had to select the package that matched my tsconfig module code generation setting.  
 * Promises back from async 
+* await an eventemitter
 
 ## How to build
 Setup typescript for a basic nodejs project
@@ -49,3 +50,4 @@ Add a prelaunch task to transpile the code.
 ## Resources
 * Typescript [node-starter-project](https://khalilstemmler.com/blogs/typescript/node-starter-project/)
 * ESLint [eslint-for-typescript](https://khalilstemmler.com/blogs/typescript/eslint-for-typescript/)  
+* [using-eventemitters-to-resolve-promises-from-afar-in-nodejs](https://www.jpwilliams.dev/using-eventemitters-to-resolve-promises-from-afar-in-nodejs)
