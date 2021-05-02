@@ -50,19 +50,20 @@ async function statisticsForBranch(repo: nodegit.Repository, name: string) {
     // wait for commits event to complete
     const commits: Array<nodegit.Commit> = await waitForCommits(history)
 
-    // print out the commits
-    /*commits.forEach(commit => {
-        printCommit(commit);
-    });*/
-    
-    return new Promise<Array<number>>((resolve, reject) => {
-        let values = new Array<number>()
+    return new Promise<Map<number, number>>((resolve, reject) => {
+        let values = new Map<number, number>()
         commits.forEach(commit => {
             let now = new Date().getTime();
-            let offset = new TimeSpan(now - commit.timeMs())
-            console.log("Hours Ago:\t" + offset.getTotal(TimeUnit.Hours));
+            let offset = new TimeSpan(now - commit.timeMs());
+            let total = Math.floor(offset.getTotal(TimeUnit.Hours) / 24);
+            console.log("Hours Ago:\t" + total);
             //printCommit(commit);
-            values.push(1);
+            if (values.has(total)){
+                let value = values.get(total) || 0;
+                values.set(total, value++);
+            } else {
+                values.set(total, 1);
+            }
         });
         resolve(values);
     });      
@@ -84,17 +85,23 @@ async function main(args: minimist.ParsedArgs)
     const repo: nodegit.Repository = await nodegit.Repository.open(repository_path);
     console.log(`${repository_path} opened`);  
     
-    let map = new Map<string, Array<number>>();
+    let map = new Map<string, Map<number, number>>();
 
-    const branches = ["master", "nodegit", "origin/testing"]
+    const branches: Array<string> = ["master", "nodegit", "origin/testing"]
 
-    for (let i = 0; i < branches.length; i++ ) {
+    for (let i: number = 0; i < branches.length; i++ ) {
         const branch = branches[i];
-        const stats = await statisticsForBranch(repo, branch);
+        const stats: Map<number, number> = await statisticsForBranch(repo, branch);
         map.set(branch, stats);
     
-        const commits = map.get(branch);
-        console.log(`${branch} [${commits}]`);
+        const commits: Map<number, number> = map.get(branch) || new Map<number, number>();
+        Array.from(commits.keys()).forEach(key => console.log(key));
+
+        const timeline: Array<number> = new Array<number>();
+        for (let h: number = 0; h < 30; h++ ) {
+            timeline.push(commits?.get(h) || 0)        
+        }
+        console.log(`${branch} [${timeline}]`);
     }
 
     console.log('exit main');  
