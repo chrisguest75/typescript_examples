@@ -9,7 +9,7 @@ import TimeUnit from 'typescript-dotnet-commonjs/System/Time/TimeUnit';
 // * Write the values out to a file
 // * Render them in SVG. 
 
-function printCommit(commit: nodegit.Commit) {
+/*function printCommit(commit: nodegit.Commit) {
     // Show the commit sha.
     console.log("commit " + commit.sha());
 
@@ -30,13 +30,44 @@ function printCommit(commit: nodegit.Commit) {
 
     // Give some space and show the message.
     console.log("\n    " + commit.message());
-}
+}*/
 
 function waitForCommits (emitter: any) {
 	return new Promise<Array<nodegit.Commit>>((resolve, reject) => {
 		emitter.once('end', resolve);
 	})
 }
+
+async function statisticsForBranch(repo: nodegit.Repository, name: string) {
+    let head_commit: nodegit.Commit = await repo.getBranchCommit(name);
+    
+    // this should really be HistoryEventEmitter
+    let history = head_commit.history();
+    console.log(`Retrieved head commit for ${name}`);  
+
+    history.start(); 
+
+    // wait for commits event to complete
+    const commits: Array<nodegit.Commit> = await waitForCommits(history)
+
+    // print out the commits
+    /*commits.forEach(commit => {
+        printCommit(commit);
+    });*/
+    
+    return new Promise<Array<number>>((resolve, reject) => {
+        let values = new Array<number>()
+        commits.forEach(commit => {
+            let now = new Date().getTime();
+            let offset = new TimeSpan(now - commit.timeMs())
+            console.log("Hours Ago:\t" + offset.getTotal(TimeUnit.Hours));
+            //printCommit(commit);
+            values.push(1);
+        });
+        resolve(values);
+    });      
+}
+
 
 /*
 main
@@ -51,21 +82,20 @@ async function main(args: minimist.ParsedArgs)
     }
     
     const repo: nodegit.Repository = await nodegit.Repository.open(repository_path);
-    console.log('Repo opened');  
-    let head_commit: nodegit.Commit = await repo.getBranchCommit("master");
-    // this should really be HistoryEventEmitter
-    let history = head_commit.history();
-    console.log('Retrieved head commit');  
+    console.log(`${repository_path} opened`);  
+    
+    let map = new Map<string, Array<number>>();
 
-    history.start(); 
+    const branches = ["master", "nodegit", "origin/testing"]
 
-    // wait for commits event to complete
-    const commits: Array<nodegit.Commit> = await waitForCommits(history)
-
-    // print out the commits
-    commits.forEach(commit => {
-        printCommit(commit);
-    });
+    for (let i = 0; i < branches.length; i++ ) {
+        const branch = branches[i];
+        const stats = await statisticsForBranch(repo, branch);
+        map.set(branch, stats);
+    
+        const commits = map.get(branch);
+        console.log(`${branch} [${commits}]`);
+    }
 
     console.log('exit main');  
 
