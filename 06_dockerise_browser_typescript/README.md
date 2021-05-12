@@ -1,12 +1,31 @@
 # README
-Demonstrate how to build a docker container containing typescript transpiled application
+Demonstrate how to build a docker container containing typescript transpiled application  
+
+Based on [d3_examples](https://github.com/chrisguest75/d3_examples)  
 
 ## Run it
 ```sh
+# install
 npm install
-npm run start
-npm run start:browser
 ```
+
+Local build and development
+```sh
+# run it locally
+npm run start
+npm run start:dev_browser
+```
+
+Docker build and development
+```sh
+# run it locally
+npm run build:image
+npm run start:image
+npm run open:image_browser
+```
+
+
+
 
 ## How it was built
 
@@ -43,5 +62,3 @@ Use the "start" target in the npm script in vscode
 Also use the live server update
 ## Notes
 
-* [d3js-typescript-examples](https://github.com/Lemoncode/d3js-typescript-examples)  
-* [rotating-a-vector-in-3d-space](https://stackoverflow.com/questions/14607640/rotating-a-vector-in-3d-space)  

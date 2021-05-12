@@ -2,13 +2,23 @@
   "name": "06_3d_globe",
   "version": "1.0.0",
   "description": "Use this to create new examples",
-  "main": "index.js",
+  "main": "dist/index.html",
   "scripts": {
-    "start": "run-p -l type-check:watch start:dev",
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",
+    
+    "build": "parcel build ./src/index.html",
+    "build:image": "docker build -f Dockerfile -t globe .",    
+
+    "start": "run-p -l type-check:watch start:dev",
     "start:dev": "parcel ./src/index.html",
-    "start:browser": "open http://localhost:1234",
+    "start:image": "docker run -p 8080:80 --name globe --rm -d globe",
+
+    "start:dev_browser": "open http://localhost:1234",
+    "start:image_browser": "open http://localhost:8080",
+
+    "stop:image": "docker stop globe",
+
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
