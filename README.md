@@ -17,6 +17,9 @@ Demonstrates a simple cmdline application
 Demonstrates how to use typescript to template a file
 [README.md](./02_templating/README.md)  
 
+## Dockerise Browser based Typescript
+Demonstrate how to build a docker container containing typescript transpiled application  
+[README.md](./06_dockerise_browser_typescript/README.md)  
 
 ## Resources
 cmdline args
