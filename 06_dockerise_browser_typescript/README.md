@@ -18,15 +18,13 @@ npm run start:dev_browser
 
 Docker build and development
 ```sh
-# run it locally
+# build globe container
 npm run build:image
+# run it from an image
 npm run start:image
-npm run open:image_browser
+# open in broswer
+npm run start:image_browser       
 ```
-
-
-
-
 ## How it was built
 
 ```sh
@@ -59,6 +57,6 @@ Update the package.json
 ```
 
 Use the "start" target in the npm script in vscode
-Also use the live server update
+Also use the live server update  
 ## Notes
 
