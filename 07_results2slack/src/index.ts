@@ -32,7 +32,10 @@ async function main(args: minimist.ParsedArgs)
         const XML:string = file;
         xml2js.parseString(XML, {trim: true}, function (err, result) {
             if(err) console.log(err);
-            console.log(util.inspect(result, false, null))            
+            console.log(util.inspect(result, false, null))        
+            
+            
+
             console.log(result); 
         });
     } catch (e) {
