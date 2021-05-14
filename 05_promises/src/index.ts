@@ -1,5 +1,5 @@
 
-function success() {
+function example_success() {
     const promise = new Promise((resolve, reject) => {
         return resolve(27);
       })
@@ -8,7 +8,7 @@ function success() {
     promise.then(number => console.log(number)); // 27
 }
 
-function failure() {
+function example_failure() {
     const promise = new Promise((resolve, reject) => {
         // Note: only 1 param allowed
         return reject('💩💩💩')
@@ -18,25 +18,33 @@ function failure() {
     promise.catch(err => console.log(err)); // 💩💩💩 
 }
 
-function main() {
+async function example() {
+  const jeffBuysCake = (cakeType: String) => {
+    return new Promise((resolve, reject) => {
+      setTimeout(()=> {
+        if (cakeType === 'black forest') {
+          resolve('black forest cake!')
+        } else {
+          reject('No cake 😢')
+        }
+      }, 1000)
+    })
+  }
+  const promise = jeffBuysCake('black forest');
+  await promise; 
+  console.log(promise);
+}
+
+async function example_fs_promise() {
+}
+
+async function main() {
     console.log('Promises')
 
-    success();
-    failure();
+    example_success();
+    example_failure();
+    example();
 
-    const jeffBuysCake = cakeType => {
-        return new Promise((resolve, reject) => {
-          setTimeout(()=> {
-            if (cakeType === 'black forest') {
-              resolve('black forest cake!')
-            } else {
-              reject('No cake 😢')
-            }
-          }, 1000)
-        })
-      }
-    const promise = jeffBuysCake('black forest')
-    console.log(promise)
 }
 
 main()

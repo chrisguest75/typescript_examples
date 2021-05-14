@@ -31,6 +31,11 @@ Demonstrates how to use typescript to template a file
 Demonstrates how to test typescript code (including debugging)  
 [README.md](./03_jest_testing/README.md)  
 
+## 05 - Promises
+
+Demonstrates how to use promises  
+[README.md](./05_promises/README.md)  
+
 ## 06 - Dockerise Browser based Typescript
 
 Demonstrate how to build a docker container containing typescript transpiled application  
