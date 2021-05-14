@@ -5,7 +5,6 @@ import * as util from 'util';
 import * as dotenv from 'dotenv';
 import * as axios from 'axios';
 import * as ejs from 'ejs';
-import { resourceLimits } from 'worker_threads';
 
 async function load_results(xml_file: string) {
     const file = readFileSync(xml_file, 'utf-8');
