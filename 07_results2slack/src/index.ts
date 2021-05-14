@@ -5,6 +5,22 @@ import * as util from 'util';
 import * as dotenv from 'dotenv';
 import * as axios from 'axios';
 import * as ejs from 'ejs';
+import { resourceLimits } from 'worker_threads';
+
+async function load_results(xml_file: string) {
+    const file = readFileSync(xml_file, 'utf-8');
+    const XML:string = file; 
+    return new Promise((resolve, reject) => {
+        xml2js.parseString(XML, {trim: true}, function (err, result) {
+            if(err) {
+                console.log(err);
+                reject(err);
+            }
+            //console.log(util.inspect(result, false, null));        
+            resolve(result);
+        })
+    })    
+}
 
 /*
 main
@@ -26,34 +42,26 @@ async function main(args: minimist.ParsedArgs)
     console.log('results2slack')
 
     // load xml file
-    const file = readFileSync(xml_file, 'utf-8');
-    // parse the results 
-    try {
-        const XML:string = file;
-        xml2js.parseString(XML, {trim: true}, function (err, result) {
-            if(err) console.log(err);
-            console.log(util.inspect(result, false, null))        
-            
-            
+    let promise = load_results(xml_file);
+    let results = await promise;
+    console.log(util.inspect(results, false, null)); 
 
-            console.log(result); 
-        });
-    } catch (e) {
-        console.log(e);
-    }
+    // parse the results 
+
+
 
     // build a message
     const template = readFileSync('./post.json', 'utf-8');
     let details = `Environment:${environment}`
-    let results = `:x: core:coredns\n:x: core-namespaces:lighthouse\n:x: helm-tenant-app:test-service`;
-    let post = ejs.render(template, {details: details, channel: slack_channel, results: results});    
+    let failed_results = `:x: core:coredns\n:x: core-namespaces:lighthouse\n:x: helm-tenant-app:test-service`;
+    let post = ejs.render(template, {details: details, channel: slack_channel, results: failed_results});    
     console.log(post);    
 
     // post to slack
-    axios.default.post(slack_post, post).then(res  => {
+    /*axios.default.post(slack_post, post).then(res  => {
             console.log(`statusCode: ${res.status}`)
             console.log(res)
-          });
+          });*/
     console.log('exit main');  
 
     return new Promise((resolve, reject) => {
