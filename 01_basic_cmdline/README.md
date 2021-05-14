@@ -1,7 +1,18 @@
 # README
-Demonstrates a simple cmdline application  
+Demonstrates a simple cmdline application (copy these steps)  
 
-## How to build
+## How to run
+```sh
+npm install
+npm run start:dev
+```
+
+## How to recreate
+Create folder  
+```sh
+mkdir xx_project_name
+```
+
 Setup typescript for a basic nodejs project
 ```sh
 npm init -y   
@@ -24,6 +35,14 @@ Add a basic linter
 npm install --save-dev eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin
 
 # add an .eslintrc
+```
+
+## Debugging 
+Add a tasks file that is for npm "tsc: build - xx_project_name/tsconfig.json"  
+
+Add a prelaunch task to transpile the code.  
+```json
+    "preLaunchTask": "tsc: build - xx_project_name/tsconfig.json",
 ```
 
 ## Resources
