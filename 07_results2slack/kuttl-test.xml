@@ -1,6 +1,0 @@
- <testsuites name="" tests="1" failures="0" time="9.011">
-   <testsuite tests="1" failures="0" timestamp="2021-05-14T11:26:38.594275+01:00" time="3.928" name="kuttl-tests-1-19/versions">
-     <testcase classname="versions" name="kubectl" timestamp="2021-05-14T11:26:38.594851+01:00" time="3.927" assertions="0"></testcase>
-   </testsuite>
-   <testsuite tests="0" failures="0" timestamp="2021-05-14T11:26:38.59432+01:00" time="0.000" name="kuttl-tests-dev"></testsuite>
- </testsuites>

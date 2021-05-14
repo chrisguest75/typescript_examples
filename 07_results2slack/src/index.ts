@@ -3,6 +3,8 @@ import { readFileSync } from 'fs';
 import * as xml2js from 'xml2js';
 import * as util from 'util';
 import * as dotenv from 'dotenv';
+import * as axios from 'axios';
+
 
 /*
 main
@@ -21,9 +23,8 @@ async function main(args: minimist.ParsedArgs)
 
     console.log('results2slack')
 
-
     // load xml file
-    const file = readFileSync('./kuttl-test.xml', 'utf-8');
+    const file = readFileSync(xml_file, 'utf-8');
     // parse the results 
     try {
         const XML:string = file;
@@ -39,9 +40,14 @@ async function main(args: minimist.ParsedArgs)
     // build a message
 
     // post to slack
-
-
     
+    /*const post = readFileSync('./post.json', 'utf-8');
+
+    axios.default.post(slack_post, post).then(res  => {
+            console.log(`statusCode: ${res.status}`)
+            console.log(res)
+          });
+    */
     console.log('exit main');  
 
     return new Promise((resolve, reject) => {
