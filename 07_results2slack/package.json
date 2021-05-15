@@ -7,7 +7,14 @@
     "build": "rimraf ./build && tsc",
     "lint": "eslint . --ext .ts",
     "start:dev": "nodemon",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+
+
+
+    "build:image": "docker build -f Dockerfile -t results2slack .",
+    "start:image": "docker run --name results2slack --rm -d results2slack",
+    "stop:image": "docker stop results2slack"
+
   },
   "keywords": [],
   "author": "",
