@@ -53,12 +53,19 @@ npm install --save-dev eslint @typescript-eslint/parser @typescript-eslint/eslin
 ```
 
 ## Debugging 
+Ensure that the sourcemap output is enabled. 
+```json
+    "sourceMap": true,  
+```
+
 Add a tasks file that is for npm "tsc: build - xx_project_name/tsconfig.json"  
 
 Add a prelaunch task to transpile the code.  
 ```json
     "preLaunchTask": "tsc: build - xx_project_name/tsconfig.json",
 ```
+
+
 
 ## Resources
 * Typescript [node-starter-project](https://khalilstemmler.com/blogs/typescript/node-starter-project/)
