@@ -11,9 +11,10 @@
 
 
 
-    "build:image": "docker build -f Dockerfile -t results2slack .",
-    "start:image": "docker run --name results2slack --rm -d results2slack",
-    "stop:image": "docker stop results2slack"
+    "build:image": "docker build -f Dockerfile -t chrisguest/results2slack:latest .",
+    "start:image": "docker run --name results2slack --rm -d chrisguest/results2slack:latest",
+    "stop:image": "docker stop chrisguest/results2slack:latest",
+    "push:image": "docker push chrisguest/results2slack:latest"
 
   },
   "keywords": [],

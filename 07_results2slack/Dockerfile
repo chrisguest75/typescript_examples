@@ -20,7 +20,9 @@ WORKDIR /scratch
 # copy the build
 COPY --from=BUILDER /scratch/package.json /scratch/package-lock.json ./
 RUN npm ci
+COPY ./post.json ./
 COPY --from=BUILDER /scratch/build ./
 
-RUN node index.js
+CMD ["node", "index.js"]
+
 
