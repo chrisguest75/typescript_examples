@@ -23,8 +23,23 @@ npx tsc --init --rootDir src --outDir build \
 --module commonjs --allowJs true --noImplicitAny true
 ```
 
+Copy the template ./src folder to the new project
 ```sh
-#add a nodemon.json and run
+cp ./src ../xx_project_name
+```
+
+Copy over the package.json scripts
+```json
+  "scripts": {
+    "build": "rimraf ./build && tsc",
+    "lint": "eslint . --ext .ts",
+    "start:dev": "nodemon",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+```
+
+```sh
+#add the nodemon.json and run
 npm run start:dev
 ```
 
@@ -38,12 +53,19 @@ npm install --save-dev eslint @typescript-eslint/parser @typescript-eslint/eslin
 ```
 
 ## Debugging 
+Ensure that the sourcemap output is enabled. 
+```json
+    "sourceMap": true,  
+```
+
 Add a tasks file that is for npm "tsc: build - xx_project_name/tsconfig.json"  
 
 Add a prelaunch task to transpile the code.  
 ```json
     "preLaunchTask": "tsc: build - xx_project_name/tsconfig.json",
 ```
+
+
 
 ## Resources
 * Typescript [node-starter-project](https://khalilstemmler.com/blogs/typescript/node-starter-project/)

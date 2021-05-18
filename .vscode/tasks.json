@@ -4,12 +4,12 @@
 	"tasks": [
 		{
 			"type": "typescript",
-			"tsconfig": "04_git_analysis/tsconfig.json",
+			"tsconfig": "07_results2slack/tsconfig.json",
 			"problemMatcher": [
 				"$tsc"
 			],
 			"group": "build",
-			"label": "tsc: build - 04_git_analysis/tsconfig.json"
+			"label": "tsc: build - 07_results2slack/tsconfig.json"
 		}
 	]
 }

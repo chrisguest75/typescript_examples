@@ -1,0 +1,17 @@
+{
+  "channel": "<%= channel; %>",
+  "blocks": [{
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "<%= details; %>"
+      }
+    },{
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "<%= results; %>"
+      }
+    }
+  ]
+}
