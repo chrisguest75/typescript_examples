@@ -7,13 +7,14 @@
         {
             "type": "pwa-node",
             "request": "launch",
-            "name": "Launch Program",
+            "name": "Debug Program",
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "preLaunchTask": "tsc: build - 04_git_analysis/tsconfig.json",
+            "cwd": "${workspaceFolder}/07_results2slack",
+            "preLaunchTask": "tsc: build - 07_results2slack/tsconfig.json",
             "program": "${file}",
-            "args": ["./.git"]
+            "args": ["./kuttl-test-failing.xml"]
         }
     ]
 }

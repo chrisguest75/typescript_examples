@@ -1,0 +1,7 @@
+{
+  "watch": ["src", ".env", "package.json", "package-lock.json", "nodemon.json"],
+  "ext": ".ts,.js",
+  "ignore": [],
+  "exec": "ts-node ./src/index.ts"
+}
+  

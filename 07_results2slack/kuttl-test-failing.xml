@@ -1,0 +1,39 @@
+ <testsuites name="" tests="19" failures="3" time="423.789">
+   <testsuite tests="1" failures="1" timestamp="2021-05-14T15:49:09.839241+01:00" time="419.178" name="kuttl-tests-1-19/helm-tenant-app">
+     <testcase classname="helm-tenant-app" name="test-service" timestamp="2021-05-14T15:49:09.849223+01:00" time="419.168" assertions="0">
+       <failure message="failed in step 4-remove-chart" type="">Unauthorized</failure>
+     </testcase>
+   </testsuite>
+   <testsuite tests="1" failures="0" timestamp="2021-05-14T15:49:09.83931+01:00" time="44.871" name="kuttl-tests-1-19/versions">
+     <testcase classname="versions" name="kubectl" timestamp="2021-05-14T15:49:39.486314+01:00" time="15.224" assertions="0"></testcase>
+   </testsuite>
+   <testsuite tests="13" failures="1" timestamp="2021-05-14T15:49:09.839326+01:00" time="66.444" name="kuttl-tests-1-19/core">
+     <testcase classname="core" name="aws-node" timestamp="2021-05-14T15:49:25.221407+01:00" time="10.960" assertions="1"></testcase>
+     <testcase classname="core" name="datadog" timestamp="2021-05-14T15:49:09.847822+01:00" time="27.437" assertions="2"></testcase>
+     <testcase classname="core" name="kube-oidc-proxy" timestamp="2021-05-14T15:49:09.846895+01:00" time="29.635" assertions="6"></testcase>
+     <testcase classname="core" name="ingress" timestamp="2021-05-14T15:49:09.847214+01:00" time="38.471" assertions="4"></testcase>
+     <testcase classname="core" name="dex" timestamp="2021-05-14T15:49:09.848241+01:00" time="40.694" assertions="5"></testcase>
+     <testcase classname="core" name="external-dns" timestamp="2021-05-14T15:49:09.851537+01:00" time="50.269" assertions="10"></testcase>
+     <testcase classname="core" name="auth" timestamp="2021-05-14T15:49:37.288322+01:00" time="22.833" assertions="2"></testcase>
+     <testcase classname="core" name="metrics-server" timestamp="2021-05-14T15:49:48.321063+01:00" time="17.215" assertions="2"></testcase>
+     <testcase classname="core" name="cluster-autoscaler" timestamp="2021-05-14T15:49:36.185253+01:00" time="29.351" assertions="6"></testcase>
+     <testcase classname="core" name="kube-proxy" timestamp="2021-05-14T15:50:05.538506+01:00" time="4.288" assertions="1"></testcase>
+     <testcase classname="core" name="lifecycle-manager" timestamp="2021-05-14T15:50:00.129547+01:00" time="15.455" assertions="4"></testcase>
+     <testcase classname="core" name="coredns" timestamp="2021-05-14T15:49:09.848896+01:00" time="66.434" assertions="6">
+       <failure message="failed in step 2-" type="">clusterroles.rbac.authorization.k8s.io &#34;system:corednse&#34; not found</failure>
+     </testcase>
+     <testcase classname="core" name="kube2iam" timestamp="2021-05-14T15:50:00.129469+01:00" time="16.155" assertions="4"></testcase>
+   </testsuite>
+   <testsuite tests="2" failures="1" timestamp="2021-05-14T15:49:09.83962+01:00" time="95.993" name="kuttl-tests-1-19/core-namespaces">
+     <testcase classname="core-namespaces" name="core" timestamp="2021-05-14T15:50:00.128652+01:00" time="14.275" assertions="3"></testcase>
+     <testcase classname="core-namespaces" name="lighthouse" timestamp="2021-05-14T15:49:54.715666+01:00" time="51.118" assertions="9">
+       <failure message="failed in step 3-" type="">serviceaccounts &#34;traefik-ingress-lighthouse&#34; not found</failure>
+     </testcase>
+   </testsuite>
+   <testsuite tests="1" failures="0" timestamp="2021-05-14T15:49:09.839653+01:00" time="50.281" name="kuttl-tests-1-19/gp-logging">
+     <testcase classname="gp-logging" name="fluentbit" timestamp="2021-05-14T15:49:50.544457+01:00" time="9.578" assertions="1"></testcase>
+   </testsuite>
+   <testsuite tests="1" failures="0" timestamp="2021-05-14T15:49:09.839673+01:00" time="15.379" name="kuttl-tests-1-19/health">
+     <testcase classname="health" name="pods" timestamp="2021-05-14T15:49:09.847084+01:00" time="15.371" assertions="0"></testcase>
+   </testsuite>
+ </testsuites>

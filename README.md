@@ -11,10 +11,10 @@ TODO:
 
 ## Snippets
 Useful snippets to help
-[CREATE_NEW_PROJECT.md](./00_snippets/CREATE_NEW_PROJECT.md)  
+
 
 ## Basic cmdline 
-Demonstrates a simple cmdline application  
+Demonstrates a simple cmdline application (copy these steps)  
 [README.md](./01_basic_cmdline/README.md)  
 
 ## Templating
