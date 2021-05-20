@@ -2,12 +2,12 @@
 A set of simple Typescript examples. 
 
 TODO:
-* Debugging 
-* cmdlines
+* npx
 * dockerise
 * rest client
 * swagger api
 * testing 
+* logging
 
 ## Snippets
 Useful snippets to help
