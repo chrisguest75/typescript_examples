@@ -2,12 +2,12 @@
 A set of simple Typescript examples. 
 
 TODO:
-* Debugging 
-* cmdlines
+* npx
 * dockerise
 * rest client
 * swagger api
 * testing 
+* logging
 
 ## Snippets
 Useful snippets to help
@@ -24,6 +24,13 @@ Demonstrates how to use typescript to template a file
 ## Dockerise Browser based Typescript
 Demonstrate how to build a docker container containing typescript transpiled application  
 [README.md](./06_dockerise_browser_typescript/README.md)  
+
+## Use pino logger in typescript
+Demonstrates how to use pino logger in typescript  
+[README.md](./08_pino_logger/README.md)  
+
+# README
+Demonstrates how to use pino logger in typescript 
 
 ## Resources
 cmdline args
