@@ -1,5 +1,5 @@
 # README
-Demonstrates a simple cmdline application (copy these steps)  
+Demonstrates how to use pino logger in typescript 
 
 ## How to run
 ```sh
