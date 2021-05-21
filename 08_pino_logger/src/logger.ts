@@ -1,8 +1,8 @@
-import * as pino from "pino";
-import { APP_ID, LOG_LEVEL } from "./Config";
+import pino from "pino";
 
 export const logger = pino({
-  name: 'app-name',
-  level: 'debug'
-});
+    level: process.env.LOG_LEVEL || 'info'
+  });
+  
+
 
