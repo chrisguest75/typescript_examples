@@ -11,10 +11,10 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "cwd": "${workspaceFolder}/07_results2slack",
-            "preLaunchTask": "tsc: build - 07_results2slack/tsconfig.json",
+            "cwd": "${workspaceFolder}/09_npm_mandelbrot",
+            "preLaunchTask": "tsc: build - 09_npm_mandelbrot/tsconfig.json",
             "program": "${file}",
-            "args": ["./kuttl-test-failing.xml"]
+            "args": []
         }
     ]
 }

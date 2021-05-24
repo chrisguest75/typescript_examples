@@ -68,13 +68,16 @@ function main() {
 
     let brot = new Mandelbrot(columns, rows, colours-1);
     let grid: number[][] = brot.calculate();
+
+    console.log(`${grid[0].length}x${grid.length}`);
+
     for(let j:number = 0; j < grid.length; j++) {
         let line:string = "";
         let row = grid[j];
-        for(let i:number = 0; i < line.length; i++) {
+        for(let i:number = 0; i < row.length; i++) {
             line += palette[row[i]];
         }
-        console.log(line)
+        console.log(line);
     }
 }
 

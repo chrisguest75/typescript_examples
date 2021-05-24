@@ -3,12 +3,12 @@
 	"tasks": [
 		{
 			"type": "typescript",
-			"tsconfig": "07_results2slack/tsconfig.json",
+			"tsconfig": "09_npm_mandelbrot/tsconfig.json",
 			"problemMatcher": [
 				"$tsc"
 			],
 			"group": "build",
-			"label": "tsc: build - 07_results2slack/tsconfig.json"
+			"label": "tsc: build - 09_npm_mandelbrot/tsconfig.json"
 		}
 	]
 }
