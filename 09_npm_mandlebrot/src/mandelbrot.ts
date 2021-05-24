@@ -1,7 +1,8 @@
-import { hasSubscribers } from "diagnostic_channel";
+import { Console } from "console";
+import ComplexNumber from "./complexnumber"
 
 
-export class Mandelbrot {
+export default class Mandelbrot {
     private grid:number[][];
     private x:number=0;
     private y:number=0;
@@ -23,12 +24,21 @@ export class Mandelbrot {
     }
   
     calculate(): number[][] {
-      let ix = -2.5, mx = 1, sx=mx-ix,incx=this.x/sx;
-      let iy = -1, my = 1, sy=my-iy,incy=this.y/sy;
+      const max_iterations = 200;
+      let ix = -2.5, mx = 1, sx=mx-ix, incx=this.x/sx;
+      let iy = -1, my = 1, sy=my-iy, incy=this.y/sy;
 
       for(let j:number = 0; j < this.y; j++) {
         for(let i:number = 0; i < this.x; i++) {
-          this.grid[j][i] = j*i % this.colours;
+          let c = new ComplexNumber(ix + (incx * i), iy + (incy * j))
+          let z = new ComplexNumber(0, 0)
+          let n = 0
+          while (z.abs <= 2.0 && n < max_iterations) {
+              z = (z.mul(z)).add(c)
+              n += 1
+          }
+          this.grid[j][i] = n;
+          //this.grid[j][i] = (i * j) % this.colours;
         }
 
       }

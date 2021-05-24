@@ -1,4 +1,4 @@
-import { Mandelbrot } from "./mandelbrot";
+import Mandelbrot from "./mandelbrot"
 
 //https://gist.github.com/mjackson/5311256
 /**

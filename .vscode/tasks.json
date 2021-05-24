@@ -9,6 +9,15 @@
 			],
 			"group": "build",
 			"label": "tsc: build - 09_npm_mandelbrot/tsconfig.json"
+		},
+		{
+			"type": "typescript",
+			"tsconfig": "07_results2slack/tsconfig.json",
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build",
+			"label": "tsc: build - 07_results2slack/tsconfig.json"
 		}
 	]
 }

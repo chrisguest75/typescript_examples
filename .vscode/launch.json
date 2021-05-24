@@ -7,12 +7,23 @@
         {
             "type": "pwa-node",
             "request": "launch",
-            "name": "Debug Program",
+            "name": "09_npm_mandelbrot",
             "skipFiles": [
                 "<node_internals>/**"
             ],
             "cwd": "${workspaceFolder}/09_npm_mandelbrot",
             "preLaunchTask": "tsc: build - 09_npm_mandelbrot/tsconfig.json",
+            "program": "${file}",
+            "args": []
+        },        {
+            "type": "pwa-node",
+            "request": "launch",
+            "name": "07_results2slack",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "cwd": "${workspaceFolder}/07_results2slack",
+            "preLaunchTask": "tsc: build - 07_results2slack/tsconfig.json",
             "program": "${file}",
             "args": []
         }
