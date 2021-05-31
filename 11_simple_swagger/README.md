@@ -51,6 +51,10 @@ curl -vvv -X GET 0.0.0.0:8000/ping
 ```sh
 npm install pino     
 npm install --save-dev @types/pino   
+
+npm install express-pino-logger
+npm install --save-dev @types/express-pino-logger
+
 ```
 
 
@@ -105,10 +109,8 @@ Add a prelaunch task to transpile the code.
 
 
 ## Resources
-* Typescript [node-starter-project](https://khalilstemmler.com/blogs/typescript/node-starter-project/)
-* ESLint [eslint-for-typescript](https://khalilstemmler.com/blogs/typescript/eslint-for-typescript/)  
-
-
-
 https://rsbh.dev/blog/rest-api-with-express-typescript
 https://github.com/pinojs/express-pino-logger
+https://blog.morizyun.com/javascript/library-typescript-pino-logger.html
+
+https://github.com/pinojs/express-pino-logger#readme
