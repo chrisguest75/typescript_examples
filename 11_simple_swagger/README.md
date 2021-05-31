@@ -55,43 +55,18 @@ npm install --save-dev @types/pino
 npm install express-pino-logger
 npm install --save-dev @types/express-pino-logger
 
+
+npm install --save tsoa swagger-ui-express
+npm install --save-dev @types/swagger-ui-express
+npm install --save-dev concurrently
 ```
-
-
-
-HERE
-
-Copy over the package.json scripts
-```json
-  "scripts": {
-    "build": "tsc",
-    "run": "node build/index.js",
-    "dev": "nodemon",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-
-  "scripts": {
-    "build": "rimraf ./build && tsc",
-    "lint": "eslint . --ext .ts",
-    "start:dev": "nodemon",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-```
-
 
 ```sh
-#add the nodemon.json and run
-npm run start:dev
+npm run dev
+xdg-open http://0.0.0.0:8000/docs/
 ```
 
-# Add linting 
-Add a basic linter
 
-```sh
-npm install --save-dev eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin
-
-# add an .eslintrc
-```
 
 ## Debugging 
 Ensure that the sourcemap output is enabled. 
@@ -110,7 +85,9 @@ Add a prelaunch task to transpile the code.
 
 ## Resources
 https://rsbh.dev/blog/rest-api-with-express-typescript
-https://github.com/pinojs/express-pino-logger
 https://blog.morizyun.com/javascript/library-typescript-pino-logger.html
 
 https://github.com/pinojs/express-pino-logger#readme
+https://github.com/lukeautry/tsoa
+https://www.npmjs.com/package/swagger-ui-express
+https://github.com/scottie1984/swagger-ui-express
