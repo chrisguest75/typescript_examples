@@ -49,3 +49,5 @@ Add a prelaunch task to transpile the code.
 * ESLint [eslint-for-typescript](https://khalilstemmler.com/blogs/typescript/eslint-for-typescript/)  
 * [using-eventemitters-to-resolve-promises-from-afar-in-nodejs](https://www.jpwilliams.dev/using-eventemitters-to-resolve-promises-from-afar-in-nodejs)
 * [nodegit api](https://www.nodegit.org/api/)
+* [nodegit](https://github.com/nodegit/nodegit)  
+* [js-git](https://www.npmjs.com/package/js-git)  

@@ -29,15 +29,11 @@ Demonstrate how to build a docker container containing typescript transpiled app
 Demonstrates how to use pino logger in typescript  
 [README.md](./08_pino_logger/README.md)  
 
-# README
-Demonstrates how to use pino logger in typescript 
+## Simple swagger typescript
+Demonstrates a simple swagger interface 
+[README.md](./11_simple_swagger/README.md) 
+
 
 ## Resources
-cmdline args
-https://walrus.ai/blog/2019/11/typescript-cli/
 
-git
-https://www.npmjs.com/package/js-git
-https://www.nodegit.org/
-https://github.com/nodegit/nodegit
 

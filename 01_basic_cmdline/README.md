@@ -86,3 +86,4 @@ Add a prelaunch task to transpile the code.
 ## Resources
 * Typescript [node-starter-project](https://khalilstemmler.com/blogs/typescript/node-starter-project/)
 * ESLint [eslint-for-typescript](https://khalilstemmler.com/blogs/typescript/eslint-for-typescript/)  
+* [typescript-cli](https://walrus.ai/blog/2019/11/typescript-cli/)  
