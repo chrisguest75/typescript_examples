@@ -1,10 +1,11 @@
 # README
-Demonstrates a simple cmdline application (copy these steps)  
+Demonstrates a simple swagger interface
 
 ## How to run
 ```sh
 npm install
-npm run start:dev
+npm run dev
+xdg-open http://0.0.0.0:8000/docs/
 ```
 
 ## How to recreate
@@ -40,31 +41,21 @@ Add a nodemonConfig to package.json
     "exec": "ts-node ./src/index.ts"
   }
 ```
-
-## Run 
-```sh
-npm run dev
-curl -vvv -X GET 0.0.0.0:8000/ping
-```
-
 ## Add pino logging
 ```sh
 npm install pino     
 npm install --save-dev @types/pino   
-
 npm install express-pino-logger
 npm install --save-dev @types/express-pino-logger
+```
 
-
+## Add tsoa swagger
+```sh
 npm install --save tsoa swagger-ui-express
 npm install --save-dev @types/swagger-ui-express
 npm install --save-dev concurrently
 ```
 
-```sh
-npm run dev
-xdg-open http://0.0.0.0:8000/docs/
-```
 
 
 
@@ -84,10 +75,9 @@ Add a prelaunch task to transpile the code.
 
 
 ## Resources
-https://rsbh.dev/blog/rest-api-with-express-typescript
-https://blog.morizyun.com/javascript/library-typescript-pino-logger.html
 
-https://github.com/pinojs/express-pino-logger#readme
-https://github.com/lukeautry/tsoa
-https://www.npmjs.com/package/swagger-ui-express
-https://github.com/scottie1984/swagger-ui-express
+[rest-api-with-express-typescript](https://rsbh.dev/blog/rest-api-with-express-typescript)  
+[library-typescript-pino-logger](https://blog.morizyun.com/javascript/library-typescript-pino-logger.html)  
+[express-pino-logger](https://github.com/pinojs/express-pino-logger#readme)  
+[tsoa](https://github.com/lukeautry/tsoa)  
+[swagger-ui-express](https://github.com/scottie1984/swagger-ui-express)  
