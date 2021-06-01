@@ -3,6 +3,7 @@ Demonstrate how to build a docker container containing typescript transpiled app
 
 Based on [d3_examples](https://github.com/chrisguest75/d3_examples)  
 
+
 ## Run it
 ```sh
 # install
@@ -58,5 +59,7 @@ Update the package.json
 
 Use the "start" target in the npm script in vscode
 Also use the live server update  
-## Notes
 
+## Notes
+* [awesome-parcel](https://github.com/parcel-bundler/awesome-parcel)  
+* [live-server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)  
