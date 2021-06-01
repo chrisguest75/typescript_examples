@@ -23,10 +23,10 @@ export default class Mandelbrot {
 
     }
   
-    calculate(): number[][] {
+    calculate(ix: number = -2.5, iy: number = -1, mx: number = 1, my: number = 1): number[][] {
       const max_iterations = 200;
-      let ix = -2.5, mx = 1, sx=mx-ix, incx=sx/this.x;
-      let iy = -1, my = 1, sy=my-iy, incy=sy/this.y;
+      let sx=mx-ix, incx=sx/this.x;
+      let sy=my-iy, incy=sy/this.y;
 
       for(let j:number = 0; j < this.y; j++) {
         for(let i:number = 0; i < this.x; i++) {

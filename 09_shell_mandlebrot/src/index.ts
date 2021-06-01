@@ -52,13 +52,13 @@ function create_palette(colours: number): string[] {
 }
 
 function main() {
-    console.log("npm_mandelbrot")
-    console.log('Node version: ' + process.version);    
+    //console.log("npm_mandelbrot")
+    //console.log('Node version: ' + process.version);    
     //console.log(process)
     let columns = process.stdout.columns;
     let rows = process.stdout.rows;    
 
-    console.log('Terminal: ' + columns + 'x' + rows);
+    //console.log('Terminal: ' + columns + 'x' + rows);
 
     let colours:number = 256; 
     let palette:string[] = create_palette(colours);
@@ -67,9 +67,10 @@ function main() {
     }*/   
 
     let brot = new Mandelbrot(columns, rows, colours-1);
-    let grid: number[][] = brot.calculate();
+    //let grid: number[][] = brot.calculate();
+    let grid: number[][] = brot.calculate(-1.0, -0.5, -0.5, 0);
 
-    console.log(`${grid[0].length}x${grid.length}`);
+    //console.log(`${grid[0].length}x${grid.length}`);
 
     for(let j:number = 0; j < grid.length; j++) {
         let line:string = "";
