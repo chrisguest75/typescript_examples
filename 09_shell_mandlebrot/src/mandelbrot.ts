@@ -25,8 +25,8 @@ export default class Mandelbrot {
   
     calculate(): number[][] {
       const max_iterations = 200;
-      let ix = -2.5, mx = 1, sx=mx-ix, incx=this.x/sx;
-      let iy = -1, my = 1, sy=my-iy, incy=this.y/sy;
+      let ix = -2.5, mx = 1, sx=mx-ix, incx=sx/this.x;
+      let iy = -1, my = 1, sy=my-iy, incy=sy/this.y;
 
       for(let j:number = 0; j < this.y; j++) {
         for(let i:number = 0; i < this.x; i++) {
