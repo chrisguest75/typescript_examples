@@ -29,6 +29,10 @@ Demonstrate how to build a docker container containing typescript transpiled app
 Demonstrates how to use pino logger in typescript  
 [README.md](./08_pino_logger/README.md)  
 
+## 09 - Publish npm package for use as npx
+Demonstrates how to package a typescript tool to npm to be run as npx
+[README.md](./09_shell_mandelbrot/README.md)  
+
 ## 11 - Simple swagger typescript
 Demonstrates a simple swagger interface 
 [README.md](./11_simple_swagger/README.md) 

@@ -4,7 +4,33 @@ Demonstrates how to package a typescript tool to npm to be run as npx
 ## How to run
 ```sh
 npm install
+
+# run once 
+npm run start
+```
+## How to develop
+```sh
 npm run start:dev
+```
+
+## Publish 
+After writing some code you can publish it.
+```sh
+# make sure you update the package version in package.json before updating
+npm version patch       
+
+# publish it
+npm publish --access public
+```
+
+## Run as npx
+Run the published package
+```sh
+# run and print out palette
+npx @chrisguest75/09_shell_mandlebrot 
+
+# run a specific version
+npx @chrisguest75/09_shell_mandlebrot@x.x.x 
 ```
 
 ## How to recreate
@@ -12,10 +38,10 @@ Create folder
 ```sh
 mkdir xx_project_name
 ```
-
+## Create
 Setup typescript for a basic nodejs project
 ```sh
-npm init -y   
+npm init --scope=@chrisguest75 -y   
 npm install typescript @types/node ts-node nodemon rimraf --save-dev  
 
 # get typescript version
@@ -61,6 +87,10 @@ npm run start:dev
 
 
 ## Resources
+* [npx docs](https://nodejs.dev/learn/the-npx-nodejs-package-runner)
+* [awesome-npx](https://github.com/junosuarez/awesome-npx)
+
+https://itnext.io/step-by-step-building-and-publishing-an-npm-typescript-package-44fe7164964c
 
 
 https://cameronnokes.com/blog/the-30-second-guide-to-publishing-a-typescript-package-to-npm/
