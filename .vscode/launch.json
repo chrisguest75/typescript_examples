@@ -7,14 +7,50 @@
         {
             "type": "pwa-node",
             "request": "launch",
-            "name": "Debug Program",
+            "name": "01_basic_cmdline",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "cwd": "${workspaceFolder}/01_basic_cmdline",
+            "preLaunchTask": "tsc: build - 01_basic_cmdline/tsconfig.json",
+            "program": "${file}",
+            "args": []
+        },      
+        {
+            "type": "pwa-node",
+            "request": "launch",
+            "name": "02_templating",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "cwd": "${workspaceFolder}/02_templating",
+            "preLaunchTask": "tsc: build - 02_templating/tsconfig.json",
+            "program": "${file}",
+            "args": []
+        },           
+        {
+            "type": "pwa-node",
+            "request": "launch",
+            "name": "07_results2slack",
             "skipFiles": [
                 "<node_internals>/**"
             ],
             "cwd": "${workspaceFolder}/07_results2slack",
             "preLaunchTask": "tsc: build - 07_results2slack/tsconfig.json",
             "program": "${file}",
-            "args": ["./kuttl-test-failing.xml"]
-        }
+            "args": []
+        },        
+        {
+            "type": "pwa-node",
+            "request": "launch",
+            "name": "09_shell_mandelbrot",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "cwd": "${workspaceFolder}/09_shell_mandelbrot",
+            "preLaunchTask": "tsc: build - 09_shell_mandelbrot/tsconfig.json",
+            "program": "${file}",
+            "args": []
+        }        
     ]
 }
