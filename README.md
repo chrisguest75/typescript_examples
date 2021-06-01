@@ -13,26 +13,29 @@ TODO:
 Useful snippets to help
 
 
-## Basic cmdline 
+## 01 - Basic cmdline 
 Demonstrates a simple cmdline application (copy these steps)  
 [README.md](./01_basic_cmdline/README.md)  
 
-## Templating
+## 02 - Templating
 Demonstrates how to use typescript to template a file
 [README.md](./02_templating/README.md)  
 
-## Dockerise Browser based Typescript
+## 06 - Dockerise Browser based Typescript
 Demonstrate how to build a docker container containing typescript transpiled application  
 [README.md](./06_dockerise_browser_typescript/README.md)  
 
-## Use pino logger in typescript
+## 08 - Use pino logger in typescript
 Demonstrates how to use pino logger in typescript  
 [README.md](./08_pino_logger/README.md)  
 
-## Simple swagger typescript
+## 11 - Simple swagger typescript
 Demonstrates a simple swagger interface 
 [README.md](./11_simple_swagger/README.md) 
 
+## 12 - Simple swagger typescript
+Demonstrates a simple cmdline application packaged in a buildpack
+[README.md](./12_buildpack/README.md) 
 
 ## Resources
 
