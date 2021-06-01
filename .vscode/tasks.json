@@ -3,13 +3,22 @@
 	"tasks": [
 		{
 			"type": "typescript",
-			"tsconfig": "09_npm_mandelbrot/tsconfig.json",
+			"tsconfig": "01_basic_cmdline/tsconfig.json",
 			"problemMatcher": [
 				"$tsc"
 			],
 			"group": "build",
-			"label": "tsc: build - 09_npm_mandelbrot/tsconfig.json"
+			"label": "tsc: build - 01_basic_cmdline/tsconfig.json"
 		},
+		{
+			"type": "typescript",
+			"tsconfig": "02_templating/tsconfig.json",
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build",
+			"label": "tsc: build - 02_templating/tsconfig.json"
+		},		
 		{
 			"type": "typescript",
 			"tsconfig": "07_results2slack/tsconfig.json",
@@ -18,6 +27,15 @@
 			],
 			"group": "build",
 			"label": "tsc: build - 07_results2slack/tsconfig.json"
+		},
+		{
+			"type": "typescript",
+			"tsconfig": "09_shell_mandelbrot/tsconfig.json",
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build",
+			"label": "tsc: build - 09_shell_mandelbrot/tsconfig.json"
 		}
 	]
 }

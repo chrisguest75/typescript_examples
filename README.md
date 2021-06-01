@@ -33,7 +33,7 @@ Demonstrates how to use pino logger in typescript
 Demonstrates a simple swagger interface 
 [README.md](./11_simple_swagger/README.md) 
 
-## 12 - Simple swagger typescript
+## 12 - Buildpack
 Demonstrates a simple cmdline application packaged in a buildpack
 [README.md](./12_buildpack/README.md) 
 

@@ -1,31 +1,11 @@
 # README
-Demonstrates a simple cmdline application packaged in a buildpack
-
-Based on [43_python_buildpacks](https://github.com/chrisguest75/docker_build_examples/tree/master/43_python_buildpacks) and [buildpack-samples](https://github.com/GoogleCloudPlatform/buildpack-samples)  
+Demonstrates how to package a typescript tool to npm to be run as npx
 
 ## How to run
 ```sh
 npm install
 npm run start:dev
 ```
-
-## How to create buildpack
-Uses postinstall to compile typescript.  
-
-```json
-  // specifies buildpack version of node to use inside package.json  
-  "engines": {
-    "node": "14.16.0"
-  } 
-```
-
-Build the image
-```sh
-# build the image
-pack build tsbuildpackexample --builder gcr.io/buildpacks/builder --env GOOGLE_ENTRYPOINT="node ./build/index.js"  
-docker run tsbuildpackexample            
-```
-
 
 ## How to recreate
 Create folder  
@@ -67,7 +47,6 @@ cp ./src ../xx_project_name
 Copy over the package.json scripts
 ```json
   "scripts": {
-    "postinstall": "tsc --build",
     "build": "rimraf ./build && tsc",
     "lint": "eslint . --ext .ts",
     "start:dev": "nodemon",
@@ -83,5 +62,11 @@ npm run start:dev
 
 ## Resources
 
-* [google samples](https://github.com/GoogleCloudPlatform/buildpack-samples)  
-* [heroku typescript](https://github.com/heroku/buildpacks-nodejs/blob/main/buildpacks/typescript/README.md)  
+
+https://cameronnokes.com/blog/the-30-second-guide-to-publishing-a-typescript-package-to-npm/
+
+https://simple.wikipedia.org/wiki/Mandelbrot_set#:~:text=The%20Mandelbrot%20set%20can%20be,positive%20integer%20(natural%20number).
+
+zn+1 = zn2 + c
+
+https://en.wikipedia.org/wiki/Plotting_algorithms_for_the_Mandelbrot_set#:~:text=The%20simplest%20algorithm%20for%20generating,is%20chosen%20for%20that%20pixel.
