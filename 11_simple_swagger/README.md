@@ -1,10 +1,11 @@
 # README
-Demonstrates a simple cmdline application (copy these steps)  
+Demonstrates a simple swagger interface
 
 ## How to run
 ```sh
 npm install
-npm run start:dev
+npm run dev
+xdg-open http://0.0.0.0:8000/docs/
 ```
 
 ## How to recreate
@@ -25,6 +26,10 @@ npm install typescript @types/node ts-node nodemon rimraf --save-dev
 npx tsc --init --rootDir src --outDir build \
 --esModuleInterop --resolveJsonModule --lib es6 \
 --module commonjs --allowJs true --noImplicitAny true
+
+
+npm install --save express 
+npm install --save-dev @types/express
 ```
 
 Add a nodemonConfig to package.json 
@@ -36,37 +41,23 @@ Add a nodemonConfig to package.json
     "exec": "ts-node ./src/index.ts"
   }
 ```
-
+## Add pino logging
 ```sh
-#run
-Copy the template ./src folder to the new project
-```sh
-cp ./src ../xx_project_name
+npm install pino     
+npm install --save-dev @types/pino   
+npm install express-pino-logger
+npm install --save-dev @types/express-pino-logger
 ```
 
-Copy over the package.json scripts
-```json
-  "scripts": {
-    "build": "rimraf ./build && tsc",
-    "lint": "eslint . --ext .ts",
-    "start:dev": "nodemon",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-```
-
+## Add tsoa swagger
 ```sh
-#add the nodemon.json and run
-npm run start:dev
+npm install --save tsoa swagger-ui-express
+npm install --save-dev @types/swagger-ui-express
+npm install --save-dev concurrently
 ```
 
-# Add linting 
-Add a basic linter
 
-```sh
-npm install --save-dev eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin
 
-# add an .eslintrc
-```
 
 ## Debugging 
 Ensure that the sourcemap output is enabled. 
@@ -84,6 +75,9 @@ Add a prelaunch task to transpile the code.
 
 
 ## Resources
-* Typescript [node-starter-project](https://khalilstemmler.com/blogs/typescript/node-starter-project/)
-* ESLint [eslint-for-typescript](https://khalilstemmler.com/blogs/typescript/eslint-for-typescript/)  
-* [typescript-cli](https://walrus.ai/blog/2019/11/typescript-cli/)  
+
+[rest-api-with-express-typescript](https://rsbh.dev/blog/rest-api-with-express-typescript)  
+[library-typescript-pino-logger](https://blog.morizyun.com/javascript/library-typescript-pino-logger.html)  
+[express-pino-logger](https://github.com/pinojs/express-pino-logger#readme)  
+[tsoa](https://github.com/lukeautry/tsoa)  
+[swagger-ui-express](https://github.com/scottie1984/swagger-ui-express)  

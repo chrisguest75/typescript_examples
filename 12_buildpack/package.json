@@ -1,27 +1,26 @@
 {
-  "name": "01_basic",
+  "name": "12_buildpack",
   "version": "1.0.0",
-  "description": "",
+  "description": "Demonstrates a simple cmdline application packaged in a buildpack",
   "main": "index.js",
   "scripts": {
+    "postinstall": "tsc --build",
     "build": "rimraf ./build && tsc",
     "lint": "eslint . --ext .ts",
     "start:dev": "nodemon",
+    "start": "node ./build/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/node": "^14.14.37",
-    "@typescript-eslint/eslint-plugin": "^4.21.0",
-    "@typescript-eslint/parser": "^4.21.0",
-    "eslint": "^7.24.0",
+    "@types/node": "^15.6.1",
     "nodemon": "^2.0.7",
     "rimraf": "^3.0.2",
-    "ts-node": "^9.1.1",
-    "typescript": "^4.2.4"
-  },
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.2"
+  },  
   "nodemonConfig": {
     "watch": [
       "src",
@@ -32,5 +31,8 @@
     "ext": "ts",
     "ignore": [],
     "exec": "ts-node ./src/index.ts"
-  }
+  },
+  "engines": {
+    "node": "14.16.0"
+  }  
 }

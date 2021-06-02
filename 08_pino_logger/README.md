@@ -1,5 +1,5 @@
 # README
-Demonstrates a simple cmdline application (copy these steps)  
+Demonstrates how to use pino logger in typescript 
 
 ## How to run
 ```sh
@@ -27,14 +27,14 @@ npx tsc --init --rootDir src --outDir build \
 --module commonjs --allowJs true --noImplicitAny true
 ```
 
-Add a nodemonConfig to package.json 
+Add a nodemon.json  
 ```json
-  "nodemonConfig": {
-    "watch": ["src", "nodemon.json", "tsconfig.json", "package.json"],
-    "ext": "ts",
-    "ignore": [],
-    "exec": "ts-node ./src/index.ts"
-  }
+{
+  "watch": ["src", "nodemon.json", "tsconfig.json", "package.json"],
+  "ext": ".ts,.js",
+  "ignore": [],
+  "exec": "ts-node ./src/index.ts"
+}
 ```
 
 ```sh
@@ -57,6 +57,11 @@ Copy over the package.json scripts
 ```sh
 #add the nodemon.json and run
 npm run start:dev
+```
+## Add pino
+```sh
+npm install pino     
+npm install --save-dev @types/pino   
 ```
 
 # Add linting 
@@ -84,6 +89,4 @@ Add a prelaunch task to transpile the code.
 
 
 ## Resources
-* Typescript [node-starter-project](https://khalilstemmler.com/blogs/typescript/node-starter-project/)
-* ESLint [eslint-for-typescript](https://khalilstemmler.com/blogs/typescript/eslint-for-typescript/)  
-* [typescript-cli](https://walrus.ai/blog/2019/11/typescript-cli/)  
+* https://blog.morizyun.com/javascript/library-typescript-pino-logger.html

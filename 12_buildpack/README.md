@@ -1,11 +1,31 @@
 # README
-Demonstrates a simple cmdline application (copy these steps)  
+Demonstrates a simple cmdline application packaged in a buildpack
+
+Based on [43_python_buildpacks](https://github.com/chrisguest75/docker_build_examples/tree/master/43_python_buildpacks) and [buildpack-samples](https://github.com/GoogleCloudPlatform/buildpack-samples)  
 
 ## How to run
 ```sh
 npm install
 npm run start:dev
 ```
+
+## How to create buildpack
+Uses postinstall to compile typescript.  
+
+```json
+  // specifies buildpack version of node to use inside package.json  
+  "engines": {
+    "node": "14.16.0"
+  } 
+```
+
+Build the image
+```sh
+# build the image
+pack build tsbuildpackexample --builder gcr.io/buildpacks/builder --env GOOGLE_ENTRYPOINT="node ./build/index.js"  
+docker run tsbuildpackexample            
+```
+
 
 ## How to recreate
 Create folder  
@@ -47,6 +67,7 @@ cp ./src ../xx_project_name
 Copy over the package.json scripts
 ```json
   "scripts": {
+    "postinstall": "tsc --build",
     "build": "rimraf ./build && tsc",
     "lint": "eslint . --ext .ts",
     "start:dev": "nodemon",
@@ -59,31 +80,8 @@ Copy over the package.json scripts
 npm run start:dev
 ```
 
-# Add linting 
-Add a basic linter
-
-```sh
-npm install --save-dev eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin
-
-# add an .eslintrc
-```
-
-## Debugging 
-Ensure that the sourcemap output is enabled. 
-```json
-    "sourceMap": true,  
-```
-
-Add a tasks file that is for npm "tsc: build - xx_project_name/tsconfig.json"  
-
-Add a prelaunch task to transpile the code.  
-```json
-    "preLaunchTask": "tsc: build - xx_project_name/tsconfig.json",
-```
-
-
 
 ## Resources
-* Typescript [node-starter-project](https://khalilstemmler.com/blogs/typescript/node-starter-project/)
-* ESLint [eslint-for-typescript](https://khalilstemmler.com/blogs/typescript/eslint-for-typescript/)  
-* [typescript-cli](https://walrus.ai/blog/2019/11/typescript-cli/)  
+
+* [google samples](https://github.com/GoogleCloudPlatform/buildpack-samples)  
+* [heroku typescript](https://github.com/heroku/buildpacks-nodejs/blob/main/buildpacks/typescript/README.md)  

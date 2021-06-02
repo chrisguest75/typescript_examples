@@ -1,0 +1,56 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "pwa-node",
+            "request": "launch",
+            "name": "01_basic_cmdline",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "cwd": "${workspaceFolder}/01_basic_cmdline",
+            "preLaunchTask": "tsc: build - 01_basic_cmdline/tsconfig.json",
+            "program": "${file}",
+            "args": []
+        },      
+        {
+            "type": "pwa-node",
+            "request": "launch",
+            "name": "02_templating",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "cwd": "${workspaceFolder}/02_templating",
+            "preLaunchTask": "tsc: build - 02_templating/tsconfig.json",
+            "program": "${file}",
+            "args": []
+        },           
+        {
+            "type": "pwa-node",
+            "request": "launch",
+            "name": "07_results2slack",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "cwd": "${workspaceFolder}/07_results2slack",
+            "preLaunchTask": "tsc: build - 07_results2slack/tsconfig.json",
+            "program": "${file}",
+            "args": []
+        },        
+        {
+            "type": "pwa-node",
+            "request": "launch",
+            "name": "09_shell_mandelbrot",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "cwd": "${workspaceFolder}/09_shell_mandelbrot",
+            "preLaunchTask": "tsc: build - 09_shell_mandelbrot/tsconfig.json",
+            "program": "${file}",
+            "args": []
+        }        
+    ]
+}
