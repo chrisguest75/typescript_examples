@@ -27,6 +27,46 @@ test('adding word to empty trie will contain it', () => {
   expect(t.contains("hello")).toBe(true);
 });
 
+test('adding same word does not increase size', () => {
+  // ARRANGE
+  let t = new trie();
+  // ACT
+  t.add("hello");
+  t.add("hello");
+  t.add("hello");
+  // ASSERT
+  expect(t.size).toBe(1);
+  expect(t.contains("hello")).toBe(true);
+});
+
+test('searching on word chains finds them all', () => {
+  // ARRANGE
+  let t = new trie();
+  // ACT
+  t.add("h");
+  t.add("he");
+  t.add("hel");
+  t.add("hell");
+  t.add("hello");
+  // ASSERT
+  expect(t.size).toBe(5);
+  expect(t.contains("h")).toBe(true);
+  expect(t.contains("he")).toBe(true);
+  expect(t.contains("hel")).toBe(true);
+  expect(t.contains("hell")).toBe(true);
+  expect(t.contains("hello")).toBe(true);
+  expect(t.contains("hello ")).toBe(false);  
+});
+
+test('searching on an empty trie does not crash', () => {
+  // ARRANGE
+  let t = new trie();
+  // ACT
+  // ASSERT
+  expect(t.size).toBe(0);  
+  expect(t.contains("he")).toBe(false);
+});
+
 test('adding empty word does not add it', () => {
   // ARRANGE
   let t = new trie();

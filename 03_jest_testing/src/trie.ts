@@ -7,22 +7,55 @@
 class trie_node {
     // a map of characters to child nodes
     nodes: Map<string, trie_node> = new Map<string, trie_node>();
+    private _endWord: boolean = false;
 
-    // add a letter and return the child node
-    add(letter: string): trie_node {
-        if (! this.nodes.has(letter)) {
-            // if the letter does not exists we add it
-            this.nodes.set(letter, new trie_node());
+    get endWord(): boolean {
+      return this._endWord;
+    }
+  
+    set endWord(endWord: boolean) {
+      this._endWord = endWord;
+    }
+
+    // add a word and return the child node
+    add(word: string): boolean {
+        // add only if word has letters
+        if (word.length > 0) {
+            let letter = word.slice(0, 1);
+            let slice = word.slice(1);
+            let child = new trie_node();
+            if (! this.nodes.has(letter)) {
+                // if the letter does not exists we add it
+                if (slice.length == 0) {
+                    // if end of word signal it
+                    child.endWord = true;            
+                }
+                this.nodes.set(letter, child);
+            } else {
+                child = this.nodes.get(letter) || new trie_node();
+                // if no more to add and already end of word we haven't added word
+                if (slice.length == 0 && child.endWord) {
+                    return false;
+                }
+            }
+            // if nothing to add we've done our work
+            if (slice.length == 0) {
+                return true;
+            }
+            return child.add(slice);
         }
-        // at this point the letter should always exist as we have just added it if it didn't.
-        // NOTE: even though get should always return trie_node() compiler doesn't trust me
-        return this.nodes.get(letter) || new trie_node();
+        // should not get here 
+        return false;
     }
 
     contains(word: string): boolean {
         if (word.length == 1) {
             // if word is a single letter we just check it exists
-            return this.nodes.has(word);
+            let child = this.nodes.get(word)
+            if (child == undefined) {
+                return false;
+            }
+            return child.endWord;
         } else {
             // descend through trie
             let letter = word.slice(0, 1);
@@ -48,17 +81,7 @@ export class trie {
     // add a word 
     add(word: string) {
         // add only if word has letters
-        let current = word;
-        if (current.length > 0) {
-            let node = this.nodes;
-            while (current.length > 0) {
-                // take first letter
-                let letter = current.slice(0, 1);
-                // add it to the trie
-                node = node.add(letter);
-                current = current.slice(1);
-            }
-
+        if (this.nodes.add(word)) {
             this.size++;
         }
     }
