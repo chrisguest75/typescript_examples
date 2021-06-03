@@ -27,7 +27,19 @@
             "preLaunchTask": "tsc: build - 02_templating/tsconfig.json",
             "program": "${file}",
             "args": []
-        },           
+        },
+        {
+            "type": "pwa-node",
+            "request": "launch",
+            "name": "03_unit_testing",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "cwd": "${workspaceFolder}/03_unit_testing",
+            "preLaunchTask": "tsc: build - 03_unit_testing/tsconfig.json",
+            "program": "${file}",
+            "args": []
+        },                    
         {
             "type": "pwa-node",
             "request": "launch",
@@ -51,6 +63,19 @@
             "preLaunchTask": "tsc: build - 09_shell_mandelbrot/tsconfig.json",
             "program": "${file}",
             "args": []
+        },
+        {
+          "type": "node",
+          "request": "launch",
+          "name": "03_jest_testing",
+          "program": "${workspaceFolder}/03_jest_testing/node_modules/.bin/jest",
+          "args": [],
+          "console": "integratedTerminal",
+          "cwd": "${workspaceFolder}/03_jest_testing",
+          "internalConsoleOptions": "neverOpen",
+          "windows": {
+            "program": "${workspaceFolder}/03_jest_testing/node_modules/jest/bin/jest"
+          }
         }        
     ]
 }
