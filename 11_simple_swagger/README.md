@@ -81,3 +81,5 @@ Add a prelaunch task to transpile the code.
 [express-pino-logger](https://github.com/pinojs/express-pino-logger#readme)  
 [tsoa](https://github.com/lukeautry/tsoa)  
 [swagger-ui-express](https://github.com/scottie1984/swagger-ui-express)  
+
+https://tsoa-community.github.io/docs/getting-started.html#initializing-our-project
