@@ -15,7 +15,7 @@ npm install typescript @types/node jest @types/jest ts-jest --save-dev
 
 npx tsc --init --rootDir src --outDir build \
 --esModuleInterop --resolveJsonModule --lib es6 \
---module commonjs --allowJs true --noImplicitAny true
+--module commonjs --allowJs true --noImplicitAny true --sourceMap
 ```
 
 ```sh
@@ -35,3 +35,8 @@ https://medium.com/@RupaniChirag/writing-unit-tests-in-typescript-d4719b8a0a40
 https://github.com/kulshekhar/ts-jest
 
 https://itnext.io/testing-with-jest-in-typescript-cc1cd0095421
+
+https://kulshekhar.github.io/ts-jest/docs/debugging/
+
+https://github.com/ChiragRupani/TSUnitTestsSetup/blob/master/HelloJest/package.json
+

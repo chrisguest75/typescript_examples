@@ -18,7 +18,16 @@
 			],
 			"group": "build",
 			"label": "tsc: build - 02_templating/tsconfig.json"
-		},		
+		},
+		{
+			"type": "typescript",
+			"tsconfig": "03_unit_testing/tsconfig.json",
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build",
+			"label": "tsc: build - 03_unit_testing/tsconfig.json"
+		},					
 		{
 			"type": "typescript",
 			"tsconfig": "07_results2slack/tsconfig.json",

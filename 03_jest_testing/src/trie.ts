@@ -25,20 +25,13 @@ class trie_node {
             return this.nodes.has(word);
         } else {
             // descend through trie
-            let sliced = word;
-            let current_nodes: Map<string, trie_node> = this.nodes;
-            for (let i: number = 0; i < sliced.length; i++) {
-                // take top letter
-                let letter = sliced.slice(0, 1);
-                sliced = sliced.slice(1);    
-                if (current_nodes.has(letter)) {
-                     let x = current_nodes.get(letter) || new trie_node();
-                     current_nodes = x.nodes;
-                } else {
-                    return false;
-                }
+            let letter = word.slice(0, 1);
+            if (this.nodes.has(letter)) {
+                let x = this.nodes.get(letter) || new trie_node();
+                return x.contains(word.slice(1));
+            } else {
+                return false;
             }
-            return true;
         }
     }    
 }

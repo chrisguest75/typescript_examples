@@ -1,4 +1,4 @@
-import { trie } from '../trie'
+import { trie } from '../src/trie'
 
 test('empty trie contains no words', () => {
   // ARRANGE
