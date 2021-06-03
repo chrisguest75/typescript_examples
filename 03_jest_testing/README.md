@@ -1,11 +1,13 @@
 # README
-Demonstrates how to test typescript code
+Demonstrates how to test typescript code (including debugging)
 
 TODO:
-* Create a basic package that I can include
-* Add a basic piece of code that needs testing
 * Test reporting?  Github actions?
-* TDD
+## Using Jest
+```sh
+npm install
+npm run test
+```
 
 ## How to build
 Setup typescript for a basic nodejs project
@@ -18,25 +20,15 @@ npx tsc --init --rootDir src --outDir build \
 --module commonjs --allowJs true --noImplicitAny true --sourceMap
 ```
 
-```sh
-#add a nodemon.json and run
-npm run test
-```
-
-## Using Jest
 
 
 ## Resources
-https://jestjs.io/
+* [jestio](https://jestjs.io/)  
+* [example blog](https://medium.com/@RupaniChirag/writing-unit-tests-in-typescript-d4719b8a0a40)  
+* [example](https://github.com/ChiragRupani/TSUnitTestsSetup/ blob/master/HelloJest/package.json)  
+* [ts-jest](https://github.com/kulshekhar/ts-jest)  
+* [ts-jest-debugging](https://kulshekhar.github.io/ts-jest/docs/debugging/)  
+* [testing with jest](https://itnext.io/testing-with-jest-in-typescript-cc1cd0095421)  
 
 
-https://medium.com/@RupaniChirag/writing-unit-tests-in-typescript-d4719b8a0a40
-
-https://github.com/kulshekhar/ts-jest
-
-https://itnext.io/testing-with-jest-in-typescript-cc1cd0095421
-
-https://kulshekhar.github.io/ts-jest/docs/debugging/
-
-https://github.com/ChiragRupani/TSUnitTestsSetup/blob/master/HelloJest/package.json
 
