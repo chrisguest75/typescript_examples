@@ -1,4 +1,4 @@
 
 
-export class model {
+export class generator {
 }
