@@ -8,6 +8,9 @@ TODO:
 * testing 
 * Write a fibonacci generator 
 * logging
+* functional maps
+* events
+* generators
 
 ## Snippets
 Useful snippets to help
