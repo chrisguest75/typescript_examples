@@ -127,3 +127,12 @@ EOF
 
 # Resources
 https://medium.com/@cb.yannick/functional-programming-with-typescript-part-1-3f7167a2c0ad
+
+
+https://deepu.tech/functional-programming-in-typescript/
+
+https://betterprogramming.pub/9-useful-functional-programming-solutions-you-can-learn-with-typescript-and-node-2eab5ba097f0
+
+https://github.com/gcanti/fp-ts/tree/master/src
+
+https://github.com/MostlyAdequate/mostly-adequate-guide

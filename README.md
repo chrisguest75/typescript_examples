@@ -11,6 +11,7 @@ TODO:
 * functional maps
 * events
 * generators
+* mocking
 
 ## Snippets
 Useful snippets to help
