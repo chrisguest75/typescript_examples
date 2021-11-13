@@ -154,7 +154,10 @@ insert(toInsert: Image, options: object?): Image;
 npx patch-package image-js        
 
 # applying a patch
-git apply --ignore-whitespace patches/image-js+0.33.1.patch        
+patch -p1 -i patches/image-js+0.33.1.patch    
+# git apply only works for files in index.
+git apply --ignore-whitespace patches/image-js+0.33.1.patch      
+
 ```
 
 
