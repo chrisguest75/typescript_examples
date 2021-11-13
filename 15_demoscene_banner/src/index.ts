@@ -1,4 +1,5 @@
 import { Image } from 'image-js';
+import { spawnSync } from 'child_process';
 import asciifyImage = require("asciify-image")
 
 function imageDetails(image: Image) {
@@ -11,20 +12,33 @@ function imageDetails(image: Image) {
     console.log('bitDepth', image.bitDepth);
 }
 
+// async function executeJ2PA() {
+//     const jp2aCommand: ['ffmpeg', string[], { stdio: 'inherit'[] }] = [
+//       'ffmpeg',
+//       [
+//         '-i',
+//         presignedOriginalMedia,
+//         ...(mediaType === 'video' ? videoParams : audioParams),
+//       ],
+//       {
+//         stdio: ['inherit', 'inherit', 'inherit'],
+//       },
+//     ];
+
+//     console.log('FFMPEG Command:', ffmpegCommand.join(' '));
+
+//     const spawnResult = spawnSync();
+//     if (spawnResult.status !== 0) {
+//       throw new Error(`FFMPEG exited with ${spawnResult.status}`);
+//     }
+
+//     if docker:
+//     completed = subprocess.run(["jp2a", "--width=" + str(width), "--colors", "--color-depth=24", "--fill", banner_file], capture_output=True)
+// else:
+//     completed = subprocess.run(["jp2a", "--width=" + str(width), "--invert", banner_file], capture_output=True)
+
+
 async function execute() {
-/*    const buffer = new ArrayBuffer( * 32);
-    let outputImage = await Image.load(buffer);
-
-    let fontImage = await Image.load('./fonts/carebear.jpg');
-
-    copyImage(fontImage, outputImage, x: number, y: number)
-
-       let grey = fontImage
-      .grey() // convert the image to greyscale.
-      .resize({ width: 200 }) // resize the image, forcing a width of 200 pixels. The height is computed automatically to preserve the aspect ratio.
-      .rotate(30); // rotate the image clockwise by 30 degrees.
- 
-*/
     let text = "carebear";
     text = text.toUpperCase();
     const font_width=26
@@ -52,8 +66,6 @@ async function execute() {
 
     await banner.save('./out/carebear_banner.jpg');
 
-    const options = 
-
     asciifyImage('./out/carebear_banner.jpg', {fit: 'box', width:  100, height: 26})
         .then(function (asciified) {
             // Print asciified image to console
@@ -74,8 +86,3 @@ function main()
 }
 
 main()
-
-
-
-
-

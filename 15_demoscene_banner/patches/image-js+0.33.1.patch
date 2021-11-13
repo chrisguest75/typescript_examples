@@ -1,0 +1,12 @@
+diff --git a/node_modules/image-js/index.d.ts b/node_modules/image-js/index.d.ts
+index e3ad6f4..0a366b8 100644
+--- a/node_modules/image-js/index.d.ts
++++ b/node_modules/image-js/index.d.ts
+@@ -71,6 +71,7 @@ export declare class Image {
+ 
+   // extend
+   invert(options?: OutOrInplace): Image;
++  insert(toInsert: Image, options: object?): Image;
+   abs(options?: OutOrInplace): Image;
+   level(options?: {
+     channels?: SelectedChannels;

@@ -129,6 +129,9 @@ npm install image-js
 brew install graphicsmagick
 
 npm install --save image-to-ascii    
+
+brew install jp2a  
+
 ```
 ## Debugging 
 Add a tasks file that is for npm "tsc: build - 15_demoscene_banner/tsconfig.json"  
@@ -140,9 +143,19 @@ Add a prelaunch task to transpile the code.
 
 
 ## Patching image-js
-15_demoscene_banner/node_modules/image-js/index.d.ts
-  insert(toInsert: Image, options: object?): Image;
 
+```sh
+# edit the types file 15_demoscene_banner/node_modules/image-js/index.d.ts
+
+# Add the insert prototype 
+insert(toInsert: Image, options: object?): Image;
+
+# create a patch file
+npx patch-package image-js        
+
+# applying a patch
+git apply --ignore-whitespace patches/image-js+0.33.1.patch        
+```
 
 
 
