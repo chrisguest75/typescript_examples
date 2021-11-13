@@ -1,6 +1,7 @@
 # README
 Demonstrate creating a ascii banner from an old demoscene font.
 
+Based on this Python Service [here](https://github.com/chrisguest75/banner_service)  
 ## Using Jest
 ```sh
 npm install
@@ -141,6 +142,12 @@ Add a prelaunch task to transpile the code.
 ## Patching image-js
 15_demoscene_banner/node_modules/image-js/index.d.ts
   insert(toInsert: Image, options: object?): Image;
+
+
+
+
+docker run -it --rm --entrypoint /bin/sh node:14.15.4-alpine
+docker run -it --rm --entrypoint /bin/sh node:14.18.1-bullseye
 
 
 # Resources
