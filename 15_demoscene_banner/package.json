@@ -36,6 +36,7 @@
     "typescript": "^4.4.4"
   },
   "dependencies": {
-    "image-js": "^0.33.1"
+    "image-js": "^0.33.1",
+    "image-to-ascii": "^3.0.13"
   }
 }

@@ -45,7 +45,7 @@ async function execute() {
         banner.insert(letter, {x:(c * font_width), y:0, inPlace:true})
     }
 
-    return banner.save('./fonts/carebear_banner.jpg');
+    return banner.save('./out/carebear_banner.jpg');
   }
 
 

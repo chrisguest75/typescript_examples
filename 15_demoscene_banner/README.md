@@ -124,9 +124,21 @@ EOF
 
 ```sh
 npm install image-js 
+
+brew install graphicsmagick
+
+npm install --save image-to-ascii    
+```
+## Debugging 
+Add a tasks file that is for npm "tsc: build - 15_demoscene_banner/tsconfig.json"  
+
+Add a prelaunch task to transpile the code.  
+```json
+    "preLaunchTask": "tsc: build - 15_demoscene_banner/tsconfig.json",
 ```
 
 
+## Patching image-js
 15_demoscene_banner/node_modules/image-js/index.d.ts
   insert(toInsert: Image, options: object?): Image;
 
@@ -137,3 +149,6 @@ https://www.npmjs.com/package/image-to-ascii
 https://www.npmjs.com/package/image-js
 
 https://github.com/ianhan/BitmapFonts
+
+http://www.graphicsmagick.org/
+
