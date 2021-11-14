@@ -13,9 +13,11 @@
   "nodemonConfig": {
     "watch": [
       "src",
+      "src/fonts.json",
       "nodemon.json",
       "tsconfig.json",
-      "package.json"
+      "package.json",
+      "package-lock.json"
     ],
     "ext": "ts",
     "ignore": [],

@@ -3,6 +3,16 @@ import { spawnSync } from 'child_process';
 import asciifyImage = require("asciify-image")
 import { logger } from "./logger";
 import fs = require('fs');
+import fonts from "./fonts.json";
+
+interface Font {
+    font_width: number,
+    font_height: number,
+    chars_per_row: number,
+    rows: number,
+    first_character: string,
+    path: string
+}
 
 function imageDetails(image: Image) {
     logger.debug({ "width": image.width, "height": image.height, "colorModel": image.colorModel, "components": image.components, "alpha": image.alpha, 'channels': image.channels, "bitDepth": image.bitDepth});
@@ -34,21 +44,22 @@ function imageDetails(image: Image) {
 //     completed = subprocess.run(["jp2a", "--width=" + str(width), "--invert", banner_file], capture_output=True)
 
 
-async function execute() {
-    let text = "carebear";
-    text = text.toUpperCase();
-    const font_width=26
-    const font_height=26
-    const chars_per_row = 12
+async function render(text: string, font: Font) {
+    const font_width=font.font_width
+    const font_height=font.font_width
+    const chars_per_row = font.chars_per_row
+
+    // create output banner image
     const banner = new Image({ width: (font_width*text.length), height: font_height});
     imageDetails(banner);
 
-    let fontImage = await Image.load('./fonts/carebear.jpg');
+    let fontImage = await Image.load(font.path);
 
+    // render the characters
     for (let c = 0; c < text.length; c++) {
         let letter = text[c];
         let code = text.charCodeAt(c);
-        code -= " ".charCodeAt(0)
+        code -= font.first_character.charCodeAt(0)
 
         let column = Math.floor(code % chars_per_row) * font_width
         let row = Math.floor(code / chars_per_row) * font_width  
@@ -59,6 +70,7 @@ async function execute() {
         logger.debug({"charcode":code, "x":column, "y":row})
     }
 
+    // save the banner
     var outPath = './out';
     if (!fs.existsSync(outPath)){
         fs.mkdirSync(outPath);
@@ -67,6 +79,7 @@ async function execute() {
     const outFile = `${outPath}/banner.jpg`
     await banner.save(outFile);
 
+    // output ascii
     let terminalColumns = process.stdout.columns /2;
     let terminalRows = process.stdout.rows;    
     logger.info({ "width": terminalColumns, "height": terminalRows});
@@ -82,10 +95,11 @@ async function execute() {
         });
 }
 
-
-function main() 
-{
-    execute().catch(console.error);
+function main() {   
+    let text = "ABC"
+    const font = fonts["tcb"]
+    text = text.toUpperCase();
+    render(text, font).catch(console.error);
     // var a = 0
     console.log('Hello world!!!!')
 }

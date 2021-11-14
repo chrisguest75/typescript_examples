@@ -81,6 +81,9 @@ EOF
 ```sh
 npm install
 
+# apply the patch
+patch -p1 -i patches/image-js+0.33.1.patch  
+
 # start nodemon
 npm run start:dev     
 
@@ -157,27 +160,33 @@ Add a prelaunch task to transpile the code.
 
 ## Patching image-js
 
+Creating the patch
+
 ```sh
 # edit the types file 15_demoscene_banner/node_modules/image-js/index.d.ts
-
-# Add the insert prototype 
+# Add the `insert` prototype 
 insert(toInsert: Image, options: object?): Image;
 
 # create a patch file
 npx patch-package image-js        
-
-# applying a patch
-patch -p1 -i patches/image-js+0.33.1.patch    
-# git apply only works for files in index.
-git apply --ignore-whitespace patches/image-js+0.33.1.patch      
-
 ```
 
+Applying the patch
 
+```sh
+# applying a patch
+patch -p1 -i patches/image-js+0.33.1.patch    
 
+# git apply only works for files in index.
+git apply --ignore-whitespace patches/image-js+0.33.1.patch      
+```
+
+## Building the image
+
+```sh
 docker run -it --rm --entrypoint /bin/sh node:14.15.4-alpine
 docker run -it --rm --entrypoint /bin/sh node:14.18.1-bullseye
-
+```
 
 ## Resources
 
