@@ -5,6 +5,7 @@ import asciifyImage = require("asciify-image")
 import { logger } from "./logger";
 import fs = require('fs');
 import fonts from "./fonts.json";
+//var fonts = require("./fonts.json");
 
 interface Font {
     font_width: number,
@@ -15,8 +16,15 @@ interface Font {
     path: string
 }
 
-function imageDetails(image: Image) {
-    logger.debug({ "width": image.width, "height": image.height, "colorModel": image.colorModel, "components": image.components, "alpha": image.alpha, 'channels': image.channels, "bitDepth": image.bitDepth});
+/*interface AsciiRenderer {
+    render(in: string): string;
+}
+class AsciiRenderer {
+    render(in: string): string;
+}*/
+
+function imageDetails(image: Image, path: string) {
+    logger.debug({ "path": path, "width": image.width, "height": image.height, "colorModel": image.colorModel, "components": image.components, "alpha": image.alpha, 'channels': image.channels, "bitDepth": image.bitDepth});
 }
 
 async function jp2aVersion() {
@@ -47,7 +55,7 @@ async function jp2aImage(width:number, file:string, version: boolean ) {
         stdio: 'pipe',
         encoding: 'utf-8'
     });
-    logger.info({"stdout":spawnResult.output});
+    //logger.info({"stdout":spawnResult.output});
     if (spawnResult.status !== 0) {
         throw new Error(`jp2a exited with ${spawnResult.status}`);
     } else {
@@ -57,14 +65,15 @@ async function jp2aImage(width:number, file:string, version: boolean ) {
 
 async function render(text: string, font: Font) {
     const font_width=font.font_width
-    const font_height=font.font_width
+    const font_height=font.font_height
     const chars_per_row = font.chars_per_row
 
     // create output banner image
     const banner = new Image({ width: (font_width*text.length), height: font_height});
-    imageDetails(banner);
+    imageDetails(banner, "memory");
 
     let fontImage = await Image.load(font.path);
+    imageDetails(fontImage, font.path);
 
     // render the characters
     for (let c = 0; c < text.length; c++) {
@@ -73,7 +82,7 @@ async function render(text: string, font: Font) {
         code -= font.first_character.charCodeAt(0)
 
         let column = Math.floor(code % chars_per_row) * font_width
-        let row = Math.floor(code / chars_per_row) * font_width  
+        let row = Math.floor(code / chars_per_row) * font_height  
 
         let letterImage = fontImage.crop({x:column, y:row, width:font_width, height:font_height})
         banner.insert(letterImage, {x:(c * font_width), y:0, inPlace:true})
@@ -121,9 +130,28 @@ main
 */
 async function main(args: minimist.ParsedArgs) {
     logger.debug('enter main:'+ args._);
-    let text = "Build"
-    const font = fonts["carebear"]
+    logger.debug('args:'+ args["banner"]);
+    let text = args["banner"]
     text = text.toUpperCase();
+
+    logger.info({"fonts": fonts})
+
+    let font = fonts["carebear"]
+    switch (args["font"]) {
+        case "carebear":
+            font = fonts["carebear"]
+            break;
+        case "cuddly":
+            font = fonts["cuddly"]
+            break;
+        case "knight4":
+            font = fonts["knight4"]
+            break;
+        case "tcb":
+            font = fonts["tcb"]
+            break;    
+        }
+
     await render(text, font).catch(console.error);
     logger.debug('exit main');  
 
@@ -131,7 +159,13 @@ async function main(args: minimist.ParsedArgs) {
     });   
 }
 
-let args: minimist.ParsedArgs = minimist(process.argv.slice(2));
+let args: minimist.ParsedArgs = minimist(process.argv.slice(2), {
+    string: ['banner', 'font'] ,         // --banner "builder" --font "tcb"
+    boolean: ['jp2a']
+    //boolean: ['jp2a'],     // --version
+    //alias: { v: 'version' }
+});
+logger.info(args)
 main(args).then(() => {
     process.exit(0)
 }).catch((e) => {

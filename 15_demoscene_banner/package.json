@@ -9,7 +9,8 @@
     "start:dev": "nodemon",
     "test": "jest",
     "coverage": "jest --coverage", 
-    "postinstall": "patch -p1 -i patches/image-js+0.33.1.patch"
+    "postinstall": "patch -p1 -i patches/image-js+0.33.1.patch",
+    "start:cmd": "npm run build && node ./build/src/index.js --banner '% A B C' --font 'knight4'"
   },
   "nodemonConfig": {
     "watch": [
