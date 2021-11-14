@@ -4,6 +4,11 @@ Demonstrate creating a ascii banner from an old demoscene font.
 
 Based on this Python Service [here](https://github.com/chrisguest75/banner_service)  
 
+TODO:
+
+* jpp2a version 1.1.0 https://github.com/Talinx/jp2a/releases/tag/v1.1.0
+* make it configurable from the cmdline.  
+
 ## Using Jest
 
 ```sh
@@ -200,3 +205,4 @@ docker run -it --rm --entrypoint /bin/sh node:14.18.1-bullseye
 * https://github.com/ianhan/BitmapFonts
 * http://www.graphicsmagick.org/
 * https://www.npmjs.com/package/minimist
+

@@ -90,19 +90,22 @@ async function render(text: string, font: Font) {
     const outFile = `${outPath}/banner.jpg`
     await banner.save(outFile);
 
-    await jp2aVersion()
+
 
     // output ascii
-    let terminalColumns = process.stdout.columns /2;
+    let terminalColumns = process.stdout.columns;
     let terminalRows = process.stdout.rows;    
     logger.info({ "width": terminalColumns, "height": terminalRows});
 
     // jp2a
-    let out = await jp2aImage(terminalColumns, outFile, false)
+    await jp2aVersion()
+    // TODO: if 1.0.6 need to fix colours 
+    let colours24bit = true
+    let out = await jp2aImage(terminalColumns, outFile, colours24bit)
     console.log(out[1])
 
     // asciify
-    asciifyImage(outFile, {fit: 'box', width:  terminalColumns, height: terminalRows})
+    asciifyImage(outFile, {fit: 'box', width:  terminalColumns / 2, height: terminalRows})
         .then(function (asciified) {
             // Print asciified image to console
             console.log(asciified);
@@ -118,8 +121,8 @@ main
 */
 async function main(args: minimist.ParsedArgs) {
     logger.debug('enter main:'+ args._);
-    let text = "ABC"
-    const font = fonts["tcb"]
+    let text = "Build"
+    const font = fonts["carebear"]
     text = text.toUpperCase();
     await render(text, font).catch(console.error);
     logger.debug('exit main');  
