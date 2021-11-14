@@ -184,6 +184,11 @@ git apply --ignore-whitespace patches/image-js+0.33.1.patch
 ## Building the image
 
 ```sh
+docker build --no-cache -f Dockerfile -t demoscene .
+docker run -it --rm --entrypoint /bin/bash demoscene
+
+
+
 docker run -it --rm --entrypoint /bin/sh node:14.15.4-alpine
 docker run -it --rm --entrypoint /bin/sh node:14.18.1-bullseye
 ```

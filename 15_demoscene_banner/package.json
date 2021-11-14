@@ -8,7 +8,8 @@
     "lint": "eslint . --ext .ts",
     "start:dev": "nodemon",
     "test": "jest",
-    "coverage": "jest --coverage"
+    "coverage": "jest --coverage", 
+    "postinstall": "patch -p1 -i patches/image-js+0.33.1.patch"
   },
   "nodemonConfig": {
     "watch": [
