@@ -199,10 +199,15 @@ async function main(args: minimist.ParsedArgs) {
 
 let args: minimist.ParsedArgs = minimist(process.argv.slice(2), {
     string: ['banner', 'font'] ,         // --banner "builder" --font "tcb"
-    boolean: ['jp2a']
+    boolean: ['jp2a', 'verbose']
     //boolean: ['jp2a'],     // --version
     //alias: { v: 'version' }
 });
+if (args["verbose"]) {
+    logger.level = "debug"
+} else {
+    logger.level = "error"
+}
 logger.info(args)
 main(args).then(() => {
     process.exit(0)

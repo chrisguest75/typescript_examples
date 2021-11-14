@@ -190,8 +190,9 @@ git apply --ignore-whitespace patches/image-js+0.33.1.patch
 
 ```sh
 docker build --no-cache -f Dockerfile -t demoscene .
-docker run -it --rm --entrypoint /bin/bash demoscene
-
+docker run -it --rm --entrypoint /bin/bash demoscene 
+ocker run -it --rm demoscene node ./src/index.js --banner 'asciify' --font 'knight4' --jp2a
+ocker run -it --rm demoscene node ./src/index.js --banner 'asciify' --font 'knight4' 
 
 
 docker run -it --rm --entrypoint /bin/sh node:14.15.4-alpine
