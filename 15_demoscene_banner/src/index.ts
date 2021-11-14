@@ -16,54 +16,104 @@ interface Font {
     path: string
 }
 
-/*interface AsciiRenderer {
-    render(in: string): string;
+interface AsciiRenderer {
+    render(inFile: string, columns: number, rows: number): Promise<string>;
 }
-class AsciiRenderer {
-    render(in: string): string;
-}*/
+
+class AsciifyRender implements AsciiRenderer {
+    constructor() {
+    }
+
+    async render(inFile: string, columns: number, rows: number): Promise<string> {
+        // asciify
+        logger.info("enter render")
+        let realOut: string = "" 
+        asciifyImage(inFile, {fit: 'box', width: columns / 2, height: rows})
+            .then(function (asciified) {
+                console.log(asciified)            
+
+                // Print asciified image to console
+                if (Array.isArray(asciified)) {
+                    realOut = asciified.join('/n');
+                } else {
+                    realOut = asciified
+                }
+                
+            })
+            .catch(function (err: Error) {
+                // Print error to console
+                realOut = err.message;
+            });
+        return new Promise((resolve, reject) => {
+            return realOut
+        });               
+
+    }
+}
+
+class Jp2aRender implements AsciiRenderer {
+    constructor() {
+    }
+
+    async jp2aVersion() {
+        const spawnResult = spawnSync("jp2a", ["--version"], {
+            cwd: process.cwd(),
+            env: process.env,
+            stdio: 'pipe',
+            encoding: 'utf-8'
+        });
+        logger.info({"stdout":spawnResult.output});
+        if (spawnResult.status !== 0) {
+            throw new Error(`jp2a exited with ${spawnResult.status}`);
+        } else {
+            return spawnResult.output
+        }
+    }
+    
+    async jp2aImage(width:number, file:string, version: boolean ) {
+        
+        let options = [`--width=${width}`, "--invert", file]
+        if (version == true) {
+            options = [`--width=${width}`, "--colors", "--color-depth=24", "--fill", file]
+        }
+        logger.info({"options":"jp2a " + options.join(" ")});
+        const spawnResult = spawnSync("jp2a", options, {
+            cwd: process.cwd(),
+            env: process.env,
+            stdio: 'pipe',
+            encoding: 'utf-8'
+        });
+        //logger.info({"stdout":spawnResult.output});
+        if (spawnResult.status !== 0) {
+            throw new Error(`jp2a exited with ${spawnResult.status}`);
+        } else {
+            return spawnResult.output
+        }
+    }
+
+    async render(inFile: string, columns: number, rows: number): Promise<string> {
+        // jp2a
+        await this.jp2aVersion()
+        // TODO: if 1.0.6 need to fix colours 
+        let colours24bit = true
+        let out = await this.jp2aImage(columns, inFile, colours24bit)
+        console.log(out[1])
+        let realOut = "Error"
+        if (out != null) {
+            //realOut = out[1]
+        }
+        
+        return new Promise((resolve, reject) => {
+            return realOut
+        }); 
+    }
+}
 
 function imageDetails(image: Image, path: string) {
     logger.debug({ "path": path, "width": image.width, "height": image.height, "colorModel": image.colorModel, "components": image.components, "alpha": image.alpha, 'channels': image.channels, "bitDepth": image.bitDepth});
 }
 
-async function jp2aVersion() {
-    const spawnResult = spawnSync("jp2a", ["--version"], {
-        cwd: process.cwd(),
-        env: process.env,
-        stdio: 'pipe',
-        encoding: 'utf-8'
-    });
-    logger.info({"stdout":spawnResult.output});
-    if (spawnResult.status !== 0) {
-        throw new Error(`jp2a exited with ${spawnResult.status}`);
-    } else {
-        return spawnResult.output
-    }
-}
-
-async function jp2aImage(width:number, file:string, version: boolean ) {
-    
-    let options = [`--width=${width}`, "--invert", file]
-    if (version == true) {
-        options = [`--width=${width}`, "--colors", "--color-depth=24", "--fill", file]
-    }
-    logger.info({"options":"jp2a " + options.join(" ")});
-    const spawnResult = spawnSync("jp2a", options, {
-        cwd: process.cwd(),
-        env: process.env,
-        stdio: 'pipe',
-        encoding: 'utf-8'
-    });
-    //logger.info({"stdout":spawnResult.output});
-    if (spawnResult.status !== 0) {
-        throw new Error(`jp2a exited with ${spawnResult.status}`);
-    } else {
-        return spawnResult.output
-    }
-}
-
-async function render(text: string, font: Font) {
+async function render(text: string, font: Font, renderer: AsciiRenderer) {
     const font_width=font.font_width
     const font_height=font.font_height
     const chars_per_row = font.chars_per_row
@@ -99,30 +149,13 @@ async function render(text: string, font: Font) {
     const outFile = `${outPath}/banner.jpg`
     await banner.save(outFile);
 
-
-
     // output ascii
     let terminalColumns = process.stdout.columns;
     let terminalRows = process.stdout.rows;    
     logger.info({ "width": terminalColumns, "height": terminalRows});
 
-    // jp2a
-    await jp2aVersion()
-    // TODO: if 1.0.6 need to fix colours 
-    let colours24bit = true
-    let out = await jp2aImage(terminalColumns, outFile, colours24bit)
-    console.log(out[1])
-
-    // asciify
-    asciifyImage(outFile, {fit: 'box', width:  terminalColumns / 2, height: terminalRows})
-        .then(function (asciified) {
-            // Print asciified image to console
-            console.log(asciified);
-        })
-        .catch(function (err: Error) {
-            // Print error to console
-            console.error(err);
-        });
+    let output = await renderer.render(outFile, terminalColumns, terminalRows)
+    console.log(output)
 }
 
 /*
@@ -150,9 +183,14 @@ async function main(args: minimist.ParsedArgs) {
         case "tcb":
             font = fonts["tcb"]
             break;    
-        }
+    }
 
-    await render(text, font).catch(console.error);
+    if (args["jp2a"]) { 
+        await render(text, font, new Jp2aRender());
+    } else {
+        await render(text, font, new AsciifyRender());
+    }
+
     logger.debug('exit main');  
 
     return new Promise((resolve, reject) => {

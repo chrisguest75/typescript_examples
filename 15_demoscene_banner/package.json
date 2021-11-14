@@ -10,7 +10,8 @@
     "test": "jest",
     "coverage": "jest --coverage", 
     "postinstall": "patch -p1 -i patches/image-js+0.33.1.patch",
-    "start:cmd": "npm run build && node ./build/src/index.js --banner '% A B C' --font 'knight4'"
+    "start:cmd:jp2a": "npm run build && node ./build/src/index.js --banner 'jp2a' --font 'knight4' --jp2a",
+    "start:cmd:asciify": "npm run build && node ./build/src/index.js --banner 'asciify' --font 'knight4'"
   },
   "nodemonConfig": {
     "watch": [
