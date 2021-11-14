@@ -30,5 +30,13 @@
         "rows": 6,
         "first_character": " ",
         "path": "./fonts/tcb.jpg"
-    }
+    },
+    "megadeth": {
+        "font_width": 33,
+        "font_height": 32,
+        "chars_per_row": 9,
+        "rows": 6,
+        "first_character": "A",
+        "path": "./fonts/megadeth.jpg"
+    }    
 }

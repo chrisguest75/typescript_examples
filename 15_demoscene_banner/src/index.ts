@@ -183,6 +183,9 @@ async function main(args: minimist.ParsedArgs) {
         case "tcb":
             font = fonts["tcb"]
             break;    
+        case "megadeth":
+            font = fonts["megadeth"]
+            break;  
     }
 
     if (args["jp2a"]) { 
