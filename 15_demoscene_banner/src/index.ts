@@ -1,3 +1,4 @@
+import minimist from 'minimist';
 import { Image } from 'image-js';
 import { spawnSync } from 'child_process';
 import asciifyImage = require("asciify-image")
@@ -18,31 +19,41 @@ function imageDetails(image: Image) {
     logger.debug({ "width": image.width, "height": image.height, "colorModel": image.colorModel, "components": image.components, "alpha": image.alpha, 'channels': image.channels, "bitDepth": image.bitDepth});
 }
 
-// async function executeJ2PA() {
-//     const jp2aCommand: ['ffmpeg', string[], { stdio: 'inherit'[] }] = [
-//       'ffmpeg',
-//       [
-//         '-i',
-//         presignedOriginalMedia,
-//         ...(mediaType === 'video' ? videoParams : audioParams),
-//       ],
-//       {
-//         stdio: ['inherit', 'inherit', 'inherit'],
-//       },
-//     ];
+async function jp2aVersion() {
+    const spawnResult = spawnSync("jp2a", ["--version"], {
+        cwd: process.cwd(),
+        env: process.env,
+        stdio: 'pipe',
+        encoding: 'utf-8'
+    });
+    logger.info({"stdout":spawnResult.output});
+    if (spawnResult.status !== 0) {
+        throw new Error(`jp2a exited with ${spawnResult.status}`);
+    } else {
+        return spawnResult.output
+    }
+}
 
-//     console.log('FFMPEG Command:', ffmpegCommand.join(' '));
-
-//     const spawnResult = spawnSync();
-//     if (spawnResult.status !== 0) {
-//       throw new Error(`FFMPEG exited with ${spawnResult.status}`);
-//     }
-
-//     if docker:
-//     completed = subprocess.run(["jp2a", "--width=" + str(width), "--colors", "--color-depth=24", "--fill", banner_file], capture_output=True)
-// else:
-//     completed = subprocess.run(["jp2a", "--width=" + str(width), "--invert", banner_file], capture_output=True)
-
+async function jp2aImage(width:number, file:string, version: boolean ) {
+    
+    let options = [`--width=${width}`, "--invert", file]
+    if (version == true) {
+        options = [`--width=${width}`, "--colors", "--color-depth=24", "--fill", file]
+    }
+    logger.info({"options":"jp2a " + options.join(" ")});
+    const spawnResult = spawnSync("jp2a", options, {
+        cwd: process.cwd(),
+        env: process.env,
+        stdio: 'pipe',
+        encoding: 'utf-8'
+    });
+    logger.info({"stdout":spawnResult.output});
+    if (spawnResult.status !== 0) {
+        throw new Error(`jp2a exited with ${spawnResult.status}`);
+    } else {
+        return spawnResult.output
+    }
+}
 
 async function render(text: string, font: Font) {
     const font_width=font.font_width
@@ -79,11 +90,18 @@ async function render(text: string, font: Font) {
     const outFile = `${outPath}/banner.jpg`
     await banner.save(outFile);
 
+    await jp2aVersion()
+
     // output ascii
     let terminalColumns = process.stdout.columns /2;
     let terminalRows = process.stdout.rows;    
     logger.info({ "width": terminalColumns, "height": terminalRows});
 
+    // jp2a
+    let out = await jp2aImage(terminalColumns, outFile, false)
+    console.log(out[1])
+
+    // asciify
     asciifyImage(outFile, {fit: 'box', width:  terminalColumns, height: terminalRows})
         .then(function (asciified) {
             // Print asciified image to console
@@ -95,13 +113,25 @@ async function render(text: string, font: Font) {
         });
 }
 
-function main() {   
+/*
+main
+*/
+async function main(args: minimist.ParsedArgs) {
+    logger.debug('enter main:'+ args._);
     let text = "ABC"
     const font = fonts["tcb"]
     text = text.toUpperCase();
-    render(text, font).catch(console.error);
-    // var a = 0
-    console.log('Hello world!!!!')
+    await render(text, font).catch(console.error);
+    logger.debug('exit main');  
+
+    return new Promise((resolve, reject) => {
+    });   
 }
 
-main()
+let args: minimist.ParsedArgs = minimist(process.argv.slice(2));
+main(args).then(() => {
+    process.exit(0)
+}).catch((e) => {
+    console.log(e);
+    process.exit(1);
+});

@@ -194,3 +194,4 @@ docker run -it --rm --entrypoint /bin/sh node:14.18.1-bullseye
 * https://www.npmjs.com/package/image-js
 * https://github.com/ianhan/BitmapFonts
 * http://www.graphicsmagick.org/
+* https://www.npmjs.com/package/minimist
