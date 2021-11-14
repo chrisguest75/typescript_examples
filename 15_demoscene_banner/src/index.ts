@@ -1,15 +1,11 @@
 import { Image } from 'image-js';
 import { spawnSync } from 'child_process';
 import asciifyImage = require("asciify-image")
+import { logger } from "./logger";
+import fs = require('fs');
 
 function imageDetails(image: Image) {
-    console.log('Width', image.width);
-    console.log('Height', image.height);
-    console.log('colorModel', image.colorModel);
-    console.log('components', image.components);
-    console.log('alpha', image.alpha);
-    console.log('channels', image.channels);
-    console.log('bitDepth', image.bitDepth);
+    logger.debug({ "width": image.width, "height": image.height, "colorModel": image.colorModel, "components": image.components, "alpha": image.alpha, 'channels': image.channels, "bitDepth": image.bitDepth});
 }
 
 // async function executeJ2PA() {
@@ -60,13 +56,22 @@ async function execute() {
         let letterImage = fontImage.crop({x:column, y:row, width:font_width, height:font_height})
         banner.insert(letterImage, {x:(c * font_width), y:0, inPlace:true})
 
-        console.log(`${code} ${column} ${row}`)
-
+        logger.debug({"charcode":code, "x":column, "y":row})
     }
 
-    await banner.save('./out/carebear_banner.jpg');
+    var outPath = './out';
+    if (!fs.existsSync(outPath)){
+        fs.mkdirSync(outPath);
+    }
 
-    asciifyImage('./out/carebear_banner.jpg', {fit: 'box', width:  100, height: 26})
+    const outFile = `${outPath}/banner.jpg`
+    await banner.save(outFile);
+
+    let terminalColumns = process.stdout.columns /2;
+    let terminalRows = process.stdout.rows;    
+    logger.info({ "width": terminalColumns, "height": terminalRows});
+
+    asciifyImage(outFile, {fit: 'box', width:  terminalColumns, height: terminalRows})
         .then(function (asciified) {
             // Print asciified image to console
             console.log(asciified);

@@ -1,15 +1,20 @@
 # README
+
 Demonstrate creating a ascii banner from an old demoscene font.
 
 Based on this Python Service [here](https://github.com/chrisguest75/banner_service)  
+
 ## Using Jest
+
 ```sh
 npm install
 npm run test
 ```
 
 ## How to build
+
 Setup typescript for a basic nodejs project
+
 ```sh
 npm init -y   
 npm install typescript @types/node jest @types/jest ts-jest --save-dev  
@@ -20,7 +25,8 @@ npx tsc --init --rootDir src --outDir build \
 --module commonjs --allowJs true --noImplicitAny true --sourceMap
 ```
 
-Add `scripts` section to `package.json` 
+Add `scripts` section to `package.json`
+
 ```js
   "scripts": {
     "build": "rimraf ./build && tsc",
@@ -30,7 +36,8 @@ Add `scripts` section to `package.json`
   },
 ```
 
-Add a `nodemonConfig` to `package.json` 
+Add a `nodemonConfig` to `package.json`
+
 ```json
   "nodemonConfig": {
     "watch": ["src", "nodemon.json", "tsconfig.json", "package.json"],
@@ -41,6 +48,7 @@ Add a `nodemonConfig` to `package.json`
 ```
 
 Add an `index.ts` to `src`
+
 ```bash
 mkdir -p ./src
 cat << EOF  > ./src/index.ts
@@ -55,6 +63,7 @@ EOF
 ```
 
 Install prettier
+
 ```sh
 code --install-extension esbenp.prettier-vscode
 npm install --save-dev prettier 
@@ -67,7 +76,7 @@ cat << EOF  > ./.prettierrc
 EOF
 ```
 
-## Start 
+## Start
 
 ```sh
 npm install
@@ -79,7 +88,6 @@ npm run start:dev
 npm run build 
 ```
 
-
 ## Testing
 
 ```sh
@@ -87,6 +95,7 @@ npm install jest @types/jest ts-jest --save-dev
 ```
 
 Add an `index.test.ts` to `tests`
+
 ```bash
 mkdir -p ./tests
 cat << EOF  > ./tests/index.test.ts
@@ -101,7 +110,8 @@ test('empty test', () => {
 EOF
 ```
 
-Add more targets to `scripts` section in `package.json` 
+Add more targets to `scripts` section in `package.json`
+
 ```js
   "scripts": {
     "test": "jest",
@@ -110,6 +120,7 @@ Add more targets to `scripts` section in `package.json`
 ```
 
 Add a `jest.config.js` file
+
 ```sh
 cat << EOF > ./jest.config.js
 module.exports = {
@@ -133,14 +144,16 @@ npm install --save image-to-ascii
 brew install jp2a  
 
 ```
-## Debugging 
+
+## Debugging
+
 Add a tasks file that is for npm "tsc: build - 15_demoscene_banner/tsconfig.json"  
 
 Add a prelaunch task to transpile the code.  
+
 ```json
     "preLaunchTask": "tsc: build - 15_demoscene_banner/tsconfig.json",
 ```
-
 
 ## Patching image-js
 
@@ -166,12 +179,9 @@ docker run -it --rm --entrypoint /bin/sh node:14.15.4-alpine
 docker run -it --rm --entrypoint /bin/sh node:14.18.1-bullseye
 
 
-# Resources
-https://www.npmjs.com/package/image-to-ascii
+## Resources
 
-https://www.npmjs.com/package/image-js
-
-https://github.com/ianhan/BitmapFonts
-
-http://www.graphicsmagick.org/
-
+* https://www.npmjs.com/package/image-to-ascii
+* https://www.npmjs.com/package/image-js
+* https://github.com/ianhan/BitmapFonts
+* http://www.graphicsmagick.org/
