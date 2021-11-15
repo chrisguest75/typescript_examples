@@ -38,5 +38,13 @@
         "rows": 6,
         "first_character": "A",
         "path": "./fonts/megadeth.jpg"
-    }    
+    },
+    "16x16-F7": {
+        "font_width": 16,
+        "font_height": 16,
+        "chars_per_row": 20,
+        "rows": 3,
+        "first_character": " ",
+        "path": "./fonts/16x16-F7.png"
+    }      
 }

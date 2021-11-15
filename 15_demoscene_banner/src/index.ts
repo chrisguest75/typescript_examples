@@ -113,7 +113,7 @@ function imageDetails(image: Image, path: string) {
     logger.debug({ "path": path, "width": image.width, "height": image.height, "colorModel": image.colorModel, "components": image.components, "alpha": image.alpha, 'channels': image.channels, "bitDepth": image.bitDepth});
 }
 
-async function render(text: string, font: Font, renderer: AsciiRenderer) {
+async function render(text: string, font: Font, renderer: AsciiRenderer, terminalColumns: number, terminalRows: number) {
     const font_width=font.font_width
     const font_height=font.font_height
     const chars_per_row = font.chars_per_row
@@ -149,11 +149,6 @@ async function render(text: string, font: Font, renderer: AsciiRenderer) {
     const outFile = `${outPath}/banner.jpg`
     await banner.save(outFile);
 
-    // output ascii
-    let terminalColumns = process.stdout.columns;
-    let terminalRows = process.stdout.rows;    
-    logger.info({ "width": terminalColumns, "height": terminalRows});
-
     let output = await renderer.render(outFile, terminalColumns, terminalRows)
     console.log(output)
 }
@@ -186,12 +181,43 @@ async function main(args: minimist.ParsedArgs) {
         case "megadeth":
             font = fonts["megadeth"]
             break;  
+        case "16x16-F7":
+            font = fonts["16x16-F7"]
+            break;             
     }
 
+    // output ascii
+
+    let terminalColumns = process.stdout.columns;
+    let terminalRows = process.stdout.rows;    
+    if (args["width"] != null) {
+        let width = parseInt(args["width"], 10);
+        if (args["clip"]) {
+            if (width < terminalColumns) {
+                logger.info("width larger than terminal clipping")
+                terminalColumns = width
+            }
+        } else {
+            terminalColumns = width
+        }
+    }
+    if (args["height"] != null) {
+        let height = parseInt(args["height"], 10);
+        if (args["clip"]) {
+            if (height < terminalRows) {
+                logger.info("height larger than terminal clipping")
+                terminalRows = height
+            } else {
+                terminalRows = height
+            }
+        }        
+    }
+    logger.info({ "width": terminalColumns, "height": terminalRows, "passedwidth": args["width"], "passedheight": args["height"]});
+
     if (args["jp2a"]) { 
-        await render(text, font, new Jp2aRender());
+        await render(text, font, new Jp2aRender(), terminalColumns, terminalRows);
     } else {
-        await render(text, font, new AsciifyRender());
+        await render(text, font, new AsciifyRender(), terminalColumns, terminalRows);
     }
 
     logger.debug('exit main');  
@@ -201,9 +227,8 @@ async function main(args: minimist.ParsedArgs) {
 }
 
 let args: minimist.ParsedArgs = minimist(process.argv.slice(2), {
-    string: ['banner', 'font'] ,         // --banner "builder" --font "tcb"
-    boolean: ['jp2a', 'verbose']
-    //boolean: ['jp2a'],     // --version
+    string: ['banner', 'font', 'width', 'height'],         // --banner "builder" --font "tcb"
+    boolean: ['jp2a', 'verbose', 'clip']
     //alias: { v: 'version' }
 });
 if (args["verbose"]) {
