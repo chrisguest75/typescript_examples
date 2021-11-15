@@ -7,10 +7,9 @@ Based on this Python Service [here](https://github.com/chrisguest75/banner_servi
 TODO:
 
 * jpp2a version 1.1.0 https://github.com/Talinx/jp2a/releases/tag/v1.1.0
+* max font-width 
 * better handling of exceptions
-* multi line output
 * slim down container.
-* mapping tables
 * scrolling 
 * test markdown output
 

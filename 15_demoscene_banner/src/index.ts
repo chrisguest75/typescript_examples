@@ -144,6 +144,7 @@ async function render(
       max_length = Math.max(...(lines.map(el => el.length)));
     }
   }
+
   logger.debug({ lines_count: lines_count, max_length: max_length });
 
   // create output banner image
@@ -217,7 +218,11 @@ async function render(
   const outFile = `${outPath}/banner.jpg`;
   await banner.save(outFile);
 
-  let output = await renderer.render(outFile, terminalColumns, terminalRows);
+  let renderColumns = terminalColumns
+  if (banner.width < terminalColumns) {
+    renderColumns = banner.width
+  }
+  let output = await renderer.render(outFile, renderColumns, terminalRows);
   console.log(output);
 }
 
@@ -275,7 +280,13 @@ async function main(args: minimist.ParsedArgs) {
   });
 
   if (args["jp2a"]) {
-    await render(text, font, new Jp2aRender(), terminalColumns, terminalRows);
+    await render(
+      text, 
+      font, 
+      new Jp2aRender(), 
+      terminalColumns, 
+      terminalRows
+    );
   } else {
     await render(
       text,
