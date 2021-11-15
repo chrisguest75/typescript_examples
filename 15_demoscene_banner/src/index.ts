@@ -181,8 +181,8 @@ async function main(args: minimist.ParsedArgs) {
         case "megadeth":
             font = fonts["megadeth"]
             break;  
-        case "16x16-F7":
-            font = fonts["16x16-F7"]
+        case "16X16-F7":
+            font = fonts["16X16-F7"]
             break;             
         case "bennyfnt":
             font = fonts["bennyfnt"]

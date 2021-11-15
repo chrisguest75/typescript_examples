@@ -189,14 +189,45 @@ git apply --ignore-whitespace patches/image-js+0.33.1.patch
 ## Building the image
 
 ```sh
-docker build --no-cache -f Dockerfile -t demoscene .
-docker run -it --rm --entrypoint /bin/bash demoscene 
-ocker run -it --rm demoscene node ./src/index.js --banner 'asciify' --font 'knight4' --jp2a
-ocker run -it --rm demoscene node ./src/index.js --banner 'asciify' --font 'knight4' 
+docker build -f Dockerfile -t chrisguest/demoscenebanner .
+docker run -it --rm --entrypoint /bin/bash chrisguest/demoscenebanner 
+docker run -it --rm chrisguest/demoscenebanner node ./src/index.js --banner 'asciify' --font 'knight4' --jp2a
+
+ocker run -it --rm chrisguest/demoscenebanner node ./src/index.js --banner 'asciify' --font 'knight4' 
+
+docker run -it --rm chrisguest/demoscenebanner node ./src/index.js --banner 'Starting Build' --font 'bennyfnt' --jp2a
+
+docker run -it --rm chrisguest/demoscenebanner node ./src/index.js --banner 'Starting Build' --font '16X16-F7' --jp2a
+
+docker-slim build --http-probe=false --include-path /scratch chrisguest/demoscenebanner:latest
 
 
 docker run -it --rm --entrypoint /bin/sh node:14.15.4-alpine
 docker run -it --rm --entrypoint /bin/sh node:14.18.1-bullseye
+```
+
+
+## Demoscene Banner
+
+### Fonts
+
+* 16X16-F7
+* cuddly
+* carebear
+* knight4
+* tcb
+* megadeth
+* bennyfnt
+
+```sh
+# simple command
+docker run -it --rm chrisguest/demoscenebanner node ./src/index.js --banner 'Starting Build' --font '16X16-F7' --jp2a
+
+# specify width
+docker run -it --rm chrisguest/demoscenebanner node ./src/index.js --width 140 --banner 'Starting Build' --font '16X16-F7' --jp2a
+
+# clip width to terminal
+docker run -it --rm chrisguest/demoscenebanner node ./src/index.js --width 200 --clip --banner 'Starting Build' --font '16X16-F7' --jp2a
 ```
 
 ## Resources
