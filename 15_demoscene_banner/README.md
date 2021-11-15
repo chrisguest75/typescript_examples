@@ -7,7 +7,12 @@ Based on this Python Service [here](https://github.com/chrisguest75/banner_servi
 TODO:
 
 * jpp2a version 1.1.0 https://github.com/Talinx/jp2a/releases/tag/v1.1.0
-* make it configurable from the cmdline.  
+* better handling of exceptions
+* multi line output
+* slim down container.
+* mapping tables
+* scrolling 
+* test markdown output
 
 ## Using Jest
 
@@ -238,3 +243,5 @@ docker run -it --rm chrisguest/demoscenebanner node ./src/index.js --width 200 -
 * http://www.graphicsmagick.org/
 * https://www.npmjs.com/package/minimist
 
+
+https://app.quicktype.io/

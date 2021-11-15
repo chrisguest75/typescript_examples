@@ -12,7 +12,8 @@
     "postinstall": "patch -p1 -i patches/image-js+0.33.1.patch",
     "start:cmd:asciify": "npm run build && node ./build/src/index.js --banner 'asciify' --font 'knight4'",
     "start:cmd:jp2aclip": "npm run build && node ./build/src/index.js --banner 'megadeth' --width 200 --clip --font 'bennyfnt' --jp2a",
-    "start:cmd:jp2a": "npm run build && node ./build/src/index.js --banner 'megadeth' --font 'bennyfnt' --jp2a"
+    "start:cmd:jp2a": "npm run build && node ./build/src/index.js --banner 'megadeth\n !()?0123\n456789.' --font 'cuddly' --jp2a",
+    "start:cmd:jp2acustom": "npm run build && node ./build/src/index.js --banner '$npm_config_banner' --font $npm_config_font --jp2a --verbose"
   },
   "nodemonConfig": {
     "watch": [
