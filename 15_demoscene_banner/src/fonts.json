@@ -60,9 +60,24 @@
         "chars_per_row": 9,
         "rows": 6,
         "first_character": "A",
-        "space": 0,        
+        "space": 39,        
         "map": {
-            " ": 0
+            "A-Z":0,
+            "0-9":38,
+            ".":26,
+            ",":27,     
+            "\"":28,
+            "-":29,
+            "+":30,
+            "!":31,
+            "?":32,
+            "(":33,
+            ")":34,
+            "'":35,
+            ":":36,
+            ";":37,
+            "@":48,
+            " ":49
         },
         "path": "./fonts/megadeth.jpg"
     },
@@ -89,5 +104,29 @@
             " ": 0
         },
         "path": "./fonts/bennyfnt.png"
-    }        
+    },
+    "fantfont": {
+        "font_width": 32,
+        "font_height": 32,
+        "chars_per_row": 10,
+        "rows": 6,
+        "first_character": " ",
+        "space": 0,        
+        "map": {
+            " ": 0
+        },
+        "path": "./fonts/fantfont.png"
+    },
+    "candyfntr": {
+        "font_width": 32,
+        "font_height": 32,
+        "chars_per_row": 10,
+        "rows": 6,
+        "first_character": "A",
+        "space": 29,        
+        "map": {
+            " ": 0
+        },
+        "path": "./fonts/candyfntr.png"
+    },          
 }

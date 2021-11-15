@@ -5,7 +5,6 @@ import asciifyImage = require("asciify-image");
 import { logger } from "./logger";
 import fs = require("fs");
 import fonts from "./fonts.json";
-//var fonts = require("./fonts.json");
 
 interface Font {
   font_width: number;
@@ -18,7 +17,6 @@ interface Font {
   path: string;
 }
 
-
 interface AsciiRenderer {
   render(inFile: string, columns: number, rows: number): Promise<string>;
 }
@@ -29,24 +27,17 @@ class AsciifyRender implements AsciiRenderer {
   async render(inFile: string, columns: number, rows: number): Promise<string> {
     // asciify
     logger.info("enter render");
-    let realOut: string = "";
-    asciifyImage(inFile, { fit: "box", width: columns / 2, height: rows })
-      .then(function (asciified) {
-        console.log(asciified);
+    
+    let out = await asciifyImage(inFile, { fit: "box", width: columns / 2, height: rows });
+    let realOut = "";
+    if (Array.isArray(out)) {
+      realOut = out[0]
+    } else {
+      realOut = out
+    }
 
-        // Print asciified image to console
-        if (Array.isArray(asciified)) {
-          realOut = asciified.join("/n");
-        } else {
-          realOut = asciified;
-        }
-      })
-      .catch(function (err: Error) {
-        // Print error to console
-        realOut = err.message;
-      });
     return new Promise((resolve, reject) => {
-      return realOut;
+      resolve(realOut);
     });
   }
 }
@@ -99,20 +90,24 @@ class Jp2aRender implements AsciiRenderer {
     // jp2a
     await this.jp2aVersion();
     // TODO: if 1.0.6 need to fix colours
+    // right now always use 24 bit colour 
     let colours24bit = true;
     let out = await this.jp2aImage(columns, inFile, colours24bit);
-    console.log(out[1]);
+
     let realOut = "Error";
     if (out != null) {
-      //realOut = out[1]
+       realOut = out[1] || ""
     }
 
     return new Promise((resolve, reject) => {
-      return realOut;
+      resolve(realOut);
     });
   }
 }
 
+/*************************************************
+ * Log details of the image
+ */
 function imageDetails(image: Image, path: string) {
   logger.debug({
     path: path,
@@ -137,9 +132,19 @@ async function render(
   const font_height = font.font_height;
   const chars_per_row = font.chars_per_row;
 
-  let lines = text.split("\n") 
-  let lines_count = lines.length
-  let max_length = Math.max(...(lines.map(el => el.length)));
+  let lines = [" "]
+  let lines_count = 1
+  let max_length = 1
+  if (text.length > 0) {
+    lines = text.split("\n") 
+    lines_count = lines.length
+    if (lines_count == 1) {
+      max_length = lines[0].length
+    } else {
+      max_length = Math.max(...(lines.map(el => el.length)));
+    }
+  }
+  logger.debug({ lines_count: lines_count, max_length: max_length });
 
   // create output banner image
   const banner = new Image({
@@ -160,26 +165,36 @@ async function render(
       cursor = 0 
       continue
     }
+    // map the character code 
+    let useMap = false
     let code = text.charCodeAt(c);
+    let newcode = code
+
     if (font.first_character == " ") {
-      code -= font.first_character.charCodeAt(0);
+      // if " " is configured as first character of the font we assume it is in order 
+      newcode -= font.first_character.charCodeAt(0);
     } else {
+      // otherwise we use the map
+      // if not in range we attempt to find code - otherwise unknown characters rendered as spaces. 
+      newcode = (font.map as any)[letter] || font.space 
       if (code >= "A".charCodeAt(0) && code <= "Z".charCodeAt(0)) {
         if (font.map.hasOwnProperty("A-Z")) {
-          code = font.map["A-Z"] + (letter.charCodeAt(0) - "A".charCodeAt(0))
+          newcode = font.map["A-Z"] + (letter.charCodeAt(0) - "A".charCodeAt(0))
         }
-      } else if (code >= "0".charCodeAt(0) && code <= "9".charCodeAt(0)) {
+      } 
+      if (code >= "0".charCodeAt(0) && code <= "9".charCodeAt(0)) {
         if (font.map.hasOwnProperty("0-9")) {
-          code = font.map["0-9"] + (letter.charCodeAt(0) - "0".charCodeAt(0))
+          newcode = font.map["0-9"] + (letter.charCodeAt(0) - "0".charCodeAt(0))
         }
-      } else {
-        code = (font.map as any)[letter] || font.space 
-      }
+      } 
+      useMap = true
     }
 
-    let column = Math.floor(code % chars_per_row) * font_width;
-    let row = Math.floor(code / chars_per_row) * font_height;
-
+    let column = Math.floor(newcode % chars_per_row) * font_width;
+    let row = Math.floor(newcode / chars_per_row) * font_height;
+  
+    logger.debug({ charcode: code, newcharcode: newcode, x: column, y: row, useMap: useMap });
+  
     if (column >= 0 && row >= 0) {
       let letterImage = fontImage.crop({
         x: column,
@@ -188,10 +203,9 @@ async function render(
         height: font_height,
       });
       banner.insert(letterImage, { x: cursor * font_width, y: line, inPlace: true });  
-      cursor++
     }
+    cursor++
 
-    logger.debug({ charcode: code, x: column, y: row });
   }
 
   // save the banner
@@ -207,9 +221,7 @@ async function render(
   console.log(output);
 }
 
-/*
-main
-*/
+// Main
 async function main(args: minimist.ParsedArgs) {
   logger.debug("enter main:" + args._);
   logger.debug("args:" + args["banner"]);
@@ -218,33 +230,19 @@ async function main(args: minimist.ParsedArgs) {
 
   logger.info({ fonts: fonts });
 
+  // choose the font or default
+  let fontname = "carebear"
   let font = fonts["carebear"];
-  switch (args["font"]) {
-    case "carebear":
-      font = fonts["carebear"];
-      break;
-    case "cuddly":
-      font = fonts["cuddly"];
-      break;
-    case "knight4":
-      font = fonts["knight4"];
-      break;
-    case "tcb":
-      font = fonts["tcb"];
-      break;
-    case "megadeth":
-      font = fonts["megadeth"];
-      break;
-    case "16X16-F7":
-      font = fonts["16X16-F7"];
-      break;
-    case "bennyfnt":
-      font = fonts["bennyfnt"];
-      break;
-  }
+  if (fonts.hasOwnProperty(args["font"])) {
+    font = (fonts as any)[args["font"]];
+    fontname = args["font"];
+  } 
+  logger.info({
+    actual_font: fontname,
+    requested_font: args["font"],
+  });
 
   // output ascii
-
   let terminalColumns = process.stdout.columns;
   let terminalRows = process.stdout.rows;
   if (args["width"] != null) {
