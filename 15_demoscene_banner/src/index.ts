@@ -184,6 +184,9 @@ async function main(args: minimist.ParsedArgs) {
         case "16x16-F7":
             font = fonts["16x16-F7"]
             break;             
+        case "bennyfnt":
+            font = fonts["bennyfnt"]
+            break; 
     }
 
     // output ascii
