@@ -223,6 +223,9 @@ docker run -it --rm --entrypoint /bin/sh node:14.18.1-bullseye
 * tcb
 * megadeth
 * bennyfnt
+* candyfntr
+* fantfont
+
 
 ```sh
 # simple command
