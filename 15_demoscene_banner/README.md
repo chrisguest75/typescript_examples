@@ -202,9 +202,6 @@ docker run -it --rm chrisguest/demoscenebanner node ./src/index.js --banner 'Sta
 
 docker run -it --rm chrisguest/demoscenebanner node ./src/index.js --banner 'Starting Build' --font '16X16-F7' --jp2a
 
-# newlines
-docker run -it --rm chrisguest/demoscenebanner:latest node ./src/index.js --banner $'hello monkies\nworld heroes' --font 'cuddly' --jp2a
-
 docker-slim build --http-probe=false --include-path /scratch chrisguest/demoscenebanner:latest
 
 
@@ -236,6 +233,13 @@ docker run -it --rm chrisguest/demoscenebanner node ./src/index.js --width 140 -
 
 # clip width to terminal
 docker run -it --rm chrisguest/demoscenebanner node ./src/index.js --width 200 --clip --banner 'Starting Build' --font '16X16-F7' --jp2a
+
+docker run -it --rm chrisguest/demoscenebanner:latest node ./src/index.js --banner $'Greetings,\n'$(hostname)$'\nfrom zsh.\n' --font 'knight4' --jp2a
+
+# hostname and ip
+docker run -it --rm chrisguest/demoscenebanner:latest node ./src/index.js --banner $'Greetings,\n'$(hostname)$'\nfrom zsh.\n'$(ipconfig getifaddr en0) --font '16X16-F7' --jp2a
+docker run -it --rm chrisguest/demoscenebanner:latest node ./src/index.js --banner $'Greetings,\n'$(hostname)$'\nfrom zsh.\n'$(ipconfig getifaddr en0) --font 'bennyfnt' --jp2a
+
 ```
 
 ## Resources
