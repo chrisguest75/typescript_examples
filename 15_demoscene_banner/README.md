@@ -234,6 +234,7 @@ docker run -it --rm chrisguest/demoscenebanner node ./src/index.js --width 140 -
 # clip width to terminal
 docker run -it --rm chrisguest/demoscenebanner node ./src/index.js --width 200 --clip --banner 'Starting Build' --font '16X16-F7' --jp2a
 
+# multiline
 docker run -it --rm chrisguest/demoscenebanner:latest node ./src/index.js --banner $'Greetings,\n'$(hostname)$'\nfrom zsh.\n' --font 'knight4' --jp2a
 
 # hostname and ip
