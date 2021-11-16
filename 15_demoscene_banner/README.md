@@ -7,7 +7,6 @@ Based on this Python Service [here](https://github.com/chrisguest75/banner_servi
 TODO:
 
 * jpp2a version 1.1.0 https://github.com/Talinx/jp2a/releases/tag/v1.1.0
-* max font-width 
 * better handling of exceptions
 * slim down container.
 * scrolling 
@@ -203,7 +202,12 @@ docker run -it --rm chrisguest/demoscenebanner node ./src/index.js --banner 'Sta
 
 docker run -it --rm chrisguest/demoscenebanner node ./src/index.js --banner 'Starting Build' --font '16X16-F7' --jp2a
 
+# newlines
+docker run -it --rm chrisguest/demoscenebanner:latest node ./src/index.js --banner $'hello monkies\nworld heroes' --font 'cuddly' --jp2a
+
 docker-slim build --http-probe=false --include-path /scratch chrisguest/demoscenebanner:latest
+
+
 
 
 docker run -it --rm --entrypoint /bin/sh node:14.15.4-alpine
