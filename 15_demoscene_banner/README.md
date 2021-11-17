@@ -7,6 +7,10 @@ Based on this Python Service [here](https://github.com/chrisguest75/banner_servi
 TODO:
 
 * jpp2a version 1.1.0 https://github.com/Talinx/jp2a/releases/tag/v1.1.0
+* list fonts
+* refactor & tests
+* otel
+* add rest interface
 * better handling of exceptions
 * slim down container.
 * scrolling 
