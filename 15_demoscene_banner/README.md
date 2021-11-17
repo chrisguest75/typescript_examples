@@ -246,6 +246,19 @@ docker run -it --rm chrisguest/demoscenebanner:latest node ./src/index.js --bann
 
 ```
 
+
+## Converting Images
+
+Some images are not in RGB format. 
+
+```sh
+# convert from greyscale to RGB
+convert ./fonts/aura3fntr.png -define png:color-type=6 ./fonts/aura3fntr.png 
+
+# check new format
+identify ./fonts/16X16-F6.png      
+```
+
 ## Resources
 
 * https://www.npmjs.com/package/image-to-ascii
@@ -253,6 +266,4 @@ docker run -it --rm chrisguest/demoscenebanner:latest node ./src/index.js --bann
 * https://github.com/ianhan/BitmapFonts
 * http://www.graphicsmagick.org/
 * https://www.npmjs.com/package/minimist
-
-
-https://app.quicktype.io/
+* https://app.quicktype.io/
