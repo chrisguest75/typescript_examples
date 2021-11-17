@@ -9,7 +9,7 @@
         "map": {
             " ": 0
         },
-        "path": "./fonts/carebear.jpg"
+        "path": "./fonts/carebear.png"
     },
     "cuddly": {
         "font_width": 32,
@@ -28,7 +28,7 @@
             ")":40,
             "?":43
         },
-        "path": "./fonts/cuddly.jpg"
+        "path": "./fonts/cuddly.png"
     },
     "knight4": {
         "font_width": 32,
@@ -40,7 +40,7 @@
         "map": {
             " ": 0
         },
-        "path": "./fonts/knight4.jpg"
+        "path": "./fonts/knight4.png"
     },
     "tcb": {
         "font_width": 32,
@@ -52,7 +52,7 @@
         "map": {
             " ": 0
         },
-        "path": "./fonts/tcb.jpg"
+        "path": "./fonts/tcb.png"
     },
     "megadeth": {
         "font_width": 33,
@@ -79,8 +79,20 @@
             "@":48,
             " ":49
         },
-        "path": "./fonts/megadeth.jpg"
+        "path": "./fonts/megadeth.png"
     },
+    "16X16-F6": {
+        "font_width": 16,
+        "font_height": 16,
+        "chars_per_row": 20,
+        "rows": 3,
+        "first_character": " ",
+        "space": 0,        
+        "map": {
+            " ": 0
+        },
+        "path": "./fonts/16X16-F6.png"
+    },    
     "16X16-F7": {
         "font_width": 16,
         "font_height": 16,
@@ -121,12 +133,168 @@
         "font_width": 32,
         "font_height": 32,
         "chars_per_row": 10,
-        "rows": 6,
+        "rows": 4,
         "first_character": "A",
         "space": 29,        
         "map": {
-            " ": 0
+            "A-Z":0,
+            "0-9":38,
+            ".":26,
+            ":":27,     
+            "-":28,
+            " ":29,
+            "!":30,
+            "?":31,
+            "(":32,
+            ")":33
         },
         "path": "./fonts/candyfntr.png"
+    },       
+    "08X08-F5": {
+        "font_width": 8,
+        "font_height": 8,
+        "chars_per_row": 40,
+        "rows": 2,
+        "first_character": " ",
+        "space": 0,        
+        "map": {
+            " ": 0
+        },
+        "path": "./fonts/08X08-F5.png"
     },          
+    "32X32-F5": {
+        "font_width": 32,
+        "font_height": 32,
+        "chars_per_row": 10,
+        "rows": 6,
+        "first_character": " ",
+        "space": 0,        
+        "map": {
+            " ": 0
+        },
+        "path": "./fonts/32X32-F5.png"
+    },    
+    "aura3fntr": {
+        "font_width": 16,
+        "font_height": 18,
+        "chars_per_row": 20,
+        "rows": 3,
+        "first_character": " ",
+        "space": 0,        
+        "map": {
+            " ": 0
+        },
+        "path": "./fonts/aura3fntr.png"
+    },     
+    "axxis": {
+        "font_width": 32,
+        "font_height": 32,
+        "chars_per_row": 10,
+        "rows": 6,
+        "first_character": " ",
+        "space": 0,        
+        "map": {
+            " ": 0
+        },
+        "path": "./fonts/axxis.png"
+    },
+    "cebit2_f": {
+        "font_width": 32,
+        "font_height": 32,
+        "chars_per_row": 10,
+        "rows": 6,
+        "first_character": " ",
+        "space": 0,        
+        "map": {
+            " ": 0
+        },
+        "path": "./fonts/cebit2_f.png"
+    },             
+    "dr_satan": {
+        "font_width": 32,
+        "font_height": 33,
+        "chars_per_row": 10,
+        "rows": 6,
+        "first_character": " ",
+        "space": 0,        
+        "map": {
+            " ": 0
+        },
+        "path": "./fonts/dr_satan.png"
+    },  
+    "font199r": {
+        "font_width": 32,
+        "font_height": 32,
+        "chars_per_row": 10,
+        "rows": 6,
+        "first_character": " ",
+        "space": 0,        
+        "map": {
+            " ": 0
+        },
+        "path": "./fonts/font199r.png"
+    },      
+    "font205": {
+        "font_width": 32,
+        "font_height": 32,
+        "chars_per_row": 10,
+        "rows": 6,
+        "first_character": " ",
+        "space": 0,        
+        "map": {
+            " ": 0
+        },
+        "path": "./fonts/font205.png"
+    },         
+    "font254r": {
+        "font_width": 32,
+        "font_height": 25,
+        "chars_per_row": 10,
+        "rows": 6,
+        "first_character": " ",
+        "space": 0,        
+        "map": {
+            " ": 0
+        },
+        "path": "./fonts/font254r.png"
+    },  
+    "mdethfnt": {
+        "font_width": 32,
+        "font_height": 32,
+        "chars_per_row": 10,
+        "rows": 6,
+        "first_character": " ",
+        "space": 0,        
+        "map": {
+            " ": 0
+        },
+        "path": "./fonts/mdethfnt.png"
+    },      
+    "arrakis": {
+        "font_width": 32,
+        "font_height": 32,
+        "chars_per_row": 10,
+        "rows": 6,
+        "first_character": "A",
+        "space": 0,        
+        "map": {
+            " ": 0
+        },
+        "path": "./fonts/arrakis.png"
+    },  
+    "bubsy": {
+        "font_width": 16,
+        "font_height": 17,
+        "chars_per_row": 40,
+        "rows": 6,
+        "first_character": "!",
+        "space": 1,        
+        "map": {
+            " ": 0
+        },
+        "path": "./fonts/bubsy.png"
+    },  
+
 }
+
+

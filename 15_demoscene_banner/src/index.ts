@@ -197,13 +197,19 @@ async function render(
     logger.debug({ charcode: code, newcharcode: newcode, x: column, y: row, useMap: useMap });
   
     if (column >= 0 && row >= 0) {
-      let letterImage = fontImage.crop({
-        x: column,
-        y: row,
-        width: font_width,
-        height: font_height,
-      });
-      banner.insert(letterImage, { x: cursor * font_width, y: line, inPlace: true });  
+      if ((row < (font.rows * font_height)) && (column < (chars_per_row * font_width) )) {
+        let clip_height = font_height
+        if (row + clip_height > fontImage.height) {
+          clip_height -= ((row + clip_height) - fontImage.height)
+        }
+        let letterImage = fontImage.crop({
+          x: column,
+          y: row,
+          width: font_width,
+          height: clip_height,
+        });
+        banner.insert(letterImage, { x: cursor * font_width, y: line, inPlace: true });  
+      }
     }
     cursor++
 
