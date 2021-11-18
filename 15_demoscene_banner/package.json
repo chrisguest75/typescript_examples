@@ -18,7 +18,8 @@
     "start:cmd:jp2aclip": "npm run build && node ./build/src/index.js --banner 'megadeth' --width 200 --clip --font 'bennyfnt' --jp2a",
     "start:cmd:jp2a": "npm run build && node ./build/src/index.js --banner 'megadeth\n !()?0123\n456789.' --font 'cuddly' --jp2a",
     "start:cmd:jp2amultiline": "npm run build && node ./build/src/index.js --banner 'megadeth\n !()?0123\n456789.' --font $npm_config_font --jp2a",
-    "start:cmd:jp2acustom": "npm run build && node ./build/src/index.js --banner \"$npm_config_banner\" --font $npm_config_font --jp2a"
+    "start:cmd:jp2acustom": "npm run build && node ./build/src/index.js --banner \"$npm_config_banner\" --font $npm_config_font --jp2a",
+    "start:cmd:list": "npm run build && node ./build/src/index.js --list"
   },
   "nodemonConfig": {
     "watch": [

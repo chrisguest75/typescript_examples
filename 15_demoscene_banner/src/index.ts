@@ -1,109 +1,14 @@
 import minimist from "minimist";
 import { Image } from "image-js";
-import { spawnSync } from "child_process";
-import asciifyImage = require("asciify-image");
-import { logger } from "./logger";
+
 import fs = require("fs");
 import fonts from "./fonts.json";
+import Font from "./interfaces/Font";
+import { logger } from "./logger";
+import Jp2aRender from "./Jp2aRender";
+import AsciifyRender from "./AsciifyRender";
+import AsciiRenderer from "./interfaces/AsciiRenderer";
 
-interface Font {
-  font_width: number;
-  font_height: number;
-  chars_per_row: number;
-  rows: number;
-  first_character: string;
-  space: number;
-  map: any;
-  path: string;
-}
-
-interface AsciiRenderer {
-  render(inFile: string, columns: number, rows: number): Promise<string>;
-}
-
-class AsciifyRender implements AsciiRenderer {
-  constructor() {}
-
-  async render(inFile: string, columns: number, rows: number): Promise<string> {
-    // asciify
-    logger.info("enter render");
-    
-    let out = await asciifyImage(inFile, { fit: "box", width: columns / 2, height: rows });
-    let realOut = "";
-    if (Array.isArray(out)) {
-      realOut = out[0]
-    } else {
-      realOut = out
-    }
-
-    return new Promise((resolve, reject) => {
-      resolve(realOut);
-    });
-  }
-}
-
-class Jp2aRender implements AsciiRenderer {
-  constructor() {}
-
-  async jp2aVersion() {
-    const spawnResult = spawnSync("jp2a", ["--version"], {
-      cwd: process.cwd(),
-      env: process.env,
-      stdio: "pipe",
-      encoding: "utf-8",
-    });
-    logger.info({ stdout: spawnResult.output });
-    if (spawnResult.status !== 0) {
-      throw new Error(`jp2a exited with ${spawnResult.status}`);
-    } else {
-      return spawnResult.output;
-    }
-  }
-
-  async jp2aImage(width: number, file: string, version: boolean) {
-    let options = [`--width=${width}`, "--invert", file];
-    if (version == true) {
-      options = [
-        `--width=${width}`,
-        "--colors",
-        "--color-depth=24",
-        "--fill",
-        file,
-      ];
-    }
-    logger.info({ options: "jp2a " + options.join(" ") });
-    const spawnResult = spawnSync("jp2a", options, {
-      cwd: process.cwd(),
-      env: process.env,
-      stdio: "pipe",
-      encoding: "utf-8",
-    });
-    //logger.info({"stdout":spawnResult.output});
-    if (spawnResult.status !== 0) {
-      throw new Error(`jp2a exited with ${spawnResult.status}`);
-    } else {
-      return spawnResult.output;
-    }
-  }
-
-  async render(inFile: string, columns: number, rows: number): Promise<string> {
-    // jp2a
-    await this.jp2aVersion();
-    // TODO: if 1.0.6 need to fix colours
-    // right now always use 24 bit colour 
-    let colours24bit = true;
-    let out = await this.jp2aImage(columns, inFile, colours24bit);
-
-    let realOut = "Error";
-    if (out != null) {
-       realOut = out[1] || ""
-    }
-
-    return new Promise((resolve, reject) => {
-      resolve(realOut);
-    });
-  }
-}
 
 /*************************************************
  * Log details of the image
@@ -235,72 +140,82 @@ async function render(
 // Main
 async function main(args: minimist.ParsedArgs) {
   logger.debug("enter main:" + args._);
-  logger.debug("args:" + args["banner"]);
-  let text = args["banner"];
-  text = text.toUpperCase();
-
   logger.info({ fonts: fonts });
 
-  // choose the font or default
-  let fontname = "carebear"
-  let font = fonts["carebear"];
-  if (fonts.hasOwnProperty(args["font"])) {
-    font = (fonts as any)[args["font"]];
-    fontname = args["font"];
-  } 
-  logger.info({
-    actual_font: fontname,
-    requested_font: args["font"],
-  });
+  if (args["list"]) {
+      let fontnames = Object.getOwnPropertyNames(fonts)
+      for (let i = 0; i < fontnames.length; i++) {
+        console.log(fontnames[i]);
+      }
+  } else {
+    let text = "BANNER"
+    if (args.hasOwnProperty("banner")) {
+      logger.debug("args:" + args["banner"]);
+      text = args["banner"];
+      text = text.toUpperCase();  
+    }
 
-  // output ascii
-  let terminalColumns = process.stdout.columns;
-  let terminalRows = process.stdout.rows;
-  if (args["width"] != null) {
-    let width = parseInt(args["width"], 10);
-    if (args["clip"]) {
-      if (width < terminalColumns) {
-        logger.info("width larger than terminal clipping");
+    // choose the font or default
+    let fontname = "carebear"
+    let font = fonts["carebear"];
+    if (fonts.hasOwnProperty(args["font"])) {
+      font = (fonts as any)[args["font"]];
+      fontname = args["font"];
+    } 
+    logger.info({
+      actual_font: fontname,
+      requested_font: args["font"],
+    });
+
+    // output ascii
+    let terminalColumns = process.stdout.columns;
+    let terminalRows = process.stdout.rows;
+    if (args["width"] != null) {
+      let width = parseInt(args["width"], 10);
+      if (args["clip"]) {
+        if (width < terminalColumns) {
+          logger.info("width larger than terminal clipping");
+          terminalColumns = width;
+        }
+      } else {
         terminalColumns = width;
       }
-    } else {
-      terminalColumns = width;
     }
-  }
-  if (args["height"] != null) {
-    let height = parseInt(args["height"], 10);
-    if (args["clip"]) {
-      if (height < terminalRows) {
-        logger.info("height larger than terminal clipping");
-        terminalRows = height;
-      } else {
-        terminalRows = height;
+    if (args["height"] != null) {
+      let height = parseInt(args["height"], 10);
+      if (args["clip"]) {
+        if (height < terminalRows) {
+          logger.info("height larger than terminal clipping");
+          terminalRows = height;
+        } else {
+          terminalRows = height;
+        }
       }
     }
-  }
-  logger.info({
-    width: terminalColumns,
-    height: terminalRows,
-    passedwidth: args["width"],
-    passedheight: args["height"],
-  });
+    logger.info({
+      width: terminalColumns,
+      height: terminalRows,
+      passedwidth: args["width"],
+      passedheight: args["height"],
+    });
 
-  if (args["jp2a"]) {
-    await render(
-      text, 
-      font, 
-      new Jp2aRender(), 
-      terminalColumns, 
-      terminalRows
-    );
-  } else {
-    await render(
-      text,
-      font,
-      new AsciifyRender(),
-      terminalColumns,
-      terminalRows
-    );
+    if (args["jp2a"]) {
+      await render(
+        text, 
+        font, 
+        new Jp2aRender(), 
+        terminalColumns, 
+        terminalRows
+      );
+    } else {
+      await render(
+        text,
+        font,
+        new AsciifyRender(),
+        terminalColumns,
+        terminalRows
+      );
+    }    
   }
 
   logger.debug("exit main");
@@ -310,7 +225,7 @@ async function main(args: minimist.ParsedArgs) {
 
 let args: minimist.ParsedArgs = minimist(process.argv.slice(2), {
   string: ["banner", "font", "width", "height"], // --banner "builder" --font "tcb"
-  boolean: ["jp2a", "verbose", "clip"],
+  boolean: ["jp2a", "verbose", "clip", "list"],
   //alias: { v: 'version' }
 });
 if (args["verbose"]) {
