@@ -248,7 +248,7 @@
     },         
     "font254r": {
         "font_width": 32,
-        "font_height": 25,
+        "font_height": 32,
         "chars_per_row": 10,
         "rows": 6,
         "first_character": " ",
@@ -278,7 +278,19 @@
         "first_character": "A",
         "space": 0,        
         "map": {
-            " ": 0
+            "A-Z":0,
+            "0-9":30,
+            ":":26,
+            ";":27,     
+            "(":28,
+            ")":29,
+            ".":40,
+            ",":41,
+            "!":42,
+            "?":43,
+            "-":44,
+            "'":45,
+            "~":46
         },
         "path": "./fonts/arrakis.png"
     },  
@@ -294,7 +306,151 @@
         },
         "path": "./fonts/bubsy.png"
     },  
-
+    "medway_fr": {
+        "font_width": 16,
+        "font_height": 16,
+        "chars_per_row": 20,
+        "rows": 3,
+        "first_character": " ",
+        "space": 0,        
+        "map": {
+            " ": 0
+        },
+        "path": "./fonts/medway_fr.png"
+    },   
+    "megamin": {
+        "font_width": 16,
+        "font_height": 16,
+        "chars_per_row": 20,
+        "rows": 3,
+        "first_character": "A",
+        "space": 0,        
+        "map": {
+            "A-Z":0,
+            "0-9":26,
+            "(":36,
+            ")":37,     
+            "!":38,
+            "\"":39
+        },
+        "path": "./fonts/megamin.png"
+    },  
+    "mistyfntr": {
+        "font_width": 16,
+        "font_height": 16,
+        "chars_per_row": 20,
+        "rows": 3,
+        "first_character": " ",
+        "space": 0,        
+        "map": {
+            " ": 0
+        },
+        "path": "./fonts/mistyfntr.png"
+    },       
+    "mpocketf": {
+        "font_width": 16,
+        "font_height": 16,
+        "chars_per_row": 20,
+        "rows": 3,
+        "first_character": " ",
+        "space": 0,        
+        "map": {
+            " ": 0
+        },
+        "path": "./fonts/mpocketf.png"
+    }, 
+    "outlfont": {
+        "font_width": 32,
+        "font_height": 32,
+        "chars_per_row": 10,
+        "rows": 6,
+        "first_character": " ",
+        "space": 0,        
+        "map": {
+            " ": 0
+        },
+        "path": "./fonts/outlfont.png"
+    },    
+    "replic_1": {
+        "font_width": 32,
+        "font_height": 32,
+        "chars_per_row": 10,
+        "rows": 6,
+        "first_character": " ",
+        "space": 0,        
+        "map": {
+            " ": 0
+        },
+        "path": "./fonts/replic_1.png"
+    },      
+    "soundemor": {
+        "font_width": 32,
+        "font_height": 30,
+        "chars_per_row": 10,
+        "rows": 6,
+        "first_character": " ",
+        "space": 0,        
+        "map": {
+            " ": 0
+        },
+        "path": "./fonts/soundemor.png"
+    },  
+    "st_adm": {
+        "font_width": 32,
+        "font_height": 32,
+        "chars_per_row": 10,
+        "rows": 6,
+        "first_character": "A",
+        "space": 0,        
+        "map": {
+            "A-Z":0,
+            "0-9":28,
+            " ":26,
+            ".":27,     
+            "!":38,
+            "(":39,
+            ")":40,
+            ".":41,
+            "'":42,
+            "?":43,
+            ":":44,
+            "-":45
+        },
+        "path": "./fonts/st_adm.png"
+    },                           
+    "tcc1": {
+        "font_width": 32,
+        "font_height": 32,
+        "chars_per_row": 10,
+        "rows": 6,
+        "first_character": "A",
+        "space": 0,        
+        "map": {
+            "A-Z":0,
+            "0-9":26,
+            "?":36,
+            "!":37,     
+            ".":38,
+            "(":39,
+            ")":40,
+            " ":41,
+            "'":42,
+            ",":43
+        },
+        "path": "./fonts/tcc1.png"
+    },     
+    "wayne_3d": {
+        "font_width": 32,
+        "font_height": 32,
+        "chars_per_row": 10,
+        "rows": 6,
+        "first_character": " ",
+        "space": 0,        
+        "map": {
+            " ": 0
+        },
+        "path": "./fonts/wayne_3d.png"
+    },                            
 }
 
 
