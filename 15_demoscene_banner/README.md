@@ -220,18 +220,45 @@ docker run -it --rm --entrypoint /bin/sh node:14.18.1-bullseye
 
 ### Fonts
 
-* 16X16-F7
-* cuddly
-* carebear
-* knight4
-* tcb
-* megadeth
-* bennyfnt
-* candyfntr
-* fantfont
-
+```text
+carebear
+cuddly
+knight4
+tcb
+megadeth
+16X16-F6
+16X16-F7
+bennyfnt
+fantfont
+candyfntr
+08X08-F5
+32X32-F5
+aura3fntr
+axxis
+cebit2_f
+dr_satan
+font199r
+font205
+font254r
+mdethfnt
+arrakis
+bubsy
+medway_fr
+megamin
+mistyfntr
+mpocketf
+outlfont
+replic_1
+soundemor
+st_adm
+tcc1
+wayne_3d
+```
 
 ```sh
+# list the fonts
+docker run -it --rm chrisguest/demoscenebanner node ./src/index.js --list
+
 # simple command
 docker run -it --rm chrisguest/demoscenebanner node ./src/index.js --banner 'Starting Build' --font '16X16-F7' --jp2a
 
