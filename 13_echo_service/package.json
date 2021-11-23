@@ -9,7 +9,7 @@
     "prebuild": "npm run swagger",
     "build": "tsc",
     "dev": "concurrently \"nodemon\" \"nodemon -x tsoa spec\"",
-    "swagger": "tsoa spec",
+    "swagger": "tsoa spec && tsoa routes",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

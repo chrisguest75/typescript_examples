@@ -6,6 +6,37 @@
 		"requestBodies": {},
 		"responses": {},
 		"schemas": {
+			"KeyValue": {
+				"properties": {
+					"key": {
+						"type": "string"
+					},
+					"value": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"key",
+					"value"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"EchoResponse": {
+				"properties": {
+					"variables": {
+						"items": {
+							"$ref": "#/components/schemas/KeyValue"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"variables"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"PingResponse": {
 				"properties": {
 					"message": {
@@ -32,6 +63,25 @@
 	},
 	"openapi": "3.0.0",
 	"paths": {
+		"/echo": {
+			"get": {
+				"operationId": "GetVariables",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/EchoResponse"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": []
+			}
+		},
 		"/ping": {
 			"get": {
 				"operationId": "GetMessage",
@@ -54,7 +104,7 @@
 	},
 	"servers": [
 		{
-			"url": "/"
+			"url": "/api"
 		}
 	]
 }

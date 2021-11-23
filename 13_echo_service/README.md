@@ -22,7 +22,10 @@ TODO:
 ```sh
 npm install
 npm run dev
+
+# open 
 xdg-open http://0.0.0.0:8000/docs/
+open http://0.0.0.0:8000/docs/
 ```
 
 ## How to recreate
@@ -94,9 +97,9 @@ Add a prelaunch task to transpile the code.
 
 ## Resources
 
-* Building REST API with Express, TypeScript and Swagger [here](https://rsbh.dev/blog/rest-api-with-express-typescript) 
+* Building REST API with Express, TypeScript and Swagger [here](https://rsbh.dev/blog/rest-api-with-express-typescript)
+* initializing-our-project [here](https://tsoa-community.github.io/docs/getting-started.html#initializing-our-project)
 * Logging with pino & TypeScript JavaScript/Express.js [here](https://blog.morizyun.com/javascript/library-typescript-pino-logger.html)  
 * [express-pino-logger](https://github.com/pinojs/express-pino-logger#readme)  
 * [tsoa](https://github.com/lukeautry/tsoa)  
 * [swagger-ui-express](https://github.com/scottie1984/swagger-ui-express)  
-* initializing-our-project [here](https://tsoa-community.github.io/docs/getting-started.html#initializing-our-project)
