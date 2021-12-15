@@ -2,10 +2,6 @@
 
 Demonstrates a simple echo service
 
-PROBLEMS:
-
-* / does not work
-
 TODO:
 
 * Add health and readiness endpoints
@@ -28,6 +24,9 @@ npm install
 
 # generate routes, swagger doc and run
 npm run rebuild
+
+# run dev nodemon
+npm run dev
 
 # open 
 xdg-open http://0.0.0.0:8000/docs/
@@ -106,7 +105,7 @@ Add a prelaunch task to transpile the code.
 * Building REST API with Express, TypeScript and Swagger [here](https://rsbh.dev/blog/rest-api-with-express-typescript)
 * initializing-our-project [here](https://tsoa-community.github.io/docs/getting-started.html#initializing-our-project)
 * Logging with pino & TypeScript JavaScript/Express.js [here](https://blog.morizyun.com/javascript/library-typescript-pino-logger.html)  
+* Swagger, NodeJS, & TypeScript : TSOA [here](https://medium.com/willsonic/swagger-nodejs-typescript-tsoa-15a3f10fabaf)
 * [express-pino-logger](https://github.com/pinojs/express-pino-logger#readme)  
 * [tsoa](https://github.com/lukeautry/tsoa)  
 * [swagger-ui-express](https://github.com/scottie1984/swagger-ui-express)  
-https://medium.com/willsonic/swagger-nodejs-typescript-tsoa-15a3f10fabaf
