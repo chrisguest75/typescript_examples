@@ -4,14 +4,12 @@ Demonstrates a simple echo service
 
 TODO:
 
-* Add environment listing
 * metrics endpoint - requests, etc?
 * Bootstrap frontend.  
 * OOM 
 * Exception logger
 * Buildpack.
 * Filesystem view
-* Return headers from environment
 * Tests
 
 ## How to run
