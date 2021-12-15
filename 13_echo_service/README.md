@@ -4,13 +4,10 @@ Demonstrates a simple echo service
 
 TODO:
 
-* Add health and readiness endpoints
 * Add environment listing
 * metrics endpoint - requests, etc?
 * Bootstrap frontend.  
-* Wait
-* OOM
-* Cover all the routes - catch all route.  
+* OOM 
 * Exception logger
 * Buildpack.
 * Filesystem view

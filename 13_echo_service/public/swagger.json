@@ -37,6 +37,18 @@
 				"type": "object",
 				"additionalProperties": false
 			},
+			"ErrorResponse": {
+				"properties": {
+					"message": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"message"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"PingResponse": {
 				"properties": {
 					"message": {
@@ -94,6 +106,37 @@
 				"parameters": []
 			}
 		},
+		"/error/{errorcode}": {
+			"get": {
+				"operationId": "GetErrorCode",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ErrorResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Return a specified error code",
+				"security": [],
+				"parameters": [
+					{
+						"description": "The desired http status code",
+						"in": "path",
+						"name": "errorcode",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
 		"/ping": {
 			"get": {
 				"operationId": "GetMessage",
@@ -128,9 +171,11 @@
 						}
 					}
 				},
+				"description": "Wait for a specified period of time",
 				"security": [],
 				"parameters": [
 					{
+						"description": "Time in seconds to wait for",
 						"in": "path",
 						"name": "time",
 						"required": true,
