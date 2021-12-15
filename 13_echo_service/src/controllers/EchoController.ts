@@ -1,4 +1,5 @@
-import { Get, Route, Controller } from "tsoa";
+import * as express from "express";
+import { Get, Route, Controller, Request } from "tsoa";
 import os from 'os';
 
 interface KeyValue {
@@ -13,38 +14,37 @@ interface EchoResponse {
 
 @Route("echo")
 export class EchoController extends Controller {
-  /*private process_request(req) {
-    request_values = [
-      {request_key:"path", request_value:req.path},
-      {request_key:"protocol", request_value:req.protocol},
-      {request_key:"method", request_value:req.method},
-      {request_key:"httpVersion", request_value:req.httpVersion},
-      {request_key:"hostname", request_value:req.hostname},
-      {request_key:"host", request_value:req.host},
-      {request_key:"ip", request_value:req.ip},
-      {request_key:"startTime", request_value:req._startTime},
-      {request_key:"body", request_value:JSON.stringify(req.body)},
-      {request_key:"os.platform", request_value:os.platform()},
-      {request_key:"os.release", request_value:os.release()}
-    ]
+  private get_request_details(request: express.Request): Array<KeyValue> {
+    let variables = new Array<KeyValue>();
+    variables.push({key:"path", value:request.path})
+    variables.push({key:"protocol", value:request.protocol})
+    variables.push({key:"method", value:request.method})
+    variables.push({key:"httpVersion", value:request.httpVersion})
+    variables.push({key:"hostname", value:request.hostname})
+    variables.push({key:"host", value:request.host})
+    variables.push({key:"ip", value:request.ip})
+    variables.push({key:"body", value:request.body})
+    variables.push({key:"os.platform", value:os.platform()})
+    variables.push({key:"os.release", value:os.release()})
 
-    if (req.cookies != undefined) { 
-      Object.keys(req.cookies).forEach(function(key) {
-        request_values.push({ request_key:"cookie." + key, request_value:req.cookies[key]});
+    if (request.cookies != undefined) { 
+      Object.keys(request.cookies).forEach(function(key) {
+        variables.push({ key:"cookie." + key, value:request.cookies[key]});
       });
     };
   
-    Object.keys(req.query).forEach(function(key) {
-      request_values.push({ request_key:"param." + key, request_value:req.query[key]});
+    Object.keys(request.query).forEach(function(key) {
+      variables.push({ key:"param." + key, value:(request.query as any)[key]});
     });
   
-    Object.keys(req.headers).forEach(function(key) {
-      request_values.push({ request_key:"header." + key, request_value:req.headers[key]});
+    Object.keys(request.headers).forEach(function(key) {
+      variables.push({ key:"header." + key, value:(request.headers as any)[key]});
     });
    
-  }*/
+    return variables;
+  }
 
-  private get_process_details() : Array<KeyValue> {
+  private get_process_details(): Array<KeyValue> {
     let variables = new Array<KeyValue>();
     var memUsage = process.memoryUsage()
     Object.keys(memUsage).forEach(function(key) {      
@@ -77,10 +77,12 @@ export class EchoController extends Controller {
 
 
   @Get("/")
-  public async getVariables(): Promise<EchoResponse> {
+  public async getVariables(
+    @Request() request: express.Request
+  ): Promise<EchoResponse> {
     let variables = new Array<KeyValue>();
+    variables = variables.concat(this.get_request_details(request))
     variables = variables.concat(this.get_process_details())
-
     return {
       variables
     };
