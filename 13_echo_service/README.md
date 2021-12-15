@@ -1,6 +1,6 @@
 # README
 
-Demonstrates a simple echo service
+Demonstrates a simple echo service using TSOA
 
 TODO:
 

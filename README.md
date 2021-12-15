@@ -56,6 +56,11 @@ Demonstrates a simple swagger interface
 Demonstrates a simple cmdline application packaged in a buildpack  
 [README.md](./12_buildpack/README.md)
 
+## 13 - Echo Service using TSOA
+
+Demonstrates a simple echo service using TSOA  
+[README.md](./13_echo_service/README.md)
+
 ## 15 - Demoscene Banner
 
 Demonstrate creating a ascii banner from an old demoscene font.  
