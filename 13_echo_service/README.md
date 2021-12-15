@@ -2,6 +2,10 @@
 
 Demonstrates a simple echo service
 
+PROBLEMS:
+
+* / does not work
+
 TODO:
 
 * Add health and readiness endpoints
@@ -21,7 +25,9 @@ TODO:
 
 ```sh
 npm install
-npm run dev
+
+# generate routes, swagger doc and run
+npm run rebuild
 
 # open 
 xdg-open http://0.0.0.0:8000/docs/
@@ -103,3 +109,4 @@ Add a prelaunch task to transpile the code.
 * [express-pino-logger](https://github.com/pinojs/express-pino-logger#readme)  
 * [tsoa](https://github.com/lukeautry/tsoa)  
 * [swagger-ui-express](https://github.com/scottie1984/swagger-ui-express)  
+https://medium.com/willsonic/swagger-nodejs-typescript-tsoa-15a3f10fabaf

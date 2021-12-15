@@ -16,14 +16,13 @@ app.use(
 app.use(bodyParser.json());
 app.use(express.static("public"));
 app.use(pino());
-app.use(
-  "/docs",
-  swaggerUi.serve,
-  swaggerUi.setup(undefined, {
-    swaggerOptions: {
-      url: "swagger.json",
-    },
-  })
-);
+
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(undefined, {
+  swaggerUrl: '/swagger.json',
+  swaggerOptions: {
+    validatorUrl : null
+  }
+}));
+
 
 RegisterRoutes(app);

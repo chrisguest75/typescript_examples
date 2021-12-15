@@ -3,7 +3,7 @@
     "noImplicitAdditionalProperties": "throw-on-extras",
     "controllerPathGlobs": ["src/**/*Controller.ts"],    
     "spec": {
-      "basePath": "/api",
+      "basePath": "/",
       "outputDirectory": "public",
       "specVersion": 3
     },

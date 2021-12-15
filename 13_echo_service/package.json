@@ -4,10 +4,12 @@
   "description": "Demonstrates a simple echo service",
   "main": "index.js",
   "scripts": {
-    "start": "node build/index.js",
+    "clean": "rimraf ./build",
+    "build": "npm run clean && tsc",
+    "start": "npm run build && node build/index.js",
     "predev": "npm run swagger",
     "prebuild": "npm run swagger",
-    "build": "tsc",
+    "rebuild": "npm run swagger && npm run build && node build/index.js",
     "dev": "concurrently \"nodemon\" \"nodemon -x tsoa spec\"",
     "swagger": "tsoa spec && tsoa routes",
     "test": "echo \"Error: no test specified\" && exit 1"
