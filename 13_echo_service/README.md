@@ -79,6 +79,11 @@ npm install --save-dev @types/swagger-ui-express
 npm install --save-dev concurrently
 ```
 
+## Add tests
+
+```sh
+npm install --save-dev jest-express jest @types/jest ts-jest
+```
 ## Debugging
 
 Ensure that the sourcemap output is enabled.
@@ -104,3 +109,7 @@ Add a prelaunch task to transpile the code.
 * [express-pino-logger](https://github.com/pinojs/express-pino-logger#readme)  
 * [tsoa](https://github.com/lukeautry/tsoa)  
 * [swagger-ui-express](https://github.com/scottie1984/swagger-ui-express)  
+
+
+
+https://github.com/strongpauly/tsoa-starter
