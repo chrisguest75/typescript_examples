@@ -1,0 +1,54 @@
+{
+  "name": "ffprober",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "build": "rimraf ./build && tsc",
+    "lint": "eslint . --ext .ts",
+    "start:dev": "nodemon",
+    "test": "jest",
+    "start:cmd:singlesegment": "npm run build && node ./build/src/index.js --path '/Volumes/videoshare/bigbuckbunny-hls/segment-0.ts' --out './out' --includegop",
+    "start:cmd:segments": "npm run build && node ./build/src/index.js --path '/Volumes/videoshare/bigbuckbunny-hls' --out './out' --includegop",
+    "start:cmd:cosmos": "npm run build && node ./build/src/index.js --path '/Volumes/videoshare/cosmos' --out './out' --includegop",
+    "start:cmd:all": "npm run build && node ./build/src/index.js --path '/Volumes/videoshare' --out './out' --includegop",
+    "start:cmd:path": "npm run build && node ./build/src/index.js --path $npm_config_path --out './out' $npm_config_includegop",
+    "start:cmd:missing": "npm run build && node ./build/src/index.js"
+  },
+  "nodemonConfig": {
+    "watch": [
+      "src",
+      "nodemon.json",
+      "tsconfig.json",
+      "package.json",
+      "package-lock.json"
+    ],
+    "ext": "ts",
+    "ignore": [],
+    "exec": "ts-node ./src/index.ts --path '/Volumes/videoshare/cosmos'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^27.0.3",
+    "@types/md5-file": "^5.0.0",
+    "@types/minimist": "^1.2.2",
+    "@types/node": "^16.11.11",
+    "@types/papaparse": "^5.3.1",
+    "@types/pino": "^7.0.5",
+    "jest": "^27.4.3",
+    "nodemon": "^2.0.15",
+    "prettier": "^2.5.1",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^27.1.0",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.2"
+  },
+  "dependencies": {
+    "md5-file": "^5.0.0",
+    "minimist": "^1.2.5",
+    "papaparse": "^5.3.1",
+    "pino": "^7.5.1"
+  }
+}
