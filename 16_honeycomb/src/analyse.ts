@@ -19,11 +19,12 @@ export default class Analyse implements FileProcessor {
     const ctx = opentelemetry.trace.setSpan(opentelemetry.context.active(), parentSpan)
     const activeSpan = opentelemetry.trace.getTracer(tracerName).startSpan('analyse', undefined, ctx)
     activeSpan?.setAttribute('mediapath', fullPath)
+
     return new Promise((resolve, reject) => {
       logger.info(`Analyse ${fullPath}`)
       const probe = new Probe(fullPath)
 
-      const output = probe.analyze(this.includeGOP).then((output) => {
+      const output = probe.analyze(this.includeGOP, parentSpan).then((output) => {
         const outFile = `${probe.md5}.json`
         const fullOutPath = path.join(this.outPath, outFile)
         logger.info(`Writing ${fullOutPath}`)

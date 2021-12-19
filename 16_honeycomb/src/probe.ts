@@ -3,6 +3,7 @@ import Papa from 'papaparse'
 import { logger } from './logger'
 import md5File from 'md5-file'
 import fs = require('fs')
+import opentelemetry from '@opentelemetry/api'
 
 //ffprobe -v quiet -print_format json=compact=1 -show_streams /Volumes/videoshare/sintel/sintel-x264-5.1.mp4
 //ffprobe -v quiet -select_streams v -show_frames -of csv -show_entries frame=key_frame,pict_type,best_effort_timestamp_time -i /Volumes/videoshare/sintel/sintel-x264-5.1.mp4
@@ -84,18 +85,29 @@ export default class Probe {
     })
   }
 
-  async analyze(includeGOP = false): Promise<string> {
+  async analyze(includeGOP = false, parentSpan: any): Promise<string> {
+    const tracerName = process.env.HONEYCOMB_TRACERNAME ?? 'default'
+    const ctx = opentelemetry.trace.setSpan(opentelemetry.context.active(), parentSpan)
+
+    this.size = await this.getFilesizeInBytes(this.file)
+
+    const md5Span = opentelemetry.trace.getTracer(tracerName).startSpan('md5', undefined, ctx)
     this.md5 = await md5File.sync(this.file)
     logger.info(`${this.md5} for ${this.file}`)
-    this.size = await this.getFilesizeInBytes(this.file)
+    md5Span?.end()
+
+    const probeSpan = opentelemetry.trace.getTracer(tracerName).startSpan('probe', undefined, ctx)
     const output = await this.analyzeStreams()
     const probedata = JSON.parse(output)
+    probeSpan?.end()
 
     // merge gop into video stream
     if (includeGOP) {
+      const gopSpan = opentelemetry.trace.getTracer(tracerName).startSpan('gopscan', undefined, ctx)
       const gop = await this.analyzeGOP()
       const video = probedata.streams.filter((stream: any) => stream.codec_type == 'video')
       video[0]['gop'] = gop
+      gopSpan?.end()
     }
 
     return new Promise((resolve, reject) => {
