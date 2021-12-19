@@ -6,15 +6,15 @@
   "scripts": {
     "clean": "rimraf build",
     "build": "tsc",
-    "rebuild": "npm run clean;npm run build",
+    "rebuild": "npm run clean && npm run build",
     "clean:build": "npm run rebuild",
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "npm run type-check -- --watch",
+    "start:dev": "npm run rebuild && nodemon",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "lint": "eslint . --ext .ts",
-    "lint:fix": "eslint . --ext .ts --fix",
-    "type-check": "tsc --noEmit",
-    "type-check:watch": "npm run type-check -- --watch",
-    "start:dev": "nodemon"
+    "lint:fix": "eslint . --ext .ts --fix"
   },
   "keywords": [],
   "author": "",

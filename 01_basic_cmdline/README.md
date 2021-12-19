@@ -46,11 +46,11 @@ Add `scripts` section to `package.json`
   "scripts": {
     "clean": "rimraf build",
     "build": "tsc",
-    "rebuild": "npm run clean;npm run build",
+    "rebuild": "npm run clean && npm run build",
     "clean:build": "npm run rebuild",
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",
-    "start:dev": "nodemon"
+    "start:dev": "npm run rebuild && nodemon"
   },
 ```
 
@@ -225,16 +225,26 @@ npm run lint
 Ensure that the sourcemap output is enabled.  
 
 ```json
-    "sourceMap": true,  
+  "sourceMap": true,  
 ```
 
-Add a tasks file that is for npm "tsc: build - xx_project_name/tsconfig.json"  
+Open `vscode` in the correct directory.  
 
-Add a prelaunch task to transpile the code.  
+```sh
+# you must be in the code directory and not in the git root
+cd ./xx_project_name
+nvm install
 
-```json
-    "preLaunchTask": "tsc: build - xx_project_name/tsconfig.json",
+# if the code is built it will use the version in here to debug
+npm run clean
+code .
 ```
+
+1. Select `./src/index.ts` and put a breakpoint on the log line.  
+2. Click the debug icon. Click on create a `launch.json` and select `node.js` NOTE: If you select Run and Debug it will fail because the code is not built.  
+3. Click the debug icon again and then drop down the selection to select node.js and select a target of "start:dev"
+
+The code should break on the breakpoint.  
 
 ## Resources
 
