@@ -1,26 +1,39 @@
 {
-  "name": "01_basic",
+  "name": "01_test_cmdline",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "rimraf ./build && tsc",
+    "clean": "rimraf build",
+    "build": "tsc",
+    "rebuild": "npm run clean;npm run build",
+    "clean:build": "npm run rebuild",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
     "lint": "eslint . --ext .ts",
-    "start:dev": "nodemon",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint:fix": "eslint . --ext .ts --fix",
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "npm run type-check -- --watch",
+    "start:dev": "nodemon"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/node": "^14.14.37",
-    "@typescript-eslint/eslint-plugin": "^4.21.0",
-    "@typescript-eslint/parser": "^4.21.0",
-    "eslint": "^7.24.0",
-    "nodemon": "^2.0.7",
+    "@types/jest": "^27.0.3",
+    "@types/node": "^17.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.7.0",
+    "@typescript-eslint/parser": "^5.7.0",
+    "eslint": "^8.5.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "jest": "^27.4.5",
+    "nodemon": "^2.0.15",
+    "prettier": "^2.5.1",
     "rimraf": "^3.0.2",
-    "ts-node": "^9.1.1",
-    "typescript": "^4.2.4"
+    "ts-jest": "^27.1.2",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.4"
   },
   "nodemonConfig": {
     "watch": [
