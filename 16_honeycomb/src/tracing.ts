@@ -7,7 +7,6 @@ import { Resource } from '@opentelemetry/resources'
 import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions'
 import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-grpc'
 
-
 const metadata = new Metadata()
 let sdk: any = null
 
