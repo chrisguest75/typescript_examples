@@ -19,7 +19,7 @@
     "start:cmd:segments": "npm run rebuild && node ./build/src/index.js --path '/Volumes/videoshare/bigbuckbunny-hls' --out './out' --includegop",
     "start:cmd:cosmos": "npm run rebuild && node ./build/src/index.js --path '/Volumes/videoshare/cosmos' --out './out' --includegop",
     "start:cmd:all": "npm run rebuild && node ./build/src/index.js --path '/Volumes/videoshare' --out './out' --includegop",
-    "start:cmd:path": "npm run rebuild && node ./build/src/index.js --path $npm_config_path --out './out' $npm_config_includegop",
+    "start:cmd:path": "npm run rebuild && node ./build/src/index.js --path $npm_config_path --out './out' --includegop",
     "start:cmd:missing": "npm run rebuild && node ./build/src/index.js"
   },
   "nodemonConfig": {
