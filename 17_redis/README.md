@@ -2,6 +2,16 @@
 
 Demonstrate how to connect and use Redis from typescript
 
+TODO:  
+
+* Do the ACL work.
+* Pub/Sub
+* Streams - event queues
+    * Sensor data..
+
+Session store 
+Cache.. 
+
 ## Startup
 
 ```sh
@@ -189,6 +199,102 @@ QUEUED
 
 ```
 
+## Cursors
+
+```sh
+
+```
+
+## Streams
+
+Streams are an append only log.  Event driven systems - notifications
+
+```sh
+# * to autogenerate an id - gives a timestamp and an id
+xadd temp * temp_f 43.7
+"1640014331452-0"
+
+# add a 10 to the start to repeat it 10 times.
+10 xadd temp * temp_f 43.7
+"1640014368076-0"
+"1640014368076-1"
+"1640014368077-0"
+"1640014368078-0"
+"1640014368078-1"
+"1640014368079-0"
+"1640014368080-0"
+"1640014368081-0"
+"1640014368081-1"
+"1640014368082-0"
+
+# get all data start to end
+ xrange temp - + 
+ 1) 1) "1640014331452-0"
+    2) 1) "temp_f"
+       2) "43.7"
+ 2) 1) "1640014368076-0"
+    2) 1) "temp_f"
+       2) "43.7"
+
+# more complex structures
+xadd num * n 1 n 2 sum 4
+"1640014509341-0"
+redisdb:6379> xrange num - + 
+1) 1) "1640014487770-0"
+   2) 1) "n"
+      2) "1"
+      3) "n"
+      4) "2"
+      5) "sum"
+      6) "4"
+2) 1) "1640014509341-0"
+   2) 1) "n"
+      2) "1"
+      3) "n"
+      4) "2"
+      5) "sum"
+      6) "4"
+
+# Add to streams with user specified key
+redisdb:6379> xadd num 101 n 1 
+"101-0"
+redisdb:6379> xadd num 101 n 1 
+(error) ERR The ID specified in XADD is equal or smaller than the target stream top item
+redisdb:6379> xadd num 102 n 1 
+"102-0"
+
+# length of stream
+xlen num
+(integer) 2
+
+# trimming the stream.
+10 xadd temp * temp_f 43.7
+redisdb:6379> 10 xtrim temp MINID "1640015033726-1"
+redisdb:6379> xlen temp
+(integer) 17
+
+# Return most recent message in stream.
+ xrevrange temp + -
+ 1) 1) "1640015034584-0"
+    2) 1) "temp_f"
+       2) "43.7"
+ 2) 1) "1640015034583-1"
+    2) 1) "temp_f"
+       2) "43.7"
+
+# reading slices of streams
+redisdb:6379> xrevrange temp "1640015033728-1" "1640015033727-1"
+1) 1) "1640015033728-1"
+   2) 1) "temp_f"
+      2) "43.7"
+2) 1) "1640015033728-0"
+   2) 1) "temp_f"
+      2) "43.7"
+
+# read and block (use $ for first grab - after that you should be putting in the id of the last returned item. )
+
+xread count 1 block 1000 streams temp $
+```
 
 ## Resources
 
@@ -197,3 +303,4 @@ https://github.com/chrisguest75/redis-persistence-example
 https://redis.io/commands
 https://hub.docker.com/_/redis
 https://download.redis.io/redis-stable/redis.conf
+https://www.npmjs.com/package/redis

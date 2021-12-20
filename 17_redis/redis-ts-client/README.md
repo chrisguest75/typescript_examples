@@ -250,3 +250,8 @@ The code should break on the breakpoint.
 
 * How to Setup a TypeScript + Node.js Project [node-starter-project](https://khalilstemmler.com/blogs/typescript/node-starter-project/)  
 * How to use ESLint with TypeScript [eslint-for-typescript](https://khalilstemmler.com/blogs/typescript/eslint-for-typescript/)  
+
+
+
+
+https://www.npmjs.com/package/redis
