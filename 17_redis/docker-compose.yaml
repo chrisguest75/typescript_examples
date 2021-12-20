@@ -4,22 +4,22 @@ services:
     image: redis:6.2.6
     ports:
       - 6379:6379
-    networks:
-      - backplane
     volumes:
       - ./redis-data:/data      
     networks:
       - service_bridge    
     profiles: [backend]  
 
-  # redis-worker:
-  #   build: ./worker
-  #   networks:
-  #     - backplane
-  #   depends_on:
-  #     - "redis"
-  #   environment:
-  #     - REDIS_HOSTNAME=redis
+  redis-cli:
+    build: ./redis-cli
+    depends_on:
+      - "redis"
+    environment:
+      - REDIS_HOSTNAME=redis
+    networks:
+      - service_bridge    
+    profiles: [backend]  
+
 
 networks:
     service_bridge:
