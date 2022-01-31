@@ -1,6 +1,6 @@
 # README
 
-Demonstrate how to connect and use Redis from typescript
+Demonstrate how to connect and use `Redis` from typescript
 
 TODO:  
 
@@ -8,30 +8,36 @@ TODO:
 * Pub/Sub
 * Streams - event queues
     * Sensor data..
-
-Session store 
-Cache.. 
+* Session store
+* Cache..
 
 ## Startup
 
 ```sh
 # list profiles
-docker compose config --profiles               
+docker compose config --profiles
 
 docker compose --profile backend up -d 
 
 # quick test
-docker logs $(docker ps --filter name=17_redis-redis-1 -q)
+docker logs $(docker ps --filter name=17_redis-redis-cli-1 -q)
 
 docker compose --profile backend down
 
 ```
 
+## Run Typescript Client
+
+```sh
+cd ./redis-ts-client
+npm install   
+npm run start:dev    
+```
+
 ## Connect
 
 ```sh
-docker exec -it $(docker ps --filter name=17_redis-redis-1 -q) /bin/bash
-
+# connect to client cli container
 docker exec -it $(docker ps --filter name=17_redis-redis-cli-1 -q) /bin/bash
 
 # open cli
@@ -46,59 +52,55 @@ clear
 flushdb 
 ```
 
-## ACL
-
-```sh
-auth John hello
-acl setuser John on >hello +@admin
-acl list
-
-
-auth hello
-
-
-set session:101 s1 
-get session:101
-
-acl setuser cacheservice on >cache +set +get -session:*
-auth cacheservice cache
-```
-
 ## Key expiry (ttl)
 
+Set keys with a TTL and see them expire.  
+Docs for `set` [here](https://redis.io/commands/set)  
 
 ```sh
+# set a value
 set session:101 s1 EX 5
+
+# retrieve it (keep on trying till it times out)
+get session:101
+
+# check ttl
 ttl session:101
 
 # milliseconds
 set session:101 s1 EX 10
+
+# pttl is milliseconds
 pttl session:101
 ```
 
+## Counters (incr)
 
-## Counters
+Docs for `incr` [here](https://redis.io/commands/INCR)  
 
 ```sh
-
+# start a counter
 set hits 1
 
+# increment the counter
 incr hits
-> (integer) 2
 
+# increment the counter by a number
 incrby hits 5
-> (integer) 7
 
+# retrieve the value
 get hits
 ```
 
 ## Lists
 
+Docs for `lpush` [here](https://redis.io/commands/lpush)  
+
 ```sh
-# create a list
+# create a list (will be n3, n2, n1 once pushed)
 lpush news n1 n2 n3
 
-# show the list
+# show the list (inclusive elements)
 lrange news 0 4
 
 # show slice of list
@@ -109,108 +111,107 @@ ltrim news 0 1
 
 # show trimmed list
 lrange news 0 4
-
 ```
 
 ## Set
 
 Can be used for inventories.  
 
+Docs for `hset` [here](https://redis.io/commands/hset)  
+
 ```sh
-# create a set
+# create a set <key> <value> <key> <value>
 hset user:101 name John age 30
 
-# view keys ad values
-127.0.0.1:6379> hgetall user:101
-1) "name"
-2) "John"
-3) "age"
-4) "30"
+# view keys ad values - "name" "John" "age" "30"
+hgetall user:101
 
-# get keyvalue
-127.0.0.1:6379> hget user:101 name
-"John"
+# get keyvalue 
+hget user:101 name
 
 # check keys exist
-127.0.0.1:6379> hexists user:101 abc
-(integer) 0
-127.0.0.1:6379> hexists user:101 name
-(integer) 1
-127.0.0.1:6379> hkeys user:101
-1) "name"
-2) "age"
-127.0.0.1:6379> hvals user:101
-1) "John"
-2) "30"
-127.0.0.1:6379> hdel user:101 age
-(integer) 1
-127.0.0.1:6379> hkeys user:101
-1) "name"
-127.0.0.1:6379> hset user:101 class 12
-(integer) 1
-127.0.0.1:6379> hgetall user:101
-1) "name"
-2) "John"
-3) "class"
-4) "12"
+hexists user:101 abc
 
-127.0.0.1:6379> hset shirt name s1 quantity 5
-(integer) 2
-127.0.0.1:6379> hincrby shirt quantity 1
-(integer) 6
-127.0.0.1:6379> hincrby shirt quantity 1
-(integer) 7
-127.0.0.1:6379> hincrby shirt quantity -1
-(integer) 6
+# does name key exist
+hexists user:101 name
+
+# get keys
+hkeys user:101
+
+# get values
+hvals user:101
+
+# delete a key
+hdel user:101 age
+hkeys user:101
+
+# add to set
+hset user:101 class 12
+
+hgetall user:101
+```
+
+```sh
+# update fields in a set
+hset shirt name s1 quantity 5
+hincrby shirt quantity 1
+hincrby shirt quantity 1
+hincrby shirt quantity -1
+hgetall shirt
 ```
 
 ## Transactions
 
 Redis Transactions - they continue if it is a programmer error (updating a key that does not exist).  
 
-multi, exec, discard, watch, unwatch
+multi, exec, discard, watch, unwatch  
+
+Docs for `multi` [here](https://redis.io/commands/multi)  
 
 ```sh
-127.0.0.1:6379> hset account name s1 money 5
-(integer) 2
-127.0.0.1:6379> multi
-OK
-127.0.0.1:6379(TX)> hincrby account money 1
-QUEUED
-127.0.0.1:6379(TX)> hincrby account money 4
-QUEUED
-127.0.0.1:6379(TX)> hincrby account money -2
-QUEUED
-127.0.0.1:6379(TX)> hincrby account money -1
-QUEUED
-127.0.0.1:6379(TX)> hincrby account money 1
-QUEUED
-127.0.0.1:6379(TX)> exec
-1) (integer) 6
-2) (integer) 10
-3) (integer) 8
-4) (integer) 7
-5) (integer) 8
-127.0.0.1:6379> hgetall account
-1) "name"
-2) "s1"
-3) "money"
-4) "8"
+# create a set
+hset account name s1 money 5
 
+# enter a transaction
+multi
+
+# perform actions
+hincrby account money 1
+
+# quit transaciton
+discard
+
+# will not have changed value
+hgetall account
 ```
 
-## Cursors
+Commit the transaction  
 
 ```sh
+# enter a transaction
+multi
 
+hincrby account money 4
+hincrby account money -2
+hincrby account money -1
+hincrby account money 1
+
+# commit
+exec
+
+# will not have changed value
+hgetall account
 ```
 
 ## Streams
 
-Streams are an append only log.  Event driven systems - notifications
+Streams are an append only log.  Event driven systems - notifications  
+
+Docs for `xadd` [here](https://redis.io/commands/xadd)  
 
 ```sh
 # * to autogenerate an id - gives a timestamp and an id
+# temp stream, * to generate an id, temp_f = key and 43.7 is value
 xadd temp * temp_f 43.7
 "1640014331452-0"
 
@@ -218,36 +219,16 @@ xadd temp * temp_f 43.7
 10 xadd temp * temp_f 43.7
 "1640014368076-0"
 "1640014368076-1"
-"1640014368077-0"
-"1640014368078-0"
-"1640014368078-1"
-"1640014368079-0"
-"1640014368080-0"
-"1640014368081-0"
-"1640014368081-1"
-"1640014368082-0"
+... 
 
-# get all data start to end
- xrange temp - + 
- 1) 1) "1640014331452-0"
-    2) 1) "temp_f"
-       2) "43.7"
- 2) 1) "1640014368076-0"
-    2) 1) "temp_f"
-       2) "43.7"
+# get all data start to end 
+xrange temp - + 
 
 # more complex structures
 xadd num * n 1 n 2 sum 4
 "1640014509341-0"
-redisdb:6379> xrange num - + 
+xrange num - + 
 1) 1) "1640014487770-0"
-   2) 1) "n"
-      2) "1"
-      3) "n"
-      4) "2"
-      5) "sum"
-      6) "4"
-2) 1) "1640014509341-0"
    2) 1) "n"
       2) "1"
       3) "n"
@@ -256,7 +237,7 @@ redisdb:6379> xrange num - +
       6) "4"
 
 # Add to streams with user specified key
-redisdb:6379> xadd num 101 n 1 
+xadd num 101 n 1 
 "101-0"
 redisdb:6379> xadd num 101 n 1 
 (error) ERR The ID specified in XADD is equal or smaller than the target stream top item
@@ -269,21 +250,18 @@ xlen num
 
 # trimming the stream.
 10 xadd temp * temp_f 43.7
-redisdb:6379> 10 xtrim temp MINID "1640015033726-1"
-redisdb:6379> xlen temp
+10 xtrim temp MINID "1640015033726-1"
+xlen temp
 (integer) 17
 
 # Return most recent message in stream.
- xrevrange temp + -
+xrevrange temp + -
  1) 1) "1640015034584-0"
-    2) 1) "temp_f"
-       2) "43.7"
- 2) 1) "1640015034583-1"
     2) 1) "temp_f"
        2) "43.7"
 
 # reading slices of streams
-redisdb:6379> xrevrange temp "1640015033728-1" "1640015033727-1"
+xrevrange temp "1640015033728-1" "1640015033727-1"
 1) 1) "1640015033728-1"
    2) 1) "temp_f"
       2) "43.7"
@@ -296,11 +274,32 @@ redisdb:6379> xrevrange temp "1640015033728-1" "1640015033727-1"
 xread count 1 block 1000 streams temp $
 ```
 
+## Cursors
+
+```sh
+
+```
+
+## ACL
+
+```sh
+auth John hello
+acl setuser John on >hello +@admin
+acl list
+
+auth hello
+
+set session:101 s1 
+get session:101
+
+acl setuser cacheservice on >cache +set +get -session:*
+auth cacheservice cache
+```
+
 ## Resources
 
-
-https://github.com/chrisguest75/redis-persistence-example
-https://redis.io/commands
-https://hub.docker.com/_/redis
-https://download.redis.io/redis-stable/redis.conf
-https://www.npmjs.com/package/redis
+* redis-persistence-example repo [here](https://github.com/chrisguest75/redis-persistence-example)
+* Redis Commands [here](https://redis.io/commands)
+* Docker Image [here](https://hub.docker.com/_/redis)
+* Redis conf example [here](https://download.redis.io/redis-stable/redis.conf)
+* NPM Redis package [here](https://www.npmjs.com/package/redis)
