@@ -6,10 +6,7 @@ TODO:
 
 * dockerise
 * rest client
-* swagger api
-* testing
 * Write a fibonacci generator
-* logging
 * nvm install-latest-npm
 
 ## Snippets
