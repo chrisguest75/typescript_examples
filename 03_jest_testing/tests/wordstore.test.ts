@@ -1,5 +1,6 @@
 import { trie } from '../src/trie'
 import { wordset } from '../src/wordset'
+import { loadwords } from '../src/loadwords'
 
 beforeAll(() => {
   //console.log("beforeAll")
@@ -157,6 +158,24 @@ describe.each`
     expect(t.size).toBe(1);
     expect(t.contains("hello")).toBe(true);
     expect(t.contains("he")).toBe(false);
+  })
+
+  test('full test', () => {
+    // ARRANGE
+    let t = new wordstoretype();
+    // ACT
+    let words = new loadwords("./tests/data/words.txt")
+    for (let word of words.words) {
+      t.add(word);
+    }
+
+    // ASSERT
+    expect(t.size).toBe(words.words.length);
+    expect(t.contains("aardwolves")).toBe(true);
+    expect(t.contains("a")).toBe(true);
+    expect(t.contains("mechanotherapeutic")).toBe(true);
+    expect(t.contains("mechanolater")).toBe(true);
+    expect(t.contains("ghijklm")).toBe(false);
   })
 
   test.skip('skip this test', () => {
