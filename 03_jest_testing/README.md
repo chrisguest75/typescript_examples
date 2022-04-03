@@ -5,8 +5,6 @@ Demonstrates how to test typescript code (including debugging)
 TODO:
 
 * Test reporting?  Github actions?
-* Create a wordset and a trie implementation
-* Have a word loader.
 * Can I measure performance?  CPU and memory usage?
 
 ## Using Jest
