@@ -220,6 +220,17 @@ Add more targets to `scripts` section in `package.json`
 npm run lint
 ```
 
+## Documentation
+
+```sh
+# install typedoc
+npm install --savedev typedoc  
+
+# generate docs
+npx typedoc src/index.ts
+```
+
+
 ## Debugging
 
 Ensure that the sourcemap output is enabled.  

@@ -45,5 +45,8 @@
     "ext": "ts",
     "ignore": [],
     "exec": "ts-node ./src/index.ts"
+  },
+  "dependencies": {
+    "typedoc": "^0.22.13"
   }
 }
