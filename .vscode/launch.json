@@ -64,6 +64,19 @@
           "windows": {
             "program": "${workspaceFolder}/03_jest_testing/node_modules/jest/bin/jest"
           }
-        }        
+        },
+        {
+          "type": "node",
+          "request": "launch",
+          "name": "14_monte_carlo_generator",
+          "program": "${workspaceFolder}/14_monte_carlo_generator/node_modules/.bin/jest",
+          "args": [],
+          "console": "integratedTerminal",
+          "cwd": "${workspaceFolder}/09_monte_carlo_generator",
+          "internalConsoleOptions": "neverOpen",
+          "windows": {
+            "program": "${workspaceFolder}/14_monte_carlo_generator/node_modules/jest/bin/jest"
+          }
+        }          
     ]
 }
