@@ -1,26 +1,25 @@
-import { wordstore } from "./wordstore";
+import { wordstore } from './wordstore'
 
 export class wordset implements wordstore {
-    private words = new Map<string, boolean>();
-    
-    constructor() {
-        // do nothing
-    }
+  private words = new Map<string, boolean>()
 
-    public get size(): number {
-        return this.words.size
-    }
+  constructor() {
+    // do nothing
+  }
 
-    // add a word 
-    public add(word: string) {
-        if (word.length > 0) {
-            this.words.set(word, true)
-        }        
-    }
+  public get size(): number {
+    return this.words.size
+  }
 
-    // does the trie contain a word
-    public contains(word: string): boolean {
-        return this.words.has(word)
-    }      
+  // add a word
+  public add(word: string) {
+    if (word.length > 0) {
+      this.words.set(word, true)
+    }
+  }
+
+  // does the trie contain a word
+  public contains(word: string): boolean {
+    return this.words.has(word)
+  }
 }
-
