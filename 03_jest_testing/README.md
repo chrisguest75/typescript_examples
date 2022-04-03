@@ -5,6 +5,9 @@ Demonstrates how to test typescript code (including debugging)
 TODO:
 
 * Test reporting?  Github actions?
+* Create a wordset and a trie implementation
+* Have a word loader.
+* Can I measure performance?  CPU and memory usage?
 
 ## Using Jest
 
@@ -42,3 +45,4 @@ npx tsc --init --rootDir src --outDir build \
 * [ts-jest](https://github.com/kulshekhar/ts-jest)  
 * [ts-jest-debugging](https://kulshekhar.github.io/ts-jest/docs/debugging/)  
 * [testing with jest](https://itnext.io/testing-with-jest-in-typescript-cc1cd0095421)  
+* Get Jest test name within beforeEach() and afterEach() [here](https://stackoverflow.com/questions/61640896/get-jest-test-name-within-beforeeach-and-aftereach)
