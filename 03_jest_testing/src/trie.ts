@@ -1,3 +1,5 @@
+import { wordstore } from "./wordstore";
+
 // TODO:
 // Docuentation in comments
 // Linting?
@@ -68,26 +70,32 @@ class trie_node {
         }
     }    
 }
-export class trie {
+
+export class trie implements wordstore {
     // number of words stored in the trie
-    size: number;
+    private _size: number;
+
     // root of the trie
-    nodes: trie_node = new trie_node();
+    private nodes: trie_node = new trie_node();
 
     constructor() {
-        this.size = 0 
+        this._size = 0 
+    }
+
+    public get size(): number {
+        return this._size;
     }
 
     // add a word 
-    add(word: string) {
+    public add(word: string) {
         // add only if word has letters
         if (this.nodes.add(word)) {
-            this.size++;
+            this._size++;
         }
     }
 
     // does the trie contain a word
-    contains(word: string): boolean {
+    public contains(word: string): boolean {
         if (word.length > 0) {
             return this.nodes.contains(word);
         } else {

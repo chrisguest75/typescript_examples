@@ -1,36 +1,40 @@
 import { trie } from '../src/trie'
+import { wordset } from '../src/wordset'
 
 beforeAll(() => {
-  console.log("beforeAll")
+  //console.log("beforeAll")
 });
 
 afterAll(() => {
-  console.log("afterAll")
+  //console.log("afterAll")
 });
 
 beforeEach(() => {
-  let testName = expect.getState().currentTestName
-  console.log(`beforeEach ${testName}`)
+  //let testName = expect.getState().currentTestName
+  //console.log(`beforeEach ${testName}`)
 });
 
 afterEach(() => {
-  let testName = expect.getState().currentTestName
-  console.log(`afterEach ${testName}`)
+  //let testName = expect.getState().currentTestName
+  //console.log(`afterEach ${testName}`)
 });
 
-describe.only("trie tests", () => {
-
-  test('empty trie contains no words', () => {
+describe.each`
+  wordstoretype
+  ${trie}
+  ${wordset}
+`('$wordstoretype', ({wordstoretype}) => {
+  test(`empty ${wordstoretype} contains no words`, () => {
     // ARRANGE
-    let t = new trie();
+    let t = new wordstoretype();
     // ACT
     // ASSERT
     expect(t.size).toBe(0);
   })
 
-  test('adding word to empty trie increase size', () => {
+  test(`adding word to empty ${wordstoretype} increase size`, () => {
     // ARRANGE
-    let t = new trie();
+    let t = new wordstoretype();
     // ACT
     t.add("hello");
     // ASSERT
@@ -39,7 +43,7 @@ describe.only("trie tests", () => {
 
   test('adding word to empty trie will contain it', () => {
     // ARRANGE
-    let t = new trie();
+    let t = new wordstoretype();
     // ACT
     t.add("hello");
     // ASSERT
@@ -49,7 +53,7 @@ describe.only("trie tests", () => {
 
   test('adding same word does not increase size', () => {
     // ARRANGE
-    let t = new trie();
+    let t = new wordstoretype();
     // ACT
     t.add("hello");
     t.add("hello");
@@ -61,7 +65,7 @@ describe.only("trie tests", () => {
 
   test('searching on word chains finds them all', () => {
     // ARRANGE
-    let t = new trie();
+    let t = new wordstoretype();
     // ACT
     t.add("h");
     t.add("he");
@@ -80,7 +84,7 @@ describe.only("trie tests", () => {
 
   test('searching on an empty trie does not crash', () => {
     // ARRANGE
-    let t = new trie();
+    let t = new wordstoretype();
     // ACT
     // ASSERT
     expect(t.size).toBe(0);  
@@ -89,7 +93,7 @@ describe.only("trie tests", () => {
 
   test('adding empty word does not add it', () => {
     // ARRANGE
-    let t = new trie();
+    let t = new wordstoretype();
     // ACT
     t.add("");
     // ASSERT
@@ -99,7 +103,7 @@ describe.only("trie tests", () => {
 
   test('word not added should not be contained', () => {
     // ARRANGE
-    let t = new trie();
+    let t = new wordstoretype();
     // ACT
     t.add("hello");
     // ASSERT
@@ -110,7 +114,7 @@ describe.only("trie tests", () => {
 
   test('add multiple words', () => {
     // ARRANGE
-    let t = new trie();
+    let t = new wordstoretype();
     // ACT
     t.add("hello");
     t.add("halo");
@@ -124,7 +128,7 @@ describe.only("trie tests", () => {
 
   test('similiar words not added should not be found', () => {
     // ARRANGE
-    let t = new trie();
+    let t = new wordstoretype();
     // ACT
     t.add("hello");
     // ASSERT
@@ -135,7 +139,7 @@ describe.only("trie tests", () => {
 
   test('incomplete words should not be found', () => {
     // ARRANGE
-    let t = new trie();
+    let t = new wordstoretype();
     // ACT
     t.add("hello");
     // ASSERT
@@ -146,7 +150,7 @@ describe.only("trie tests", () => {
 
   test('subwords not explicitly added do not exist', () => {
     // ARRANGE
-    let t = new trie();
+    let t = new wordstoretype();
     // ACT
     t.add("hello");
     // ASSERT
