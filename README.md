@@ -4,7 +4,7 @@ A set of simple Typescript examples.
 
 TODO:
 
-* dockerise
+* dockerise cypress
 * rest client
 * Write a fibonacci generator
 * nvm install-latest-npm

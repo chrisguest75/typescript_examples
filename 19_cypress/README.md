@@ -3,6 +3,10 @@
 Demonstrates a simple Cypress test in Typescript  
 Node Cypress Example [here](https://github.com/chrisguest75/nodejs_examples/tree/master/12_cypress)  
 
+TODO:  
+
+* dockerise these tests
+
 ## How to run
 
 ```sh
