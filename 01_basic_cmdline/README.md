@@ -22,6 +22,8 @@ mkdir xx_project_name
 cd ./xx_project_name
 
 # write out an .nvmrc file
+nvm ls
+nvm use v16.13.2 
 node --version > .nvmrc        
 ```
 
