@@ -20,3 +20,6 @@ hygen generator help
 ## Resources
 
 https://www.hygen.io/docs/quick-start
+
+https://jondot.medium.com/hygen-the-scalable-code-generator-that-lives-in-your-project-a8e163c42869
+
