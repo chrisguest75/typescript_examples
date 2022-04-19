@@ -1,5 +1,0 @@
----
-to: .gitignore
----
-build
-docs

@@ -4,19 +4,22 @@ Demonstrate how to use `hygen` as a template.
 
 TODO:
 
-* How do I package it? 
-* How do I parameterise it?  Name of the package.
+* How do I package it?
 * Options to add logging?  
-
 
 ```sh
 npx hygen init self
 npx hygen generator new project
-npx hygen project new
+```
 
-npx hygen generator help
-
+```sh
+# create new project
 npx hygen project new 21_test
+```
+
+```sh
+# help for generators 
+npx hygen generator help
 ```
 
 ## Resources
