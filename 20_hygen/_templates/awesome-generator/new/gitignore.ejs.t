@@ -1,0 +1,5 @@
+---
+to: .gitignore
+---
+build
+docs
