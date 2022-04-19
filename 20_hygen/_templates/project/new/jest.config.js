@@ -1,5 +1,5 @@
 ---
-to: jest.config.js
+to: <%= name %>/jest.config.js
 ---
 module.exports = {
   transform: {

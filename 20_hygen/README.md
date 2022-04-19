@@ -10,16 +10,20 @@ TODO:
 
 
 ```sh
-hygen init self
-hygen generator new awesome-generator
-hygen awesome-generator new
+npx hygen init self
+npx hygen generator new project
+npx hygen project new
 
-hygen generator help
+npx hygen generator help
+
+npx hygen project new 21_test
+
+
 ```
 
 ## Resources
 
-https://www.hygen.io/docs/quick-start
-
-https://jondot.medium.com/hygen-the-scalable-code-generator-that-lives-in-your-project-a8e163c42869
-
+* Quick Start [here](https://www.hygen.io/docs/quick-start)
+* Build faster by generating code with Hygen.io [here](https://jondot.medium.com/hygen-the-scalable-code-generator-that-lives-in-your-project-a8e163c42869)
+* How to speed up your front-end development workflow with Hygen.io [here](https://ihatetomatoes.net/how-to-speed-up-your-front-end-development-workflow-with-hygen-io/)
+* How to use the Hygen code generator [here](https://medium.com/ableneo/how-to-use-the-hygen-code-generator-4bab25d99d8b)

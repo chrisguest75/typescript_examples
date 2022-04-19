@@ -1,5 +1,5 @@
 ---
-to: src/index.ts
+to: <%= name %>/src/index.ts
 ---
 export function main(): number {
   // var a = 0

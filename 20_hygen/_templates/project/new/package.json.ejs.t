@@ -1,8 +1,8 @@
 ---
-to: package.json
+to: <%= name %>/package.json
 ---
 {
-  "name": "01_test_cmdline",
+  "name": "<%= name %>",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",

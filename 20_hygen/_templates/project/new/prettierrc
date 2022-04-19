@@ -1,5 +1,5 @@
 ---
-to: .prettierrc
+to: <%= name %>/.prettierrc
 ---
 {
   "useTabs": false,

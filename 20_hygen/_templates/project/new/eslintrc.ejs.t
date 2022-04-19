@@ -1,5 +1,5 @@
 ---
-to: .eslintrc
+to: <%= name %>/.eslintrc
 ---
 {
   "env": {

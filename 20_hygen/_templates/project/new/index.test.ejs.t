@@ -1,5 +1,5 @@
 ---
-to: tests/index.test.ts
+to: <%= name %>/tests/index.test.ts
 ---
 import { main } from '../src/index'
 
