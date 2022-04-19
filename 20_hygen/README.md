@@ -17,8 +17,6 @@ npx hygen project new
 npx hygen generator help
 
 npx hygen project new 21_test
-
-
 ```
 
 ## Resources
