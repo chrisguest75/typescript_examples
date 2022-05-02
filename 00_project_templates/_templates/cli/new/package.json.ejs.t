@@ -7,6 +7,7 @@ to: <%= name %>/package.json
   "description": "",
   "main": "index.js",
   "scripts": {
+    "audit": "better-npm-audit audit",
     "clean": "rimraf build",
     "build": "tsc",
     "rebuild": "npm run clean && npm run build",
@@ -17,7 +18,10 @@ to: <%= name %>/package.json
     "test": "jest",
     "test:coverage": "jest --coverage",
     "lint": "eslint . --ext .ts",
-    "lint:fix": "eslint . --ext .ts --fix"
+    "lint:fix": "eslint . --ext .ts --fix",
+    "docker:build": "docker build --target PRODUCTION -f Dockerfile --label \"org.opencontainers.image.created=$(date '+%Y-%m-%dT%H:%M:%SZ')\" --label \"org.opencontainers.image.version=${githubsha}\" --label \"org.opencontainers.image.url=$(git remote get-url origin)\" -t <%= name %> .",
+    "docker:rebuild": "docker build --no-cache --target PRODUCTION -f Dockerfile --label \"org.opencontainers.image.created=$(date '+%Y-%m-%dT%H:%M:%SZ')\" --label \"org.opencontainers.image.version=${githubsha}\" --label \"org.opencontainers.image.url=$(git remote get-url origin)\" -t <%= name %> .",
+    "docker:stop": "docker stop <%= name %>"
   },
   "keywords": [],
   "author": "",

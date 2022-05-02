@@ -5,8 +5,6 @@ Example `hygen` templates to speed up project creation.
 TODO:
 
 * Pass in an output path
-* Toggles for logger and dockerfile
-* Enable logging
 
 Templates:
 
@@ -22,7 +20,10 @@ Templates:
 ```sh
 npx hygen cli help
 # create new project
-npx hygen cli new 21_test
+npx hygen cli new 99_test --docker
+
+# recreate
+HYGEN_OVERWRITE=1 npx hygen cli new 99_test --docker
 ```
 
 ## Creating templates

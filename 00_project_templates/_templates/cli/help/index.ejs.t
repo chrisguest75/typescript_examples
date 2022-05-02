@@ -1,4 +1,5 @@
 ---
 message: |
-  hygen cli new --name [NAME] --docker 
+  npx hygen cli help
+  npx hygen cli new [ProjectName] --docker
 ---
