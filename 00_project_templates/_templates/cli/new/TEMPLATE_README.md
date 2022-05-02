@@ -15,6 +15,10 @@ npm install
 npm run start:dev
 npm run test
 npm run lint
+
+# docker build
+npm run docker:build
+npm run docker:run
 ```
 
 ## Debugging
