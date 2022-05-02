@@ -25,6 +25,7 @@ to: <%= name %>/package.json
   "devDependencies": {
     "@types/jest": "^27.0.3",
     "@types/node": "^17.0.0",
+    "@types/minimist": "^1.2.2",    
     "@typescript-eslint/eslint-plugin": "^5.7.0",
     "@typescript-eslint/parser": "^5.7.0",
     "eslint": "^8.5.0",
@@ -50,6 +51,9 @@ to: <%= name %>/package.json
     "exec": "ts-node ./src/index.ts"
   },
   "dependencies": {
+    "minimist": "^1.2.5",
+    "dotenv": "^16.0.0",    
+    "pino": "^7.10.0",        
     "typedoc": "^0.22.13"
   }
 }

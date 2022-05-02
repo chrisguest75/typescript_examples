@@ -9,8 +9,9 @@ test('empty test', () => {
   // ACT
 
   // ASSERT
-  expect(main()).toBe(0)
+  expect(1).toBe(0)
 })
+
 
 
 
