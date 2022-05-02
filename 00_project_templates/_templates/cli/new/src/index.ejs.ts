@@ -8,6 +8,7 @@ import minimist from 'minimist'
 /*
 main
 */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export async function main(args: minimist.ParsedArgs) {
   logger.trace('TRACE - level message')
   logger.debug('DEBUG - level message')
@@ -16,6 +17,7 @@ export async function main(args: minimist.ParsedArgs) {
   logger.error('ERROR - level message')
   logger.fatal('FATAL - level message')
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   return new Promise((resolve, reject) => {
     logger.info('Finishing')
     resolve('Complete')

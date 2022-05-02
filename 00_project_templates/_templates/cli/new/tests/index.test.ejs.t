@@ -1,7 +1,7 @@
 ---
 to: <%= name %>/tests/index.test.ts
 ---
-import { main } from '../src/index'
+//import { main } from '../src/index'
 
 test('empty test', () => {
   // ARRANGE
@@ -9,10 +9,5 @@ test('empty test', () => {
   // ACT
 
   // ASSERT
-  expect(1).toBe(0)
+  expect(1).toBe(a)
 })
-
-
-
-
-
