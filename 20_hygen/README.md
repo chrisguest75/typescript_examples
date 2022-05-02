@@ -8,7 +8,10 @@ TODO:
 * Options to add logging?  
 
 ```sh
+# initialise a hygen project folder
 npx hygen init self
+
+# initialise a hygen basic project
 npx hygen generator new project
 ```
 
