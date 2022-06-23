@@ -11,7 +11,7 @@
     "clean:build": "npm run rebuild",
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",
-    "start:dev": "npm run rebuild && nodemon",
+    "start:dev": "npm run rebuild && nodemon -- --count=100",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "lint": "eslint . --ext .ts",
