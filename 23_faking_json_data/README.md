@@ -6,6 +6,7 @@ TODO:
 
 * cmdline tested in docker to using local filesystem volume for output.
 * add different types of data
+* add some basic tests
 
 ## How to run
 
