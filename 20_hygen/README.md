@@ -1,6 +1,6 @@
 # README
 
-Demonstrate how to use `hygen` as a template.
+Demonstrate how to use `hygen` as a template.  
 
 TODO:
 

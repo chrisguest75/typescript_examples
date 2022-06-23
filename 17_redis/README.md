@@ -1,6 +1,6 @@
 # README
 
-Demonstrate how to connect and use `Redis` from typescript
+Demonstrate how to connect and use `Redis` from typescript  
 
 TODO:  
 
