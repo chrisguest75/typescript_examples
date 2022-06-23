@@ -1,10 +1,9 @@
 # README
 
-A tool to probe into streams and extract the data
+Demonstrate using opentelemetry with a simple cli tool  
 
 TODO:
 
-* Add honeycomb.
 * Add file creation time and scan time to the output
 
 ## How to run

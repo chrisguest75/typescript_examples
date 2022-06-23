@@ -1,6 +1,6 @@
 # README
 
-Demonstrates generating fake json data.
+Demonstrates generating fake json data.  
 
 TODO:
 
