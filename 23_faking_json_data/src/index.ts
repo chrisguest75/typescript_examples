@@ -1,9 +1,16 @@
 import { logger } from './logger'
 import * as dotenv from 'dotenv'
 import minimist from 'minimist'
-import { randNumber, randBoolean, randUuid, randFilePath, randEmail, randFullName } from '@ngneat/falso'
+import { randNumber, randBetweenDate, randBoolean, randUuid, randFilePath, randEmail, randFullName } from '@ngneat/falso'
 import * as fs from 'fs'
 import * as path from 'path'
+
+function addDays(startDate: Date, days: number) {
+  const result = new Date(startDate)
+  result.setDate(result.getDate() + days)
+  return result
+}
+
 /*
 main
 */
@@ -29,6 +36,8 @@ export async function main(args: minimist.ParsedArgs) {
     logger.info(`Writing ${count} files`)
   }
   for (let i = 0; i < count; i++) {
+    const startDate = randBetweenDate({ from: new Date('01/01/2021'), to: addDays(new Date(), -10) })
+    const updateDate = randBetweenDate({ from: startDate, to: new Date() })
     const file = {
       size: randNumber({ min: 10, max: 2000 }),
       id: randUuid(),
@@ -36,6 +45,8 @@ export async function main(args: minimist.ParsedArgs) {
       deleted: randBoolean(),
       email: randEmail(),
       name: randFullName(),
+      created: startDate,
+      updated: updateDate,
     }
 
     const filejson = JSON.stringify(file) + '\n'

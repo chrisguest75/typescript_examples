@@ -55,4 +55,5 @@ The code should break on the breakpoint.
 * My basic typecript cmdline [01_basic_cmdline](https://github.com/chrisguest75/typescript_examples/tree/master/01_basic_cmdline)
 * falso [here](https://netbasal.com/generate-fake-data-in-the-browser-and-node-js-using-falso-3998d2bcbaaf)
 * falso getting started [here](https://ngneat.github.io/falso/docs/getting-started/)
+* falso examples [here](https://ngneat.github.io/falso/docs/general/#randboolean)
 * faker-js [here](https://github.com/faker-js/faker)
