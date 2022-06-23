@@ -1,7 +1,7 @@
 import { logger } from './logger'
 import * as dotenv from 'dotenv'
 import minimist from 'minimist'
-import { randEmail, randFullName } from '@ngneat/falso'
+import { randNumber, randBoolean, randUuid, randFilePath, randEmail, randFullName } from '@ngneat/falso'
 import * as fs from 'fs'
 import * as path from 'path'
 /*
@@ -22,16 +22,35 @@ export async function main(args: minimist.ParsedArgs) {
     fs.mkdirSync(outPath)
   }
 
-  const user = { email: randEmail(), name: randFullName() }
-  const emails = randEmail({ length: 10 })
-  logger.info({ user, emails })
+  const count = Number.parseInt(args['count'])
+  if (count <= 0) {
+    logger.warn('File count is not set')
+  } else {
+    logger.info(`Writing ${count} files`)
+  }
+  for (let i = 0; i < count; i++) {
+    const file = {
+      size: randNumber({ min: 10, max: 2000 }),
+      id: randUuid(),
+      file: randFilePath(),
+      deleted: randBoolean(),
+      email: randEmail(),
+      name: randFullName(),
+    }
 
-  const jsonuser = JSON.stringify(user)
-  const jsonemails = JSON.stringify(emails)
-  const fileuser = path.join(outPath, 'user.json')
-  const fileemails = path.join(outPath, 'emails.json')
-  fs.writeFileSync(fileuser, jsonuser)
-  fs.writeFileSync(fileemails, jsonemails)
+    const filejson = JSON.stringify(file) + '\n'
+    if (args['append']) {
+      const filepath = path.join(outPath, 'file.json')
+      if (count <= 0) {
+        fs.writeFileSync(filepath, filejson)
+      } else {
+        fs.appendFileSync(filepath, filejson)
+      }
+    } else {
+      const filepath = path.join(outPath, `file${i}.json`)
+      fs.writeFileSync(filepath, filejson)
+    }
+  }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   return new Promise((resolve, reject) => {
@@ -46,7 +65,11 @@ Entrypoint
 // load config
 dotenv.config()
 logger.info(`Pino:${logger.version}`)
-const args: minimist.ParsedArgs = minimist(process.argv.slice(2))
+const args: minimist.ParsedArgs = minimist(process.argv.slice(2), {
+  string: ['out', 'type', 'count'],
+  boolean: ['verbose', 'append'],
+  default: { count: '3', append: true },
+})
 main(args)
   .then(() => {
     process.exit(0)

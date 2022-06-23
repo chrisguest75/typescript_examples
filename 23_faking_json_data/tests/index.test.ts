@@ -2,7 +2,7 @@
 
 test('empty test', () => {
   // ARRANGE
-  const a = 0
+  const a = 1
   // ACT
 
   // ASSERT

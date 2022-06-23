@@ -1,6 +1,11 @@
 # README
 
-Demonstrates 23_faking_json_data
+Demonstrates generating fake json data.
+
+TODO:
+
+* cmdline tested in docker to using local filesystem volume for output.
+* add different types of data
 
 ## How to run
 
