@@ -1,9 +1,18 @@
 import { logger } from './logger'
 import * as dotenv from 'dotenv'
 import minimist from 'minimist'
-import { randNumber, randBetweenDate, randBoolean, randUuid, randFilePath, randEmail, randFullName } from '@ngneat/falso'
+import {
+  randNumber,
+  randBetweenDate,
+  randBoolean,
+  randUuid,
+  randFilePath,
+  randEmail,
+  randFullName,
+} from '@ngneat/falso'
 import * as fs from 'fs'
 import * as path from 'path'
+import { EJSON } from 'bson'
 
 function addDays(startDate: Date, days: number) {
   const result = new Date(startDate)
@@ -16,15 +25,15 @@ main
 */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export async function main(args: minimist.ParsedArgs) {
-  logger.trace('TRACE - level message')
-  logger.debug('DEBUG - level message')
-  logger.info('INFO - level message')
-  logger.warn('WARN - level message')
-  logger.error('ERROR - level message')
-  logger.fatal('FATAL - level message')
+  // logger.trace('TRACE - level message')
+  // logger.debug('DEBUG - level message')
+  // logger.info('INFO - level message')
+  // logger.warn('WARN - level message')
+  // logger.error('ERROR - level message')
+  // logger.fatal('FATAL - level message')
 
   // the output
-  const outPath = './out'
+  const outPath = args['out']
   if (!fs.existsSync(outPath)) {
     fs.mkdirSync(outPath)
   }
@@ -48,18 +57,25 @@ export async function main(args: minimist.ParsedArgs) {
       created: startDate,
       updated: updateDate,
     }
+    let filejson = ''
+    if (args['mongo']) {
+      filejson = EJSON.stringify(file, { relaxed: false }) + '\n'
+    } else {
+      filejson = JSON.stringify(file) + '\n'
+    }
 
-    const filejson = JSON.stringify(file) + '\n'
     if (args['append']) {
       const filepath = path.join(outPath, 'file.json')
-      if (count <= 0) {
-        fs.writeFileSync(filepath, filejson)
+      if (i <= 0) {
+        logger.info(`Creating a new file ${filepath} for appending`)
+        fs.writeFileSync(filepath, filejson, { encoding: 'utf8', flag: 'w' })
       } else {
         fs.appendFileSync(filepath, filejson)
       }
     } else {
       const filepath = path.join(outPath, `file${i}.json`)
-      fs.writeFileSync(filepath, filejson)
+      logger.info(`Creating a new file ${filepath}`)
+      fs.writeFileSync(filepath, filejson, { encoding: 'utf8', flag: 'w' })
     }
   }
 
@@ -77,9 +93,9 @@ Entrypoint
 dotenv.config()
 logger.info(`Pino:${logger.version}`)
 const args: minimist.ParsedArgs = minimist(process.argv.slice(2), {
-  string: ['out', 'type', 'count'],
-  boolean: ['verbose', 'append'],
-  default: { count: '3', append: true },
+  string: ['out', 'type', 'count', 'out'],
+  boolean: ['verbose', 'append', 'mongo'],
+  default: { count: '3', append: true, mongo: false, out: './out' },
 })
 main(args)
   .then(() => {

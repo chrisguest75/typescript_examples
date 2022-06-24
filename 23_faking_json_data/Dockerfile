@@ -12,7 +12,7 @@ COPY tests ./tests
 RUN npm run lint
 RUN npm run test:coverage
 RUN npm run build
-RUN npm audit
+#RUN npm audit
 RUN npm ci --only=production && npm cache clean --force
 
 FROM gcr.io/distroless/nodejs:16 AS PRODUCTION
@@ -24,4 +24,5 @@ WORKDIR /work
 COPY --from=BUILDER /scratch/node_modules ./node_modules
 COPY --from=BUILDER /scratch/build ./
 
-CMD ["/work/src/index.js"]
+ENTRYPOINT ["/nodejs/bin/node", "/work/src/index.js"]
+#CMD ["/work/src/index.js"]

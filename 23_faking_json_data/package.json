@@ -17,7 +17,8 @@
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "docker:build": "docker build --target PRODUCTION -f Dockerfile --label \"org.opencontainers.image.created=$(date '+%Y-%m-%dT%H:%M:%SZ')\" --label \"org.opencontainers.image.version=${githubsha}\" --label \"org.opencontainers.image.url=$(git remote get-url origin)\" -t 23_faking_json_data .",
-    "docker:run": "npm run docker:build && docker run --rm -it --name 23_faking_json_data 23_faking_json_data",
+    "docker:run": "npm run docker:build && docker run --rm -it -v $(pwd):/work/local --name 23_faking_json_data 23_faking_json_data --append --count=1000 --out=/work/local/out --mongo",
+    "docker:runonly": "docker run --rm -it -v $(pwd):/work/local --name 23_faking_json_data 23_faking_json_data --append --count=1000 --out=/work/local/out --mongo",
     "docker:rebuild": "docker build --no-cache --target PRODUCTION -f Dockerfile --label \"org.opencontainers.image.created=$(date '+%Y-%m-%dT%H:%M:%SZ')\" --label \"org.opencontainers.image.version=${githubsha}\" --label \"org.opencontainers.image.url=$(git remote get-url origin)\" -t 23_faking_json_data .",
     "docker:stop": "docker stop 23_faking_json_data"
   },
@@ -54,6 +55,7 @@
   },
   "dependencies": {
     "@ngneat/falso": "^5.7.0",
+    "bson": "^4.6.4",
     "dotenv": "^16.0.0",
     "minimist": "^1.2.5",
     "pino": "^7.10.0",
