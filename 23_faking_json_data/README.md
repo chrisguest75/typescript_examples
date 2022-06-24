@@ -21,7 +21,11 @@ npm run lint
 
 # docker build
 npm run docker:build
+
+# runs the container and will drop a file in a local out folder.
 npm run docker:run
+# skips the build if you are only changing options in scripts
+npm run docker:runonly
 ```
 
 ## Debugging
