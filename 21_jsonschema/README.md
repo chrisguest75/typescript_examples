@@ -58,4 +58,4 @@ cat ./json/transcript.schema.json | ./node_modules/.bin/json2ts > ./transcript.d
 * JSON Schemas as a First class Type in Typescript [here](https://medium.com/@realnoam/json-schemas-as-a-first-class-type-in-typescript-a2ff31ae9bc)
 * Align TypeScript Standards With JSON Schema [here](https://blog.dennisokeeffe.com/blog/2020-09-20-json-schema-to-ts)
 * Generate jsonschema from js [here](https://app.quicktype.io/)
-https://github.com/krg7880/json-schema-generator
+* json-schema-generator repo [here](https://github.com/krg7880/json-schema-generator)

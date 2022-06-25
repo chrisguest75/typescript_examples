@@ -1,0 +1,29 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+  
+    "definitions": {
+      "user": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "preferredName": { "type": "string" },
+          "age": { "type": "string" },
+          "gender": { "enum": ["male", "female", "other"] }
+        },
+        "required": ["name", "preferredName", "age", "gender"]
+      },
+      "author": {
+        "type": "object",
+        "properties": {
+          "allOf": [{ "$ref": "#/definitions/user" }]
+        }
+      }
+    },
+    "type": "object",
+    "properties": {
+      "author": { "$ref": "#/definitions/author" },
+      "title": { "type": "string" },
+      "publisher": { "type": "string" }
+    },
+    "required": ["author", "title", "publisher"]
+}
