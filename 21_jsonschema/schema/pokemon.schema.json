@@ -1,0 +1,115 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "number"
+    },
+    "id": {
+      "type": "number"
+    },
+    "num": {
+      "type": "string",
+      "minLength": 1
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "img": {
+      "type": "string",
+      "minLength": 1
+    },
+    "type": {
+      "type": "array",
+      "items": {
+        "required": [],
+        "properties": {}
+      }
+    },
+    "height": {
+      "type": "string",
+      "minLength": 1
+    },
+    "weight": {
+      "type": "string",
+      "minLength": 1
+    },
+    "candy": {
+      "type": "string",
+      "minLength": 1
+    },
+    "candy_count": {
+      "type": "number"
+    },
+    "egg": {
+      "type": "string",
+      "minLength": 1
+    },
+    "spawn_chance": {
+      "type": "number"
+    },
+    "avg_spawns": {
+      "type": "number"
+    },
+    "spawn_time": {
+      "type": "string",
+      "minLength": 1
+    },
+    "multipliers": {
+      "type": "array",
+      "items": {
+        "required": [],
+        "properties": {}
+      }
+    },
+    "weaknesses": {
+      "type": "array",
+      "items": {
+        "required": [],
+        "properties": {}
+      }
+    },
+    "next_evolution": {
+      "type": "array",
+      "uniqueItems": true,
+      "minItems": 1,
+      "items": {
+        "required": [
+          "num",
+          "name"
+        ],
+        "properties": {
+          "num": {
+            "type": "string",
+            "minLength": 1
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "version",
+    "id",
+    "num",
+    "name",
+    "img",
+    "type",
+    "height",
+    "weight",
+    "candy",
+    "candy_count",
+    "egg",
+    "spawn_chance",
+    "avg_spawns",
+    "spawn_time",
+    "multipliers",
+    "weaknesses",
+    "next_evolution"
+  ]
+}

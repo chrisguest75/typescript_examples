@@ -88,6 +88,11 @@ Demonstrate how to connect and use `Redis` from typescript
 Demonstrate how to use `hygen` as a template.  
 [README.md](./20_hygen/README.md)
 
+## 21 - JSON Schema
+
+Demonstrate how to work `JSONSchema` to validate and generate types.  
+[README.md](./21_jsonschema/README.md)
+
 ## 23 - Faking json data
 
 Demonstrates generating fake json data.  

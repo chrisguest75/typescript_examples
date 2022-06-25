@@ -1,0 +1,28 @@
+{
+    "format": "2.7",
+    "metadata": {
+      "created_at": "2022-04-19T16:09:00.050125Z",
+      "transcription_config": {
+        "diarization": "speaker",
+        "language": "fr"
+      },
+      "type": "transcription"
+    },
+    "results": [
+
+      {
+        "alternatives": [
+          {
+            "confidence": 1.0,
+            "content": ".",
+            "language": "fr",
+            "speaker": "S1"
+          }
+        ],
+        "end_time": 9.36,
+        "is_eos": true,
+        "start_time": 9.36,
+        "type": "punctuation"
+      }
+    ]
+}

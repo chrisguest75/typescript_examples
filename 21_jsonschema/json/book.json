@@ -1,0 +1,10 @@
+{
+    "author": {
+      "name": "Dennis O'Keeffe",
+      "preferredName": "Dennis",
+      "age": 28,
+      "gender": "male"
+    },
+    "title": "The Greatness Of Strict Schemas",
+    "publisher": "Real Publisher (definitely not fake)"
+  }
