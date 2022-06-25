@@ -1,0 +1,24 @@
+[
+  {
+    "rootpath": "mycode/test2",
+    "reponame": "test2",
+    "default_branch": "master",
+    "commit": "1b7a49d931c3a52a81f254efad7330516a1fe256",
+    "origincommit": "1b7a49d931c3a52a81f254efad7330516a1fe256",
+    "current_branch": "master",
+    "on_default_branch": "true",
+    "modified": "true",
+    "unfetched_changes": "false"
+  },
+  {
+    "rootpath":"mycode/test1",
+    "reponame": "test1",
+    "default_branch": "main",
+    "commit": "ee81c3cff4c405bf84411e58ded0fa574076a6d9",
+    "origincommit": "ee81c3cff4c405bf84411e58ded0fa574076a6d9",
+    "current_branch": "mulitple_commands",
+    "on_default_branch": "false",
+    "modified": "false",
+    "unfetched_changes": "false"
+  }
+]

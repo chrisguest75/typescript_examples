@@ -1,12 +1,12 @@
-import { main } from '../src/index'
+//import { main } from '../src/index'
 
 test('empty test', () => {
   // ARRANGE
-  const a = 0
+  const a = 1
   // ACT
 
   // ASSERT
-  expect(main()).toBe(0)
+  expect(1).toBe(a)
 })
 
 
