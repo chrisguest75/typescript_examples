@@ -4,9 +4,9 @@ Demonstrates generating fake json data.
 
 TODO:
 
-* cmdline tested in docker to using local filesystem volume for output.
-* add different types of data
 * add some basic tests
+* control random generator types using falso
+* It seems that date types are not being honoured correctly
 
 ## How to run
 
@@ -26,6 +26,10 @@ npm run docker:build
 npm run docker:run
 # skips the build if you are only changing options in scripts
 npm run docker:runonly
+
+# run with command
+npm run docker:runwith -- --type=files --append --count=1000 --out=/work/local/out --mongo
+npm run docker:runwith -- --type=fromschema --in=/work/local/schema/transcript.schema.json  --out=/work/local/out --mongo --count=2
 ```
 
 ## Debugging
@@ -60,4 +64,5 @@ The code should break on the breakpoint.
 * falso [here](https://netbasal.com/generate-fake-data-in-the-browser-and-node-js-using-falso-3998d2bcbaaf)
 * falso getting started [here](https://ngneat.github.io/falso/docs/getting-started/)
 * falso examples [here](https://ngneat.github.io/falso/docs/general/#randboolean)
-* faker-js [here](https://github.com/faker-js/faker)
+* faker-js repo [here](https://github.com/faker-js/faker)
+* json-schema-faker repo [here](https://github.com/json-schema-faker/json-schema-faker)

@@ -1,0 +1,126 @@
+{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "$ref": "#/definitions/Welcome",
+    "definitions": {
+        "Welcome": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "format": {
+                    "type": "string"
+                },
+                "metadata": {
+                    "$ref": "#/definitions/Metadata"
+                },
+                "results": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Result"
+                    }
+                }
+            },
+            "required": [
+                "format",
+                "metadata",
+                "results"
+            ],
+            "title": "Welcome"
+        },
+        "Metadata": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "created_at": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "transcription_config": {
+                    "$ref": "#/definitions/TranscriptionConfig"
+                },
+                "type": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "created_at",
+                "transcription_config",
+                "type"
+            ],
+            "title": "Metadata"
+        },
+        "TranscriptionConfig": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "diarization": {
+                    "type": "string"
+                },
+                "language": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "diarization",
+                "language"
+            ],
+            "title": "TranscriptionConfig"
+        },
+        "Result": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "alternatives": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Alternative"
+                    }
+                },
+                "end_time": {
+                    "type": "number"
+                },
+                "is_eos": {
+                    "type": "boolean"
+                },
+                "start_time": {
+                    "type": "number"
+                },
+                "type": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "alternatives",
+                "end_time",
+                "is_eos",
+                "start_time",
+                "type"
+            ],
+            "title": "Result"
+        },
+        "Alternative": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "confidence": {
+                    "type": "integer"
+                },
+                "content": {
+                    "type": "string"
+                },
+                "language": {
+                    "type": "string"
+                },
+                "speaker": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "confidence",
+                "content",
+                "language",
+                "speaker"
+            ],
+            "title": "Alternative"
+        }
+    }
+}
