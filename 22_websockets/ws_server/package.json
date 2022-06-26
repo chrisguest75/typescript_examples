@@ -28,6 +28,7 @@
     "@types/jest": "^27.0.3",
     "@types/minimist": "^1.2.2",
     "@types/node": "^17.0.0",
+    "@types/readline-sync": "^1.4.4",
     "@typescript-eslint/eslint-plugin": "^5.7.0",
     "@typescript-eslint/parser": "^5.7.0",
     "eslint": "^8.5.0",
@@ -57,6 +58,8 @@
     "dotenv": "^16.0.0",
     "minimist": "^1.2.5",
     "pino": "^7.10.0",
+    "readline-sync": "^1.4.10",
+    "redis": "^4.1.0",
     "typedoc": "^0.22.13",
     "ws": "^8.6.0"
   }

@@ -1,0 +1,15 @@
+services:
+
+  redisdb:
+    image: redis:7.0.2
+    ports:
+      - 6379:6379
+    volumes:
+      - ./redis-data:/data      
+    networks:
+      - service_bridge    
+    profiles: [backend]  
+
+networks:
+    service_bridge:
+        driver: bridge        
