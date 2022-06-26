@@ -61,3 +61,6 @@ https://www.npmjs.com/package/@types/ws
 
 https://github.com/websockets/wscat
 https://www.npmjs.com/package/wscat
+
+https://github.com/vi/websocat
+
