@@ -13,7 +13,7 @@ docker compose --profile backend up -d
 # quick test
 docker compose logs redisdb  
 
-docker compose --profile backend down
+docker compose --profile backend down --volumes
 ```
 
 ```sh
