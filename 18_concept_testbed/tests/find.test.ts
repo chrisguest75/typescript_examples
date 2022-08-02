@@ -1,24 +1,46 @@
-import Find, { FileProcessor } from '../src/find'
+import Find, { FileProcessor, FileProcessorSync } from '../src/find'
 import { logger } from '../src/logger'
 
-class ListFiles implements FileProcessor {
-    async process(fullPath: string): Promise<string> {
-        return new Promise((resolve /*,reject*/) => {
-            resolve(fullPath)
-        })
-    }
-}
-
-test('Find files', async () => {
+test('Find files synchronously', async () => {
     // ARRANGE
     logger.level = 'info'
-    const basePath = '../../ffmpeg_examples/output/ferran-wav-acc-30-minutes-story-wav-decodedaac'
-    const files = new ListFiles()
+    const basePath = './src'
     const find = new Find()
 
+    const mockFileProcessor: FileProcessorSync = {
+        process: jest.fn(async (fullPath: string) => {
+            return new Promise((resolve /*,reject*/) => {
+                resolve(fullPath)
+            })
+        }),
+    }
+
     // ACT
-    await find.findSync(basePath, '.*', true, files)
+    await find.findSync(basePath, '.*', true, mockFileProcessor)
+
     // ASSERT
-    //expect(createdHandler).toHaveBeenCalledTimes(0)
+    expect(mockFileProcessor.process).toHaveBeenCalled()
+    expect(mockFileProcessor.process).toHaveBeenCalledTimes(6)
 })
 
+test('Find files asynchronously', async () => {
+    // ARRANGE
+    logger.level = 'info'
+    const basePath = './src'
+    const find = new Find()
+
+    // THIS IS NOT WORKING
+    const mockFileProcessor: FileProcessor = {
+        process: jest.fn(),
+        /*process: function process(fullPath: string) {
+            logger.info(fullPath)
+        },*/
+    }
+
+    // ACT
+    find.find(basePath, '.*', true, mockFileProcessor)
+
+    // ASSERT
+    expect(mockFileProcessor.process).toHaveBeenCalled()
+    //expect(mockFileProcessor.process).toHaveBeenCalledTimes(6)
+})

@@ -270,3 +270,4 @@ https://gist.github.com/sidola/3b267f21c872e449ef4bbdae9e2baeab
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol
 
 https://www.npmjs.com/package/pubsub-js
+https://khalilstemmler.com/articles/test-driven-development/how-to-mock-typescript/
