@@ -8,7 +8,7 @@ dotenv.config()
 
 import express from 'express'
 import pino from 'express-pino-logger'
-import { logger } from './logger'
+// import { logger } from './logger'
 import bodyParser from 'body-parser'
 import { rootRouter } from '../routes/root'
 import { pingRouter } from '../routes/ping'

@@ -20,7 +20,7 @@ to: <%= name %>/package.json
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "docker:build": "docker build --target PRODUCTION -f Dockerfile --label \"org.opencontainers.image.created=$(date '+%Y-%m-%dT%H:%M:%SZ')\" --label \"org.opencontainers.image.version=${githubsha}\" --label \"org.opencontainers.image.url=$(git remote get-url origin)\" -t <%= name %> .",
-    "docker:run": "npm run docker:build && docker run --rm -it --name <%= name %> <%= name %>",
+    "docker:run": "npm run docker:build && docker run -p 8000:8000 --rm -it --name <%= name %> <%= name %>",
     "docker:rebuild": "docker build --no-cache --target PRODUCTION -f Dockerfile --label \"org.opencontainers.image.created=$(date '+%Y-%m-%dT%H:%M:%SZ')\" --label \"org.opencontainers.image.version=${githubsha}\" --label \"org.opencontainers.image.url=$(git remote get-url origin)\" -t <%= name %> .",
     "docker:stop": "docker stop <%= name %>"
   },

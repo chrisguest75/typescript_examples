@@ -11,7 +11,12 @@ Demonstrates <%= name %>.
 npm install
 
 # run targets
-npm run start
+npm run start:dev
+
+curl http://localhost:8000/
+curl http://localhost:8000/ping
+curl http://localhost:8000/sleep?wait=1000
+
 npm run test
 npm run lint
 ```

@@ -13,6 +13,7 @@ COPY package.json package-lock.json ./
 RUN npm ci
 
 COPY tsconfig.json .prettierrc jest.config.js .eslintrc ./
+COPY routes ./routes
 COPY src ./src
 COPY tests ./tests
 RUN npm run lint
