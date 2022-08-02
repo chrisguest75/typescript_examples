@@ -1,6 +1,11 @@
 # README
 
-Demonstrates a simple redis client in Typescript
+Demonstrates some typescript concepts.
+
+TODO:
+
+* eventemitter
+* json documents
 
 ## How to run
 
@@ -258,3 +263,7 @@ The code should break on the breakpoint.
 
 
 https://www.npmjs.com/package/redis
+https://dev.to/dstrekelj/how-to-mock-imported-functions-with-jest-3pfl#
+https://hackwild.com/article/event-handling-techniques/
+https://gist.github.com/sidola/3b267f21c872e449ef4bbdae9e2baeab
+

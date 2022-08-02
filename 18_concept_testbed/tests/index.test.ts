@@ -1,10 +1,9 @@
 import { main } from '../src/index'
 
 test('empty test', () => {
-  // ARRANGE
-  const a = 0
-  // ACT
+    // ARRANGE
+    // ACT
 
-  // ASSERT
-  expect(main()).toBe(0)
+    // ASSERT
+    expect(main()).toBe(0)
 })
