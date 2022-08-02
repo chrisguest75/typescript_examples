@@ -1,0 +1,7 @@
+---
+to: <%= name %>/.dockerignore
+skip_if: <%= (typeof docker == 'undefined') %>
+message: |
+  - <%= "Include .dockerignore:" + !(typeof docker == 'undefined') %>
+---
+node_modules

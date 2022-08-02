@@ -1,0 +1,6 @@
+---
+to: <%= name %>/.gitignore
+---
+.env
+node_modules
+build
