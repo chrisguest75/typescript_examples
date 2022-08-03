@@ -27,7 +27,7 @@ to: <%= name %>/package.json
   },
   "nodemonConfig": {
     "watch": [
-      "routes",      
+      "routes"
       "src",
       "nodemon.json",
       "tsconfig.json",

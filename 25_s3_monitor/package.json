@@ -23,6 +23,7 @@
   },
   "nodemonConfig": {
     "watch": [
+      "routes",      
       "src",
       "nodemon.json",
       "tsconfig.json",
