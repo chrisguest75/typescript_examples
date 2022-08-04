@@ -12,12 +12,20 @@ to: <%= name %>/public/index.html
 
     <!-- Bootstrap CSS -->
     <style type="text/css">
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap');
         html, body {
             min-height: 100%;
+            margin:0 auto;
+            padding:1em 0
         }
         body {
-            background: linear-gradient(#dc68ff62, #3f1011af)  no-repeat;
+            background: linear-gradient(#b95bd662, #c02427af)  no-repeat;
         }        
+        pre {
+          font-family: 'Roboto Condensed', sans-serif;
+          font-size:16px;
+          line-height:1;
+        }
     </style>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
@@ -28,6 +36,8 @@ to: <%= name %>/public/index.html
   </head>
   <body>
     
-    <h1>Hello World</h1>
+    <pre>
+Hello World
+    </pre>
 </body>
 </html>
