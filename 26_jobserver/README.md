@@ -2,6 +2,8 @@
 
 Demonstrates building a job monitor in an express server.  
 
+Use an example RESTApi to take in a path to search and produce md5 values for each file discovered. We use an internal loop to keep processing a list of new entries. The md5s are calculated an progress can be checked.  
+
 TODO:
 
 * Add a more time consuming external process
@@ -44,3 +46,4 @@ curl -s -L -X GET  http://localhost:8000/job/progress/dc59a552-66b4-459a-b48f-c7
 
 * PubSubJS is a topic-based publish/subscribe library written in JavaScript. [here](https://www.npmjs.com/package/pubsub-js)
 * Generate a UUID in TypeScript [here](https://www.uuidgenerator.net/dev-corner/typescript)
+* mroderick/PubSubJS repo [here](https://github.com/mroderick/PubSubJS)

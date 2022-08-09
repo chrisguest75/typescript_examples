@@ -8,8 +8,6 @@ import md5File from 'md5-file'
 
 // sleep for a period of time and create a child off passed in span
 function sleep(ms: number) {
-    // const parentSpan = opentelemetry.trace.getSpan(opentelemetry.context.active())
-
     return new Promise((resolve) => {
         setTimeout(() => {
             resolve('Complete')

@@ -98,6 +98,11 @@ Demonstrate how to work `JSONSchema` to validate and generate types.
 Demonstrates generating fake json data.  
 [README.md](./23_faking_json_data/README.md)
 
+## 26 - Job Server
+
+Demonstrates building a job monitor in an express server.  
+[README.md](./26_jobserver/README.md)
+
 ## Resources
 
 * [typescript book](https://basarat.gitbook.io/typescript/)  
