@@ -28,7 +28,9 @@ curl http://localhost:8000/
 curl http://localhost:8000/ping
 curl http://localhost:8000/sleep?wait=1000
 
-curl -L -X POST -H "Content-Type: application/json" -d '{ "path":"./routes" }' http://localhost:8000/job/start
+curl -s -L -X POST -H "Content-Type: application/json" -d '{ "path":"./routes" }' http://localhost:8000/job/start | jq . 
+
+curl -s -L -X GET  http://localhost:8000/job/progress/dc59a552-66b4-459a-b48f-c7e2532da614 | jq .
 ```
 
 ## Resources
