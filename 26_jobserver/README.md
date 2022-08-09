@@ -4,8 +4,10 @@ Demonstrates building a job monitor in an express server.
 
 TODO:
 
-* Add a pub sub to queue requests and allow progress to be reported.
-* Work can be counting files in a folder.
+* Add a more time consuming external process
+* Plugins?
+* OTEL?
+* JSONSchema validation.
 * Create a gui to submit the folders.  
 * Get progress buttons.  
 

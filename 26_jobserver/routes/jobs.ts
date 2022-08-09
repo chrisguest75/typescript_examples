@@ -17,12 +17,20 @@ function sleep(ms: number) {
     })
 }
 
+enum ProcessingStates {
+    start = 'START',
+    submitted = 'SUBMITTED',
+    md5 = 'MD5',
+    complete = 'COMPLETE',
+    removal = 'REMOVAL',
+}
+
 interface IJob {
     id: string
     name: string
     path: string
     md5: string
-    state: string
+    state: ProcessingStates
 }
 
 interface IJobs {
@@ -31,10 +39,7 @@ interface IJobs {
 
 const router = express.Router()
 const JOBS: IJobs = {}
-const startState = Symbol('START')
-const submittedState = Symbol('SUBMITTED')
-const topicMd5Files = Symbol('MD5')
-const topicCompleteFiles = Symbol('COMPLETE')
+
 const processing_tasks = true
 
 logger.info(`Start job processor`)
@@ -42,13 +47,13 @@ setTimeout(async () => {
     while (processing_tasks) {
         let processed = false
         for (const key in JOBS) {
-            if (JOBS[key].state == String(startState)) {
+            if (JOBS[key].state == ProcessingStates.start) {
                 logger.info(`Submit ${JOBS[key].id}`)
-                JOBS[key].state = String(submittedState)
+                JOBS[key].state = ProcessingStates.submitted
                 processed = true
                 // throttle processing
                 await sleep(10000)
-                PubSub.publish(topicMd5Files, JOBS[key])
+                PubSub.publish(ProcessingStates.md5, JOBS[key])
             }
         }
         if (!processed) {
@@ -58,19 +63,27 @@ setTimeout(async () => {
     }
 }, 0)
 
-PubSub.subscribe(topicMd5Files, async (msg, data) => {
-    logger.info(data, `${String(topicMd5Files)}`)
-    data.state = topicMd5Files
+PubSub.subscribe(ProcessingStates.md5, async (msg, data) => {
+    logger.info(data, `${ProcessingStates.md5}`)
+    data.state = ProcessingStates.md5
     const md5 = await md5File.sync(data.path)
     logger.info(`${md5} for ${data.path}`)
     data.md5 = md5
-    PubSub.publish(topicCompleteFiles, data)
+    PubSub.publish(ProcessingStates.complete, data)
 })
 
-PubSub.subscribe(topicCompleteFiles, async (msg, data) => {
-    logger.info(data, `${String(topicCompleteFiles)}`)
+PubSub.subscribe(ProcessingStates.complete, async (msg, data) => {
+    logger.info(data, `${ProcessingStates.complete}`)
+    data.state = String(ProcessingStates.complete)
+    await sleep(2000)
+    PubSub.publish(ProcessingStates.removal, data)
+})
 
-    data.state = String(topicCompleteFiles)
+PubSub.subscribe(ProcessingStates.removal, async (msg, data) => {
+    logger.info(data, `${ProcessingStates.removal} ${Object.keys(JOBS).length}`)
+    data.state = String(ProcessingStates.removal)
+    delete JOBS[data.id]
+    logger.info(data, `Removed ${data.id}`)
 })
 
 class ListFiles implements FileProcessor {
@@ -89,7 +102,7 @@ class ListFiles implements FileProcessor {
                 name: path.basename(fullPath),
                 path: fullPath,
                 md5: 'UNKNOWN',
-                state: String(startState),
+                state: ProcessingStates.start,
             }
             JOBS[id] = job
             resolve(fullPath)
