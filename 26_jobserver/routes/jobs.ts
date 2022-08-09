@@ -1,14 +1,28 @@
 import express, { Request, Response, NextFunction } from 'express'
 import { logger } from '../src/logger'
-import {v4 as uuidv4} from 'uuid'
+import { v4 as uuidv4 } from 'uuid'
 import PubSub from 'pubsub-js'
 import Find, { FileProcessor } from '../src/find'
+import path = require('path')
+import md5File from 'md5-file'
+
+// sleep for a period of time and create a child off passed in span
+function sleep(ms: number) {
+    // const parentSpan = opentelemetry.trace.getSpan(opentelemetry.context.active())
+
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve('Complete')
+        }, ms)
+    })
+}
 
 interface IJob {
     id: string
     name: string
     path: string
     md5: string
+    state: string
 }
 
 interface IJobs {
@@ -17,7 +31,48 @@ interface IJobs {
 
 const router = express.Router()
 const JOBS: IJobs = {}
-const topicMd5Files = Symbol('MD5_FILES')
+const startState = Symbol('START')
+const submittedState = Symbol('SUBMITTED')
+const topicMd5Files = Symbol('MD5')
+const topicCompleteFiles = Symbol('COMPLETE')
+const processing_tasks = true
+
+logger.info(`Start job processor`)
+setTimeout(async () => {
+    while (processing_tasks) {
+        let processed = false
+        for (const key in JOBS) {
+            if (JOBS[key].state == String(startState)) {
+                logger.info(`Submit ${JOBS[key].id}`)
+                JOBS[key].state = String(submittedState)
+                processed = true
+                // throttle processing
+                await sleep(10000)
+                PubSub.publish(topicMd5Files, JOBS[key])
+            }
+        }
+        if (!processed) {
+            logger.info('Nothing to process')
+        }
+        await sleep(1000)
+    }
+}, 0)
+
+PubSub.subscribe(topicMd5Files, async (msg, data) => {
+    logger.info(data, `${String(topicMd5Files)}`)
+    data.state = topicMd5Files
+    const md5 = await md5File.sync(data.path)
+    logger.info(`${md5} for ${data.path}`)
+    data.md5 = md5
+    PubSub.publish(topicCompleteFiles, data)
+})
+
+PubSub.subscribe(topicCompleteFiles, async (msg, data) => {
+    logger.info(data, `${String(topicCompleteFiles)}`)
+
+    data.state = String(topicCompleteFiles)
+})
+
 class ListFiles implements FileProcessor {
     basePath: string
 
@@ -31,12 +86,12 @@ class ListFiles implements FileProcessor {
             const id = uuidv4()
             const job: IJob = {
                 id: id,
-                name: fullPath,
+                name: path.basename(fullPath),
                 path: fullPath,
                 md5: 'UNKNOWN',
+                state: String(startState),
             }
             JOBS[id] = job
-            //PubSub.publish(topicMd5Files, job)
             resolve(fullPath)
         })
     }
