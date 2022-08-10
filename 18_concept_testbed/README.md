@@ -9,13 +9,17 @@ TODO:
 
 ## How to run
 
+NOTE: Filtering tests can be done in `jest.config.js`  
+
 ```sh
 npm install
 
-# run targets
-npm run start:dev
+# tests demonstrate a few concepts
 npm run test
 npm run lint
+
+# run targets (nothing really to run)
+npm run start:dev
 ```
 
 ## How to recreate

@@ -17,6 +17,7 @@ class ListFiles implements FileProcessor {
         this.pubSub = notify
     }
 
+    // this is called back from `find`
     async process(fullPath: string): Promise<string> {
         return new Promise((resolve /*,reject*/) => {
             this.pubSub.publish('NewFile', { pubsub: this.pubSub, path: fullPath })
@@ -24,11 +25,11 @@ class ListFiles implements FileProcessor {
         })
     }
 }
-
 class TruncateFile {
     async process(path: string): Promise<string> {
         logger.info({ path: path }, `TruncateFile.process`)
-        await sleep(1000)
+        // doesn't really truncate the file - just an example of something to burn time.
+        await sleep(Math.floor(Math.random() * 1000))
         logger.info({ path: path }, `TruncateFile.process waited 1000`)
         return new Promise((resolve /*,reject*/) => {
             logger.info({ path: path }, `Resolved`)
@@ -37,21 +38,31 @@ class TruncateFile {
     }
 }
 
-async function newFileHandler(message: { pubsub: PubSubType<events>; path: string }) {
-    logger.info(`newFileHandler ${message.path}`)
-    const truncate = new TruncateFile()
-    await truncate.process(message.path)
-    message.pubsub.publish('TruncatedFile', { pubsub: message.pubsub, path: message.path })
-}
-
 test('Find files', async () => {
     // ARRANGE
     logger.level = 'info'
     const pubSub = PubSub<events>()
     const files = new ListFiles(pubSub)
+    let newFileHandlerCount = 0
+
+    async function newFileHandler(message: { pubsub: PubSubType<events>; path: string }) {
+        logger.info(`newFileHandler ${message.path}`)
+        const truncate = new TruncateFile()
+        await truncate.process(message.path)
+        message.pubsub.publish('TruncatedFile', { pubsub: message.pubsub, path: message.path })
+        newFileHandlerCount++
+    }
 
     pubSub.subscribe('NewFile', newFileHandler)
-    //pubSub.subscribe('TruncatedFile', truncatedHandler)
+
+    async function truncatedHandler(message: { pubsub: PubSubType<events>; path: string }) {
+        logger.info(`truncatedHandler ${message.path}`)
+        //const truncate = new TruncateFile()
+        //await truncate.process(message.path)
+        message.pubsub.publish('EncodedFile', { pubsub: message.pubsub, path: message.path })
+    }
+
+    pubSub.subscribe('TruncatedFile', truncatedHandler)
 
     const find = new Find()
 
@@ -59,6 +70,7 @@ test('Find files', async () => {
     const basePath = './src'
     await find.findSync(basePath, '.*', true, files)
     // ASSERT
-    //expect(createdHandler).toHaveBeenCalledTimes(0)
+    //expect(newFileHandlerCount).toBe(6)
+    //expect(newFileHandler).toHaveBeenCalledTimes(0)
 })
 

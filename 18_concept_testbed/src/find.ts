@@ -12,13 +12,15 @@ export interface FileProcessor {
 export default class Find {
     // constructor() {}
 
-    async findSync(folder: string, pattern: string, recurse: boolean, processor: FileProcessorSync) {
+    async findSync(folder: string, pattern: string, recurse: boolean, processor: FileProcessorSync): Promise<number> {
+        let count = 0
         try {
             if (!fs.statSync(folder).isDirectory()) {
                 // single file????
                 if (path.basename(folder).match(pattern)) {
                     logger.debug(`Process single file ${folder}`)
                     await processor.process(folder)
+                    count++
                 } else {
                     logger.debug(`No pattern match on single file ${folder}`)
                 }
@@ -33,7 +35,7 @@ export default class Find {
                     const directory = stat.isDirectory()
                     if (directory) {
                         if (recurse) {
-                            this.findSync(relative, pattern, recurse, processor)
+                            count += await this.findSync(relative, pattern, recurse, processor)
                         } else {
                             logger.child({ directory: directory }).info(fullpath)
                         }
@@ -41,6 +43,7 @@ export default class Find {
                         if (path.basename(fullpath).match(pattern)) {
                             logger.info({ function: 'findSync', file: fullpath }, `Processing file`)
                             await processor.process(fullpath)
+                            count++
                         } else {
                             logger.debug({ file: fullpath, pattern: pattern }, `No pattern match`)
                         }
@@ -51,43 +54,44 @@ export default class Find {
             logger.error(`Failed to list directory '${folder}'`, error)
             throw error
         }
+        return count
     }
 
-    async find(folder: string, pattern: string, recurse: boolean, processor: FileProcessor) {
-        fs.stat(folder, (err, stats) => {
-            if (!stats.isDirectory()) {
-                if (path.basename(folder).match(pattern)) {
-                    logger.debug(`Process single file ${folder}`)
-                    processor.process(folder)
-                } else {
-                    logger.debug(`No pattern match on single file ${folder}`)
-                }
-            } else {
-                fs.readdir(folder, (err, files) => {
-                    for (let i = 0; i < files.length; i++) {
-                        const file = files[i]
-                        const relative = path.join(folder, file)
-                        const fullpath = path.resolve(relative)
-                        fs.stat(fullpath, (err, stats) => {
-                            const directory = stats.isDirectory()
-                            if (directory) {
-                                if (recurse) {
-                                    this.find(relative, pattern, recurse, processor)
-                                } else {
-                                    logger.child({ directory: directory }).info(fullpath)
-                                }
-                            } else {
-                                if (path.basename(fullpath).match(pattern)) {
-                                    logger.info({ function: 'find', file: fullpath }, `Processing file`)
-                                    processor.process(fullpath)
-                                } else {
-                                    logger.debug({ file: fullpath, pattern: pattern }, `No pattern match`)
-                                }
-                            }
-                        })
-                    }
-                })
-            }
-        })
-    }
+    // async find(folder: string, pattern: string, recurse: boolean, processor: FileProcessor) {
+    //     fs.stat(folder, (err, stats) => {
+    //         if (!stats.isDirectory()) {
+    //             if (path.basename(folder).match(pattern)) {
+    //                 logger.debug(`Process single file ${folder}`)
+    //                 processor.process(folder)
+    //             } else {
+    //                 logger.debug(`No pattern match on single file ${folder}`)
+    //             }
+    //         } else {
+    //             fs.readdir(folder, async (err, files) => {
+    //                 for (let i = 0; i < files.length; i++) {
+    //                     const file = files[i]
+    //                     const relative = path.join(folder, file)
+    //                     const fullpath = path.resolve(relative)
+    //                     fs.stat(fullpath, async (err, stats) => {
+    //                         const directory = stats.isDirectory()
+    //                         if (directory) {
+    //                             if (recurse) {
+    //                                 await this.find(relative, pattern, recurse, processor)
+    //                             } else {
+    //                                 logger.child({ directory: directory }).info(fullpath)
+    //                             }
+    //                         } else {
+    //                             if (path.basename(fullpath).match(pattern)) {
+    //                                 logger.info({ function: 'find', file: fullpath }, `Processing file`)
+    //                                 processor.process(fullpath)
+    //                             } else {
+    //                                 logger.debug({ file: fullpath, pattern: pattern }, `No pattern match`)
+    //                             }
+    //                         }
+    //                     })
+    //                 }
+    //             })
+    //         }
+    //     })
+    // }
 }
