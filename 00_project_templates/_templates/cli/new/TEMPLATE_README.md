@@ -11,6 +11,9 @@ Demonstrates <%= name %>
 nvm use
 npm install
 
+# use typescript compiler
+npm run tsc -- --version  
+
 # run targets
 npm run start:dev
 npm run test

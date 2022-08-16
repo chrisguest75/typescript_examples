@@ -8,7 +8,11 @@ Demonstrates <%= name %>.
 ## How to run
 
 ```sh
+nvm use
 npm install
+
+# use typescript compiler
+npm run tsc -- --version  
 
 # run targets
 npm run start:dev

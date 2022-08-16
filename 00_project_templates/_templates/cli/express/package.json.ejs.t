@@ -7,6 +7,7 @@ to: <%= name %>/package.json
   "description": "",
   "main": "index.js",
   "scripts": {
+    "tsc": "tsc",
     "audit": "better-npm-audit audit",
     "clean": "rimraf build",
     "build": "tsc",
