@@ -7,7 +7,11 @@ function testbyvalue(testobj: {a: number}, newvalue: number) {
 
 let myObj = { a: 0 }
 let retObj = testbyvalue(myObj, 3)
-  
+
+let a = 10
+let b = a - 4
+b
+
 myObj
 retObj
 let same = myObj === retObj
