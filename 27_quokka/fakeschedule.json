@@ -1,0 +1,1229 @@
+{
+    "requestId": "c742b418-03db-4139-9df6-7b4bb7a8b348",
+    "took": 1.143,
+    "RateLimitState": "OK",
+    "RateLimitReason": "",
+    "RateLimitPeriod": "",
+    "RetryCount": 0,
+    "_parent": {
+        "id": "35e74b0e-ea17-436e-ae3e-0272b6aba7ed",
+        "name": "my_schedule",
+        "enabled": true
+    },
+    "description": "",
+    "ownerTeam": {},
+    "startDate": "2022-08-03T00:00:00Z",
+    "endDate": "2022-09-03T00:00:00Z",
+    "finalTimeline": {
+        "rotations": [
+            {
+                "id": "858d1426-8186-4726-ad91-685e0b161024",
+                "name": "schedule1",
+                "order": 2,
+                "periods": [
+                    {
+                        "startDate": "2022-08-03T00:00:00Z",
+                        "endDate": "2022-08-03T08:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "nicola+thomas581@centurytel.org",
+                            "id": "858d1426-8186-4726-ad91-685e0b161024",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-03T17:00:00Z",
+                        "endDate": "2022-08-04T08:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "nicola+thomas581@centurytel.org",
+                            "id": "858d1426-8186-4726-ad91-685e0b161024",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-04T17:00:00Z",
+                        "endDate": "2022-08-05T08:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "nicola+thomas581@centurytel.org",
+                            "id": "858d1426-8186-4726-ad91-685e0b161024",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-05T17:00:00Z",
+                        "endDate": "2022-08-08T08:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "nicola+thomas581@centurytel.org",
+                            "id": "858d1426-8186-4726-ad91-685e0b161024",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-08T17:00:00Z",
+                        "endDate": "2022-08-09T08:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "nicola+thomas581@centurytel.org",
+                            "id": "858d1426-8186-4726-ad91-685e0b161024",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-09T17:00:00Z",
+                        "endDate": "2022-08-10T08:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "bin+agbaria@windstream.net",
+                            "id": "0c2ec463-c304-49b4-b9dd-e4350d8c7759",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-10T17:00:00Z",
+                        "endDate": "2022-08-11T08:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "bin+agbaria@windstream.net",
+                            "id": "0c2ec463-c304-49b4-b9dd-e4350d8c7759",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-11T17:00:00Z",
+                        "endDate": "2022-08-12T08:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "bin+agbaria@windstream.net",
+                            "id": "0c2ec463-c304-49b4-b9dd-e4350d8c7759",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-12T17:00:00Z",
+                        "endDate": "2022-08-12T19:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "jianguoikeda727@rediffmail.io",
+                            "id": "1d466583-eefa-479e-8f7f-8ccd73ae8153",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-12T19:00:00Z",
+                        "endDate": "2022-08-14T13:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "bin+agbaria@windstream.net",
+                            "id": "0c2ec463-c304-49b4-b9dd-e4350d8c7759",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-14T13:00:00Z",
+                        "endDate": "2022-08-14T17:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "evgeniyschouten926@mail.io",
+                            "id": "eab46cf9-e53e-4e99-8a13-b5ac984c3fce",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-14T17:00:00Z",
+                        "endDate": "2022-08-15T08:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "bin+agbaria@windstream.net",
+                            "id": "0c2ec463-c304-49b4-b9dd-e4350d8c7759",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-15T17:00:00Z",
+                        "endDate": "2022-08-16T08:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "bin+agbaria@windstream.net",
+                            "id": "0c2ec463-c304-49b4-b9dd-e4350d8c7759",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-16T17:00:00Z",
+                        "endDate": "2022-08-17T08:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "philip-lange663@earthlink.name",
+                            "id": "0d75f2cd-6228-43f8-8701-53e51c7bf4f1",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-17T17:00:00Z",
+                        "endDate": "2022-08-18T08:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "philip-lange663@earthlink.name",
+                            "id": "0d75f2cd-6228-43f8-8701-53e51c7bf4f1",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-18T17:00:00Z",
+                        "endDate": "2022-08-19T08:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "philip-lange663@earthlink.name",
+                            "id": "0d75f2cd-6228-43f8-8701-53e51c7bf4f1",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-19T17:00:00Z",
+                        "endDate": "2022-08-22T08:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "philip-lange663@earthlink.name",
+                            "id": "0d75f2cd-6228-43f8-8701-53e51c7bf4f1",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-22T17:00:00Z",
+                        "endDate": "2022-08-23T08:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "philip-lange663@earthlink.name",
+                            "id": "0d75f2cd-6228-43f8-8701-53e51c7bf4f1",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-23T17:00:00Z",
+                        "endDate": "2022-08-24T08:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "jianguoikeda727@rediffmail.io",
+                            "id": "1d466583-eefa-479e-8f7f-8ccd73ae8153",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-24T17:00:00Z",
+                        "endDate": "2022-08-25T08:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "jianguoikeda727@rediffmail.io",
+                            "id": "1d466583-eefa-479e-8f7f-8ccd73ae8153",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-25T17:00:00Z",
+                        "endDate": "2022-08-26T08:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "jianguoikeda727@rediffmail.io",
+                            "id": "1d466583-eefa-479e-8f7f-8ccd73ae8153",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-26T17:00:00Z",
+                        "endDate": "2022-08-29T08:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "jianguoikeda727@rediffmail.io",
+                            "id": "1d466583-eefa-479e-8f7f-8ccd73ae8153",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-29T17:00:00Z",
+                        "endDate": "2022-08-30T08:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "jianguoikeda727@rediffmail.io",
+                            "id": "1d466583-eefa-479e-8f7f-8ccd73ae8153",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-30T17:00:00Z",
+                        "endDate": "2022-08-31T08:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "evgeniyschouten926@mail.io",
+                            "id": "eab46cf9-e53e-4e99-8a13-b5ac984c3fce",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-31T17:00:00Z",
+                        "endDate": "2022-09-01T08:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "evgeniyschouten926@mail.io",
+                            "id": "eab46cf9-e53e-4e99-8a13-b5ac984c3fce",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-09-01T17:00:00Z",
+                        "endDate": "2022-09-02T08:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "evgeniyschouten926@mail.io",
+                            "id": "eab46cf9-e53e-4e99-8a13-b5ac984c3fce",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-09-02T17:00:00Z",
+                        "endDate": "2022-09-03T00:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "evgeniyschouten926@mail.io",
+                            "id": "eab46cf9-e53e-4e99-8a13-b5ac984c3fce",
+                            "username": ""
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "449b2a68-b151-4325-b556-e43ff85fd4cc",
+                "name": "schedule2",
+                "order": 3,
+                "periods": [
+                    {
+                        "startDate": "2022-08-03T08:00:00Z",
+                        "endDate": "2022-08-03T17:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "inga_marin31@att.biz",
+                            "id": "bd0d3b9b-62ac-4602-8770-292c13539408",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-04T08:00:00Z",
+                        "endDate": "2022-08-04T17:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "inga_marin31@att.biz",
+                            "id": "bd0d3b9b-62ac-4602-8770-292c13539408",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-05T08:00:00Z",
+                        "endDate": "2022-08-05T17:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "inga_marin31@att.biz",
+                            "id": "bd0d3b9b-62ac-4602-8770-292c13539408",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-08T08:00:00Z",
+                        "endDate": "2022-08-08T17:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "inga_marin31@att.biz",
+                            "id": "bd0d3b9b-62ac-4602-8770-292c13539408",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-09T08:00:00Z",
+                        "endDate": "2022-08-09T09:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "inga_marin31@att.biz",
+                            "id": "bd0d3b9b-62ac-4602-8770-292c13539408",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-09T09:00:00Z",
+                        "endDate": "2022-08-09T17:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "lin+ruiz798@voila.name",
+                            "id": "ad0b9940-4245-48de-8f43-a54390de4dd7",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-10T08:00:00Z",
+                        "endDate": "2022-08-10T15:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "lin+ruiz798@voila.name",
+                            "id": "ad0b9940-4245-48de-8f43-a54390de4dd7",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-10T15:00:00Z",
+                        "endDate": "2022-08-10T17:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "philip-lange663@earthlink.name",
+                            "id": "0d75f2cd-6228-43f8-8701-53e51c7bf4f1",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-11T08:00:00Z",
+                        "endDate": "2022-08-11T17:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "lin+ruiz798@voila.name",
+                            "id": "ad0b9940-4245-48de-8f43-a54390de4dd7",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-12T08:00:00Z",
+                        "endDate": "2022-08-12T17:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "lin+ruiz798@voila.name",
+                            "id": "ad0b9940-4245-48de-8f43-a54390de4dd7",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-15T08:00:00Z",
+                        "endDate": "2022-08-15T17:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "lin+ruiz798@voila.name",
+                            "id": "ad0b9940-4245-48de-8f43-a54390de4dd7",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-16T08:00:00Z",
+                        "endDate": "2022-08-16T09:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "emmanuel_kimura559@bigpond.name",
+                            "id": "f79b7851-17c4-4419-8cc9-f10a7e5915ab",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-16T09:00:00Z",
+                        "endDate": "2022-08-16T17:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "andrzej_ivanova809@freenet.name",
+                            "id": "65b8e866-ca4f-4eac-8d5b-8d0a7074628e",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-17T08:00:00Z",
+                        "endDate": "2022-08-17T17:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "andrzej_ivanova809@freenet.name",
+                            "id": "65b8e866-ca4f-4eac-8d5b-8d0a7074628e",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-18T08:00:00Z",
+                        "endDate": "2022-08-18T17:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "andrzej_ivanova809@freenet.name",
+                            "id": "65b8e866-ca4f-4eac-8d5b-8d0a7074628e",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-19T08:00:00Z",
+                        "endDate": "2022-08-19T17:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "andrzej_ivanova809@freenet.name",
+                            "id": "65b8e866-ca4f-4eac-8d5b-8d0a7074628e",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-22T08:00:00Z",
+                        "endDate": "2022-08-22T17:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "andrzej_ivanova809@freenet.name",
+                            "id": "65b8e866-ca4f-4eac-8d5b-8d0a7074628e",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-23T08:00:00Z",
+                        "endDate": "2022-08-23T09:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "andrzej_ivanova809@freenet.name",
+                            "id": "65b8e866-ca4f-4eac-8d5b-8d0a7074628e",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-23T09:00:00Z",
+                        "endDate": "2022-08-23T17:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "xiaoping_flores427@wanadoo.org",
+                            "id": "0d35bb42-4e3d-40db-a3e5-2d2b33bca8b7",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-24T08:00:00Z",
+                        "endDate": "2022-08-24T17:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "xiaoping_flores427@wanadoo.org",
+                            "id": "0d35bb42-4e3d-40db-a3e5-2d2b33bca8b7",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-25T08:00:00Z",
+                        "endDate": "2022-08-25T17:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "xiaoping_flores427@wanadoo.org",
+                            "id": "0d35bb42-4e3d-40db-a3e5-2d2b33bca8b7",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-26T08:00:00Z",
+                        "endDate": "2022-08-26T17:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "xiaoping_flores427@wanadoo.org",
+                            "id": "0d35bb42-4e3d-40db-a3e5-2d2b33bca8b7",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-29T08:00:00Z",
+                        "endDate": "2022-08-29T17:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "andrzej_ivanova809@freenet.name",
+                            "id": "65b8e866-ca4f-4eac-8d5b-8d0a7074628e",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-30T08:00:00Z",
+                        "endDate": "2022-08-30T09:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "garethray@t-online.org",
+                            "id": "68d11483-6184-44a6-b28d-83f1cfe47dbe",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-30T09:00:00Z",
+                        "endDate": "2022-08-30T09:08:56.579Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "mohamed.kumari@sfr.name",
+                            "id": "03ed2220-2cdd-4e76-bfe1-03c1acf4e27a",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-30T09:08:56.579Z",
+                        "endDate": "2022-08-30T17:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "garethray@t-online.org",
+                            "id": "68d11483-6184-44a6-b28d-83f1cfe47dbe",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-31T08:00:00Z",
+                        "endDate": "2022-08-31T17:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "garethray@t-online.org",
+                            "id": "68d11483-6184-44a6-b28d-83f1cfe47dbe",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-09-01T08:00:00Z",
+                        "endDate": "2022-09-01T17:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "garethray@t-online.org",
+                            "id": "68d11483-6184-44a6-b28d-83f1cfe47dbe",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-09-02T08:00:00Z",
+                        "endDate": "2022-09-02T17:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "garethray@t-online.org",
+                            "id": "68d11483-6184-44a6-b28d-83f1cfe47dbe",
+                            "username": ""
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "a4cd7f7c-940e-4e89-8700-c6e27e8cf91c",
+                "name": "schedule3",
+                "order": 4,
+                "periods": [
+                    {
+                        "startDate": "2022-08-03T08:00:00Z",
+                        "endDate": "2022-08-03T17:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "jianguoikeda727@rediffmail.io",
+                            "id": "1d466583-eefa-479e-8f7f-8ccd73ae8153",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-04T08:00:00Z",
+                        "endDate": "2022-08-04T17:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "jianguoikeda727@rediffmail.io",
+                            "id": "1d466583-eefa-479e-8f7f-8ccd73ae8153",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-05T08:00:00Z",
+                        "endDate": "2022-08-05T17:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "jianguoikeda727@rediffmail.io",
+                            "id": "1d466583-eefa-479e-8f7f-8ccd73ae8153",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-08T08:00:00Z",
+                        "endDate": "2022-08-08T17:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "jianguoikeda727@rediffmail.io",
+                            "id": "1d466583-eefa-479e-8f7f-8ccd73ae8153",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-09T08:00:00Z",
+                        "endDate": "2022-08-09T09:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "jianguoikeda727@rediffmail.io",
+                            "id": "1d466583-eefa-479e-8f7f-8ccd73ae8153",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-09T09:00:00Z",
+                        "endDate": "2022-08-09T17:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "hongngwenya@tiscali.org",
+                            "id": "316fc6f3-e026-404a-be57-b6cdea0ccf92",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-10T08:00:00Z",
+                        "endDate": "2022-08-10T17:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "hongngwenya@tiscali.org",
+                            "id": "316fc6f3-e026-404a-be57-b6cdea0ccf92",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-11T08:00:00Z",
+                        "endDate": "2022-08-11T17:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "hongngwenya@tiscali.org",
+                            "id": "316fc6f3-e026-404a-be57-b6cdea0ccf92",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-12T08:00:00Z",
+                        "endDate": "2022-08-12T17:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "hongngwenya@tiscali.org",
+                            "id": "316fc6f3-e026-404a-be57-b6cdea0ccf92",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-15T08:00:00Z",
+                        "endDate": "2022-08-15T17:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "hongngwenya@tiscali.org",
+                            "id": "316fc6f3-e026-404a-be57-b6cdea0ccf92",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-16T08:00:00Z",
+                        "endDate": "2022-08-16T09:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "hongngwenya@tiscali.org",
+                            "id": "316fc6f3-e026-404a-be57-b6cdea0ccf92",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-16T09:00:00Z",
+                        "endDate": "2022-08-16T17:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "sam_yakubu917@att.io",
+                            "id": "88b20b4f-5a7f-434f-91f7-3cfa704fc9eb",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-17T08:00:00Z",
+                        "endDate": "2022-08-17T17:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "sam_yakubu917@att.io",
+                            "id": "88b20b4f-5a7f-434f-91f7-3cfa704fc9eb",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-18T08:00:00Z",
+                        "endDate": "2022-08-18T17:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "sam_yakubu917@att.io",
+                            "id": "88b20b4f-5a7f-434f-91f7-3cfa704fc9eb",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-19T08:00:00Z",
+                        "endDate": "2022-08-19T17:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "sam_yakubu917@att.io",
+                            "id": "88b20b4f-5a7f-434f-91f7-3cfa704fc9eb",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-22T08:00:00Z",
+                        "endDate": "2022-08-22T17:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "sam_yakubu917@att.io",
+                            "id": "88b20b4f-5a7f-434f-91f7-3cfa704fc9eb",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-23T08:00:00Z",
+                        "endDate": "2022-08-23T09:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "sam_yakubu917@att.io",
+                            "id": "88b20b4f-5a7f-434f-91f7-3cfa704fc9eb",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-23T09:00:00Z",
+                        "endDate": "2022-08-23T17:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "evgeniyschouten926@mail.io",
+                            "id": "eab46cf9-e53e-4e99-8a13-b5ac984c3fce",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-24T08:00:00Z",
+                        "endDate": "2022-08-24T17:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "evgeniyschouten926@mail.io",
+                            "id": "eab46cf9-e53e-4e99-8a13-b5ac984c3fce",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-25T08:00:00Z",
+                        "endDate": "2022-08-25T17:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "evgeniyschouten926@mail.io",
+                            "id": "eab46cf9-e53e-4e99-8a13-b5ac984c3fce",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-26T08:00:00Z",
+                        "endDate": "2022-08-26T17:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "evgeniyschouten926@mail.io",
+                            "id": "eab46cf9-e53e-4e99-8a13-b5ac984c3fce",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-29T08:00:00Z",
+                        "endDate": "2022-08-29T17:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "jianguoikeda727@rediffmail.io",
+                            "id": "1d466583-eefa-479e-8f7f-8ccd73ae8153",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-30T08:00:00Z",
+                        "endDate": "2022-08-30T09:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "evgeniyschouten926@mail.io",
+                            "id": "eab46cf9-e53e-4e99-8a13-b5ac984c3fce",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-30T09:00:00Z",
+                        "endDate": "2022-08-30T17:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "jianguoikeda727@rediffmail.io",
+                            "id": "1d466583-eefa-479e-8f7f-8ccd73ae8153",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-31T08:00:00Z",
+                        "endDate": "2022-08-31T17:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "jianguoikeda727@rediffmail.io",
+                            "id": "1d466583-eefa-479e-8f7f-8ccd73ae8153",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-09-01T08:00:00Z",
+                        "endDate": "2022-09-01T17:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "jianguoikeda727@rediffmail.io",
+                            "id": "1d466583-eefa-479e-8f7f-8ccd73ae8153",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-09-02T08:00:00Z",
+                        "endDate": "2022-09-02T17:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "jianguoikeda727@rediffmail.io",
+                            "id": "1d466583-eefa-479e-8f7f-8ccd73ae8153",
+                            "username": ""
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "4b17f72d-02e9-484a-a0c9-097b714cc493",
+                "name": "schedule4",
+                "order": 1,
+                "periods": [
+                    {
+                        "startDate": "2022-08-03T00:00:00Z",
+                        "endDate": "2022-08-03T08:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "lin+ruiz798@voila.name",
+                            "id": "ad0b9940-4245-48de-8f43-a54390de4dd7",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-03T17:00:00Z",
+                        "endDate": "2022-08-04T08:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "lin+ruiz798@voila.name",
+                            "id": "ad0b9940-4245-48de-8f43-a54390de4dd7",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-04T17:00:00Z",
+                        "endDate": "2022-08-05T08:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "lin+ruiz798@voila.name",
+                            "id": "ad0b9940-4245-48de-8f43-a54390de4dd7",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-05T17:00:00Z",
+                        "endDate": "2022-08-08T08:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "lin+ruiz798@voila.name",
+                            "id": "ad0b9940-4245-48de-8f43-a54390de4dd7",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-08T17:00:00Z",
+                        "endDate": "2022-08-09T08:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "lin+ruiz798@voila.name",
+                            "id": "ad0b9940-4245-48de-8f43-a54390de4dd7",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-09T17:00:00Z",
+                        "endDate": "2022-08-10T08:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "fiona-ashknaziy157@facebook.dev",
+                            "id": "42e4dffc-026f-4e1e-a257-ee7455e1a95c",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-10T17:00:00Z",
+                        "endDate": "2022-08-11T08:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "fiona-ashknaziy157@facebook.dev",
+                            "id": "42e4dffc-026f-4e1e-a257-ee7455e1a95c",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-11T17:00:00Z",
+                        "endDate": "2022-08-12T08:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "fiona-ashknaziy157@facebook.dev",
+                            "id": "42e4dffc-026f-4e1e-a257-ee7455e1a95c",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-12T17:00:00Z",
+                        "endDate": "2022-08-15T08:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "fiona-ashknaziy157@facebook.dev",
+                            "id": "42e4dffc-026f-4e1e-a257-ee7455e1a95c",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-15T17:00:00Z",
+                        "endDate": "2022-08-16T08:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "fiona-ashknaziy157@facebook.dev",
+                            "id": "42e4dffc-026f-4e1e-a257-ee7455e1a95c",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-16T17:00:00Z",
+                        "endDate": "2022-08-17T08:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "mohamed.kumari@sfr.name",
+                            "id": "03ed2220-2cdd-4e76-bfe1-03c1acf4e27a",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-17T17:00:00Z",
+                        "endDate": "2022-08-18T08:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "mohamed.kumari@sfr.name",
+                            "id": "03ed2220-2cdd-4e76-bfe1-03c1acf4e27a",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-18T17:00:00Z",
+                        "endDate": "2022-08-19T08:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "mohamed.kumari@sfr.name",
+                            "id": "03ed2220-2cdd-4e76-bfe1-03c1acf4e27a",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-19T17:00:00Z",
+                        "endDate": "2022-08-22T08:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "mohamed.kumari@sfr.name",
+                            "id": "03ed2220-2cdd-4e76-bfe1-03c1acf4e27a",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-22T17:00:00Z",
+                        "endDate": "2022-08-23T08:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "mohamed.kumari@sfr.name",
+                            "id": "03ed2220-2cdd-4e76-bfe1-03c1acf4e27a",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-23T17:00:00Z",
+                        "endDate": "2022-08-24T08:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "andrzej_ivanova809@freenet.name",
+                            "id": "65b8e866-ca4f-4eac-8d5b-8d0a7074628e",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-24T17:00:00Z",
+                        "endDate": "2022-08-25T08:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "andrzej_ivanova809@freenet.name",
+                            "id": "65b8e866-ca4f-4eac-8d5b-8d0a7074628e",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-25T17:00:00Z",
+                        "endDate": "2022-08-26T08:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "andrzej_ivanova809@freenet.name",
+                            "id": "65b8e866-ca4f-4eac-8d5b-8d0a7074628e",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-26T17:00:00Z",
+                        "endDate": "2022-08-29T08:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "andrzej_ivanova809@freenet.name",
+                            "id": "65b8e866-ca4f-4eac-8d5b-8d0a7074628e",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-29T17:00:00Z",
+                        "endDate": "2022-08-30T08:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "andrzej_ivanova809@freenet.name",
+                            "id": "65b8e866-ca4f-4eac-8d5b-8d0a7074628e",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-30T17:00:00Z",
+                        "endDate": "2022-08-31T08:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "lukaszdelgado361@mac.dev",
+                            "id": "03c54bcd-67f8-408a-8990-fe756f2aa5da",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-08-31T17:00:00Z",
+                        "endDate": "2022-09-01T08:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "lukaszdelgado361@mac.dev",
+                            "id": "03c54bcd-67f8-408a-8990-fe756f2aa5da",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-09-01T17:00:00Z",
+                        "endDate": "2022-09-02T08:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "lukaszdelgado361@mac.dev",
+                            "id": "03c54bcd-67f8-408a-8990-fe756f2aa5da",
+                            "username": ""
+                        }
+                    },
+                    {
+                        "startDate": "2022-09-02T17:00:00Z",
+                        "endDate": "2022-09-03T00:00:00Z",
+                        "type": "historical",
+                        "recipient": {
+                            "type": "user",
+                            "name": "lukaszdelgado361@mac.dev",
+                            "id": "03c54bcd-67f8-408a-8990-fe756f2aa5da",
+                            "username": ""
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "baseTimeline": {},
+    "overrideTimeline": {},
+    "forwardingTimeline": {}
+}
