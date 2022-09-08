@@ -62,6 +62,15 @@ export enum PeriodType {
   Historical = "historical",
 }
 
+export interface CoveredPeriod {
+  startDate: Date
+  endDate:   Date
+  dayRate: number
+  engineer: string
+  dayOfWeek: string
+  duration: number
+}
+
 function timeConvert(n: number): number {
   var num = n;
   var hours = (num / 60);
@@ -77,8 +86,14 @@ function loadSchedule(filePath: string): Schedule {
   return JSON.parse(file);
 }
 
+function saveRate(filePath: string, data: string) {
+  fs.writeFileSync(filePath, data);
+}
+
+let schedule1 = "schedule1"
+let schedule2 = "schedule4"
 let currentPath = process.cwd()
-let filePath = currentPath + '/schedule.json'
+let filePath = currentPath + '/fakeschedule.json'
 filePath
 
 let schedule = loadSchedule(filePath)
@@ -88,7 +103,7 @@ schedule
 // extract rotations
 let rotations = schedule.finalTimeline.rotations
 //filter out required schedules
-let filtered = rotations.filter((r) => r.name === 'schedule1' || r.name === 'schedule3')
+let filtered = rotations.filter((r) => r.name === schedule1 || r.name === schedule2)
 filtered 
 
 // merge two schedules together
@@ -99,12 +114,79 @@ len
 
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 
-//splits: Array<Period> = [] 
+let covered: Array<CoveredPeriod> = []
 
 periods.map((p) => {
-  p['dayOfWeek'] = days[new Date(Date.parse(p.startDate)).getDay()]
-  p['duration'] = timeConvert((Date.parse(p.endDate) - Date.parse(p.startDate)) / 1000 / 60)
+
+  let startDate = Date.parse(p.startDate)
+  let endDate = Date.parse(p.endDate)
+  let dayOfWeek = days[new Date(startDate).getDay()]
+  let duration = timeConvert((endDate - startDate) / 1000 / 60)
+
+  let rate = 0
+  let endDay = new Date(Date.parse(p.endDate)).getDay()
+  let startDay = new Date(Date.parse(p.startDate)).getDay()
+  let dateDiff = Math.abs((endDay + 1) - (startDay + 1))
+
+  dateDiff
+  if (dateDiff == 0) {
+    // if less than 8am it's classed as overnight
+    if (new Date(startDate).getHours() < 8) {
+      rate = 1
+    }
+  } else {
+    // if diff is 1 it's classed as overnight
+    if (dateDiff == 1) {
+      rate = 1
+    } else {
+      let date = new Date(startDate)
+      for (let i = 0; i < dateDiff; i++) {
+        // saturday and sunday
+        if (date.getDay() === 0 || date.getDay() === 6) {
+          rate+=2
+        } else {
+          rate+=1
+        }
+        date.setDate(date.getDate() + i)
+      }
+    }
+  }
+  let dayRate = rate
+
+  let cover: CoveredPeriod = {
+    startDate: new Date(startDate),
+    endDate:   new Date(endDate),
+    dayRate:  dayRate,
+    engineer: p.recipient.name,
+    dayOfWeek: dayOfWeek,
+    duration: duration
+  }
+  covered.push(cover)
+
 })
 
-periods
+covered
 
+var result = covered.reduce(function(r, e) {
+  let s = {
+    rates: 0,
+    ranges: []
+  }
+  if (r[e.engineer]) {
+    s = r[e.engineer]
+  } 
+  s.rates += e.dayRate
+  s.ranges.push({
+      startDate: e.startDate, 
+      endDate: e.endDate,
+      dayOfWeek: e.dayOfWeek
+    })
+  r[e.engineer] = s;
+  return r;
+}, {});
+
+//result
+// stringify json pretty
+let aggregated = JSON.stringify(result, null, 2)
+console.log(aggregated)
+saveRate(currentPath + '/rates.json', aggregated)

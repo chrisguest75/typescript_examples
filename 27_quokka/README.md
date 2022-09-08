@@ -6,16 +6,27 @@ Demonstrate some `quokka` examples
 code --install-extension WallabyJs.quokka-vscode
 ```
 
-## Create a json to typescript types example
+## Install
 
 ```sh
+npm install
+```
 
+## Run
+
+```sh
+Cmd+Shift+P - Quokka.js Start on Current File
+```
+
+## Creating typescript types
+
+It's possible to create typescript types from javascript objects.
+
+```sh
 code --install-extension quicktype.quicktype
 ```
 
-Use some of these examples
-https://github.com/wallabyjs/interactive-examples/tree/master/JavaScript
-
 ## Resources
 
-https://quokkajs.com/docs/configuration.html#plugins
+* Quokka Plugins [here](https://quokkajs.com/docs/configuration.html#plugins)
+* Some examples [here](https://github.com/wallabyjs/interactive-examples/tree/master/JavaScript)
