@@ -1,3 +1,6 @@
+// parsing
+console.log(parseInt("1005", 10))
+
 // modulo
 let x = 13 % 2
 x
