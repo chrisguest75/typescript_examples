@@ -1,10 +1,21 @@
 import { main } from '../src/index'
 
-test('empty test', () => {
-  // ARRANGE
-  const a = 0
-  // ACT
+describe.only('test cli', () => {
+  afterEach(() => {
+    jest.clearAllMocks()
+    jest.resetAllMocks()
+    const testName = expect.getState().currentTestName
+    console.log(`afterEach ${testName}`)
+  })
 
-  // ASSERT
-  expect(main()).toBe(0)
+  test('verify main exits and logs correctly', () => {
+    // ARRANGE
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    const log = jest.spyOn(console, 'log').mockImplementation(() => {})
+    // ACT
+
+    // ASSERT
+    expect(main()).toBe(0)
+    expect(log).toBeCalledWith('Hello world!!!!')
+  })
 })

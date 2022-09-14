@@ -5,6 +5,11 @@ to: <%= name %>/TEMPLATE_README.md
 
 Demonstrates <%= name %>.  
 
+TODO:
+
+* Examine rules and plugins for eslint https://www.npmjs.com/package/eslint-plugin-jest
+
+
 ## How to run
 
 ```sh
@@ -165,7 +170,7 @@ module.exports = {
     '^.+\\\\.ts?$': 'ts-jest',
   },
   testEnvironment: 'node',
-  testRegex: 'tests/.*\\\\.(test|spec)?\\\\.(ts|tsx|js)$',
+  testRegex: 'tests/.*\\\\.(test|spec)?\\\\.(ts|tsx)$',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
 }
 EOF
