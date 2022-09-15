@@ -1,6 +1,6 @@
-import express, { Request, Response, NextFunction } from 'express'
+import express, { Request, Response } from 'express'
 import { logger } from '../src/logger'
-import { S3Client, ListBucketsCommand, GetObjectCommand } from '@aws-sdk/client-s3'
+import { S3Client, ListBucketsCommand } from '@aws-sdk/client-s3'
 
 const router = express.Router()
 
@@ -25,7 +25,6 @@ function = async () => {
     response.status(200).json({ names: files });
   };
 */
-
 
 // use underscores to ignore parameters ", _next: NextFunction"
 const bucketsHandler = async (_request: Request, response: Response) => {
@@ -54,9 +53,6 @@ const watchHandler = async (request: Request, response: Response) => {
         path: bucketpath,
     })
 }
-
-
-
 
 router.get('/', bucketsHandler)
 router.get('/watch/:bucketname/:bucketpath', watchHandler)

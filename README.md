@@ -14,6 +14,14 @@ TODO:
 
 Useful snippets to help
 
+## Troubleshooting
+
+If having trouble with `nvm use` with xcode crashing with exceptions.
+
+```sh
+xcodebuild -runFirstLaunch
+```
+
 ## 00 - Project templates using hygen
 
 Example `hygen` templates to speed up project creation.  
