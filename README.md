@@ -4,6 +4,7 @@ A set of simple Typescript examples.
 
 TODO:
 
+* Add handlers to templates. uncaughtException, unhandledRejection, exit
 * dockerise cypress
 * rest client
 * Write a fibonacci generator

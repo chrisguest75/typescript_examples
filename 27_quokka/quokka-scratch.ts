@@ -17,17 +17,6 @@ let color : Color = Color[fromSomewhere];
 console.log(color)
 console.log(IsEnumValue(Color, fromSomewhere))
 
-
-// Simple functions checks
-//const voidFunction = () => void
-//console.log(voidFunction())
-
-const arrowFunction = (message: string) => {
-    return `message is '${message}'`
-}
-console.log(arrowFunction("hello"))
-
-
 // Checking falsy values
 const a = undefined
 const b = null
@@ -53,3 +42,6 @@ console.log(!! testObj.val1)
 console.log(!! testObj.val2)
 console.log(!! testObj.val3)
 console.log(!! testObj.val4)
+
+
+
