@@ -5,7 +5,7 @@ dotenv.config()
 
 import express from 'express'
 import pino from 'express-pino-logger'
-//import { logger } from './logger'
+import { logger } from './logger'
 import bodyParser from 'body-parser'
 import { rootRouter } from '../routes/root'
 import { pingRouter } from '../routes/ping'
@@ -39,3 +39,25 @@ app.listen(port, () => console.log(`Example app listening at http://localhost:${
 
 process.on('SIGTERM', shutDown)
 process.on('SIGINT', shutDown)
+
+process.on('exit', async () => {
+    logger.warn('exit signal received')
+    process.exit(1)
+})
+
+process.on('uncaughtException', async (error: Error) => {
+    logger.error(error)
+    // for nice printing
+    console.log(error)
+    process.exit(1)
+})
+
+process.on('unhandledRejection', async (reason, promise) => {
+    logger.error({
+        promise: promise,
+        reason: reason,
+        msg: 'Unhandled Rejection',
+    })
+    console.log(reason)
+    process.exit(1)
+})

@@ -1,0 +1,23 @@
+apiVersion: skaffold/v2beta29 
+kind: Config
+metadata:
+  name: -skaffold
+
+build:
+  artifacts:
+  - image: 25_s3_monitor
+    context: ./
+    docker:
+      dockerfile: Dockerfile
+
+deploy:
+  docker:
+    # docker compose not supported yet
+    useCompose: false
+    images: [25_s3_monitor]
+
+portForward:
+  - resourceType: container
+    resourceName: 25_s3_monitor
+    port: 8000
+    localPort: 8000
