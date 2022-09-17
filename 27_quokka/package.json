@@ -10,9 +10,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.171.0",
+    "@aws-sdk/credential-providers": "^3.171.0",
     "@ngneat/falso": "^6.1.0",
     "@types/lodash": "^4.14.184",
     "axios": "^0.27.2",
+    "dotenv-quokka-plugin": "^1.0.0",
     "lodash": "^4.17.21"
   }
 }

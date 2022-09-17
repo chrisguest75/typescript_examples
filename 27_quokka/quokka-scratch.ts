@@ -1,3 +1,8 @@
+
+// Like this.
+const timer: ReturnType<typeof setTimeout>
+
+
 /**
 *  ENUMS checking if a string is a value in an enum
 * 
