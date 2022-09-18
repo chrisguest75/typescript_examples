@@ -1,13 +1,9 @@
----
-to: <%= name %>/package.json
----
 {
-  "name": "<%= name %>",
+  "name": "25_s3_monitor",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "tsc": "tsc",
     "audit": "better-npm-audit audit",
     "clean": "rimraf build",
     "build": "tsc",
@@ -20,14 +16,14 @@ to: <%= name %>/package.json
     "test:coverage": "jest --coverage",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
-    "docker:build": "docker build --target PRODUCTION -f Dockerfile --label \"org.opencontainers.image.created=$(date '+%Y-%m-%dT%H:%M:%SZ')\" --label \"org.opencontainers.image.version=${githubsha}\" --label \"org.opencontainers.image.url=$(git remote get-url origin)\" -t <%= name %> .",
-    "docker:run": "npm run docker:build && docker run -p 8000:8000 --rm -it --name <%= name %> <%= name %>",
-    "docker:rebuild": "docker build --no-cache --target PRODUCTION -f Dockerfile --label \"org.opencontainers.image.created=$(date '+%Y-%m-%dT%H:%M:%SZ')\" --label \"org.opencontainers.image.version=${githubsha}\" --label \"org.opencontainers.image.url=$(git remote get-url origin)\" -t <%= name %> .",
-    "docker:stop": "docker stop <%= name %>"
+    "docker:build": "docker build --target PRODUCTION -f Dockerfile --label \"org.opencontainers.image.created=$(date '+%Y-%m-%dT%H:%M:%SZ')\" --label \"org.opencontainers.image.version=${githubsha}\" --label \"org.opencontainers.image.url=$(git remote get-url origin)\" -t 25_s3_monitor .",
+    "docker:run": "npm run docker:build && docker run -p 8000:8000 --volume /Users/${USER}/.aws:/root/.aws --env AWS_PROFILE=${AWS_PROFILE} --rm -it --name 25_s3_monitor 25_s3_monitor",
+    "docker:rebuild": "docker build --no-cache --target PRODUCTION -f Dockerfile --label \"org.opencontainers.image.created=$(date '+%Y-%m-%dT%H:%M:%SZ')\" --label \"org.opencontainers.image.version=${githubsha}\" --label \"org.opencontainers.image.url=$(git remote get-url origin)\" -t 25_s3_monitor .",
+    "docker:stop": "docker stop 25_s3_monitor"
   },
   "nodemonConfig": {
     "watch": [
-      "routes"
+      "routes",      
       "src",
       "nodemon.json",
       "tsconfig.json",
@@ -61,6 +57,7 @@ to: <%= name %>/package.json
     "typescript": "^4.7.4"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.142.0",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "express-pino-logger": "^7.0.0",
