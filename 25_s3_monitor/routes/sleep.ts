@@ -1,19 +1,8 @@
 import express, { Request, Response } from 'express'
 import { logger } from '../src/logger'
+import sleep from '../src/sleep'
 
 const router = express.Router()
-
-// sleep for a period of time and create a child off passed in span
-function sleep(ms: number) {
-    // const parentSpan = opentelemetry.trace.getSpan(opentelemetry.context.active())
-
-    return new Promise((resolve) => {
-        logger.info(`Sleep for ${ms}`)
-        setTimeout(() => {
-            resolve('Complete')
-        }, ms)
-    })
-}
 
 // use underscores to ignore parameters ", _next: NextFunction"
 const sleepHandler = async (request: Request, response: Response) => {

@@ -35,4 +35,10 @@ COPY --from=builder /scratch/build ./
 CMD ["/work/src/index.js"]
 
 FROM production AS withprofile
+
+ARG AWS_PROFILE=myprofile
+ARG AWS_REGION=us-east-1
+ENV AWS_PROFILE=${AWS_PROFILE} 
+ENV AWS_REGION=${AWS_REGION}
+
 COPY --from=profile . /root/.aws
