@@ -24,6 +24,29 @@ export async function main(args: minimist.ParsedArgs) {
   })
 }
 
+process.on('exit', async () => {
+  logger.warn('exit signal received')
+  process.exit(1)
+})
+
+process.on('uncaughtException', async (error: Error) => {
+  logger.error(error)
+  // for nice printing
+  console.log(error)
+  process.exit(1)
+})
+
+process.on('unhandledRejection', async (reason, promise) => {
+  logger.error({
+      promise: promise,
+      reason: reason,
+      msg: 'Unhandled Rejection',
+  })
+  console.log(reason)
+  process.exit(1)
+})
+
+
 /*
 Entrypoint
 */
