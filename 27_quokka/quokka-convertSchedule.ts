@@ -2,6 +2,13 @@ import * as fs from 'fs';
 import * as process from 'process';
 import lodash from 'lodash';
 
+// 
+let schedule1 = process.env.SCHEDULE1;
+let schedule2 = process.env.SCHEDULE2;
+let currentPath = process.cwd()
+let filePath = currentPath + '/' + process.env.SCHEDULE_FILE;
+filePath
+
 export interface Schedule {
   requestId:          string;
   took:               number;
@@ -90,11 +97,6 @@ function saveRate(filePath: string, data: string) {
   fs.writeFileSync(filePath, data);
 }
 
-let schedule1 = "schedule1"
-let schedule2 = "schedule4"
-let currentPath = process.cwd()
-let filePath = currentPath + '/fakeschedule.json'
-filePath
 
 let schedule = loadSchedule(filePath)
 
