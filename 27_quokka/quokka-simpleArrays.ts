@@ -1,6 +1,8 @@
 const values = ['ready', 'started', 'live']
 const looking = 'ready'
 
+console.log(values[values.length - 1])
+
 console.log(values.includes(looking))
 
 
@@ -14,5 +16,6 @@ enum Paths {
 // Object.values(Paths).includes(looking)
 
 (<any>Object).values(Paths).includes(looking)
+
 
 

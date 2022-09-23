@@ -19,11 +19,12 @@
     "docker:build": "docker build --target PRODUCTION -f Dockerfile --label \"org.opencontainers.image.created=$(date '+%Y-%m-%dT%H:%M:%SZ')\" --label \"org.opencontainers.image.version=${githubsha}\" --label \"org.opencontainers.image.url=$(git remote get-url origin)\" -t 25_s3_monitor .",
     "docker:run": "npm run docker:build && docker run -p 8000:8000 --volume /Users/${USER}/.aws:/root/.aws --env AWS_PROFILE=${AWS_PROFILE} --rm -it --name 25_s3_monitor 25_s3_monitor",
     "docker:rebuild": "docker build --no-cache --target PRODUCTION -f Dockerfile --label \"org.opencontainers.image.created=$(date '+%Y-%m-%dT%H:%M:%SZ')\" --label \"org.opencontainers.image.version=${githubsha}\" --label \"org.opencontainers.image.url=$(git remote get-url origin)\" -t 25_s3_monitor .",
-    "docker:stop": "docker stop 25_s3_monitor"
+    "docker:stop": "docker stop 25_s3_monitor",
+    "skaffold:start": "skaffold dev"
   },
   "nodemonConfig": {
     "watch": [
-      "routes",      
+      "routes",
       "src",
       "nodemon.json",
       "tsconfig.json",
@@ -61,6 +62,8 @@
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "express-pino-logger": "^7.0.0",
-    "pino": "^8.1.0"
+    "lodash": "^4.17.21",
+    "pino": "^8.1.0",
+    "s3-sync-client": "^3.0.3"
   }
 }

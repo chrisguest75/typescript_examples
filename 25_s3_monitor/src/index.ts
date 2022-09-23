@@ -35,7 +35,7 @@ app.use('/ping', pingRouter)
 app.use('/sleep', sleepRouter)
 app.use('/buckets', bucketsRouter)
 
-logger.info(`Profile:${process.env.AWS_PROFILE} Region:${process.env.AWS_REGION}`)
+logger.info(`Profile:'${process.env.AWS_PROFILE}' Region:'${process.env.AWS_REGION}'`)
 app.listen(port, () => logger.info(`25_s3_monitor app listening at http://localhost:${port}`))
 
 process.on('SIGTERM', shutDown)

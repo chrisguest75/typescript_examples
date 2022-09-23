@@ -8,6 +8,7 @@ COPY package.json package-lock.json ./
 RUN npm ci
 
 COPY tsconfig.json .prettierrc jest.config.js .eslintrc ./
+COPY sync ./sync
 COPY routes ./routes
 COPY src ./src
 COPY tests ./tests
@@ -29,6 +30,8 @@ ENV AWS_REGION=${AWS_REGION}
 ENV NODE_ENV production
 
 WORKDIR /work
+
+COPY --from=builder /scratch/sync ./sync
 COPY --from=builder /scratch/node_modules ./node_modules
 COPY --from=builder /scratch/build ./
 

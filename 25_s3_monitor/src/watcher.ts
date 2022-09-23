@@ -1,6 +1,6 @@
 import { S3Client, ListObjectsCommand } from '@aws-sdk/client-s3'
 import { logger } from '../src/logger'
-import sleep from '../src/sleep'
+import { throttle } from 'lodash'
 
 interface SegmentFile {
     file: string
@@ -32,9 +32,12 @@ async function findAllFiles(
             files: [],
         }
     }
-    //console.log(files)
     let mapped = files?.map((file) => {
-        const fileName = file?.Key?.split('/')[1]
+        const folders = file?.Key?.split('/')
+        let fileName = folders ? folders[0] : ''
+        if (folders !== undefined) {
+            fileName = folders[folders.length - 1]
+        }
         const fileNameNoExt = fileName?.split('.')[0]
         if (fileNameNoExt !== undefined) {
             const segmentNumber = fileNameNoExt?.match(/\d/g)?.join('')
@@ -81,8 +84,12 @@ interface Bucket {
     bucketName: string
     bucketPath: string
 }
+const timeoutFrequency = 2000
+const maxSegments = 100
 
 const watching: Bucket[] = []
+const watcherLogChild = logger.child({ state: 'Watcher' })
+const nothingThrottled = throttle(() => watcherLogChild.info('Nothing to process'), timeoutFrequency * 5)
 
 export const addWatch = (watch: Bucket) => {
     watching.push(watch)
@@ -90,27 +97,23 @@ export const addWatch = (watch: Bucket) => {
 
 // NOTE: Does this mean multiple invocations of this function or a single one.
 // setTimeout ensures that there's a delay of at least x milliseconds.
-const timeoutFrequency = 2000
-const maxSegments = 100
+
 let watcherTimer = setTimeout(async function watcher() {
-    const logchild = logger.child({ state: 'Watcher' })
     if (watching.length > 0) {
         const { bucketRegion, bucketName, bucketPath } = watching[0]
         const { currentSegment, files } = await findAllFiles(bucketRegion, bucketName, bucketPath, segment, maxSegments)
-        console.log(currentSegment, files)
+        watcherLogChild.info({ currentSegment, files })
         if (segment !== currentSegment) {
             segment = currentSegment
 
             files.map((file) => {
-                logger.info({ file })
+                watcherLogChild.info({ file })
             })
 
             fileQueue.concat(files)
         }
-
-        //await sleep(5000)
     } else {
-        logchild.info('Nothing to process')
+        nothingThrottled()
     }
 
     watcherTimer = setTimeout(watcher, timeoutFrequency)

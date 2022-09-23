@@ -2,6 +2,14 @@
 
 Demonstrate using S3 api to monitor a bucket for new files.  
 
+TODO:
+
+* Default json response instead of html - https://simonplend.com/how-to-create-an-error-handler-for-your-express-api/
+https://www.npmjs.com/package/express-json-error-handler
+* Rebuild with skaffold
+* Add skaffold tests
+* logger objects correlationids
+
 NOTES:
 
 * This uses a polling approach and looks for sequential files.  
@@ -31,6 +39,12 @@ curl -s http://localhost:8000/buckets | jq .
 
 # watch bucket
 curl -s http://localhost:8000/buckets/watch/bucketname/path | jq .
+
+# sync files 
+curl -s http://localhost:8000/buckets/sync/bucketname/test
+
+# find copied files
+curl -s http://localhost:8000/buckets/list/bucketname/test | jq .     
 ```
 
 ## Build
@@ -48,7 +62,7 @@ docker buildx build --no-cache --progress=plain --build-arg AWS_PROFILE=$AWS_PRO
 
 ```sh
 # run skaffold
-skaffold dev 
+npm run skaffold:start      
 ```
 
 Once you have `skaffold` running you can go and make edits and see the rebuild and deploy.  
@@ -60,3 +74,8 @@ Once you have `skaffold` running you can go and make edits and see the rebuild a
 * Working with [local-cluster](https://skaffold.dev/docs/environment/local-cluster/)  
 * skaffold.yaml [here](https://skaffold.dev/docs/references/yaml/)  
 * settimeout-setinterval [here](https://javascript.info/settimeout-setinterval)
+
+https://github.com/jeanbmar/s3-sync-client
+
+https://www.npmjs.com/package/s3-sync-client
+

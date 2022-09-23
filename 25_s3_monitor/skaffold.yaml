@@ -6,6 +6,8 @@ metadata:
 build:
   artifacts:
   - image: 25_s3_monitor
+    sync: 
+      infer: ["skaffold.yaml", "Dockerfile", "public/**", "src/**", "routes/**", "tests/**", "package*.*", "jest.config.js", ".prettier"] 
     custom:
       buildCommand: |
         docker buildx build --progress=plain --target withprofile --build-arg AWS_PROFILE=$AWS_PROFILE --build-arg AWS_REGION=$AWS_REGION --build-context profile=/Users/${USER}/.aws -t $IMAGE . 
