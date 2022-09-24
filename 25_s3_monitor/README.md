@@ -6,9 +6,11 @@ TODO:
 
 * Default json response instead of html - https://simonplend.com/how-to-create-an-error-handler-for-your-express-api/
 https://www.npmjs.com/package/express-json-error-handler
+https://simonplend.com/express-uses-finalhandler-for-the-default-error-handler/
 * Rebuild with skaffold
 * Add skaffold tests
 * logger objects correlationids
+* AWS mock https://www.npmjs.com/package/aws-sdk-mock
 
 NOTES:
 
@@ -74,8 +76,24 @@ Once you have `skaffold` running you can go and make edits and see the rebuild a
 * Working with [local-cluster](https://skaffold.dev/docs/environment/local-cluster/)  
 * skaffold.yaml [here](https://skaffold.dev/docs/references/yaml/)  
 * settimeout-setinterval [here](https://javascript.info/settimeout-setinterval)
+* s3-sync-client repo [here](https://github.com/jeanbmar/s3-sync-client)
+* s3-sync-client npm [here](https://www.npmjs.com/package/s3-sync-client)
 
-https://github.com/jeanbmar/s3-sync-client
 
-https://www.npmjs.com/package/s3-sync-client
+https://zellwk.com/blog/endpoint-testing/
 
+https://github.com/visionmedia/supertest
+
+https://stackoverflow.com/questions/34138358/why-use-supertest-instead-of-unit-tests-for-expressjs
+
+https://medium.com/@iamfaisalkhatri/api-testing-using-supertest-ea37522fa329
+
+
+https://www.npmjs.com/package/aws-sdk-mock
+
+https://github.com/visionmedia/supertest/issues/261
+https://nodejs.org/docs/latest-v16.x/api/perf_hooks.html
+
+
+
+https://github.com/visionmedia/supertest/issues/141

@@ -99,6 +99,7 @@ export const addWatch = (watch: Bucket) => {
 // setTimeout ensures that there's a delay of at least x milliseconds.
 
 let watcherTimer = setTimeout(async function watcher() {
+    // NOTE: This only processes a single watcher.
     if (watching.length > 0) {
         const { bucketRegion, bucketName, bucketPath } = watching[0]
         const { currentSegment, files } = await findAllFiles(bucketRegion, bucketName, bucketPath, segment, maxSegments)
