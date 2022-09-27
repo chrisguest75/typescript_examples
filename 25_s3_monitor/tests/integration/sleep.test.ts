@@ -33,4 +33,27 @@ describe('Sleep endpoints', () => {
         expect(response.body.message).toBe('pong')
         expect(response.body.random).toBeDefined()
     })
+
+    it('random should be different each call', async () => {
+        // ARRANGE
+        // ACT
+        const response1 = await request(app)
+            .get('/sleep')
+            .query({ wait: 100 })
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(200)
+        const response2 = await request(app)
+            .get('/sleep')
+            .query({ wait: 100 })
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(200)
+        // ASSERT
+        expect(response1.body.message).toBe('pong')
+        expect(response1.body.random).toBeDefined()
+        expect(response2.body.message).toBe('pong')
+        expect(response2.body.random).toBeDefined()
+        expect(response1.body.random).not.toBe(response2.body.random)
+    })
 })
