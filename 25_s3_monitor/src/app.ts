@@ -3,8 +3,8 @@ import * as dotenv from 'dotenv'
 
 dotenv.config()
 
-import express from 'express'
 import pino from 'express-pino-logger'
+import express, { Request, Response, NextFunction } from 'express'
 import { logger } from './logger'
 import bodyParser from 'body-parser'
 import { rootRouter } from '../routes/root'
@@ -29,19 +29,9 @@ app.use('/', rootRouter)
 app.use('/ping', pingRouter)
 app.use('/sleep', sleepRouter)
 app.use('/buckets', bucketsRouter)
-
-/*
-{
-        log({ error, request, response}) {
-            logger.error(error) // The original error object
-            logger.error(request) // The request object
-            logger.error(response) // The response object
-        },
-    }
-app.use('*', function (request: Request, response: Response) {
+app.use('/*', function (request: Request, response: Response) {
     logger.error({ handler: 'errorHandler', reqid: request.id })
-    response.status(404).json({
-        contents: request,
+    response.status(404).setHeader('Content-Type', 'application/json').json({
+        message: 'Route not found',
     })
-})*/
-
+})

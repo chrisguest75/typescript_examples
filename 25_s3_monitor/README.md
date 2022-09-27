@@ -7,6 +7,8 @@ TODO:
 * Default json response instead of html - https://simonplend.com/how-to-create-an-error-handler-for-your-express-api/
 https://www.npmjs.com/package/express-json-error-handler
 https://simonplend.com/express-uses-finalhandler-for-the-default-error-handler/
+https://expressjs.com/en/guide/error-handling.html
+
 * Rebuild with skaffold
 * Add skaffold tests
 * logger objects correlationids
@@ -97,3 +99,5 @@ https://nodejs.org/docs/latest-v16.x/api/perf_hooks.html
 
 
 https://github.com/visionmedia/supertest/issues/141
+
+https://www.npmjs.com/package/method-override
