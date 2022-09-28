@@ -13,6 +13,8 @@ https://expressjs.com/en/guide/error-handling.html
 * Add skaffold tests
 * logger objects correlationids
 * AWS mock https://www.npmjs.com/package/aws-sdk-mock
+    https://sinonjs.org/
+https://aws.amazon.com/blogs/developer/mocking-modular-aws-sdk-for-javascript-v3-in-unit-tests/
 
 NOTES:
 
@@ -29,6 +31,10 @@ npm run start:dev
 
 curl http://localhost:8000/
 
+# tests are not mocked :-(
+export AWS_PROFILE=myprofile
+export BUCKETNAME=mybucket
+export BUCKETPATH=a_path_on_bucket
 npm run test
 npm run lint
 ```
@@ -39,16 +45,31 @@ curl http://localhost:8000/ping
 curl http://localhost:8000/sleep?wait=1000
 
 # list buckets
-curl -s http://localhost:8000/buckets | jq . 
+curl -s http://localhost:8000/buckets/list | jq . 
+curl -s http://localhost:8000/buckets/list | jq --arg name "${BUCKETNAME}" '.names[] | select(.Name == $name)'
 
 # watch bucket
-curl -s http://localhost:8000/buckets/watch/bucketname/path | jq .
+curl -s "http://localhost:8000/buckets/watch/${BUCKETNAME}/${BUCKETPATH}" | jq .
 
 # sync files 
-curl -s http://localhost:8000/buckets/sync/bucketname/test
+curl -X POST -H "Content-Type: application/json" -H "Accept: application/json" http://localhost:8000/buckets/sync -d "{ \"sourcePath\": \"./sync\", \"bucketName\": \"${BUCKETNAME}\", \"bucketPath\": \"${BUCKETPATH}\"}"
+
+# create files
+file="file"
+extension="txt"
+outpath="./sync/"
+mkdir -p ${outpath}
+for index in $(seq 0 10); 
+do
+    filepath=`printf %s%s%04d.%s ${outpath} ${file} ${index} ${extension}`
+    echo "Creating ${filepath}"
+    touch $filepath
+    curl -X POST -H "Content-Type: application/json" -H "Accept: application/json" http://localhost:8000/buckets/sync -d "{ \"sourcePath\": \"./sync\", \"bucketName\": \"${BUCKETNAME}\", \"bucketPath\": \"${BUCKETPATH}\"}"  
+    sleep 1
+done
 
 # find copied files
-curl -s http://localhost:8000/buckets/list/bucketname/test | jq .     
+curl -s "http://localhost:8000/buckets/list/${BUCKETNAME}/${BUCKETPATH}" | jq .     
 ```
 
 ## Build
@@ -81,23 +102,12 @@ Once you have `skaffold` running you can go and make edits and see the rebuild a
 * s3-sync-client repo [here](https://github.com/jeanbmar/s3-sync-client)
 * s3-sync-client npm [here](https://www.npmjs.com/package/s3-sync-client)
 
+* Endpoint testing with Jest and Supertest [here](https://zellwk.com/blog/endpoint-testing/)
+* visionmedia/supertest repo [here](https://github.com/visionmedia/supertest)
+* Why use supertest instead of unit tests for expressJS? [here](https://stackoverflow.com/questions/34138358/why-use-supertest-instead-of-unit-tests-for-expressjs)
+* API Testing using SuperTest! [here](https://medium.com/@iamfaisalkhatri/api-testing-using-supertest-ea37522fa329)
+* Performance measurement APIs [here](https://nodejs.org/docs/latest-v16.x/api/perf_hooks.html)
+* aws-sdk-mock npm [here](https://www.npmjs.com/package/aws-sdk-mock)
 
-https://zellwk.com/blog/endpoint-testing/
-
-https://github.com/visionmedia/supertest
-
-https://stackoverflow.com/questions/34138358/why-use-supertest-instead-of-unit-tests-for-expressjs
-
-https://medium.com/@iamfaisalkhatri/api-testing-using-supertest-ea37522fa329
-
-
-https://www.npmjs.com/package/aws-sdk-mock
-
-https://github.com/visionmedia/supertest/issues/261
-https://nodejs.org/docs/latest-v16.x/api/perf_hooks.html
-
-
-
-https://github.com/visionmedia/supertest/issues/141
-
-https://www.npmjs.com/package/method-override
+* How do I get response time for each request? [here](https://github.com/visionmedia/supertest/issues/261)
+* double callback! warning [here](https://github.com/visionmedia/supertest/issues/141)

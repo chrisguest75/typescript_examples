@@ -15,4 +15,3 @@ describe('Ping endpoints', () => {
         expect(response.body.random).toBeDefined()
     })
 })
-

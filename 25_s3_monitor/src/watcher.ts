@@ -91,8 +91,12 @@ const watching: Bucket[] = []
 const watcherLogChild = logger.child({ state: 'Watcher' })
 const nothingThrottled = throttle(() => watcherLogChild.info('Nothing to process'), timeoutFrequency * 5)
 
-export const addWatch = (watch: Bucket) => {
-    watching.push(watch)
+export const addWatch = (watch: Bucket): SegmentFile[] => {
+    if (watching.length === 0) {
+        watching.push(watch)
+    }
+
+    return fileQueue
 }
 
 // NOTE: Does this mean multiple invocations of this function or a single one.

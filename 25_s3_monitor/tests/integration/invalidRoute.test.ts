@@ -14,4 +14,3 @@ describe('Invalid endpoints', () => {
         expect(response.body.message).toBe('Route not found')
     })
 })
-
