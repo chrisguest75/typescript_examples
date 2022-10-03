@@ -31,7 +31,7 @@ describe('Buckets endpoint', () => {
         expect(response.body.path).toBe(path)
     })*/
 
-    it('should watch a folder', async () => {
+    /*it('should watch a folder', async () => {
         // ARRANGE
         const name = process.env.BUCKETNAME
         const path = process.env.BUCKETPATH
@@ -45,5 +45,5 @@ describe('Buckets endpoint', () => {
         // ASSERT
         expect(response.body.name).toBe(name)
         expect(response.body.path).toBe(path)
-    })
+    })*/
 })

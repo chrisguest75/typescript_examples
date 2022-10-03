@@ -13,7 +13,6 @@ import { sleepRouter } from '../routes/sleep'
 import { bucketsRouter } from '../routes/buckets'
 
 export const app = express()
-const port = process.env.PORT || 8000
 
 // Use body parser to read sent json payloads
 app.use(
@@ -31,7 +30,8 @@ app.use('/sleep', sleepRouter)
 app.use('/buckets', bucketsRouter)
 app.use('/*', function (request: Request, response: Response) {
     logger.error({ handler: 'errorHandler', reqid: request.id })
-    response.status(404).setHeader('Content-Type', 'application/json').json({
+    response.status(404).setHeader('Content-Type', 'application/json')
+    response.json({
         message: 'Route not found',
     })
 })

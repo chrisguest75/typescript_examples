@@ -4,6 +4,7 @@ Demonstrate using S3 api to monitor a bucket for new files.
 
 TODO:
 
+* Mocking the pino logger.  
 * Default json response instead of html - https://simonplend.com/how-to-create-an-error-handler-for-your-express-api/
 https://www.npmjs.com/package/express-json-error-handler
 https://simonplend.com/express-uses-finalhandler-for-the-default-error-handler/
@@ -32,6 +33,7 @@ npm run start:dev
 curl http://localhost:8000/
 
 # tests are not mocked :-(
+. ./.env
 export AWS_PROFILE=myprofile
 export BUCKETNAME=mybucket
 export BUCKETPATH=a_path_on_bucket
@@ -92,6 +94,21 @@ npm run skaffold:start
 
 Once you have `skaffold` running you can go and make edits and see the rebuild and deploy.  
 
+## Jest Tricks
+
+```bash
+# little trick for dotenv files to be exported.
+set -a
+. ./.env
+set +a
+
+# run a command in the npm environment
+npm run env -- jest
+
+# filter tests
+npm run env -- jest 'tests/integration'         
+```
+
 ## Resources
 
 * s3_getobject.js example [here](https://github.com/awsdocs/aws-doc-sdk-examples/blob/main/javascriptv3/example_code/s3/src/s3_getobject.js)
@@ -111,3 +128,4 @@ Once you have `skaffold` running you can go and make edits and see the rebuild a
 
 * How do I get response time for each request? [here](https://github.com/visionmedia/supertest/issues/261)
 * double callback! warning [here](https://github.com/visionmedia/supertest/issues/141)
+* Set environment variables from file of key/value pairs [here](https://stackoverflow.com/questions/19331497/set-environment-variables-from-file-of-key-value-pairs/30969768#30969768)
