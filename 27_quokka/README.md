@@ -2,6 +2,10 @@
 
 Demonstrate some `quokka` examples
 
+NOTES:  
+
+* `.quokka` file should have `babel:false` to run javascript.
+
 TODO:
 
 * Add linter to quokka.  
@@ -41,3 +45,8 @@ code --install-extension quicktype.quicktype
 * Some examples [here](https://github.com/wallabyjs/interactive-examples/tree/master/JavaScript)
 * Can use the AST explorer to understand how code is interpreted [here](https://astexplorer.net/)  
 * The ESTree Spec [here](https://github.com/estree/estree)
+* Underscore Throttle [here](https://underscorejs.org/#throttle)
+* Lodash Throttle [here](https://lodash.com/docs/4.17.15#throttle)
+* Lodash [here](https://lodash.com/)
+* Difference between lodash and Underscore [here](https://www.geeksforgeeks.org/difference-between-lodash-and-underscore/)
+* s3-sync-client [here](https://www.npmjs.com/package/s3-sync-client)  
