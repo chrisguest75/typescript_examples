@@ -15,4 +15,3 @@ describe('Root endpoint', () => {
         //expect(response.body.random).toBeDefined()
     })
 })
-

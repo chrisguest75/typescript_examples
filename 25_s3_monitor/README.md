@@ -4,6 +4,7 @@ Demonstrate using S3 api to monitor a bucket for new files.
 
 TODO:
 
+* Single step debugging in the container.  `npm docker:run:debug`
 * Mocking the pino logger.  
 * Default json response instead of html - https://simonplend.com/how-to-create-an-error-handler-for-your-express-api/
 https://www.npmjs.com/package/express-json-error-handler

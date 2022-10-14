@@ -6,7 +6,7 @@ WORKDIR /scratch
 COPY package.json package-lock.json ./
 # https://docs.npmjs.com/cli/v7/commands/npm-ci
 RUN npm ci
-
+RUN npm audit
 COPY tsconfig.json .prettierrc jest.config.js .eslintrc ./
 COPY sync ./sync
 COPY routes ./routes
@@ -14,12 +14,13 @@ COPY src ./src
 COPY tests ./tests
 COPY public ./public
 RUN npm run lint
-RUN npm run test:coverage
+# RUN npm run test:coverage
 RUN npm run build
-RUN npm audit
+
 RUN npm ci --only=production && npm cache clean --force
 
-FROM gcr.io/distroless/nodejs:16 AS production
+# FROM gcr.io/distroless/nodejs:16-debug AS production
+FROM gcr.io/distroless/nodejs:16-debug AS production
 LABEL dockerfile.baseimage="gcr.io/distroless/nodejs:16" dockerfile.description="ts_sbom_test" dockerfile.stage="PRODUCTION"
 
 ARG AWS_PROFILE=myprofile

@@ -18,6 +18,7 @@
     "lint:fix": "eslint . --ext .ts --fix",
     "docker:build": "docker build --target PRODUCTION -f Dockerfile --label \"org.opencontainers.image.created=$(date '+%Y-%m-%dT%H:%M:%SZ')\" --label \"org.opencontainers.image.version=${githubsha}\" --label \"org.opencontainers.image.url=$(git remote get-url origin)\" -t 25_s3_monitor .",
     "docker:run": "npm run docker:build && docker run -p 8000:8000 --volume /Users/${USER}/.aws:/root/.aws --env AWS_PROFILE=${AWS_PROFILE} --rm -it --name 25_s3_monitor 25_s3_monitor",
+    "docker:run:debug": "npm run docker:build && docker run -p 8000:8000 -p 9229:9229 --volume /Users/${USER}/.aws:/root/.aws --env AWS_PROFILE=${AWS_PROFILE} --rm -it --name 25_s3_monitor 25_s3_monitor --inspect-brk=0.0.0.0:9229",
     "docker:rebuild": "docker build --no-cache --target PRODUCTION -f Dockerfile --label \"org.opencontainers.image.created=$(date '+%Y-%m-%dT%H:%M:%SZ')\" --label \"org.opencontainers.image.version=${githubsha}\" --label \"org.opencontainers.image.url=$(git remote get-url origin)\" -t 25_s3_monitor .",
     "docker:stop": "docker stop 25_s3_monitor",
     "skaffold:start": "skaffold dev"
