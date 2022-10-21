@@ -19,6 +19,7 @@
     "lint:fix": "eslint . --ext .ts --fix",
     "docker:build": "docker build --target PRODUCTION -f Dockerfile --label \"org.opencontainers.image.created=$(date '+%Y-%m-%dT%H:%M:%SZ')\" --label \"org.opencontainers.image.version=${githubsha}\" --label \"org.opencontainers.image.url=$(git remote get-url origin)\" -t 28_debugging .",
     "docker:run": "npm run docker:build && docker run --rm -it --name 28_debugging 28_debugging",
+    "docker:run:debug": "npm run docker:build && docker run -it --rm -p 9229:9229 --name 28_debugging 28_debugging --inspect-brk=0.0.0.0:9229 /work/src/index.js",
     "docker:rebuild": "docker build --no-cache --target PRODUCTION -f Dockerfile --label \"org.opencontainers.image.created=$(date '+%Y-%m-%dT%H:%M:%SZ')\" --label \"org.opencontainers.image.version=${githubsha}\" --label \"org.opencontainers.image.url=$(git remote get-url origin)\" -t 28_debugging .",
     "docker:stop": "docker stop 28_debugging"
   },

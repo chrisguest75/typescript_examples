@@ -20,8 +20,10 @@ npm run lint
 npm run docker:build
 npm run docker:run
 
-
+npm run docker:run:debug 
 docker run -it --rm -p 9229:9229 --name 28_debugging 28_debugging --inspect-brk=0.0.0.0:9229 /work/src/index.js
+
+docker exec -it 28_debugging /busybox/sh
 ```
 
 ## Debugging

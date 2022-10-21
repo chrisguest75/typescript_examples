@@ -6,10 +6,10 @@
     "configurations": [
         {
             "localRoot": "${workspaceFolder}",
-            "name": "Attach to Remote Docker",
+            "name": "Debug Docker",
             "address": "0.0.0.0",
             "port": 9229,
-            "remoteRoot": "Absolute path to the remote directory containing the program",
+            "remoteRoot": "/work",
             "request": "attach",
             "skipFiles": [
                 "<node_internals>/**"

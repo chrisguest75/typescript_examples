@@ -15,7 +15,7 @@ RUN npm run build
 RUN npm audit
 RUN npm ci --only=production && npm cache clean --force
 
-FROM gcr.io/distroless/nodejs:16 AS PRODUCTION
+FROM gcr.io/distroless/nodejs:16-debug AS PRODUCTION
 LABEL dockerfile.baseimage="gcr.io/distroless/nodejs:16" dockerfile.description="ts_sbom_test" dockerfile.stage="PRODUCTION"
 
 ENV NODE_ENV production
@@ -23,5 +23,6 @@ ENV NODE_ENV production
 WORKDIR /work
 COPY --from=BUILDER /scratch/node_modules ./node_modules
 COPY --from=BUILDER /scratch/build ./
+#COPY --from=BUILDER /scratch/src ../src
 
 CMD ["/work/src/index.js"]
