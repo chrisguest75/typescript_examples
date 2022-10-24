@@ -17,9 +17,17 @@ npm install
 
 # run tests 
 npm run test
+# run tests with detect open handles 
+npm run test:debug
 
 # include coverage
 npm run coverage
+```
+
+## Filtering tests
+
+```sh
+npm run test 'tests/s3watcher.test.ts' 
 ```
 
 ## How to build
@@ -44,3 +52,25 @@ npx tsc --init --rootDir src --outDir build \
 * [ts-jest-debugging](https://kulshekhar.github.io/ts-jest/docs/debugging/)  
 * [testing with jest](https://itnext.io/testing-with-jest-in-typescript-cc1cd0095421)  
 * Get Jest test name within beforeEach() and afterEach() [here](https://stackoverflow.com/questions/61640896/get-jest-test-name-within-beforeeach-and-aftereach)
+
+
+
+https://github.com/m-radzikowski/aws-sdk-client-mock
+
+https://github.com/trivikr/aws-sdk-client-mock-test
+
+https://stackoverflow.com/questions/68526571/how-do-i-mock-aws-s3-getobjectcommand-with-jest-using-the-v3-sdk
+
+strictNullChecks does not detect assertions done before property access
+https://github.com/microsoft/TypeScript/issues/13652
+type narrowing for common testing patterns 
+https://github.com/microsoft/TypeScript/issues/9693
+
+Control flow based type narrowing for assert(...) calls
+https://github.com/microsoft/TypeScript/issues/8655
+
+Take advantage of typescript 3.7 assertions functions
+https://github.com/facebook/jest/issues/10094
+
+Add support for TypeScript's Assertion Functions
+https://github.com/DefinitelyTyped/DefinitelyTyped/issues/41179
