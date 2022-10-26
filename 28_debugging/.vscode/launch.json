@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "localRoot": "${workspaceFolder}",
+            "localRoot": "${workspaceFolder}/build",
             "name": "Debug Docker",
             "address": "0.0.0.0",
             "port": 9229,

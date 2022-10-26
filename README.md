@@ -112,6 +112,16 @@ Demonstrates generating fake json data.
 Demonstrates building a job monitor in an express server.  
 [README.md](./26_jobserver/README.md)
 
+## 27 - quokka
+
+Demonstrate some `quokka` examples  
+[README.md](./27_quokka/README.md)
+
+## 28 - container debugging
+
+Demonstrate how to debug typescript applications in the container.  
+[README.md](./28_debugging/README.md)
+
 ## Resources
 
 * [typescript book](https://basarat.gitbook.io/typescript/)  

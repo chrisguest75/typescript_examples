@@ -13,6 +13,7 @@ export async function main(args: minimist.ParsedArgs) {
   logger.warn('WARN - level message')
   logger.error('ERROR - level message')
   logger.fatal('FATAL - level message')
+  throw new Error('test')
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   return new Promise((resolve, reject) => {
@@ -21,10 +22,10 @@ export async function main(args: minimist.ParsedArgs) {
   })
 }
 
-process.on('exit', async () => {
+/*process.on('exit', async () => {
   logger.warn('exit signal received')
-  process.exit(1)
-})
+  process.exit(0)
+})*/
 
 process.on('uncaughtException', async (error: Error) => {
   logger.error(error)
