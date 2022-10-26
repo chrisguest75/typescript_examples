@@ -2,6 +2,10 @@
 
 Demonstrate some `quokka` examples
 
+## Reason
+
+Quokka allows us to execute and test the behaviour of small snippets of code. It will print outputs on every line thus allowing quick development when working with APIs.  
+
 NOTES:  
 
 * `.quokka` file should have `babel:false` to run javascript.

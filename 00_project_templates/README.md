@@ -5,6 +5,7 @@ Example `hygen` templates to speed up project creation.
 TODO:
 
 * Pass in an output path
+* express should use npm install express-json-error-handler
 
 Templates:
 
