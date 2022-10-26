@@ -13,10 +13,10 @@ export default class Find {
             if (!fs.statSync(folder).isDirectory()) {
                 // single file????
                 if (path.basename(folder).match(pattern)) {
-                    logger.info(`Process single file ${folder}`)
+                    logger.debug(`Process single file ${folder}`)
                     await processor.process(folder)
                 } else {
-                    logger.info(`No pattern match on single file ${folder}`)
+                    logger.debug(`No pattern match on single file ${folder}`)
                 }
             } else {
                 const files = fs.readdirSync(folder)
@@ -35,10 +35,10 @@ export default class Find {
                         }
                     } else {
                         if (path.basename(fullpath).match(pattern)) {
-                            logger.info(`Process ${fullpath}`)
+                            logger.info({ file: fullpath }, `Processing file`)
                             await processor.process(fullpath)
                         } else {
-                            logger.info(`No pattern match ${fullpath}`)
+                            logger.debug({ file: fullpath, pattern: pattern }, `No pattern match`)
                         }
                     }
                 }

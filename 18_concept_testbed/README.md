@@ -267,3 +267,6 @@ https://dev.to/dstrekelj/how-to-mock-imported-functions-with-jest-3pfl#
 https://hackwild.com/article/event-handling-techniques/
 https://gist.github.com/sidola/3b267f21c872e449ef4bbdae9e2baeab
 
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol
+
+https://www.npmjs.com/package/pubsub-js

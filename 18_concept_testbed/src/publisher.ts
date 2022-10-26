@@ -26,7 +26,7 @@ type MessageFn<E> = <Key extends string & keyof E>(message: E[Key]) => void
 /**
  * Tie everything together.
  */
-type PubSubType<E> = {
+export type PubSubType<E> = {
     publish: PubTypeFn<E>
     subscribe: SubTypeFn<E>
     unsubscribe: SubTypeFn<E>
