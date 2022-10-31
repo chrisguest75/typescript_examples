@@ -18,8 +18,12 @@ enum Paths {
 (<any>Object).values(Paths).includes(looking)
 
 
+// pop from back
 let myArray = [1,2,3,4,5]
 console.log(myArray.pop())
 console.log(myArray[myArray.length -1])
 
-
+// pop from front with shift
+const first = myArray.shift()
+console.log(first)
+console.log(myArray)
