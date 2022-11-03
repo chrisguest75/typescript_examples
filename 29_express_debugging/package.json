@@ -1,8 +1,5 @@
----
-to: <%= name %>/package.json
----
 {
-  "name": "<%= name %>",
+  "name": "29_express_debugging",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -16,14 +13,16 @@ to: <%= name %>/package.json
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",
     "start:dev": "npm run rebuild && nodemon",
+    "start:dev:debug": "npm run rebuild && node --inspect-brk=0.0.0.0:9229 ./build/src/index.js",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
-    "docker:build": "docker build --target PRODUCTION -f Dockerfile --label \"org.opencontainers.image.created=$(date '+%Y-%m-%dT%H:%M:%SZ')\" --label \"org.opencontainers.image.version=${githubsha}\" --label \"org.opencontainers.image.url=$(git remote get-url origin)\" -t <%= name %> .",
-    "docker:run": "npm run docker:build && docker run -p 8000:8000 --rm -it --name <%= name %> <%= name %>",
-    "docker:rebuild": "docker build --no-cache --target PRODUCTION -f Dockerfile --label \"org.opencontainers.image.created=$(date '+%Y-%m-%dT%H:%M:%SZ')\" --label \"org.opencontainers.image.version=${githubsha}\" --label \"org.opencontainers.image.url=$(git remote get-url origin)\" -t <%= name %> .",
-    "docker:stop": "docker stop <%= name %>"
+    "docker:build": "docker build --target PRODUCTION -f Dockerfile --label \"org.opencontainers.image.created=$(date '+%Y-%m-%dT%H:%M:%SZ')\" --label \"org.opencontainers.image.version=${githubsha}\" --label \"org.opencontainers.image.url=$(git remote get-url origin)\" -t 29_express_debugging .",
+    "docker:run": "npm run docker:build && docker run -p 8000:8000 --rm -it --name 29_express_debugging 29_express_debugging",
+    "docker:run:debug": "npm run docker:build && docker run -it --rm -p 8000:8000 -p 9229:9229 --name 29_express_debugging 29_express_debugging --inspect-brk=0.0.0.0:9229 /work/src/index.js",
+    "docker:rebuild": "docker build --no-cache --target PRODUCTION -f Dockerfile --label \"org.opencontainers.image.created=$(date '+%Y-%m-%dT%H:%M:%SZ')\" --label \"org.opencontainers.image.version=${githubsha}\" --label \"org.opencontainers.image.url=$(git remote get-url origin)\" -t 29_express_debugging .",
+    "docker:stop": "docker stop 29_express_debugging"
   },
   "nodemonConfig": {
     "watch": [
