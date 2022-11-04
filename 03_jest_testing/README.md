@@ -1,6 +1,11 @@
 # README
 
-Demonstrates how to test typescript code (including debugging)
+Demonstrates how to test typescript code (including debugging) in Jest  
+
+## Reason
+
+Pretty obvious why I need to use a test framework. The examples included here will show various examples of what is required to write tests; Mocking, Assertions, etc.  
+There is an example of using asssertions with `strictNullChecks` in the [s3watcher.test.ts](./tests/s3watcher.test.ts)
 
 TODO:
 
@@ -17,6 +22,7 @@ npm install
 
 # run tests 
 npm run test
+
 # run tests with detect open handles 
 npm run test:debug
 
@@ -27,12 +33,21 @@ npm run coverage
 ## Filtering tests
 
 ```sh
+# only want to run a specific test file
 npm run test 'tests/s3watcher.test.ts' 
+
+# watch and filter
+npm run test -- --watch 'tests/s3watcher.test.ts'                       
 ```
 
-## How to build
+## Single step debugging
 
-Setup typescript for a basic nodejs project
+Make sure you are in the `03_jest_testing` folder. Then use the `vscode` debug extension to select a profile to debug.  
+There is an example of running just the filtered tests as well as all of them.  Set breakpoints and debug.  
+
+## How to recreate
+
+Setup typescript for a basic nodejs project  
 
 ```sh
 npm init -y   
@@ -63,6 +78,7 @@ https://stackoverflow.com/questions/68526571/how-do-i-mock-aws-s3-getobjectcomma
 
 strictNullChecks does not detect assertions done before property access
 https://github.com/microsoft/TypeScript/issues/13652
+
 type narrowing for common testing patterns 
 https://github.com/microsoft/TypeScript/issues/9693
 
@@ -74,3 +90,8 @@ https://github.com/facebook/jest/issues/10094
 
 Add support for TypeScript's Assertion Functions
 https://github.com/DefinitelyTyped/DefinitelyTyped/issues/41179
+
+https://www.emgoto.com/jest-partial-match/
+
+
+https://jestjs.io/docs/mock-functions
