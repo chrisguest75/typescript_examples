@@ -26,6 +26,7 @@ describe('spawn', () => {
     // ASSERT
     expect(spawnResult.status).toBe(0)
     expect(spawnSync).toBeCalledWith('mybinary', [inFile, outFile], expect.anything())
+    // checks how many asserttions were called
     expect.assertions(2)
   })
 })

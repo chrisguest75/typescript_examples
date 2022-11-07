@@ -6,7 +6,7 @@
     "configurations": [
         {
             "command": "npm run test 'tests/spawn.mocked.test.ts'",
-            "name": "Run jest filtered",
+            "name": "Run Jest filtered",
             "request": "launch",
             "type": "node-terminal"
         },

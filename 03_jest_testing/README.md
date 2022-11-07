@@ -4,7 +4,7 @@ Demonstrates how to test typescript code (including debugging) in Jest
 
 ## Reason
 
-Pretty obvious why I need to use a test framework. The examples included here will show various examples of what is required to write tests; Mocking, Assertions, etc.  
+Pretty obvious why I need to use a test framework. The examples included here will show various examples of what is required to write tests; Mocking, Partial Mocking, Spies, Assertions, etc.  
 There is an example of using asssertions with `strictNullChecks` in the [s3watcher.test.ts](./tests/s3watcher.test.ts)
 
 TODO:
@@ -95,3 +95,4 @@ https://www.emgoto.com/jest-partial-match/
 
 
 https://jestjs.io/docs/mock-functions
+https://dev.to/codedivoire/how-to-mock-an-imported-typescript-class-with-jest-2g7j

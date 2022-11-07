@@ -1,29 +1,10 @@
 import { S3Client, ListObjectsCommand } from '@aws-sdk/client-s3'
-import { logger } from '../src/logger'
-import { throttle } from 'lodash'
 
 interface SegmentFile {
   file: string
   segment: number
   size: number
 }
-
-interface Bucket {
-  bucketRegion: string
-  bucketName: string
-  bucketPath: string
-}
-
-const timeoutFrequency = 2000
-const maxSegments = 100
-
-const watcherLogChild = logger.child({ state: 'Watcher' })
-const nothingThrottled = throttle(() => watcherLogChild.info('Nothing to process'), timeoutFrequency * 5)
-
-/*const watching: Bucket[] = []
-export const addWatcher = (watch: Bucket) => {
-  watching.push(watch)
-}*/
 
 export async function findAllFiles(
   region: string,
@@ -89,41 +70,3 @@ export async function findAllFiles(
     files: f,
   }
 }
-
-/*async function detectNewFiles(
-  segment: number,
-  watching: Array<Bucket>,
-): { currentSegment: number; queue: Array<SegmentFile> } {
-  const fileQueue: SegmentFile[] = []
-  if (watching.length > 0) {
-    const { bucketRegion, bucketName, bucketPath } = watching[0]
-    const { currentSegment, files } = await findAllFiles(bucketRegion, bucketName, bucketPath, segment, maxSegments)
-    watcherLogChild.info({ currentSegment, files })
-    if (segment !== currentSegment) {
-      segment = currentSegment
-
-      files.map((file) => {
-        watcherLogChild.info({ file })
-      })
-
-      fileQueue.concat(files)
-    }
-  } else {
-    nothingThrottled()
-  }
-
-  return { currentSegment: currentSegment, fileQueue }
-}
-
-// NOTE: Does this mean multiple invocations of this function or a single one.
-// setTimeout ensures that there's a delay of at least x milliseconds.
-let segment = 0
-const fileQueue: SegmentFile[] = []
-
-
-let watcherTimer = setTimeout(async function watcher() {
-  const files = await detectNewFiles(segment, watching)
-  watcherTimer = setTimeout(watcher, timeoutFrequency)
-}, timeoutFrequency)
-logger.info(`Start watcher ${watcherTimer}`)
-*/
