@@ -1,0 +1,16 @@
+{
+  "name": "30_dockerignore_filter_commit",
+  "version": "1.0.0",
+  "description": "Demonstrate some how to check if a commit should trigger docker build",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@balena/dockerignore": "^1.0.2",
+    "dotenv-quokka-plugin": "^1.0.0"
+  }
+}

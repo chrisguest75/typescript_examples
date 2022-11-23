@@ -127,6 +127,11 @@ Demonstrate how to debug typescript applications in the container.
 Demonstrate how to debug typescript `express` applications in the container.  
 [README.md](./29_express_debugging/README.md)  
 
+## 30 - dockerignore filter commit
+
+Demonstrate checking if a commit should trigger docker build  
+[README.md](./30_dockerignore_filter_commit/README.md)  
+
 ## Resources
 
 * [typescript book](https://basarat.gitbook.io/typescript/)  
