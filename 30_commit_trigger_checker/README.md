@@ -17,10 +17,20 @@ code --install-extension WallabyJs.quokka-vscode
 # install packages for the scripts
 npm install
 
-npm run test insult         
+set -a  
+. ./.env
+set +a
+
+git log -n 30 --name-only --oneline                              
+git show --pretty="format:" --name-only --stat --oneline ecad448 | tail -n +2 > "./commits/ecad448.txt"
+
+npm run test         
 npm run docker:build         
 npm run docker:run
 
+unset COMMITSPATH   
+npm run test "./commits/b363e88.txt" "./test.dockerignore"     
+npm run test "./commits/ecad448.txt" "./test.dockerignore"    
 ```
 
 ## Run
@@ -41,4 +51,5 @@ code --install-extension quicktype.quicktype
 
 ## Resources
 
-https://www.npmjs.com/package/@balena/dockerignore
+- @balena/dockerignore [here](https://www.npmjs.com/package/@balena/dockerignore)  
+- How to parse command line arguments [here](https://nodejs.org/en/knowledge/command-line/how-to-parse-command-line-arguments/)  
