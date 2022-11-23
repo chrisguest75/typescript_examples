@@ -130,7 +130,7 @@ Demonstrate how to debug typescript `express` applications in the container.
 ## 30 - dockerignore filter commit
 
 Demonstrate checking if a commit should trigger docker build  
-[README.md](./30_dockerignore_filter_commit/README.md)  
+[README.md](./30_commit_trigger_checker/README.md)  
 
 ## Resources
 
