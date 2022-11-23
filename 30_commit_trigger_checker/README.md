@@ -16,6 +16,11 @@ code --install-extension WallabyJs.quokka-vscode
 ```sh
 # install packages for the scripts
 npm install
+
+npm run test insult         
+npm run docker:build         
+npm run docker:run
+
 ```
 
 ## Run
