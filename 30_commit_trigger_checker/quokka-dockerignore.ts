@@ -1,23 +1,21 @@
 import * as fs from 'fs';
 import ignore from '@balena/dockerignore';
-// git show --pretty="format:" --name-only --stat --oneline head
-// git show --pretty="format:" --name-only --stat --oneline f6f358b
+// git show --pretty="format:" --name-only --stat --oneline head | tail -n +2 
+// git show --pretty="format:" --name-only --stat --oneline f6f358b | tail -n +2 
 
-function loadCommit(filePath: string) {
+function loadLines(filePath: string) {
     const file = fs.readFileSync(filePath, 'utf8');
-    return JSON.parse(file);
+    return file.split('\n')
+        .filter(Boolean);
 }
 
 async function complexTest() {
     //const paths = loadCommit('./commits/f6f358b.json').files
-    const paths = loadCommit('./commits/b363e88.json').files
+    const paths = loadLines('./commits/b363e88.txt')
+    const dockerignore = loadLines('./test.dockerignore')
     
     console.log(paths)
-    const ig = ignore().add([
-        '*', 
-        '!00_project_templates',
-        '!03_jest_testing'
-    ])
+    const ig = ignore().add(dockerignore)
 
     const filtered = ig.filter(paths)      
     //const ignored = ig.ignores('00_project_templates/README.md') 

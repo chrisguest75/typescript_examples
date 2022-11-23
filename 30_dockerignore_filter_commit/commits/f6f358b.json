@@ -1,8 +1,0 @@
-{
-    "files": [
-        "03_jest_testing/src/s3watcher.ts",
-        "03_jest_testing/tests/s3watcher.test.ts",
-        "27_quokka/quokka-simpleArrays.ts",
-        "27_quokka/quokka-stringParsing.ts"
-    ]
-}

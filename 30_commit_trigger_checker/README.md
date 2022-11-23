@@ -1,6 +1,6 @@
 # README
 
-Demonstrate some how to check if a commit should trigger docker build  
+Demonstrate checking if a commit should trigger docker build  
 
 ## Reason
 

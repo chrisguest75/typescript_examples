@@ -11,6 +11,7 @@ TODO:
 
 * Test reporting?  Github actions?
 * Can I measure performance?  CPU and memory usage?
+* Add jest-extended example for extra matchers
 
 ## Using Jest
 
