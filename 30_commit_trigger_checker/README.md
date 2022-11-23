@@ -6,6 +6,11 @@ Demonstrate checking if a commit should trigger docker build
 
 Test the ability to determine if a build should trigger based on a dockerignore file.  
 
+TODO:
+
+* Get signal back out of the container - yes or no
+* Share in the dockerignore and the git commits
+
 ## Install
 
 ```sh
