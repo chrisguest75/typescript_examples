@@ -22,12 +22,15 @@ npm run tsc -- --version
 # run targets
 npm run start:dev
 
-curl http://localhost:8000/
-curl http://localhost:8000/ping
-curl http://localhost:8000/sleep?wait=1000
+curl http://localhost:8000
+curl http://localhost:8000/api
+curl http://localhost:8000/api/ping
+curl http://localhost:8000/api/sleep?wait=1000
 
 npm run test
 npm run lint
+
+npm run docker:run
 ```
 
 ## How to recreate
@@ -271,9 +274,6 @@ code .
 
 The code should break on the breakpoint.  
 
-
 ## Resources
 
 * https://www.split.io/blog/node-js-typescript-express-tutorial/
-
-

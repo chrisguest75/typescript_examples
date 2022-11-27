@@ -15,7 +15,7 @@ const rootHandler = (request: Request, response: Response) => {
         error = parseInt(request.query.error)
     }
 
-    response.status(error).json({ message: 'pong', random: Math.floor(Math.random() * 100) })
+    response.status(error).json({ message: 'root', random: Math.floor(Math.random() * 100) })
 }
 
 router.get('/', rootHandler)

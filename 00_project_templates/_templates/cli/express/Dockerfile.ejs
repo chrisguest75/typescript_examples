@@ -13,6 +13,7 @@ COPY package.json package-lock.json ./
 RUN npm ci
 
 COPY tsconfig.json .prettierrc jest.config.js .eslintrc ./
+COPY public ./public
 COPY routes ./routes
 COPY src ./src
 COPY tests ./tests
@@ -30,5 +31,6 @@ ENV NODE_ENV production
 WORKDIR /work
 COPY --from=BUILDER /scratch/node_modules ./node_modules
 COPY --from=BUILDER /scratch/build ./
+COPY --from=BUILDER /scratch/public ./public
 
 CMD ["/work/src/index.js"]
