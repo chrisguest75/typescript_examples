@@ -10,6 +10,7 @@
     "clean:build": "npm run rebuild",
     "type-check": "tsc --noEmit",
     "test": "npm run build && node ./build/index.js",
+    "start:dev": "ts-node index.ts",
     "build": "tsc --project tsconfig.json",
     "docker:build": "docker build --target PRODUCTION -f Dockerfile --label \"org.opencontainers.image.created=$(date '+%Y-%m-%dT%H:%M:%SZ')\" --label \"org.opencontainers.image.version=${githubsha}\" --label \"org.opencontainers.image.url=$(git remote get-url origin)\" -t 30_commit_trigger_checker .",
     "docker:run": "npm run docker:build && docker run --rm -it --name 30_commit_trigger_checker 30_commit_trigger_checker",

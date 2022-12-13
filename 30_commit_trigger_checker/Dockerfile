@@ -10,8 +10,8 @@ COPY index.ts ./index.ts
 RUN npm run build
 RUN npm ci --only=production && npm cache clean --force
 
-FROM gcr.io/distroless/nodejs:16-debug AS PRODUCTION
-LABEL dockerfile.baseimage="gcr.io/distroless/nodejs:16" dockerfile.description="30_commit_trigger_checker" dockerfile.stage="PRODUCTION"
+FROM gcr.io/distroless/nodejs16-debian11:debug AS PRODUCTION
+LABEL dockerfile.baseimage="gcr.io/distroless/nodejs16-debian11:debug" dockerfile.description="30_commit_trigger_checker" dockerfile.stage="PRODUCTION"
 
 ENV NODE_ENV production
 
@@ -20,4 +20,5 @@ COPY --from=BUILDER /scratch/node_modules ./node_modules
 COPY --from=BUILDER /scratch/build ./
 #COPY --from=BUILDER /scratch/src ../src
 
+ENTRYPOINT [ "/nodejs/bin/node", "/work/index.js" ]
 CMD ["/work/index.js"]
