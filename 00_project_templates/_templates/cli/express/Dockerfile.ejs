@@ -4,6 +4,7 @@ skip_if: <%= (typeof docker == 'undefined') %>
 message: |
   - <%= "Include Dockerfile:" + !(typeof docker == 'undefined') %>
 ---
+# syntax=docker/dockerfile:1.4
 FROM node:16.13.2-bullseye AS BUILDER
 LABEL dockerfile.baseimage="node:16.13.2-bullseye" dockerfile.description="<%= name %>" dockerfile.stage="BUILDER"
 
