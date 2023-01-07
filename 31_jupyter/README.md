@@ -6,6 +6,8 @@ Copied from [chrisguest75/sysadmin_examples](https://github.com/chrisguest75/sys
 
 TODO:  
 
+* Install kernel
+* add sdk packages with nom 
 * ```jupyter nbconvert First\ Notebook.ipynb --to pdf```
 * ```jupyter nbextension install EXTENSION_NAME```
 
@@ -50,7 +52,7 @@ open http://localhost:8888/notebooks/First%20Notebook.ipynb#
 
 ```sh
 # build
-docker build --progress=plain --no-cache -t jupyter .
+docker build -f Dockerfile.typescript --progress=plain -t jupyter .
 
 # run
 docker run -d --name jupyter --rm -p 8888:8888 jupyter   
@@ -67,7 +69,9 @@ docker stop jupyter
 # debug
 docker run --rm -d --name jupyter --entrypoint "/bin/bash" --rm -p 8888:8888 jupyter -c 'sleep 10000'
 docker exec -u root -it jupyter /bin/bash   
-docker stop jupyter   
+docker stop jupyter 
+
+docker run -it --name jupyter -u root --entrypoint /bin/bash --rm -p 8888:8888 jupyter  
 ```
 
 ## Add a kernel (csharp & powershell)
@@ -101,3 +105,15 @@ docker run --rm -it --name jupytercsharp --entrypoint "/bin/bash" -p 8888:8888 j
 * Installing .NET Interactive [here](https://github.com/dotnet/interactive/blob/main/docs/install-dotnet-interactive.md)
 * Can't install dotnet interactive on WSL (Ubuntu 20.04) [here](https://github.com/dotnet/interactive/issues/832)
 * install --path is ignored [here](https://github.com/dotnet/interactive/issues/366)
+
+
+
+
+
+https://github.com/n-riesco/ijavascript
+https://github.com/winnekes/itypescript
+
+https://github.com/yunabe/tslab
+
+https://github.com/nvm-sh/nvm
+
