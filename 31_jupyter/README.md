@@ -14,7 +14,7 @@ TODO:
 
 ```sh
 # build
-docker build -f Dockerfile.typescript --progress=plain -t jupyter .
+docker build --volume /Users/${USER}/.aws:/root/.aws --env AWS_PROFILE=${AWS_PROFILE} -f Dockerfile.typescript --progress=plain -t jupyter .
 
 # run
 docker run -d --name jupyter --rm -p 8888:8888 jupyter   
@@ -44,4 +44,8 @@ docker run -it --name jupyter -u root --entrypoint /bin/bash --rm -p 8888:8888 j
 * winnekes/itypescript [here](https://github.com/winnekes/itypescript)  
 * yunabe/tslab [here](https://github.com/yunabe/tslab)
 * nvm-sh/nvm [here](https://github.com/nvm-sh/nvm)
+
+* Warning message shown: Configuraiton not found [here](https://github.com/winnekes/itypescript/issues/33)
+
+https://github.com/winnekes/itypescript/issues/10
 

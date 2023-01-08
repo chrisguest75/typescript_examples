@@ -15,12 +15,11 @@ RUN apt-get update --fix-missing && apt-get install apt-transport-https curl wge
 RUN locale-gen en_US.UTF-8  
 
 ENV HOME /home/root
-WORKDIR $HOME
 
 WORKDIR /workbench
-COPY ./install-nvm.sh /workbench/install-nvm.sh
 COPY ./books /workbench/books
-COPY package.json package-lock.json ./
+COPY package.json package-lock.json tsconfig.json ./
+COPY ./install-nvm.sh /workbench/install-nvm.sh
 
 # RUN ls -la /workbench
 # RUN ls -l /root
@@ -34,7 +33,7 @@ nvm install --lts
 npm install -g itypescript
 pip3 install jupyter
 its --install=global
-npm install -g
+npm install 
 EOF
 
 RUN /workbench/install-node.sh
