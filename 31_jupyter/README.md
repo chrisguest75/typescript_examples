@@ -14,10 +14,10 @@ TODO:
 
 ```sh
 # build
-docker build --volume /Users/${USER}/.aws:/root/.aws --env AWS_PROFILE=${AWS_PROFILE} -f Dockerfile.typescript --progress=plain -t jupyter .
+docker build -f Dockerfile.typescript --progress=plain -t jupyter .
 
 # run
-docker run -d --name jupyter --rm -p 8888:8888 jupyter   
+docker run --volume /Users/${USER}/.aws:/root/.aws --volume $(pwd)/books:/workbench/books --env AWS_PROFILE=${AWS_PROFILE} -d --name jupyter --rm -p 8888:8888 jupyter   
 
 # get the token 
 docker logs jupyter
@@ -46,6 +46,8 @@ docker run -it --name jupyter -u root --entrypoint /bin/bash --rm -p 8888:8888 j
 * nvm-sh/nvm [here](https://github.com/nvm-sh/nvm)
 
 * Warning message shown: Configuraiton not found [here](https://github.com/winnekes/itypescript/issues/33)
+* Can't parse tsconfig.json but tsc can parse it [here](https://github.com/winnekes/itypescript/issues/10)
 
-https://github.com/winnekes/itypescript/issues/10
+
+import { S3Client, ListBucketsCommand, ListObjectsCommand } from '@aws-sdk/client-s3'
 

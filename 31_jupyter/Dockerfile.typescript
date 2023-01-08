@@ -17,9 +17,10 @@ RUN locale-gen en_US.UTF-8
 ENV HOME /home/root
 
 WORKDIR /workbench
-COPY ./books /workbench/books
-COPY package.json package-lock.json tsconfig.json ./
+RUN mkdir -p /workbench/books
+#COPY ./books /workbench/books
 COPY ./install-nvm.sh /workbench/install-nvm.sh
+COPY package.json package-lock.json tsconfig.json ./
 
 # RUN ls -la /workbench
 # RUN ls -l /root
@@ -50,6 +51,7 @@ export NVM_DIR="\$HOME/.nvm"
 
 jupyter notebook --ip 0.0.0.0 --port 8888 --allow-root
 EOF
+
 EXPOSE 8888
 CMD ["/workbench/launch.sh"]
 
