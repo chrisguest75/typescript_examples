@@ -130,6 +130,11 @@ Demonstrate how to debug typescript `express` applications in the container.
 Demonstrate checking if a commit should trigger docker build  
 [README.md](./30_commit_trigger_checker/README.md)  
 
+## 32 - scripting AWS
+
+Demonstrate examples of using TS as a language for scripting against AWS.  
+[README.md](./32_scripting_aws/README.md)  
+
 ## Resources
 
 * [typescript book](https://basarat.gitbook.io/typescript/)  
