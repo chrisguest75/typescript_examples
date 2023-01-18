@@ -44,8 +44,9 @@ async function GetVariable(region: string, name: string) {
   const response = await client.send(command)
   console.log(response)
   return new Promise((resolve, reject) => {
-    ConfigZod.parse(JSON.parse(response.Parameter?.Value))
-    resolve(response)
+    const config = JSON.parse(response.Parameter?.Value)
+    ConfigZod.parse(config)
+    resolve(config)
   })
 }
 
