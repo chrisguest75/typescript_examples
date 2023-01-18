@@ -13,6 +13,8 @@ export async function main(args: minimist.ParsedArgs) {
   logger.warn('WARN - level message')
   logger.error('ERROR - level message')
   logger.fatal('FATAL - level message')
+  logger.info({ node_env: process.env.NODE_ENV })
+  logger.info({ 'node.version': process.version })
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   return new Promise((resolve, reject) => {
@@ -35,14 +37,13 @@ process.on('uncaughtException', async (error: Error) => {
 
 process.on('unhandledRejection', async (reason, promise) => {
   logger.error({
-      promise: promise,
-      reason: reason,
-      msg: 'Unhandled Rejection',
+    promise: promise,
+    reason: reason,
+    msg: 'Unhandled Rejection',
   })
   console.log(reason)
   process.exit(1)
 })
-
 
 /*
 Entrypoint
