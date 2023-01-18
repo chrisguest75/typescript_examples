@@ -2,7 +2,7 @@ import { ECSClient, ListClustersCommand, ListTasksCommand, DescribeTasksCommand 
 import { fromIni } from '@aws-sdk/credential-providers'
 import { promisify } from 'util'
 
-const region = process.env.REGION || 'us-east-1'
+const region = process.env.AWS_REGION || 'us-east-1'
 const clusterName = process.env.CLUSTERNAME || 'default'
 const profile = process.env.AWS_PROFILE || 'default'
 

@@ -9,7 +9,7 @@ import { z } from 'zod'
 import { fromIni } from '@aws-sdk/credential-providers'
 import { promisify } from 'util'
 
-const region = process.env.REGION || 'us-east-1'
+const region = process.env.AWS_REGION || 'us-east-1'
 const profile = process.env.AWS_PROFILE || 'default'
 
 const credentials = fromIni({ profile })
