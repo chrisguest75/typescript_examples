@@ -1,0 +1,9 @@
+{
+    "babel": true,
+    "plugins": [
+        "dotenv-quokka-plugin"
+    ],
+    "dotenv": {
+        "path": ".env"
+    }
+}
