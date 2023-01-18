@@ -58,3 +58,35 @@ code --install-extension quicktype.quicktype
 * ServiceDiscovery Client - AWS SDK for JavaScript v3 [here](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-servicediscovery/index.html)  
 * SSM Client - AWS SDK for JavaScript v3 [here](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-ssm/index.html)  
 * Schema validation in TypeScript with Zod [here](https://blog.logrocket.com/schema-validation-typescript-zod/)  
+
+
+* .mts is a cool file extension (TypeScript ES modules) [here](https://mtsknn.fi/blog/mts-file-extension/)
+
+
+https://blog.logrocket.com/typescript-4-7-ecmascript-module-support/
+https://devblogs.microsoft.com/typescript/announcing-typescript-4-5-beta/
+
+Creating ESM-based shell scripts for Unix and Windows with Node.js
+https://2ality.com/2022/07/nodejs-esm-shell-scripts.html
+
+https://exploringjs.com/nodejs-shell-scripting/ch_creating-shell-scripts.html
+
+Shell scripting with Nodejs
+https://exploringjs.com/nodejs-shell-scripting/toc.html
+
+
+Impatient programmers
+https://exploringjs.com/impatient-js/toc.html
+
+Top level await.  Could i solve the ssm issue with a top level await. 
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await#:~:text=Top%20level%20await,other%20child%20modules%20from%20loading.
+
+// fetch request
+const colors = fetch("../data/colors.json").then((response) => response.json());
+
+export default await colors;
+
+
+
+Imoort assertions
+https://v8.dev/features/import-assertions
