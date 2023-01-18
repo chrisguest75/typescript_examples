@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1.4
 FROM node:18.13.0-bullseye AS BUILDER
-LABEL dockerfile.baseimage="node:16.13.2-bullseye" dockerfile.description="32_scripting_aws" dockerfile.stage="BUILDER"
+LABEL dockerfile.baseimage="node:18.13.0-bullseye" dockerfile.description="32_scripting_aws" dockerfile.stage="BUILDER"
 
 WORKDIR /scratch
 
@@ -23,7 +23,7 @@ RUN npm ci --only=production && npm cache clean --force
 RUN /usr/local/bin/node-prune --verbose ./node_modules
 
 FROM gcr.io/distroless/nodejs:18 AS PRODUCTION
-LABEL dockerfile.baseimage="gcr.io/distroless/nodejs:18npm " dockerfile.description="32_scripting_aws" dockerfile.stage="PRODUCTION"
+LABEL dockerfile.baseimage="gcr.io/distroless/nodejs:18" dockerfile.description="32_scripting_aws" dockerfile.stage="PRODUCTION"
 
 ENV NODE_ENV production
 
