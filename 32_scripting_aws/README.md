@@ -41,3 +41,4 @@ https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-ecs/index.
 https://github.com/aws/aws-sdk-js
 https://github.com/aws-samples/aws-sdk-js-tests
 https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-servicediscovery/index.html
+https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-ssm/index.html

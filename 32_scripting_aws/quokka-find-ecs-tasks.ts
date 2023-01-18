@@ -23,7 +23,7 @@ async function allTasks(region: string, clusterName: string): Promise<string[]> 
   let tasksResponse = await client.send(tasksCommand)
 
   // list all tasks in the cluster
-  let allTasks: string[] = []
+  const allTasks: string[] = []
   allTasks.push(...tasksResponse.taskArns)
   while (tasksResponse.nextToken !== undefined) {
     tasksCommand = new ListTasksCommand({ cluster: clusterName, nextToken: tasksResponse.nextToken })
@@ -41,6 +41,7 @@ async function test() {
   console.log(clusters)
 
   const tasks = await allTasks(region, clusterName)
+  console.log(tasks)
   const client = new ECSClient({ region: region })
   const describeCommand = new DescribeTasksCommand({ tasks: tasks, cluster: clusterName })
   const describeResponse = await client.send(describeCommand)
