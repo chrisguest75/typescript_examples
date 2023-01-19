@@ -2,6 +2,7 @@
   "name": "32_scripting_aws",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "tsc": "tsc",
@@ -53,7 +54,7 @@
     ],
     "ext": "ts",
     "ignore": [],
-    "exec": "ts-node ./src/index.ts"
+    "exec": "ts-node-esm ./src/index.ts"
   },
   "dependencies": {
     "@aws-sdk/client-ecs": "^3.252.0",

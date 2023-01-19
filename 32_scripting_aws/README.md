@@ -2,6 +2,10 @@
 
 Demonstrate examples of using TS as a language for scripting against AWS.  
 
+TODO:
+
+* Replace my hygen template with this node18 example.  (Or create a new template so I can test version differences)  
+
 ## Reason
 
 We want to be able to easily script tooling against AWS APIs.  This allows building bespoke tools to manage services and their dependencies.  
@@ -90,3 +94,10 @@ export default await colors;
 
 Imoort assertions
 https://v8.dev/features/import-assertions
+
+
+https://stackoverflow.com/questions/71099311/top-level-await-and-import-in-typescript
+
+https://stackoverflow.com/questions/58211880/uncaught-syntaxerror-cannot-use-import-statement-outside-a-module-when-import
+
+ts-node-esm https://stackoverflow.com/questions/62096269/cant-run-my-node-js-typescript-project-typeerror-err-unknown-file-extension
