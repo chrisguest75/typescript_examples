@@ -4,7 +4,9 @@ Demonstrate examples of using TS as a language for scripting against AWS.
 
 TODO:
 
-* Replace my hygen template with this node18 example.  (Or create a new template so I can test version differences)  
+* create a new template so I can test version differences between 16 and 18
+* Fix tests to run.
+* Docker run does not work ATM
 
 ## Reason
 
@@ -21,9 +23,9 @@ set -a
 . ./.env
 set +a
 
-npm run start:dev
+npm run start:dev -- --throwError
 # or
-npm run docker:run
+npm run docker:run -- --throwError
 ```
 
 ## Quokka

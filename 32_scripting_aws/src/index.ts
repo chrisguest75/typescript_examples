@@ -1,7 +1,7 @@
 import { logger } from './logger.js'
 import * as dotenv from 'dotenv'
 import minimist from 'minimist'
-//import { loadConfig, writeConfig, Config } from './ssm.mjs'
+import { loadConfig, writeConfig, Config } from './ssm.mjs'
 /*
 main
 */
@@ -20,13 +20,18 @@ export async function main(args: minimist.ParsedArgs) {
     throw new Error("I'm an error")
   }
 
-  // const config: Config = {
-  //   segmentSize: 10,
-  //   folderPath: 'test',
-  //   url: 'https://www.google.com',
-  // }
-  // await writeConfig('christest', config)
-  // await loadConfig('christest')
+  const config: Config = {
+    segmentSize: 10,
+    folderPath: 'test',
+    url: 'https://www.google.com',
+  }
+  const ssmName = args['ssmName']
+  if (args['ssmWrite']) {
+    await writeConfig(ssmName, config)
+  }
+  if (args['ssmRead']) {
+    await loadConfig(ssmName)
+  }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   return new Promise((resolve, reject) => {
@@ -65,12 +70,12 @@ dotenv.config()
 logger.info(`Pino:${logger.version}`)
 const args: minimist.ParsedArgs = minimist(process.argv.slice(2), {
   string: ['ssmName'],
-  boolean: ['verbose', 'throwError'],
-  default: { verbose: true, throwError: false, ssmName: 'testssmdocument' },
+  boolean: ['verbose', 'ssmRead', 'ssmWrite', 'throwError'],
+  default: { verbose: true, throwError: false, ssmRead: false, ssmWrite: false, ssmName: 'testssmdocument' },
 })
 try {
   await main(args)
-  process.exit(1)
+  process.exit(0)
 } catch (error) {
   logger.error(error)
   process.exit(1)

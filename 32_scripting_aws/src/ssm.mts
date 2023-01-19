@@ -6,7 +6,7 @@ import {
   PutParameterCommandInput,
 } from '@aws-sdk/client-ssm'
 import { z } from 'zod'
-import { logger } from './logger'
+import { logger } from './logger.js'
 
 const ConfigZod = z.object({
   segmentSize: z.number().min(1).max(100),

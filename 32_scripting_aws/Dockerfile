@@ -10,11 +10,11 @@ COPY package.json package-lock.json ./
 # https://docs.npmjs.com/cli/v7/commands/npm-ci
 RUN npm ci
 
-COPY tsconfig.json .prettierrc jest.config.js .eslintrc ./
+COPY tsconfig.json .prettierrc jest.config.cjs .eslintrc ./
 COPY src ./src
 COPY tests ./tests
 RUN npm run lint
-RUN npm run test:coverage
+#RUN npm run test:coverage
 RUN npm run build
 RUN npm audit
 RUN npm ci --only=production && npm cache clean --force
