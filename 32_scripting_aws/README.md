@@ -128,7 +128,5 @@ https://stackoverflow.com/questions/71099311/top-level-await-and-import-in-types
 
 https://stackoverflow.com/questions/58211880/uncaught-syntaxerror-cannot-use-import-statement-outside-a-module-when-import
 
-ts-node-esm https://stackoverflow.com/questions/62096269/cant-run-my-node-js-typescript-project-typeerror-err-unknown-file-extension
-
-
-https://effectivetypescript.com/2020/05/26/iterate-objects/
+* Can't run my Node.js Typescript project TypeError [ERR_UNKNOWN_FILE_EXTENSION]: Unknown file extension ".ts" for /app/src/App.ts ts-node-esm [here](https://stackoverflow.com/questions/62096269/cant-run-my-node-js-typescript-project-typeerror-err-unknown-file-extension)
+* Item 54: Know How to Iterate Over Objects [here](https://effectivetypescript.com/2020/05/26/iterate-objects/)
