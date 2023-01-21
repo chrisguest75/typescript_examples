@@ -12,6 +12,7 @@ const ConfigZod = z.object({
   segmentSize: z.number().min(1).max(100),
   folderPath: z.string().min(1).max(256),
   url: z.string().url(),
+  modified: z.optional(z.number()),
 })
 export type Config = z.infer<typeof ConfigZod>
 
@@ -19,12 +20,6 @@ export async function loadConfig(name: string) {
   const region = process.env.AWS_REGION || 'us-east-1'
   const paramterName = name
 
-  const putResponse = await PutVariable(region, paramterName, {
-    segmentSize: 10,
-    folderPath: 'test',
-    url: 'https://www.google.com',
-  })
-  logger.info(putResponse)
   const getResponse = await GetVariable(region, paramterName)
   logger.info(getResponse)
   return getResponse
@@ -52,7 +47,7 @@ export async function PutVariable(region: string, name: string, value: Config) {
   logger.info(response)
 }
 
-export async function GetVariable(region: string, name: string) {
+export async function GetVariable(region: string, name: string): Promise<Config> {
   const client = new SSMClient({ region })
   const input: GetParameterCommandInput = {
     Name: name,

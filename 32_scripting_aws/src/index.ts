@@ -20,17 +20,30 @@ export async function main(args: minimist.ParsedArgs) {
     throw new Error("I'm an error")
   }
 
-  const config: Config = {
-    segmentSize: 10,
-    folderPath: 'test',
-    url: 'https://www.google.com',
-  }
   const ssmName = args['ssmName']
-  if (args['ssmWrite']) {
-    await writeConfig(ssmName, config)
-  }
+
+  let loadedConfig: Config | undefined = undefined
+
   if (args['ssmRead']) {
-    await loadConfig(ssmName)
+    loadedConfig = await loadConfig(ssmName)
+    logger.info({ ...loadedConfig, message: 'Loaded Config' })
+  }
+
+  if (args['ssmWrite']) {
+    let config: Config = {
+      segmentSize: 10,
+      folderPath: 'test',
+      url: 'https://www.google.com',
+      modified: Date.now(),
+    }
+
+    if (loadedConfig) {
+      config = loadedConfig
+      config.segmentSize = config.segmentSize + 1
+      config.modified = Date.now()
+    }
+    await writeConfig(ssmName, config)
+    logger.info({ ...config, message: 'Written Config' })
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

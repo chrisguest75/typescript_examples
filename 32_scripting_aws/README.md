@@ -25,7 +25,20 @@ set +a
 
 npm run start:dev -- --throwError
 # or
-npm run docker:run -- --throwError
+npm run docker:run
+npm run docker:run -- /work/src/index.js --throwError
+
+npm run docker:run -- /work/src/index.js --ssmRead
+
+npm run docker:run -- /work/src/index.js --ssmWrite
+```
+
+## Troubleshooting
+
+```sh
+dive 32_scripting_aws:latest
+# 
+docker run -it --rm --entrypoint /busybox/sh 32_scripting_aws:latest 
 ```
 
 ## Quokka
