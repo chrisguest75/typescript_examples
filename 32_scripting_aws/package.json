@@ -19,7 +19,7 @@
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "docker:build": "docker build --target PRODUCTION -f Dockerfile --label \"org.opencontainers.image.created=$(date '+%Y-%m-%dT%H:%M:%SZ')\" --label \"org.opencontainers.image.version=${githubsha}\" --label \"org.opencontainers.image.url=$(git remote get-url origin)\" -t 32_scripting_aws .",
-    "docker:run": "npm run docker:build && docker run --rm -it --volume /Users/${USER}/.aws:/root/.aws --env AWS_PROFILE=${AWS_PROFILE} --env AWS_REGION=${AWS_REGION}  --name 32_scripting_aws 32_scripting_aws",
+    "docker:run": "npm run docker:build && docker run --rm -it --volume /Users/${USER}/.aws:/root/.aws --env SSM_CONFIG_NAME=testssmdocument --env AWS_PROFILE=${AWS_PROFILE} --env AWS_REGION=${AWS_REGION}  --name 32_scripting_aws 32_scripting_aws",
     "docker:rebuild": "docker build --no-cache --target PRODUCTION -f Dockerfile --label \"org.opencontainers.image.created=$(date '+%Y-%m-%dT%H:%M:%SZ')\" --label \"org.opencontainers.image.version=${githubsha}\" --label \"org.opencontainers.image.url=$(git remote get-url origin)\" -t 32_scripting_aws .",
     "docker:stop": "docker stop 32_scripting_aws"
   },
