@@ -1,12 +1,13 @@
 import { logger } from './logger.js'
 import * as dotenv from 'dotenv'
 import minimist from 'minimist'
-import { loadConfig, writeConfig, Config } from './ssm.mjs'
+import { configuration, loadConfig, writeConfig, Config } from './ssm.mjs'
 /*
 main
 */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export async function main(args: minimist.ParsedArgs) {
+  logger.info({ ...configuration, message: 'Module Await Config' })
   logger.trace('TRACE - level message')
   logger.debug('DEBUG - level message')
   logger.info('INFO - level message')
@@ -44,6 +45,14 @@ export async function main(args: minimist.ParsedArgs) {
     }
     await writeConfig(ssmName, config)
     logger.info({ ...config, message: 'Written Config' })
+  }
+
+  // filter envs by SSM_ prefix and log
+  const ssmEnv = Object.keys(process.env).filter((key) => key.startsWith('SSM_'))
+  logger.info({ ssmEnv })
+
+  for (const key of ssmEnv) {
+    logger.info({ key, value: process.env[key] })
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

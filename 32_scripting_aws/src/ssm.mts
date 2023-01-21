@@ -16,12 +16,24 @@ const ConfigZod = z.object({
 })
 export type Config = z.infer<typeof ConfigZod>
 
+export const configuration = await loadConfig(process.env.SSM_CONFIG_NAME || 'no-name')
+
 export async function loadConfig(name: string) {
   const region = process.env.AWS_REGION || 'us-east-1'
   const paramterName = name
 
+  logger.debug({ region, paramterName })
   const getResponse = await GetVariable(region, paramterName)
   logger.info(getResponse)
+
+  let k: keyof Config;
+  for (k in getResponse) {
+    const value = getResponse[k]
+    const envName = 'SSM_' + k?.toString().toUpperCase()
+    logger.info({ key: k, value, envName })
+    process.env[envName] = value?.toString()
+  }
+
   return getResponse
 }
 

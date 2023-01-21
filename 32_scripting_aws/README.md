@@ -28,9 +28,22 @@ npm run start:dev -- --throwError
 npm run docker:run
 npm run docker:run -- /work/src/index.js --throwError
 
+# read only
 npm run docker:run -- /work/src/index.js --ssmRead
 
+# write structure
 npm run docker:run -- /work/src/index.js --ssmWrite
+
+# increment field example
+npm run docker:run -- /work/src/index.js --ssmRead --ssmWrite
+
+
+
+# 
+export PAGER=
+aws --profile ${AWS_PROFILE} --region ${AWS_REGION} ssm describe-parameters 
+
+aws --profile ${AWS_PROFILE} --region ${AWS_REGION} ssm get-parameter --name "testssmdocument"
 ```
 
 ## Troubleshooting
@@ -116,3 +129,6 @@ https://stackoverflow.com/questions/71099311/top-level-await-and-import-in-types
 https://stackoverflow.com/questions/58211880/uncaught-syntaxerror-cannot-use-import-statement-outside-a-module-when-import
 
 ts-node-esm https://stackoverflow.com/questions/62096269/cant-run-my-node-js-typescript-project-typeerror-err-unknown-file-extension
+
+
+https://effectivetypescript.com/2020/05/26/iterate-objects/
