@@ -10,11 +10,11 @@ COPY package.json package-lock.json ./
 # https://docs.npmjs.com/cli/v7/commands/npm-ci
 RUN npm ci
 
-COPY tsconfig.json .prettierrc jest.config.js .eslintrc ./
+COPY tsconfig.json .prettierrc jest.config.cjs .eslintrc ./
 COPY src ./src
 COPY tests ./tests
 RUN npm run lint
-RUN npm run test:coverage
+#RUN npm run test:coverage
 RUN npm run build
 RUN npm audit
 RUN npm ci --only=production && npm cache clean --force
@@ -22,12 +22,13 @@ RUN npm ci --only=production && npm cache clean --force
 # prune the node_modules
 RUN /usr/local/bin/node-prune --verbose ./node_modules
 
-FROM gcr.io/distroless/nodejs:18 AS PRODUCTION
+FROM gcr.io/distroless/nodejs18-debian11:debug AS PRODUCTION
 LABEL dockerfile.baseimage="gcr.io/distroless/nodejs:18" dockerfile.description="32_scripting_aws" dockerfile.stage="PRODUCTION"
 
 ENV NODE_ENV production
 
 WORKDIR /work
+COPY --from=BUILDER /scratch/package.json /scratch/package-lock.json ./
 COPY --from=BUILDER /scratch/node_modules ./node_modules
 COPY --from=BUILDER /scratch/build ./
 

@@ -1,56 +1,13 @@
-import {
-  SSMClient,
-  GetParameterCommand,
-  PutParameterCommand,
-  GetParameterCommandInput,
-  PutParameterCommandInput,
-} from '@aws-sdk/client-ssm'
-import { z } from 'zod'
-import { logger } from './logger'
+import { logger } from './logger.js'
 import * as dotenv from 'dotenv'
 import minimist from 'minimist'
-
-const ConfigZod = z.object({
-  segmentSize: z.number().min(1).max(100),
-  folderPath: z.string().min(1).max(256),
-  url: z.string().url(),
-})
-type Config = z.infer<typeof ConfigZod>
-
-async function PutVariable(region: string, name: string, value: Config) {
-  const client = new SSMClient({ region })
-  ConfigZod.parse(value)
-  const input: PutParameterCommandInput = {
-    Name: name,
-    Value: JSON.stringify(value),
-    Type: 'String',
-    Overwrite: true,
-  }
-  const command = new PutParameterCommand(input)
-  const response = await client.send(command)
-  logger.info(response)
-}
-
-async function GetVariable(region: string, name: string) {
-  const client = new SSMClient({ region })
-  const input: GetParameterCommandInput = {
-    Name: name,
-  }
-  const command = new GetParameterCommand(input)
-  const response = await client.send(command)
-  logger.info(response)
-  return new Promise((resolve, reject) => {
-    const config = JSON.parse(response.Parameter?.Value ? response.Parameter?.Value : '{}')
-    ConfigZod.parse(config)
-    resolve(config)
-  })
-}
-
+import { configuration, loadConfig, writeConfig, Config } from './ssm.mjs'
 /*
 main
 */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export async function main(args: minimist.ParsedArgs) {
+  logger.info({ ...configuration, message: 'Module Await Config' })
   logger.trace('TRACE - level message')
   logger.debug('DEBUG - level message')
   logger.info('INFO - level message')
@@ -60,17 +17,43 @@ export async function main(args: minimist.ParsedArgs) {
   logger.info({ node_env: process.env.NODE_ENV })
   logger.info({ 'node.version': process.version })
 
-  const region = process.env.AWS_REGION || 'us-east-1'
-  const paramterName = process.env.PARAMETERNAME || 'christest'
+  if (args['throwError']) {
+    throw new Error("I'm an error")
+  }
 
-  const putResponse = await PutVariable(region, paramterName, {
-    segmentSize: 10,
-    folderPath: 'test',
-    url: 'https://www.google.com',
-  })
-  logger.info(putResponse)
-  const getResponse = await GetVariable(region, paramterName)
-  logger.info(getResponse)
+  const ssmName = args['ssmName']
+
+  let loadedConfig: Config | undefined = undefined
+
+  if (args['ssmRead']) {
+    loadedConfig = await loadConfig(ssmName)
+    logger.info({ ...loadedConfig, message: 'Loaded Config' })
+  }
+
+  if (args['ssmWrite']) {
+    let config: Config = {
+      segmentSize: 10,
+      folderPath: 'test',
+      url: 'https://www.google.com',
+      modified: Date.now(),
+    }
+
+    if (loadedConfig) {
+      config = loadedConfig
+      config.segmentSize = config.segmentSize + 1
+      config.modified = Date.now()
+    }
+    await writeConfig(ssmName, config)
+    logger.info({ ...config, message: 'Written Config' })
+  }
+
+  // filter envs by SSM_ prefix and log
+  const ssmEnv = Object.keys(process.env).filter((key) => key.startsWith('SSM_'))
+  logger.info({ ssmEnv })
+
+  for (const key of ssmEnv) {
+    logger.info({ key, value: process.env[key] })
+  }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   return new Promise((resolve, reject) => {
@@ -107,12 +90,15 @@ Entrypoint
 // load config
 dotenv.config()
 logger.info(`Pino:${logger.version}`)
-const args: minimist.ParsedArgs = minimist(process.argv.slice(2))
-main(args)
-  .then(() => {
-    process.exit(0)
-  })
-  .catch((e) => {
-    logger.error(e)
-    process.exit(1)
-  })
+const args: minimist.ParsedArgs = minimist(process.argv.slice(2), {
+  string: ['ssmName'],
+  boolean: ['verbose', 'ssmRead', 'ssmWrite', 'throwError'],
+  default: { verbose: true, throwError: false, ssmRead: false, ssmWrite: false, ssmName: 'testssmdocument' },
+})
+try {
+  await main(args)
+  process.exit(0)
+} catch (error) {
+  logger.error(error)
+  process.exit(1)
+}
