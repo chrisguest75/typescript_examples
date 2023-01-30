@@ -54,3 +54,10 @@ code --install-extension quicktype.quicktype
 * Lodash [here](https://lodash.com/)
 * Difference between lodash and Underscore [here](https://www.geeksforgeeks.org/difference-between-lodash-and-underscore/)
 * s3-sync-client [here](https://www.npmjs.com/package/s3-sync-client)  
+
+
+https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/
+https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-ecs/index.html
+https://github.com/aws/aws-sdk-js
+https://github.com/aws-samples/aws-sdk-js-tests
+https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-servicediscovery/index.html
