@@ -1,4 +1,24 @@
 
+function validateFirstId(id: string) {
+  // regex to extract number with groups
+  const regex = /^([0-9a-f]{24})$/;
+  const match = id.match(regex);
+  return match 
+}
+function validateSecondId(id: string) {
+  // regex to extract number with groups
+  const regex = /^([0-9a-zA-Z]{22})$/;
+  const match = id.match(regex);
+  return match 
+}
+
+function validateCompoundId(id: string) {
+  // regex to extract number with groups
+  const regex = /^([0-9a-f]{24})(\/)([0-9a-zA-Z]{22})$/;
+  const match = id.match(regex);
+  return match 
+}
+
 
 function distanceToMetres(distance: string) {
   // regex to extract number with groups
@@ -18,10 +38,20 @@ function distanceToMetres(distance: string) {
   return 0;
 }
 
-console.log(distanceToMetres('5 km'))
-console.log(distanceToMetres('5.5 km'))
-console.log(distanceToMetres('5 m'))
-console.log(distanceToMetres('5.5 m'))
-console.log(distanceToMetres('m'))
-console.log(distanceToMetres('2.01 km'))
+// console.log(distanceToMetres('5 km'))
+// console.log(distanceToMetres('5.5 km'))
+// console.log(distanceToMetres('5 m'))
+// console.log(distanceToMetres('5.5 m'))
+// console.log(distanceToMetres('m'))
+// console.log(distanceToMetres('2.01 km'))
 
+console.log(validateFirstId('999a773a2f2baa02f7917e61'))
+console.log(validateFirstId('999a773a2f2baa02f7917e61/'))
+
+console.log(validateSecondId('IgtHPLKTku2r2LdLtOQpCQ'))
+console.log(validateSecondId('IgtHPLKTku2r2LdLtOQpCQ/'))
+
+console.log(validateCompoundId('999a773a2f2baa02f7917e61/'))
+console.log(validateCompoundId('999a773a2f2baa02f7917e61'))
+const match = validateCompoundId('999a773a2f2baa02f7917e61/IgtHPLKTku2r2LdLtOQpCQ')
+console.log(match[1])
