@@ -1,6 +1,6 @@
 # README
 
-Demonstrate some `quokka` examples
+Demonstrate some `quokka` examples.  
 
 ## Reason
 
@@ -54,10 +54,8 @@ code --install-extension quicktype.quicktype
 * Lodash [here](https://lodash.com/)
 * Difference between lodash and Underscore [here](https://www.geeksforgeeks.org/difference-between-lodash-and-underscore/)
 * s3-sync-client [here](https://www.npmjs.com/package/s3-sync-client)  
-
-
-https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/
-https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-ecs/index.html
-https://github.com/aws/aws-sdk-js
-https://github.com/aws-samples/aws-sdk-js-tests
-https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-servicediscovery/index.html
+* AWS SDK for JavaScript [here](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/)
+* ECS Client - AWS SDK for JavaScript v3 [here](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-ecs/index.html)
+* aws/aws-sdk-js [here](https://github.com/aws/aws-sdk-js)
+* aws-samples/aws-sdk-js-tests [here](https://github.com/aws-samples/aws-sdk-js-tests)
+* ServiceDiscovery Client - AWS SDK for JavaScript v3 [here](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-servicediscovery/index.html)  

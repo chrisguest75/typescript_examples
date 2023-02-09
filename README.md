@@ -4,6 +4,8 @@ A set of simple Typescript examples.
 
 TODO:
 
+* add v18 template
+* envelope encryption example
 * dockerise cypress
 * rest client
 * nvm install-latest-npm

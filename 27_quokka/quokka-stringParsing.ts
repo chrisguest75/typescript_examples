@@ -30,13 +30,27 @@ function test_fileIndicesStrict(filePath) {
     return fileNameNoExt
 }
 
+// add trailing slash if not present
+function test_addTrailingSlash(path) {
+    if(path.endsWith('/')) {
+        return path
+    } else {
+        return path + '/'
+    }
+}
+
 console.log(test_url('ws://machine1:9000'))
 console.log(test_fileIndices('file0000'))
 console.log(test_fileIndices('file0001'))
 console.log(test_fileIndicesStrict('mypath/folder/0000000000.dat'))
 console.log(test_fileIndicesStrict('mypath/folder/0003434000.dat'))
 console.log(test_fileIndicesStrict('mypath/folder/0003434000'))
+console.log(test_addTrailingSlash('mypath/folder/0003434000/'))
+console.log(test_addTrailingSlash('mypath/folder/0003434000'))
 
 //console.log(test_fileIndicesStrict('mypath/folder/000000000.dat'))
 //console.log(test_fileIndicesStrict('mypath/folder/00000000000.dat'))
 console.log(test_fileIndicesStrict('mypath/folder/000000000001.dat'))
+
+
+
