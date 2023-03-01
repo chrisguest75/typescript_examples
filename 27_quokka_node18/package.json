@@ -1,0 +1,17 @@
+{
+  "name": "27_quokka_node18",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^18.14.2",
+    "dotenv-quokka-plugin": "^1.0.0",
+    "expect": "^29.4.3",
+    "jest-extended": "^3.2.4"
+  }
+}
