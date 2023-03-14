@@ -4,11 +4,12 @@ A set of simple Typescript examples.
 
 TODO:
 
-* add v18 template
 * envelope encryption example
 * dockerise cypress
 * rest client
 * nvm install-latest-npm
+* npx example
+* get jest working with node18 template
 
 ## Snippets
 
@@ -20,6 +21,16 @@ If having trouble with `nvm use` with xcode crashing with exceptions.
 
 ```sh
 xcodebuild -runFirstLaunch
+```
+
+## Upgrading
+
+```sh
+# use outdated to show newer package versions 
+npm outdated
+
+# also show 
+npm audit
 ```
 
 ## 00 - Project templates using hygen
