@@ -10,6 +10,7 @@ TODO:
 * nvm install-latest-npm
 * npx example
 * get jest working with node18 template
+* Build all projects?
 
 ## Snippets
 

@@ -1,5 +1,22 @@
 # README
 
+TODO:
+
+* Why are some installing node_modules and others not.
+* Add nx builds to the github actions pipeline.
+* Test and build each commit.
+* Is there a way to template the project.json?
+* Targetted builds.
+* Can I support python builds?
+* Can I support buildx builds?
+* Can I support different versions of node?
+* List the targets for a project
+
+NOTES:
+
+
+
+
 ```json
   "scripts": {
     "nx": "node ./node_modules/@nrwl/cli/bin/nx.js",
@@ -27,6 +44,13 @@ npm run nx report
 
 npm run nx build 01_basic_cmdline   
 npm run nx build 01_basic_cmdline --verbose
+
+# build all https://nx.dev/packages/nx/documents/run-many
+./nx run-many -t build --all              
+
+# run test
+./nx test 03_jest_testing      
+
 
 
 npx nx@latest
