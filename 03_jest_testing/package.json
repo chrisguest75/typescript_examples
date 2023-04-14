@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "",
     "test": "jest",
     "test:debug": "jest --runInBand --detectOpenHandles",  
     "coverage": "jest --coverage",
