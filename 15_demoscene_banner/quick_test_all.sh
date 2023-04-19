@@ -3,7 +3,7 @@
 npm run start:cmd:list
 
 #export TEXT=$'Greetings,\n'$(hostname)$'\nfrom zsh.\n'$(ipconfig getifaddr en0)
-export TEXT="Pegasus-52"
+export TEXT=${1-DEFAULT}
 
 npm run start:cmd:jp2acustom --banner=${TEXT} --font="cuddly"
 npm run start:cmd:jp2acustom --banner=${TEXT} --font="carebear"
