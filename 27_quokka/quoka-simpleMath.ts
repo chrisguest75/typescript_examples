@@ -16,3 +16,8 @@ console.log(Math.floor(y))
 console.log(Math.abs(5 - 6))
 console.log(Math.abs(6 - 5))
 
+const start_time = 196.52999877929688;
+console.log(`start_time=${start_time}`)
+console.log(`start_time=${start_time.toPrecision(10)}`)
+
+
