@@ -1,0 +1,16 @@
+{
+  "name": "23_faking_json_data",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "23_faking_json_data",
+  "projectType": "app",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["^build:lib"],
+      "options": {
+        "command": "npm run build",
+        "cwd": "23_faking_json_data"
+      }
+    }
+  }
+}

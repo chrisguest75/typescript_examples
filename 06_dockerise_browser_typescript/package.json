@@ -4,6 +4,7 @@
   "description": "Use this to create new examples",
   "main": "dist/index.html",
   "scripts": {
+    "prebuild": "npm install",
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",
     "clean": "rimraf dist",

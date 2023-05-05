@@ -1,0 +1,16 @@
+{
+  "name": "21_jsonschema",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "21_jsonschema",
+  "projectType": "app",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["^build:lib"],
+      "options": {
+        "command": "npm run build",
+        "cwd": "21_jsonschema"
+      }
+    }
+  }
+}

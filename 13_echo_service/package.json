@@ -4,11 +4,11 @@
   "description": "Demonstrates a simple echo service",
   "main": "index.js",
   "scripts": {
+    "prebuild": "npm install && npm run swagger",
     "clean": "rimraf ./build",
     "build": "npm run clean && tsc",
     "start": "npm run build && node build/index.js",
     "predev": "npm run swagger",
-    "prebuild": "npm run swagger",
     "rebuild": "npm run swagger && npm run build && node build/index.js",
     "dev": "concurrently \"nodemon\" \"nodemon -x tsoa spec\"",
     "swagger": "tsoa spec && tsoa routes",

@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "prebuild": "npm install && npm run swagger",
     "start": "node build/index.js",
     "predev": "npm run swagger",
-    "prebuild": "npm run swagger",
     "build": "tsc",
     "dev": "concurrently \"nodemon\" \"nodemon -x tsoa spec\"",
     "swagger": "tsoa spec",    

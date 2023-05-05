@@ -1,0 +1,16 @@
+{
+  "name": "08_pino_logger",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "08_pino_logger",
+  "projectType": "app",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["^build:lib"],
+      "options": {
+        "command": "npm run build",
+        "cwd": "08_pino_logger"
+      }
+    }
+  }
+}

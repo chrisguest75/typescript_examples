@@ -1,0 +1,16 @@
+{
+  "name": "28_debugging",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "28_debugging",
+  "projectType": "app",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["^build:lib"],
+      "options": {
+        "command": "npm run build",
+        "cwd": "28_debugging"
+      }
+    }
+  }
+}

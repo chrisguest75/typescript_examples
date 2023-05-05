@@ -1,0 +1,16 @@
+{
+  "name": "15_demoscene_banner",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "15_demoscene_banner",
+  "projectType": "app",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["^build:lib"],
+      "options": {
+        "command": "npm run build",
+        "cwd": "15_demoscene_banner"
+      }
+    }
+  }
+}

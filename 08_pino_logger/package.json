@@ -4,6 +4,7 @@
   "description": "Demonstrates a simple cmdline application (copy these steps)",
   "main": "index.js",
   "scripts": {
+    "prebuild": "npm install",
     "build": "rimraf ./build && tsc",
     "lint": "eslint . --ext .ts",
     "start:dev": "nodemon",

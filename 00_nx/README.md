@@ -14,9 +14,6 @@ TODO:
 
 NOTES:
 
-
-
-
 ```json
   "scripts": {
     "nx": "node ./node_modules/@nrwl/cli/bin/nx.js",
@@ -37,6 +34,9 @@ nvm use
 npm install 
 
 ./nx build 01_basic_cmdline      
+./nx build 01_basic_cmdline:clean
+
+
 
 npm run nx reset        
 npm run nx list   
@@ -46,6 +46,7 @@ npm run nx build 01_basic_cmdline
 npm run nx build 01_basic_cmdline --verbose
 
 # build all https://nx.dev/packages/nx/documents/run-many
+# this is based on the prebuild step
 ./nx run-many -t build --all              
 
 # run test
@@ -70,9 +71,6 @@ npm run nx generate ./apps/01_basic_cmdline
 
 
 ```
-
-
-
 
 
 ## Resources

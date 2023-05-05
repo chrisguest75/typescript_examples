@@ -4,6 +4,7 @@
   "description": "Demonstrate creating a ascii banner from an old demoscene font.",
   "main": "index.js",
   "scripts": {
+    "prebuild": "npm install",
     "build": "rimraf ./build && tsc",
     "lint": "eslint . --ext .ts",
     "start:dev": "nodemon",

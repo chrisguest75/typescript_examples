@@ -1,0 +1,16 @@
+{
+  "name": "06_dockerise_browser_typescript",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "06_dockerise_browser_typescript",
+  "projectType": "app",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["^build:lib"],
+      "options": {
+        "command": "npm run build",
+        "cwd": "06_dockerise_browser_typescript"
+      }
+    }
+  }
+}
