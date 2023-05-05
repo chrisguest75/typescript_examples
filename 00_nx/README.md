@@ -1,8 +1,30 @@
 # README
 
+Explain how NX works in this repo.  
+
+## NX
+
+An Nx workspace is a tool for developing and managing large-scale Angular applications and enterprise-level projects. Nx is an open-source toolkit developed by Nrwl, which provides a set of tools and guidelines for building, testing, and deploying complex Angular applications.
+
+An Nx workspace provides a structured and standardized approach to development that helps developers build scalable and maintainable applications. It offers a set of features and tools such as code generators, test runners, and build tools that help developers to focus on the actual business logic of the application and not worry about the underlying infrastructure.
+
+The Nx workspace uses a monorepo approach, which means that all the code, tests, and configuration for the project are stored in a single repository. This approach makes it easier to manage the project, keep track of changes, and share code between different applications.
+
+In summary, an Nx workspace is a powerful tool that provides a structured and scalable approach to building Angular applications and enterprise-level projects.
+
+## NOTES
+
+### Installing node_modules
+
+To install node_modules you'll need to add a prebuild step that performs the install.  
+
+```json
+    "prebuild": "npm install",
+```
+
 TODO:
 
-* Why are some installing node_modules and others not.
+* How do I switch nodejs versions?
 * Add nx builds to the github actions pipeline.
 * Test and build each commit.
 * Is there a way to template the project.json?
@@ -11,8 +33,9 @@ TODO:
 * Can I support buildx builds?
 * Can I support different versions of node?
 * List the targets for a project
+* What is new in version 16?
 
-NOTES:
+
 
 ```json
   "scripts": {
@@ -75,24 +98,15 @@ npm run nx generate ./apps/01_basic_cmdline
 
 ## Resources
 
-https://nx.dev/recipes/adopting-nx/adding-to-monorepo
-
-
-https://nx.dev/tutorials/package-based-repo-tutorial
+* Adding Nx to NPM/Yarn/PNPM Workspace [here](https://nx.dev/recipes/adopting-nx/adding-to-monorepo)  
+* Getting Started with Package-Based Repos [here](https://nx.dev/tutorials/package-based-repo-tutorial)  
+* Set up a New Nx Workspace [here](https://nx.dev/recipes/getting-started/set-up-a-new-workspace)
 
 https://nx.dev/community#plugin-directory
 
-https://nx.dev/recipes/getting-started/set-up-a-new-workspace
 
 
 
-An Nx workspace is a tool for developing and managing large-scale Angular applications and enterprise-level projects. Nx is an open-source toolkit developed by Nrwl, which provides a set of tools and guidelines for building, testing, and deploying complex Angular applications.
-
-An Nx workspace provides a structured and standardized approach to development that helps developers build scalable and maintainable applications. It offers a set of features and tools such as code generators, test runners, and build tools that help developers to focus on the actual business logic of the application and not worry about the underlying infrastructure.
-
-The Nx workspace uses a monorepo approach, which means that all the code, tests, and configuration for the project are stored in a single repository. This approach makes it easier to manage the project, keep track of changes, and share code between different applications.
-
-In summary, an Nx workspace is a powerful tool that provides a structured and scalable approach to building Angular applications and enterprise-level projects.
 
 https://stackoverflow.com/questions/57493902/does-nx-need-to-be-installed-globally-by-people-who-only-want-to-run-the-app-e
 
