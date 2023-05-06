@@ -115,7 +115,7 @@ jobs:
 
 
     - name: Build
-      run: npx nx run-many -t build --all     
+      run: ./nx run-many -t build --all     
 
 
       # run: npx nx format:check
