@@ -71,9 +71,10 @@ jobs:
     #       r/html.security.missing-noopener.missing-noopener
     #       r/html.security.missing-noreferrer.missing-noreferrer
 
+    - name: NX
       uses: nrwl/nx-set-shas@v3
 
-    - name: NX
+    - name: Build
       run: npx nx run-many -t build --all     
 
 
