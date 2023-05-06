@@ -71,8 +71,7 @@ jobs:
     #       r/html.security.missing-noopener.missing-noopener
     #       r/html.security.missing-noreferrer.missing-noreferrer
 
-    - name: Build
-      uses: nrwl/nx-set-shas@v3
+    - uses: nrwl/nx-set-shas@v3
       run: npx nx run-many -t build --all     
 
 
