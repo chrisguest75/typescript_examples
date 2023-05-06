@@ -114,33 +114,19 @@ npm run nx generate ./apps/01_basic_cmdline
 * Set up a New Nx Workspace [here](https://nx.dev/recipes/getting-started/set-up-a-new-workspace)
 * Going TypeStack with NX Monorepo and Docker (Part 1) [here](https://blog.devgenius.io/going-typestack-with-nx-monorepo-and-docker-part-1-d5ff257981f2)
 * Nx and Node Microservices [here](https://blog.nrwl.io/nx-and-node-microservices-b6df3cd1bad6)
+* Configuring CI Using GitHub Actions and Nx [here](https://nx.dev/recipes/ci/monorepo-ci-github-actions)
+* Nx Core Tutorial [here](https://nx.dev/core-tutorial)  
+* The fastest growing monorepo solution in the JS ecosystem [here](https://dev.to/nx/nx-the-fastest-growing-monorepo-solution-in-the-js-ecosystem-5en9)  
+
 
 https://nx.dev/community#plugin-directory
 
-
-
-
-
 https://stackoverflow.com/questions/57493902/does-nx-need-to-be-installed-globally-by-people-who-only-want-to-run-the-app-e
-
-
-
-
 
 Nx affected…  https://github.com/gperdomor/nx-tools/tree/main/packages/nx-docker
 
-
 https://nx.dev/getting-started/nx-and-typescript
 
-
-Nx core - https://nx.dev/core-tutorial
-
-
 Nx - https://nx.dev/getting-started/intro
-
-
-Nx - https://dev.to/nx/nx-the-fastest-growing-monorepo-solution-in-the-js-ecosystem-5en9
-
-
 
 https://docs.volta.sh/guide/getting-started
