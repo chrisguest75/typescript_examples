@@ -1,0 +1,59 @@
+# syntax=docker/dockerfile:1.4
+FROM ubuntu:22.04
+
+ENV LANG en_US.UTF-8  
+ENV LANGUAGE en_US:en  
+ENV LC_ALL en_US.UTF-8  
+ARG DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update --fix-missing && apt-get install apt-transport-https curl wget locales \ 
+        bash git python3-pip \
+        -y \
+        && apt-get clean \
+        && rm -rf /var/lib/apt/lists/*
+
+RUN locale-gen en_US.UTF-8  
+
+ENV HOME /home/root
+
+WORKDIR /workbench
+RUN mkdir -p /workbench/books
+#COPY ./books /workbench/books
+COPY ./install-nvm.sh /workbench/install-nvm.sh
+COPY package.json package-lock.json tsconfig.json ./
+
+# RUN ls -la /workbench
+# RUN ls -l /root
+COPY --chmod=755 <<EOF /workbench/install-node.sh
+#!/usr/bin/env bash
+/workbench/install-nvm.sh
+
+export NVM_DIR="\$HOME/.nvm"
+. \$HOME/.nvm/nvm.sh
+nvm install --lts
+npm install -g itypescript
+pip3 install jupyter
+its --install=global
+npm install 
+EOF
+
+RUN /workbench/install-node.sh
+RUN jupyter kernelspec list
+
+COPY --chmod=755 <<EOF /workbench/launch.sh
+#!/usr/bin/env bash
+
+echo 'export NVM_DIR="\$HOME/.nvm"' >> /root/.profile 
+echo '. \$HOME/.nvm/nvm.sh' >> /root/.profile
+
+export NVM_DIR="\$HOME/.nvm"
+. \$HOME/.nvm/nvm.sh
+
+jupyter notebook --ip 0.0.0.0 --port 8888 --allow-root
+EOF
+
+EXPOSE 8888
+CMD ["/workbench/launch.sh"]
+
+
+
