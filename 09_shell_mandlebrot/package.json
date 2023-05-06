@@ -7,11 +7,14 @@
   "bin": "build/index.js",
   "scripts": {
     "prebuild": "npm install",
-    "build": "rimraf ./build && tsc",
+    "clean": "rimraf build",
+    "build": "tsc",
+    "rebuild": "npm run clean && npm run build",
+    "clean:build": "npm run rebuild",
+    "test": "",
     "lint": "eslint . --ext .ts",
     "start:dev": "nodemon",
-    "start": "npm run build && node build/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npm run build && node build/index.js"
   },
   "repository": {
     "type": "git",

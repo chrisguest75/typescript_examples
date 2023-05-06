@@ -14,7 +14,7 @@ In summary, an Nx workspace is a powerful tool that provides a structured and sc
 
 ## NOTES
 
-### Installing node_modules
+### Installing node_modules for a project
 
 To install node_modules you'll need to add a prebuild step that performs the install.  
 
@@ -47,43 +47,51 @@ TODO:
   },
 ```
 
+## Prepare
+
 ```sh
 # select in this directory
 npx nx@latest init
 
-node --version     
+node --version
 
 nvm use
 npm install 
+```
 
-./nx build 01_basic_cmdline      
-./nx build 01_basic_cmdline:clean
+## Use
 
-
-
-npm run nx reset        
-npm run nx list   
-npm run nx report        
-
-npm run nx build 01_basic_cmdline   
-npm run nx build 01_basic_cmdline --verbose
+```sh
+./nx --help
 
 # build all https://nx.dev/packages/nx/documents/run-many
 # this is based on the prebuild step
 ./nx run-many -t build --all              
 
-# run test
-./nx test 03_jest_testing      
+./nx run 01_basic_cmdline:clean
+./nx run 01_basic_cmdline:build
+./nx run 01_basic_cmdline:test
+
+# environment reports
+npx nx@latest report
+
+npx nx@latest list  
+
+# show webpage
+npx nx@latest graph
+
+./nx run 01_basic_cmdline      
+./nx run 01_basic_cmdline:clean
 
 
 
-npx nx@latest
+npm run nx reset
+
+npm run nx build 01_basic_cmdline   
+npm run nx build 01_basic_cmdline --verbose
 
 
 
-npm run nx graph
-
-npm run nx run-many -t build
 
 npm run start myapp --configuration=production 
 
@@ -101,6 +109,8 @@ npm run nx generate ./apps/01_basic_cmdline
 * Adding Nx to NPM/Yarn/PNPM Workspace [here](https://nx.dev/recipes/adopting-nx/adding-to-monorepo)  
 * Getting Started with Package-Based Repos [here](https://nx.dev/tutorials/package-based-repo-tutorial)  
 * Set up a New Nx Workspace [here](https://nx.dev/recipes/getting-started/set-up-a-new-workspace)
+* Going TypeStack with NX Monorepo and Docker (Part 1) [here](https://blog.devgenius.io/going-typestack-with-nx-monorepo-and-docker-part-1-d5ff257981f2)
+* Nx and Node Microservices [here](https://blog.nrwl.io/nx-and-node-microservices-b6df3cd1bad6)
 
 https://nx.dev/community#plugin-directory
 
@@ -112,11 +122,7 @@ https://stackoverflow.com/questions/57493902/does-nx-need-to-be-installed-global
 
 
 
-https://blog.nrwl.io/nx-and-node-microservices-b6df3cd1bad6
 
-
-Going TypeStack with NX Monorepo and Docker (Part 1)
-https://blog.devgenius.io/going-typestack-with-nx-monorepo-and-docker-part-1-d5ff257981f2
 
 Nx affected…  https://github.com/gperdomor/nx-tools/tree/main/packages/nx-docker
 

@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "prebuild": "npm install",
+    "clean": "",
     "build": "",
     "test": "jest",
     "test:debug": "jest --runInBand --detectOpenHandles",  

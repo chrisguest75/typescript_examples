@@ -16,7 +16,7 @@
     "start:dev_browser": "open http://localhost:1234",
     "start:image_browser": "open http://localhost:8080",
     "stop:image": "docker stop globe",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": ""
   },
   "keywords": [],
   "author": "",

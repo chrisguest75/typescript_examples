@@ -5,12 +5,16 @@
   "main": "index.js",
   "scripts": {
     "prebuild": "npm install && npm run swagger",
+    "clean": "rimraf build",
+    "build": "tsc",
+    "rebuild": "npm run clean && npm run build",
+    "clean:build": "npm run rebuild",
+
     "start": "node build/index.js",
     "predev": "npm run swagger",
-    "build": "tsc",
     "dev": "concurrently \"nodemon\" \"nodemon -x tsoa spec\"",
     "swagger": "tsoa spec",    
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": ""
   },
   "keywords": [],
   "author": "",

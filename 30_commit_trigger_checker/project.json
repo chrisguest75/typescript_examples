@@ -1,7 +1,7 @@
 {
-  "name": "16_honeycomb",
+  "name": "30_dockerignore_filter_commit",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "16_honeycomb",
+  "sourceRoot": "30_dockerignore_filter_commit",
   "projectType": "app",
   "targets": {
     "build": {
@@ -9,7 +9,7 @@
       "dependsOn": ["^build:lib"],
       "options": {
         "command": "npm run build",
-        "cwd": "16_honeycomb"
+        "cwd": "30_dockerignore_filter_commit"
       }
     }
   }

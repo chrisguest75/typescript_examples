@@ -1,15 +1,27 @@
 # README
+
 Demonstrates a simple cmdline application packaged in a buildpack
 
 Based on [43_python_buildpacks](https://github.com/chrisguest75/docker_build_examples/tree/master/43_python_buildpacks) and [buildpack-samples](https://github.com/GoogleCloudPlatform/buildpack-samples)  
 
+## 📋 Prerequisites
+
+Installing pack cli tool [instructions](https://buildpacks.io/docs/tools/pack/)
+
+```sh
+#macosx or linux 
+brew install buildpacks/tap/pack
+```
+
 ## How to run
+
 ```sh
 npm install
 npm run start:dev
 ```
 
 ## How to create buildpack
+
 Uses postinstall to compile typescript.  
 
 ```json
@@ -20,20 +32,24 @@ Uses postinstall to compile typescript.
 ```
 
 Build the image
+
 ```sh
 # build the image
 pack build tsbuildpackexample --builder gcr.io/buildpacks/builder --env GOOGLE_ENTRYPOINT="node ./build/index.js"  
+
 docker run tsbuildpackexample            
 ```
 
-
 ## How to recreate
+
 Create folder  
+
 ```sh
 mkdir xx_project_name
 ```
 
 Setup typescript for a basic nodejs project
+
 ```sh
 npm init -y   
 npm install typescript @types/node ts-node nodemon rimraf --save-dev  
@@ -47,7 +63,8 @@ npx tsc --init --rootDir src --outDir build \
 --module commonjs --allowJs true --noImplicitAny true
 ```
 
-Add a nodemonConfig to package.json 
+Add a nodemonConfig to package.json
+
 ```json
   "nodemonConfig": {
     "watch": ["src", "nodemon.json", "tsconfig.json", "package.json"],
@@ -65,6 +82,7 @@ cp ./src ../xx_project_name
 ```
 
 Copy over the package.json scripts
+
 ```json
   "scripts": {
     "postinstall": "tsc --build",
@@ -79,7 +97,6 @@ Copy over the package.json scripts
 #add the nodemon.json and run
 npm run start:dev
 ```
-
 
 ## Resources
 

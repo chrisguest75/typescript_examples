@@ -1,0 +1,73 @@
+name: CI
+
+on:
+  push:
+    branches: 
+      - '*'
+      - '!master'   # excludes main
+    paths:
+      - '**'
+      - '.github/workflows/ci.yaml'
+
+  pull_request:
+    branches:  
+      - '*'
+      - '!master'   # excludes main
+    paths:
+      - '**'
+      - '.github/workflows/ci.yaml'
+
+jobs:
+  build-test:
+    name: "Build, test"  
+    runs-on: ubuntu-latest
+    env:
+      GIT_COMMIT_MSG: '${{ github.event.head_commit.message }}'
+
+    steps:
+    # - name: Dump GitHub context
+    #   id: github_context_step
+    #   run: echo '${{ toJSON(github) }}'
+    - name: Dump job context
+      run: echo '${{ toJSON(job) }}'
+    - name: Dump steps context
+      run: echo '${{ toJSON(steps) }}'
+    - name: Dump runner context
+      run: echo '${{ toJSON(runner) }}'
+    - name: Dump strategy context
+      run: echo '${{ toJSON(strategy) }}'
+    - name: Dump matrix context
+      run: echo '${{ toJSON(matrix) }}'
+
+    # - name: Cache starttime
+    #   id: Cache starttime
+    #   uses: actions/cache@v2
+    #   with:
+    #     path: build-starttime
+    #     key: ${{ runner.os }}-primes
+
+    - name: Save starttime
+      run: |
+        echo $(date +%s) > ../build-start
+        echo "${{ github.sha }}-$GITHUB_RUN_ID" > ../build-tag
+        echo "Commit msg: '$GIT_COMMIT_MSG'"
+
+    # - name: Install honeycomb buildevents tool
+    #   run: |
+    #     curl -s -L -o /usr/local/bin/buildevents https://github.com/honeycombio/buildevents/releases/latest/download/buildevents-linux-amd64 && chmod 755 /usr/local/bin/buildevents
+
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: semgrep-action
+      uses: returntocorp/semgrep-action@v1
+      with:
+        config: >- # more at semgrep.dev/explore
+          r/generic.dockerfile
+          r/bash
+          p/typescript
+          p/github-actions
+          r/html.best-practice.robots-denied.robots-denied
+          r/html.security.missing-noopener.missing-noopener
+          r/html.security.missing-noreferrer.missing-noreferrer
+

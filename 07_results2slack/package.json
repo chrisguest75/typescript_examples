@@ -4,14 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "prebuild": "npm install",    
-    "build": "rimraf ./build && tsc",
+    "prebuild": "npm install",
+    "clean": "rimraf build",
+    "build": "tsc",
+    "rebuild": "npm run clean && npm run build",
+    "clean:build": "npm run rebuild",
+    "test": "",
     "lint": "eslint . --ext .ts",
     "start:dev": "nodemon",
-    "test": "echo \"Error: no test specified\" && exit 1",
-
-
-
     "build:image": "docker build -f Dockerfile -t chrisguest/results2slack:latest .",
     "start:image": "docker run --name results2slack --rm -d chrisguest/results2slack:latest",
     "stop:image": "docker stop chrisguest/results2slack:latest",
