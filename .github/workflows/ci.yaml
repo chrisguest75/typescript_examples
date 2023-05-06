@@ -4,7 +4,7 @@ on:
   push:
     branches: 
       - '*'
-      - '!master'   # excludes main
+      # - '!master'   # excludes main
     paths:
       - '**'
       - '.github/workflows/ci.yaml'
@@ -12,7 +12,7 @@ on:
   pull_request:
     branches:  
       - '*'
-      - '!master'   # excludes main
+      # - '!master'   # excludes main
     paths:
       - '**'
       - '.github/workflows/ci.yaml'
@@ -114,8 +114,15 @@ jobs:
         # NOTE: this hangs
         # ./nx run-many -t build --all     
 
+        while IFS=, read -r value1
+        do
+            echo "PROJECT $value1"
+        done < <(./nx show projects)
+
         TARGET=build
         ./nx run 01_basic_cmdline:${TARGET}
+
+
 
 # 02_templating
 # 03_jest_testing
