@@ -4,6 +4,7 @@
   "description": "https://github.com/chrisguest75/nodejs_examples/tree/master/12_cypress",
   "main": "index.js",
   "scripts": {
+    "prebuild": "npm install",
     "clean": "rimraf build",
     "build": "tsc",
     "rebuild": "npm run clean && npm run build",

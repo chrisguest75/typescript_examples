@@ -4,6 +4,7 @@
   "description": "Demonstrates a simple cmdline application packaged in a buildpack",
   "main": "index.js",
   "scripts": {
+    "prebuild": "npm install",
     "postinstall": "tsc --build",
     "build": "rimraf ./build && tsc",
     "lint": "eslint . --ext .ts",

@@ -1,0 +1,16 @@
+{
+  "name": "19_cypress",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "19_cypress",
+  "projectType": "app",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["^build:lib"],
+      "options": {
+        "command": "npm run build",
+        "cwd": "19_cypress"
+      }
+    }
+  }
+}

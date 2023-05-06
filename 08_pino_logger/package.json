@@ -4,10 +4,16 @@
   "description": "Demonstrates a simple cmdline application (copy these steps)",
   "main": "index.js",
   "scripts": {
-    "build": "rimraf ./build && tsc",
+    "prebuild": "npm install",
+    "clean": "rimraf build",
+    "build": "tsc",
+    "rebuild": "npm run clean && npm run build",
+    "clean:build": "npm run rebuild",
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "npm run type-check -- --watch",
     "lint": "eslint . --ext .ts",
     "start:dev": "nodemon",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": ""
   },
   "keywords": [],
   "author": "",

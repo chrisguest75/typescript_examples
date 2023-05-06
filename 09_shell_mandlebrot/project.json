@@ -1,0 +1,16 @@
+{
+  "name": "09_shell_mandlebrot",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "09_shell_mandlebrot",
+  "projectType": "app",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["^build:lib"],
+      "options": {
+        "command": "npm run build",
+        "cwd": "09_shell_mandlebrot"
+      }
+    }
+  }
+}

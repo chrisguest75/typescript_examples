@@ -4,10 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "rimraf ./build && tsc",
+    "prebuild": "npm install",
+    "clean": "rimraf build",
+    "build": "tsc",
+    "rebuild": "npm run clean && npm run build",
+    "clean:build": "npm run rebuild",
     "lint": "eslint . --ext .ts",
-    "start:dev": "nodemon",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "",
+    "start:dev": "nodemon"
   },
   "keywords": [],
   "author": "",

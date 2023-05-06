@@ -10,6 +10,7 @@ TODO:
 * nvm install-latest-npm
 * npx example
 * get jest working with node18 template
+* Build all projects?
 
 ## Snippets
 
@@ -22,6 +23,10 @@ If having trouble with `nvm use` with xcode crashing with exceptions.
 ```sh
 xcodebuild -runFirstLaunch
 ```
+
+## NX
+
+NX help [00_NX/README.md](./00_NX/README.md)  
 
 ## Upgrading
 

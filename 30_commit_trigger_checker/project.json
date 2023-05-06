@@ -1,0 +1,16 @@
+{
+  "name": "30_dockerignore_filter_commit",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "30_dockerignore_filter_commit",
+  "projectType": "app",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["^build:lib"],
+      "options": {
+        "command": "npm run build",
+        "cwd": "30_dockerignore_filter_commit"
+      }
+    }
+  }
+}

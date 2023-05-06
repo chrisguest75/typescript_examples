@@ -4,6 +4,7 @@
   "description": "Demonstrate some how to check if a commit should trigger docker build",
   "main": "index.js",
   "scripts": {
+    "prebuild": "npm install",
     "tsc": "tsc",    
     "clean": "rimraf build",
     "rebuild": "npm run clean && npm run build",

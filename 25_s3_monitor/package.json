@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "prebuild": "npm install",    
     "audit": "better-npm-audit audit",
     "clean": "rimraf build",
     "build": "tsc",

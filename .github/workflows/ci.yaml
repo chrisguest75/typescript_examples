@@ -1,0 +1,146 @@
+name: CI
+
+on:
+  push:
+    branches: 
+      - '*'
+      - '!master'   # excludes main
+    paths:
+      - '**'
+      - '.github/workflows/ci.yaml'
+
+  pull_request:
+    branches:  
+      - '*'
+      - '!master'   # excludes main
+    paths:
+      - '**'
+      - '.github/workflows/ci.yaml'
+
+jobs:
+  build-test:
+    name: "Build, test"  
+    runs-on: ubuntu-latest
+    env:
+      GIT_COMMIT_MSG: '${{ github.event.head_commit.message }}'
+
+    steps:
+    # - name: Dump GitHub context
+    #   id: github_context_step
+    #   run: echo '${{ toJSON(github) }}'
+    - name: Dump job context
+      run: echo '${{ toJSON(job) }}'
+    - name: Dump steps context
+      run: echo '${{ toJSON(steps) }}'
+    - name: Dump runner context
+      run: echo '${{ toJSON(runner) }}'
+    - name: Dump strategy context
+      run: echo '${{ toJSON(strategy) }}'
+    - name: Dump matrix context
+      run: echo '${{ toJSON(matrix) }}'
+    - name: Dump docker info
+      run: docker info
+
+    # - name: Cache starttime
+    #   id: Cache starttime
+    #   uses: actions/cache@v2
+    #   with:
+    #     path: build-starttime
+    #     key: ${{ runner.os }}-primes
+
+    - name: Save starttime
+      run: |
+        echo $(date +%s) > ../build-start
+        echo "${{ github.sha }}-$GITHUB_RUN_ID" > ../build-tag
+        echo "Commit msg: '$GIT_COMMIT_MSG'"
+
+    # - name: Install honeycomb buildevents tool
+    #   run: |
+    #     curl -s -L -o /usr/local/bin/buildevents https://github.com/honeycombio/buildevents/releases/latest/download/buildevents-linux-amd64 && chmod 755 /usr/local/bin/buildevents
+
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+        # persist-credentials: false
+        # clean: false
+        # submodules: false
+
+    # - name: semgrep-action
+    #   uses: returntocorp/semgrep-action@v1
+    #   with:
+    #     config: >- # more at semgrep.dev/explore
+    #       r/generic.dockerfile
+    #       r/bash
+    #       p/typescript
+    #       p/github-actions
+    #       r/html.best-practice.robots-denied.robots-denied
+    #       r/html.security.missing-noopener.missing-noopener
+    #       r/html.security.missing-noreferrer.missing-noreferrer
+
+
+
+    # In any subsequent steps within this job (myjob) we can reference the resolved SHAs
+    # using either the step outputs or environment variables:
+
+    # ===========================================================================
+    # OPTION 1) Environment variables
+    # ===========================================================================
+    - name: Derive appropriate SHAs for base and head for `nx affected` commands
+      uses: nrwl/nx-set-shas@v3
+      with:
+        main-branch-name: 'master'
+  
+    - run: |
+        echo "BASE: ${{ env.NX_BASE }}"
+        echo "HEAD: ${{ env.NX_HEAD }}"
+
+    - name: NX
+      uses: nrwl/nx-set-shas@v3
+      with:
+        # The "main" branch of your repository (the base branch which you target with PRs).
+        # Common names for this branch include main and master.
+        #
+        # Default: main
+        main-branch-name: 'master'
+
+
+    - name: Build
+      run: |
+        echo "BASE: ${{ steps.setSHAs.outputs.base }}"
+        echo "HEAD: ${{ steps.setSHAs.outputs.head }}"      
+        ./nx report
+
+        # NOTE: this hangs
+        # ./nx run-many -t build --all     
+
+        TARGET=build
+        ./nx run 01_basic_cmdline:${TARGET}
+
+# 02_templating
+# 03_jest_testing
+# 04_git_analysis
+# 05_promises
+# 06_dockerise_browser_typescript
+# 07_results2slack
+# 08_pino_logger
+# 09_shell_mandlebrot
+# 11_simple_swagger
+# 12_buildpack
+# 13_echo_service
+# 15_demoscene_banner
+# 16_honeycomb
+# 17_redis
+# 19_cypress
+# 21_jsonschema
+# 23_faking_json_data
+# 32_scripting_aws
+# 29_express_debugging
+# 28_debugging
+# 26_jobserver
+# 25_s3_monitor
+# 30_dockerignore_filter_commit
+
+
+
+      # run: npx nx affected -t build --parallel=3

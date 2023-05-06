@@ -1,0 +1,16 @@
+{
+  "name": "13_echo_service",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "13_echo_service",
+  "projectType": "app",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["^build:lib"],
+      "options": {
+        "command": "npm run build",
+        "cwd": "13_echo_service"
+      }
+    }
+  }
+}

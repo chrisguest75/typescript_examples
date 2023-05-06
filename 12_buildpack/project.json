@@ -1,0 +1,16 @@
+{
+  "name": "12_buildpack",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "12_buildpack",
+  "projectType": "app",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["^build:lib"],
+      "options": {
+        "command": "npm run build",
+        "cwd": "12_buildpack"
+      }
+    }
+  }
+}

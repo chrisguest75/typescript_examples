@@ -1,0 +1,16 @@
+{
+  "name": "25_s3_monitor",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "25_s3_monitor",
+  "projectType": "app",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["^build:lib"],
+      "options": {
+        "command": "npm run build",
+        "cwd": "25_s3_monitor"
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "26_jobserver",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "26_jobserver",
+  "projectType": "app",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["^build:lib"],
+      "options": {
+        "command": "npm run build",
+        "cwd": "26_jobserver"
+      }
+    }
+  }
+}

@@ -4,6 +4,7 @@
   "description": "Use this to create new examples",
   "main": "dist/index.html",
   "scripts": {
+    "prebuild": "npm install",
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",
     "clean": "rimraf dist",
@@ -15,7 +16,7 @@
     "start:dev_browser": "open http://localhost:1234",
     "start:image_browser": "open http://localhost:8080",
     "stop:image": "docker stop globe",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": ""
   },
   "keywords": [],
   "author": "",
