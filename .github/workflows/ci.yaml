@@ -104,54 +104,30 @@ jobs:
         # Default: main
         main-branch-name: 'master'
 
-    - name: Terraform Plan
-      run: |
-        ./nx run terraform_example:plan
-
-    - name: Build
+    - name: NX info
       run: |
         echo "BASE: ${{ steps.setSHAs.outputs.base }}"
         echo "HEAD: ${{ steps.setSHAs.outputs.head }}"      
         ./nx report
-
-        # NOTE: this hangs
-        # ./nx run-many -t build --all     
 
         while IFS=, read -r value1
         do
             echo "PROJECT $value1"
         done < <(./nx show projects)
 
+    - name: Terraform Plan
+      run: |
+        ./nx run terraform_example:plan
+
+    - name: Build
+      run: |
         TARGET=build
         ./nx run 01_basic_cmdline:${TARGET}
 
-
-
-
-
-# 02_templating
-# 03_jest_testing
-# 04_git_analysis
-# 05_promises
-# 06_dockerise_browser_typescript
-# 07_results2slack
-# 08_pino_logger
-# 09_shell_mandlebrot
-# 11_simple_swagger
-# 12_buildpack
-# 13_echo_service
-# 15_demoscene_banner
-# 16_honeycomb
-# 17_redis
-# 19_cypress
-# 21_jsonschema
-# 23_faking_json_data
-# 32_scripting_aws
-# 29_express_debugging
-# 28_debugging
-# 26_jobserver
-# 25_s3_monitor
-# 30_dockerignore_filter_commit
+    - name: Build all
+      run: |
+        # NOTE: this hangs if there is any misconfiguration in the project
+        ./nx run-many -t build --all     
 
 
 

@@ -1,7 +1,7 @@
 {
   "name": "30_dockerignore_filter_commit",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "30_dockerignore_filter_commit",
+  "sourceRoot": "30_commit_trigger_checker",
   "projectType": "app",
   "targets": {
     "build": {
@@ -9,7 +9,7 @@
       "dependsOn": ["^build:lib"],
       "options": {
         "command": "npm run build",
-        "cwd": "30_dockerignore_filter_commit"
+        "cwd": "30_commit_trigger_checker"
       }
     }
   }

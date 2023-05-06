@@ -14,6 +14,8 @@ In summary, an Nx workspace is a powerful tool that provides a structured and sc
 
 ## NOTES
 
+* It is very sensitive to misconfiguration in `project.json` files.  If misconfigured `run-many` will hang.  
+
 ### Installing node_modules for a project
 
 To install node_modules you'll need to add a prebuild step that performs the install.  
