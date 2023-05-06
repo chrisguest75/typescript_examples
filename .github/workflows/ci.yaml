@@ -88,8 +88,8 @@ jobs:
     # ===========================================================================
     - name: Derive appropriate SHAs for base and head for `nx affected` commands
       uses: nrwl/nx-set-shas@v3
-      with:
-        main-branch-name: 'master'
+      # with:
+      #   main-branch-name: 'master'
   
     - run: |
         echo "BASE: ${{ env.NX_BASE }}"
