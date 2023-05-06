@@ -104,6 +104,9 @@ jobs:
         # Default: main
         main-branch-name: 'master'
 
+    - name: Terraform Plan
+      run: |
+        ./nx run terraform_example:plan
 
     - name: Build
       run: |
@@ -121,6 +124,8 @@ jobs:
 
         TARGET=build
         ./nx run 01_basic_cmdline:${TARGET}
+
+
 
 
 

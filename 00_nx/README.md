@@ -24,18 +24,10 @@ To install node_modules you'll need to add a prebuild step that performs the ins
 
 TODO:
 
-* How do I switch nodejs versions?
-* Add nx builds to the github actions pipeline.
-* Test and build each commit.
+* Can I support different versions of node?
 * Is there a way to template the project.json?
 * Targetted builds.
-* Can I support python builds?
-* Can I support buildx builds?
-* Can I support different versions of node?
-* List the targets for a project
 * What is new in version 16?
-
-
 
 ```json
   "scripts": {
@@ -85,9 +77,19 @@ npx nx@latest graph
 
 ./nx run 01_basic_cmdline      
 ./nx run 01_basic_cmdline:clean
+```
+
+## Terraform example
+
+```sh
+./nx run terraform_example:plan 
+./nx run terraform_example:apply
+./nx run terraform_example:destroy
+```
 
 
 
+```sh
 npm run nx reset
 
 npm run nx build 01_basic_cmdline   
@@ -99,11 +101,6 @@ npm run nx build 01_basic_cmdline --verbose
 npm run start myapp --configuration=production 
 
 npm run nx generate ./apps/01_basic_cmdline 
-
-
-
-
-
 ```
 
 

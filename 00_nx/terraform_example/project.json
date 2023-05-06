@@ -1,0 +1,32 @@
+{
+  "name": "terraform_example",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "terraform_example",
+  "projectType": "app",
+  "targets": {
+    "plan": {
+      "executor": "nx:run-commands",
+      "dependsOn": [],
+      "options": {
+        "command": "terraform init && terraform plan",
+        "cwd": "00_nx/terraform_example"
+      }
+    },
+    "apply": {
+      "executor": "nx:run-commands",
+      "dependsOn": [],
+      "options": {
+        "command": "terraform apply -auto-approve",
+        "cwd": "00_nx/terraform_example"
+      }
+    },
+    "destroy": {
+      "executor": "nx:run-commands",
+      "dependsOn": [],
+      "options": {
+        "command": "terraform destroy -auto-approve",
+        "cwd": "00_nx/terraform_example"
+      }
+    }
+  }
+}
