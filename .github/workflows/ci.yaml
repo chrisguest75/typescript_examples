@@ -71,8 +71,8 @@ jobs:
     #       r/html.security.missing-noopener.missing-noopener
     #       r/html.security.missing-noreferrer.missing-noreferrer
 
-    - uses: nrwl/nx-set-shas@v3
-    - run: npm ci
-
-    - run: npx nx format:check
-    - run: npx nx affected -t build --parallel=3
+    - name: Checkout
+      uses: nrwl/nx-set-shas@v3
+      run: npx nx format:check
+      run: npx nx affected -t build --parallel=3
+      run: npx nx run-many -t build --all     
