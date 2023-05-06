@@ -56,8 +56,8 @@ jobs:
     #   run: |
     #     curl -s -L -o /usr/local/bin/buildevents https://github.com/honeycombio/buildevents/releases/latest/download/buildevents-linux-amd64 && chmod 755 /usr/local/bin/buildevents
 
-    # - name: Checkout
-    #   uses: actions/checkout@v2
+    - name: Checkout
+      uses: actions/checkout@v2
 
     # - name: semgrep-action
     #   uses: returntocorp/semgrep-action@v1
