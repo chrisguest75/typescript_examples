@@ -72,8 +72,8 @@ npx nx@latest show projects
 ./nx run-many -t build --all              
 
 ./nx run 01_basic_cmdline:clean
-./nx run 01_basic_cmdline:build
 ./nx run 01_basic_cmdline:test
+./nx run 01_basic_cmdline:build
 
 # environment reports
 npx nx@latest report
