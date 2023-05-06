@@ -38,6 +38,8 @@ jobs:
       run: echo '${{ toJSON(strategy) }}'
     - name: Dump matrix context
       run: echo '${{ toJSON(matrix) }}'
+    - name: Dump docker info
+      run: docker info
 
     # - name: Cache starttime
     #   id: Cache starttime
@@ -64,6 +66,20 @@ jobs:
         # clean: false
         # submodules: false
 
+    # - name: semgrep-action
+    #   uses: returntocorp/semgrep-action@v1
+    #   with:
+    #     config: >- # more at semgrep.dev/explore
+    #       r/generic.dockerfile
+    #       r/bash
+    #       p/typescript
+    #       p/github-actions
+    #       r/html.best-practice.robots-denied.robots-denied
+    #       r/html.security.missing-noopener.missing-noopener
+    #       r/html.security.missing-noreferrer.missing-noreferrer
+
+
+
     # In any subsequent steps within this job (myjob) we can reference the resolved SHAs
     # using either the step outputs or environment variables:
 
@@ -79,31 +95,6 @@ jobs:
         echo "BASE: ${{ env.NX_BASE }}"
         echo "HEAD: ${{ env.NX_HEAD }}"
 
-    # ===========================================================================
-    # OPTION 2) Step outputs (in this case we must give the step an "id")
-    # ===========================================================================
-    - name: Derive appropriate SHAs for base and head for `nx affected` commands
-      id: setSHAs
-      uses: nrwl/nx-set-shas@v3
-      with:
-        main-branch-name: 'master'
-  
-    - run: |
-        echo "BASE: ${{ steps.setSHAs.outputs.base }}"
-        echo "HEAD: ${{ steps.setSHAs.outputs.head }}"
-
-    # - name: semgrep-action
-    #   uses: returntocorp/semgrep-action@v1
-    #   with:
-    #     config: >- # more at semgrep.dev/explore
-    #       r/generic.dockerfile
-    #       r/bash
-    #       p/typescript
-    #       p/github-actions
-    #       r/html.best-practice.robots-denied.robots-denied
-    #       r/html.security.missing-noopener.missing-noopener
-    #       r/html.security.missing-noreferrer.missing-noreferrer
-
     - name: NX
       uses: nrwl/nx-set-shas@v3
       with:
@@ -115,9 +106,11 @@ jobs:
 
 
     - name: Build
-      run: ./nx run-many -t build --all     
+      run: |
+        echo "BASE: ${{ steps.setSHAs.outputs.base }}"
+        echo "HEAD: ${{ steps.setSHAs.outputs.head }}"      
+        ./nx report
+        ./nx run-many -t build --all     
 
-
-      # run: npx nx format:check
 
       # run: npx nx affected -t build --parallel=3
