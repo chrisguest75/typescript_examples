@@ -118,6 +118,9 @@ npm run nx generate ./apps/01_basic_cmdline
 * Nx Core Tutorial [here](https://nx.dev/core-tutorial)  
 * The fastest growing monorepo solution in the JS ecosystem [here](https://dev.to/nx/nx-the-fastest-growing-monorepo-solution-in-the-js-ecosystem-5en9)  
 
+https://github.com/nrwl/nx-set-shas
+
+
 
 https://nx.dev/community#plugin-directory
 

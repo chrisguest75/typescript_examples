@@ -59,6 +59,30 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
+    # In any subsequent steps within this job (myjob) we can reference the resolved SHAs
+    # using either the step outputs or environment variables:
+
+    # ===========================================================================
+    # OPTION 1) Environment variables
+    # ===========================================================================
+    - name: Derive appropriate SHAs for base and head for `nx affected` commands
+      uses: nrwl/nx-set-shas@v3
+  
+    - run: |
+        echo "BASE: ${{ env.NX_BASE }}"
+        echo "HEAD: ${{ env.NX_HEAD }}"
+
+    # ===========================================================================
+    # OPTION 2) Step outputs (in this case we must give the step an "id")
+    # ===========================================================================
+    - name: Derive appropriate SHAs for base and head for `nx affected` commands
+      id: setSHAs
+      uses: nrwl/nx-set-shas@v3
+  
+    - run: |
+        echo "BASE: ${{ steps.setSHAs.outputs.base }}"
+        echo "HEAD: ${{ steps.setSHAs.outputs.head }}"
+
     # - name: semgrep-action
     #   uses: returntocorp/semgrep-action@v1
     #   with:
@@ -73,6 +97,13 @@ jobs:
 
     - name: NX
       uses: nrwl/nx-set-shas@v3
+      with:
+        # The "main" branch of your repository (the base branch which you target with PRs).
+        # Common names for this branch include main and master.
+        #
+        # Default: main
+        main-branch-name: 'master'
+
 
     - name: Build
       run: npx nx run-many -t build --all     
