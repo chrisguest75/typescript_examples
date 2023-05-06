@@ -116,10 +116,9 @@ npm run nx generate ./apps/01_basic_cmdline
 * Configuring CI Using GitHub Actions and Nx [here](https://nx.dev/recipes/ci/monorepo-ci-github-actions)
 * Nx Core Tutorial [here](https://nx.dev/core-tutorial)  
 * The fastest growing monorepo solution in the JS ecosystem [here](https://dev.to/nx/nx-the-fastest-growing-monorepo-solution-in-the-js-ecosystem-5en9)  
+* Setting Up A DevOps Pipeline With Nx [here](https://christianlydemann.com/setting-up-a-devops-pipeline-with-nx/)  
 
 https://github.com/nrwl/nx-set-shas
-
-
 
 https://nx.dev/community#plugin-directory
 

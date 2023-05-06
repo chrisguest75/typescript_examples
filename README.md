@@ -11,6 +11,10 @@ TODO:
 * npx example
 * get jest working with node18 template
 * Build all projects?
+* functional maps
+* events
+* generators
+* mocking
 
 ## Snippets
 

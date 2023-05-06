@@ -65,6 +65,9 @@ jobs:
         # persist-credentials: false
         # clean: false
         # submodules: false
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 14
 
     # - name: semgrep-action
     #   uses: returntocorp/semgrep-action@v1
