@@ -26,7 +26,7 @@ xcodebuild -runFirstLaunch
 
 ## NX
 
-NX help [00_NX/README.md](./00_NX/README.md)  
+NX help [00_nx/README.md](./00_nx/README.md)  
 
 ## Upgrading
 
