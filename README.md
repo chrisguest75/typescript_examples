@@ -24,6 +24,10 @@ If having trouble with `nvm use` with xcode crashing with exceptions.
 xcodebuild -runFirstLaunch
 ```
 
+## NX
+
+NX help [00_NX/README.md](./00_NX/README.md)  
+
 ## Upgrading
 
 ```sh

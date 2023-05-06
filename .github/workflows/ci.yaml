@@ -56,18 +56,23 @@ jobs:
     #   run: |
     #     curl -s -L -o /usr/local/bin/buildevents https://github.com/honeycombio/buildevents/releases/latest/download/buildevents-linux-amd64 && chmod 755 /usr/local/bin/buildevents
 
-    - name: Checkout
-      uses: actions/checkout@v2
+    # - name: Checkout
+    #   uses: actions/checkout@v2
 
-    - name: semgrep-action
-      uses: returntocorp/semgrep-action@v1
-      with:
-        config: >- # more at semgrep.dev/explore
-          r/generic.dockerfile
-          r/bash
-          p/typescript
-          p/github-actions
-          r/html.best-practice.robots-denied.robots-denied
-          r/html.security.missing-noopener.missing-noopener
-          r/html.security.missing-noreferrer.missing-noreferrer
+    # - name: semgrep-action
+    #   uses: returntocorp/semgrep-action@v1
+    #   with:
+    #     config: >- # more at semgrep.dev/explore
+    #       r/generic.dockerfile
+    #       r/bash
+    #       p/typescript
+    #       p/github-actions
+    #       r/html.best-practice.robots-denied.robots-denied
+    #       r/html.security.missing-noopener.missing-noopener
+    #       r/html.security.missing-noreferrer.missing-noreferrer
 
+    - uses: nrwl/nx-set-shas@v3
+    - run: npm ci
+
+    - run: npx nx format:check
+    - run: npx nx affected -t build --parallel=3

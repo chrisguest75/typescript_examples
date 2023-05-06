@@ -63,6 +63,9 @@ npm install
 
 ```sh
 ./nx --help
+npx nx@latest --help
+
+npx nx@latest show projects
 
 # build all https://nx.dev/packages/nx/documents/run-many
 # this is based on the prebuild step
