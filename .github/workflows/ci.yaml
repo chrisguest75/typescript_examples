@@ -58,6 +58,11 @@ jobs:
 
     - name: Checkout
       uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+        # persist-credentials: false
+        # clean: false
+        # submodules: false
 
     # In any subsequent steps within this job (myjob) we can reference the resolved SHAs
     # using either the step outputs or environment variables:
