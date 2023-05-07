@@ -18,82 +18,49 @@ on:
       - '.github/workflows/ci.yaml'
 
 jobs:
-  build-test:
-    name: "Build, test"  
+  github-info:
     runs-on: ubuntu-latest
-    env:
-      GIT_COMMIT_MSG: '${{ github.event.head_commit.message }}'
-
+    name: Github execution information
     steps:
-    # - name: Dump GitHub context
-    #   id: github_context_step
-    #   run: echo '${{ toJSON(github) }}'
-    - name: Dump job context
-      run: echo '${{ toJSON(job) }}'
-    - name: Dump steps context
-      run: echo '${{ toJSON(steps) }}'
-    - name: Dump runner context
-      run: echo '${{ toJSON(runner) }}'
-    - name: Dump strategy context
-      run: echo '${{ toJSON(strategy) }}'
-    - name: Dump matrix context
-      run: echo '${{ toJSON(matrix) }}'
-    - name: Dump docker info
-      run: docker info
+      # - name: Dump GitHub context
+      #   id: github_context_step
+      #   run: echo '${{ toJSON(github) }}'
+      - name: Dump job context
+        run: echo '${{ toJSON(job) }}'
+      - name: Dump steps context
+        run: echo '${{ toJSON(steps) }}'
+      - name: Dump runner context
+        run: echo '${{ toJSON(runner) }}'
+      - name: Dump strategy context
+        run: echo '${{ toJSON(strategy) }}'
+      - name: Dump matrix context
+        run: echo '${{ toJSON(matrix) }}'
+      - name: Dump docker info
+        run: docker info
+      - name: Terraform Version
+        run: terraform version  
 
-    # - name: Cache starttime
-    #   id: Cache starttime
-    #   uses: actions/cache@v2
-    #   with:
-    #     path: build-starttime
-    #     key: ${{ runner.os }}-primes
-
-    - name: Save starttime
-      run: |
-        echo $(date +%s) > ../build-start
-        echo "${{ github.sha }}-$GITHUB_RUN_ID" > ../build-tag
-        echo "Commit msg: '$GIT_COMMIT_MSG'"
-
-    # - name: Install honeycomb buildevents tool
-    #   run: |
-    #     curl -s -L -o /usr/local/bin/buildevents https://github.com/honeycombio/buildevents/releases/latest/download/buildevents-linux-amd64 && chmod 755 /usr/local/bin/buildevents
-
+  nx-build:
+    runs-on: ubuntu-latest
+    name: Build using NX
+    steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         fetch-depth: 0
         # persist-credentials: false
         # clean: false
         # submodules: false
+
     - uses: actions/setup-node@v3
       with:
         node-version: 14
 
-    # - name: semgrep-action
-    #   uses: returntocorp/semgrep-action@v1
-    #   with:
-    #     config: >- # more at semgrep.dev/explore
-    #       r/generic.dockerfile
-    #       r/bash
-    #       p/typescript
-    #       p/github-actions
-    #       r/html.best-practice.robots-denied.robots-denied
-    #       r/html.security.missing-noopener.missing-noopener
-    #       r/html.security.missing-noreferrer.missing-noreferrer
-
-
-
-    # In any subsequent steps within this job (myjob) we can reference the resolved SHAs
-    # using either the step outputs or environment variables:
-
-    # ===========================================================================
-    # OPTION 1) Environment variables
-    # ===========================================================================
     - name: Derive appropriate SHAs for base and head for `nx affected` commands
       uses: nrwl/nx-set-shas@v3
       with:
         main-branch-name: 'master'
-  
+
     - run: |
         echo "BASE: ${{ env.NX_BASE }}"
         echo "HEAD: ${{ env.NX_HEAD }}"
@@ -122,6 +89,10 @@ jobs:
       run: |
         ./nx run terraform_example:plan
 
+    - name: Build affected
+      run: |
+        ./nx affected:build --base=${{ steps.setSHAs.outputs.base }} --head=${{ steps.setSHAs.outputs.head }} --parallel=3  
+
     - name: Build
       run: |
         TARGET=build
@@ -132,6 +103,22 @@ jobs:
         # NOTE: this hangs if there is any misconfiguration in the project
         ./nx run-many -t build --all     
 
+  semgrep:
+    runs-on: ubuntu-latest
+    name: Semgrep
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
 
-
-      # run: npx nx affected -t build --parallel=3
+      - name: semgrep-action
+        uses: returntocorp/semgrep-action@v1
+        with:
+          config: >- # more at semgrep.dev/explore
+            r/generic.dockerfile
+            r/bash
+            p/terraform
+            p/typescript
+            p/github-actions
+            r/html.best-practice.robots-denied.robots-denied
+            r/html.security.missing-noopener.missing-noopener
+            r/html.security.missing-noreferrer.missing-noreferrer
