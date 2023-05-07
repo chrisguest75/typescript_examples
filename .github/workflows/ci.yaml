@@ -65,25 +65,29 @@ jobs:
         echo "BASE: ${{ env.NX_BASE }}"
         echo "HEAD: ${{ env.NX_HEAD }}"
 
-    - name: NX
-      uses: nrwl/nx-set-shas@v3
-      with:
-        # The "main" branch of your repository (the base branch which you target with PRs).
-        # Common names for this branch include main and master.
-        #
-        # Default: main
-        main-branch-name: 'master'
-
     - name: NX info
       run: |
         echo "BASE: ${{ steps.setSHAs.outputs.base }}"
         echo "HEAD: ${{ steps.setSHAs.outputs.head }}"      
+
+        echo "***************"
+        echo "** REPORT"
+        echo "***************"
         ./nx report
 
+        echo "***************"
+        echo "** AFFECTED"
+        echo "***************"
+        ./nx print-affected --base=${{ steps.setSHAs.outputs.base }} --head=${{ steps.setSHAs.outputs.head }}
+
+        echo "***************"
+        echo "** PROJECTS"
+        echo "***************"
         while IFS=, read -r value1
         do
             echo "PROJECT $value1"
         done < <(./nx show projects)
+
 
     - name: Terraform Plan
       run: |
