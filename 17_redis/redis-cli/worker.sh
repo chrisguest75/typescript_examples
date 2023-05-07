@@ -8,9 +8,9 @@ then
 fi 
 
 while true; do
-    CURRENT=$(redis-cli -h $REDIS_HOSTNAME GET datetime)
+    CURRENT=$(redis-cli -h "$REDIS_HOSTNAME" GET datetime)
     echo "DATE_WITH_TIME=$CURRENT"
     DATE_WITH_TIME=$(date "+%Y%m%d-%H%M%S")
-    redis-cli -h $REDIS_HOSTNAME SET datetime $DATE_WITH_TIME 
+    redis-cli -h "$REDIS_HOSTNAME" SET datetime "$DATE_WITH_TIME" 
     sleep 20
 done
