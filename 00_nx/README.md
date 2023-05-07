@@ -2,6 +2,17 @@
 
 Explain how NX works in this repo.  
 
+TODO:
+
+* Can I support different versions of node?
+* I need to get the base and  head commits working.
+* Find the affected projects and build them individually.
+* Fix the audits for each project.  
+* Fix the docker file issues.  
+* Is there a way to template the project.json?
+* Targetted builds.
+* What is new in version 16? https://github.com/nrwl/nx/discussions/12836
+
 ## NX
 
 An Nx workspace is a tool for developing and managing large-scale Angular applications and enterprise-level projects. Nx is an open-source toolkit developed by Nrwl, which provides a set of tools and guidelines for building, testing, and deploying complex Angular applications.
@@ -15,6 +26,7 @@ In summary, an Nx workspace is a powerful tool that provides a structured and sc
 ## NOTES
 
 * It is very sensitive to misconfiguration in `project.json` files.  If misconfigured `run-many` will hang.  
+* Nx version 15.x.x requires version 16.16.x of node [here](https://nx.dev/packages/workspace/documents/nx-nodejs-typescript-version-matrix)  
 
 ### Installing node_modules for a project
 
@@ -24,12 +36,6 @@ To install node_modules you'll need to add a prebuild step that performs the ins
     "prebuild": "npm install",
 ```
 
-TODO:
-
-* Can I support different versions of node?
-* Is there a way to template the project.json?
-* Targetted builds.
-* What is new in version 16?
 
 ```json
   "scripts": {
@@ -88,6 +94,15 @@ npx nx@latest graph
 ./nx run terraform_example:apply
 ./nx run terraform_example:destroy
 ```
+
+
+
+```sh
+./nx affected --target=plan --with-deps --filter=category:terraform
+./nx affected --target=plan --with-deps --filter=category:node14
+```
+
+
 
 
 

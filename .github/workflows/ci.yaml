@@ -40,17 +40,16 @@ jobs:
       - name: Terraform Version
         run: terraform version  
 
-  nx-build:
+  nx-affected:
     runs-on: ubuntu-latest
     name: Build using NX
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}    
     steps:
     - name: Checkout
       uses: actions/checkout@v3
       with:
         fetch-depth: 0
-        # persist-credentials: false
-        # clean: false
-        # submodules: false
 
     - uses: actions/setup-node@v3
       with:
@@ -75,37 +74,59 @@ jobs:
         echo "***************"
         ./nx report
 
-        echo "***************"
-        echo "** AFFECTED"
-        echo "***************"
-        ./nx print-affected --base=${{ steps.setSHAs.outputs.base }} --head=${{ steps.setSHAs.outputs.head }}
+    - id: set-matrix
+      run: echo "::set-output name=matrix::./nx print-affected --type=lib --base=${{ steps.setSHAs.outputs.base }} --head=${{ steps.setSHAs.outputs.head }} | jq .projects"
+  
 
-        echo "***************"
-        echo "** PROJECTS"
-        echo "***************"
-        while IFS=, read -r value1
-        do
-            echo "PROJECT $value1"
-        done < <(./nx show projects)
+  nx-project-builds:
+    name: NX project builds
+    needs: nx-affected
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        projects: ${{fromJSON(needs.nx-affected.outputs.matrix)}}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+  
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 14
+  
+      - name: Build ${{ matrix.projects }}
+        run: |
+          TARGET=build
+          ./nx run 01_basic_cmdline:${TARGET}
 
 
-    - name: Terraform Plan
-      run: |
-        ./nx run terraform_example:plan
 
-    - name: Build affected
-      run: |
-        ./nx affected:build --base=${{ steps.setSHAs.outputs.base }} --head=${{ steps.setSHAs.outputs.head }} --parallel=3  
 
-    - name: Build
-      run: |
-        TARGET=build
-        ./nx run 01_basic_cmdline:${TARGET}
 
-    - name: Build all
-      run: |
-        # NOTE: this hangs if there is any misconfiguration in the project
-        ./nx run-many -t build --all     
+
+
+
+
+
+    # - name: Terraform Plan
+    #   run: |
+    #     ./nx run terraform_example:plan
+
+    # - name: Build affected
+    #   run: |
+    #     ./nx affected:build --base=${{ steps.setSHAs.outputs.base }} --head=${{ steps.setSHAs.outputs.head }} --parallel=3  
+
+    # - name: Build
+    #   run: |
+    #     TARGET=build
+    #     ./nx run 01_basic_cmdline:${TARGET}
+
+    # - name: Build all
+    #   run: |
+    #     # NOTE: this hangs if there is any misconfiguration in the project
+    #     ./nx run-many -t build --all     
 
   semgrep:
     runs-on: ubuntu-latest
@@ -126,3 +147,32 @@ jobs:
             r/html.best-practice.robots-denied.robots-denied
             r/html.security.missing-noopener.missing-noopener
             r/html.security.missing-noreferrer.missing-noreferrer
+
+
+
+# echo "***************"
+# echo "** AFFECTED"
+# echo "***************"
+# ./nx print-affected --base=${{ steps.setSHAs.outputs.base }} --head=${{ steps.setSHAs.outputs.head }}
+
+# echo "***************"
+# echo "** PROJECTS"
+# echo "***************"
+# while IFS=, read -r value1
+# do
+#     echo "PROJECT $value1"
+# done < <(./nx show projects)
+
+
+# IFS=',' read -ra items <<< "$(./nx print-affected --type=lib --select=projects)"
+# for item in "${items[@]}"; do
+#   echo "$item"
+# done
+
+# while IFS=, read -r value1
+# do
+#     echo "PROJECT $value1"
+# done < <(./nx print-affected --type=lib --select=projects | tr ',' '\n')
+
+# ./nx print-affected --type=lib --select=projects | tr ',' '\n'
+
