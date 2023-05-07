@@ -75,7 +75,8 @@ jobs:
         ./nx report
 
     - id: set-matrix
-      run: echo "::set-output name=matrix::./nx print-affected --type=lib --base=${{ steps.setSHAs.outputs.base }} --head=${{ steps.setSHAs.outputs.head }} | jq .projects"
+      run: |
+        echo "::set-output name=matrix::$(./nx print-affected --type=lib --base=${{ steps.setSHAs.outputs.base }} --head=${{ steps.setSHAs.outputs.head }} | jq .projects)"
   
 
   nx-project-builds:
