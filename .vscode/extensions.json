@@ -1,0 +1,9 @@
+{
+    "recommendations": [
+        "ms-vscode.vscode-typescript-next",
+        "wallabyjs.quokka-vscode",
+        "ms-azuretools.vscode-docker",
+        "dbaeumer.vscode-eslint",
+        "github.vscode-github-actions"
+    ]
+}
