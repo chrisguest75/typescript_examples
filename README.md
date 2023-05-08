@@ -28,6 +28,10 @@ If having trouble with `nvm use` with xcode crashing with exceptions.
 xcodebuild -runFirstLaunch
 ```
 
+## Actions
+
+Actions help [.github/ACTIONS.md](.github/ACTIONS.md)  
+
 ## NX
 
 NX help [00_nx/README.md](./00_nx/README.md)  

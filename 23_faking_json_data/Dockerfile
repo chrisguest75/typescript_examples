@@ -18,6 +18,8 @@ RUN npm ci --only=production && npm cache clean --force
 FROM gcr.io/distroless/nodejs:16 AS PRODUCTION
 LABEL dockerfile.baseimage="gcr.io/distroless/nodejs:16" dockerfile.description="ts_sbom_test" dockerfile.stage="PRODUCTION"
 
+#USER node
+
 ENV NODE_ENV production
 
 WORKDIR /work

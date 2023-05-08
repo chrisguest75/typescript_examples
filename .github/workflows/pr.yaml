@@ -1,21 +1,21 @@
-name: CI
+name: PR CI
 
 on:
   push:
     branches: 
       - '*'
-      # - '!master'   # excludes main
+      - '!master'   # excludes main
     paths:
       - '**'
-      - '.github/workflows/ci.yaml'
+      - '.github/workflows/pr.yaml'
 
   pull_request:
     branches:  
       - '*'
-      # - '!master'   # excludes main
+      - '!master'   # excludes main
     paths:
       - '**'
-      - '.github/workflows/ci.yaml'
+      - '.github/workflows/pr.yaml'
 
 jobs:
   github-info:
@@ -125,33 +125,6 @@ jobs:
           fi
           ./nx run "${{ matrix.projects }}:${TARGET}"
 
-
-
-
-
-
-
-
-
-
-    # - name: Terraform Plan
-    #   run: |
-    #     ./nx run terraform_example:plan
-
-    # - name: Build affected
-    #   run: |
-    #     ./nx affected:build --base=${{ steps.setSHAs.outputs.base }} --head=${{ steps.setSHAs.outputs.head }} --parallel=3  
-
-    # - name: Build
-    #   run: |
-    #     TARGET=build
-    #     ./nx run 01_basic_cmdline:${TARGET}
-
-    # - name: Build all
-    #   run: |
-    #     # NOTE: this hangs if there is any misconfiguration in the project
-    #     ./nx run-many -t build --all     
-
   semgrep:
     runs-on: ubuntu-latest
     name: Semgrep
@@ -171,32 +144,4 @@ jobs:
             r/html.best-practice.robots-denied.robots-denied
             r/html.security.missing-noopener.missing-noopener
             r/html.security.missing-noreferrer.missing-noreferrer
-
-
-
-# echo "***************"
-# echo "** AFFECTED"
-# echo "***************"
-# ./nx print-affected --base=${{ steps.setSHAs.outputs.base }} --head=${{ steps.setSHAs.outputs.head }}
-
-# echo "***************"
-# echo "** PROJECTS"
-# echo "***************"
-# while IFS=, read -r value1
-# do
-#     echo "PROJECT $value1"
-# done < <(./nx show projects)
-
-
-# IFS=',' read -ra items <<< "$(./nx print-affected --type=lib --select=projects)"
-# for item in "${items[@]}"; do
-#   echo "$item"
-# done
-
-# while IFS=, read -r value1
-# do
-#     echo "PROJECT $value1"
-# done < <(./nx print-affected --type=lib --select=projects | tr ',' '\n')
-
-# ./nx print-affected --type=lib --select=projects | tr ',' '\n'
 

@@ -1,0 +1,193 @@
+name: master CI 
+
+on:
+  push:
+    branches: 
+      - 'master'   # excludes main
+    paths:
+      - '**'
+      - '.github/workflows/master.yaml'
+
+jobs:
+  github-info:
+    runs-on: ubuntu-latest
+    name: Github execution information
+    steps:
+      # - name: Dump GitHub context
+      #   id: github_context_step
+      #   run: echo '${{ toJSON(github) }}'
+      - name: Dump job context
+        run: echo '${{ toJSON(job) }}'
+      - name: Dump steps context
+        run: echo '${{ toJSON(steps) }}'
+      - name: Dump runner context
+        run: echo '${{ toJSON(runner) }}'
+      - name: Dump strategy context
+        run: echo '${{ toJSON(strategy) }}'
+      - name: Dump matrix context
+        run: echo '${{ toJSON(matrix) }}'
+      - name: Dump docker info
+        run: docker info
+      - name: Terraform Version
+        run: terraform version  
+
+  nx-affected:
+    runs-on: ubuntu-latest
+    name: Build using NX
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.JSON_RESPONSE }}    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 14
+
+    - name: Derive appropriate SHAs for base and head for `nx affected` commands
+      uses: nrwl/nx-set-shas@v3
+      with:
+        main-branch-name: 'master'
+
+    - run: |
+        echo "BASE: ${{ env.NX_BASE }}"
+        echo "HEAD: ${{ env.NX_HEAD }}"
+
+    - name: Derive appropriate SHAs for base and head for `nx affected` commands
+      id: setSHAs
+      uses: nrwl/nx-set-shas@v3
+      with:
+        main-branch-name: 'master'
+
+    - name: NX info
+      run: |
+        echo "BASE: ${{ steps.setSHAs.outputs.base }}"
+        echo "HEAD: ${{ steps.setSHAs.outputs.head }}"      
+
+        echo "***************"
+        echo "** REPORT"
+        echo "***************"
+        ./nx report
+
+    - id: set-matrix
+      run: |
+        echo "Affected"
+        ./nx print-affected --type=lib --base=${{ steps.setSHAs.outputs.base }} --head=${{ steps.setSHAs.outputs.head }} | jq -c .projects
+
+        # multiline output
+        EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+        echo "JSON_RESPONSE<<$EOF" >> "$GITHUB_OUTPUT"
+        ./nx print-affected --type=lib --base=${{ steps.setSHAs.outputs.base }} --head=${{ steps.setSHAs.outputs.head }} | jq -c .projects >> "$GITHUB_OUTPUT"
+        echo "$EOF" >> "$GITHUB_OUTPUT"
+
+    - id: get-matrix
+      run: |
+        echo "${{ steps.set-matrix.outputs.JSON_RESPONSE }}"
+  
+  nx-project-builds:
+    name: NX project builds
+    needs: nx-affected
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        projects: ${{fromJSON(needs.nx-affected.outputs.matrix)}}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+  
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 14
+  
+      - name: Build ${{ needs.nx-affected.outputs }}
+        run: |
+          echo "${{fromJSON(needs.nx-affected.outputs.matrix)}}"
+          echo "${{ matrix.projects }}"
+
+          TARGET=build
+          if [[ ${{ matrix.projects }} == terraform* ]]; then
+            TARGET=plan
+          fi
+          ./nx run "${{ matrix.projects }}:${TARGET}"
+
+
+
+
+
+
+
+
+
+
+    # - name: Terraform Plan
+    #   run: |
+    #     ./nx run terraform_example:plan
+
+    # - name: Build affected
+    #   run: |
+    #     ./nx affected:build --base=${{ steps.setSHAs.outputs.base }} --head=${{ steps.setSHAs.outputs.head }} --parallel=3  
+
+    # - name: Build
+    #   run: |
+    #     TARGET=build
+    #     ./nx run 01_basic_cmdline:${TARGET}
+
+    # - name: Build all
+    #   run: |
+    #     # NOTE: this hangs if there is any misconfiguration in the project
+    #     ./nx run-many -t build --all     
+
+  semgrep:
+    runs-on: ubuntu-latest
+    name: Semgrep
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: semgrep-action
+        uses: returntocorp/semgrep-action@v1
+        with:
+          config: >- # more at semgrep.dev/explore
+            r/generic.dockerfile
+            r/bash
+            p/terraform
+            p/typescript
+            p/github-actions
+            r/html.best-practice.robots-denied.robots-denied
+            r/html.security.missing-noopener.missing-noopener
+            r/html.security.missing-noreferrer.missing-noreferrer
+
+
+
+# echo "***************"
+# echo "** AFFECTED"
+# echo "***************"
+# ./nx print-affected --base=${{ steps.setSHAs.outputs.base }} --head=${{ steps.setSHAs.outputs.head }}
+
+# echo "***************"
+# echo "** PROJECTS"
+# echo "***************"
+# while IFS=, read -r value1
+# do
+#     echo "PROJECT $value1"
+# done < <(./nx show projects)
+
+
+# IFS=',' read -ra items <<< "$(./nx print-affected --type=lib --select=projects)"
+# for item in "${items[@]}"; do
+#   echo "$item"
+# done
+
+# while IFS=, read -r value1
+# do
+#     echo "PROJECT $value1"
+# done < <(./nx print-affected --type=lib --select=projects | tr ',' '\n')
+
+# ./nx print-affected --type=lib --select=projects | tr ',' '\n'
+
