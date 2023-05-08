@@ -120,7 +120,7 @@ jobs:
           echo "${{ matrix.projects }}"
 
           TARGET=build
-          ./nx run 01_basic_cmdline:${TARGET}
+          ./nx run "${{ matrix.projects }}:${TARGET}"
 
 
 
