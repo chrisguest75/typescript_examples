@@ -100,6 +100,7 @@ jobs:
     needs: nx-affected
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         projects: ${{fromJSON(needs.nx-affected.outputs.matrix)}}
 
