@@ -117,6 +117,10 @@ jobs:
         run: |
           echo "${{ needs.nx-affected.outputs }}"
           echo '${{ toJSON( needs.nx-affected.outputs) }}'
+          echo "${{ needs.nx-affected.outputs.JSON_RESPONSE }}"
+          echo "${{ needs.nx-affected.steps.set-matrix.outputs.JSON_RESPONSE }}"
+
+
 
           TARGET=build
           ./nx run 01_basic_cmdline:${TARGET}
