@@ -109,9 +109,11 @@ jobs:
         with:
           node-version: 14
   
-      - name: Build ${{ matrix.projects }}
+      - name: Build ${{ needs.nx-affected.outputs }}
         run: |
           echo "${{ needs.nx-affected.outputs }}"
+          echo '${{ toJSON( needs.nx-affected.outputs) }}'
+
           TARGET=build
           ./nx run 01_basic_cmdline:${TARGET}
 
