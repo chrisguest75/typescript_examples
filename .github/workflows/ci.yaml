@@ -83,9 +83,9 @@ jobs:
     - id: set-matrix
       run: |
         echo "Affected"
-        ./nx print-affected --type=lib --base=${{ steps.setSHAs.outputs.base }} --head=${{ steps.setSHAs.outputs.head }} 
+        ./nx print-affected --type=lib --base=${{ steps.setSHAs.outputs.base }} --head=${{ steps.setSHAs.outputs.head }} | jq -c .projects
 
-        ./nx print-affected --type=lib --base=${{ steps.setSHAs.outputs.base }} --head=${{ steps.setSHAs.outputs.head }} | jq .projects >> $GITHUB_OUTPUT
+        ./nx print-affected --type=lib --base=${{ steps.setSHAs.outputs.base }} --head=${{ steps.setSHAs.outputs.head }} | jq -c .projects >> $GITHUB_OUTPUT
 
   nx-project-builds:
     name: NX project builds

@@ -31,3 +31,5 @@ gh run view 4913698673 --log-failed
 * Getting Started: Scanning Terraform using Semgrep [here](https://medium.com/@tysiew/getting-started-scanning-terraform-using-semgrep-408b6722347c)  
 
 https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/
+
+Multiline https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#multiline-strings
