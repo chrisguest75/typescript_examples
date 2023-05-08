@@ -4,7 +4,7 @@ Demonstrate a few monorepo techniques for nx.
 
 ## NOTES
 
-* 
+* We let NX decide the affected projects and then build them as subtasks.  
 
 ## Watching pipelines
 

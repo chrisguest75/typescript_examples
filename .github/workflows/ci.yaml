@@ -115,11 +115,13 @@ jobs:
   
       - name: Build ${{ needs.nx-affected.outputs }}
         run: |
-          echo "${{ needs.nx-affected.outputs.matrix }}"
           echo "${{fromJSON(needs.nx-affected.outputs.matrix)}}"
           echo "${{ matrix.projects }}"
 
           TARGET=build
+          if [[ ${{ matrix.projects }} == terraform* ]]; then
+            TARGET=plan
+          fi
           ./nx run "${{ matrix.projects }}:${TARGET}"
 
 
