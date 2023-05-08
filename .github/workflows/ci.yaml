@@ -99,9 +99,9 @@ jobs:
     name: NX project builds
     needs: nx-affected
     runs-on: ubuntu-latest
-    # strategy:
-    #   matrix:
-    #     projects: ${{fromJSON(needs.nx-affected.outputs.matrix)}}
+    strategy:
+      matrix:
+        projects: ${{fromJSON(needs.nx-affected.outputs.matrix)}}
 
     steps:
       - name: Checkout
@@ -115,13 +115,9 @@ jobs:
   
       - name: Build ${{ needs.nx-affected.outputs }}
         run: |
-          echo "${{ needs.nx-affected.outputs }}"
-          echo '${{ toJSON( needs.nx-affected.outputs) }}'
-          echo "${{ needs.nx-affected.outputs.JSON_RESPONSE }}"
-          echo "${{ needs.nx-affected.steps.set-matrix.outputs.JSON_RESPONSE }}"
           echo "${{ needs.nx-affected.outputs.matrix }}"
-
-
+          echo "${{fromJSON(needs.nx-affected.outputs.matrix)}}"
+          echo "${{ matrix.projects }}"
 
           TARGET=build
           ./nx run 01_basic_cmdline:${TARGET}
