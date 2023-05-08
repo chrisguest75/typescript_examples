@@ -33,3 +33,6 @@ gh run view 4913698673 --log-failed
 https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/
 
 Multiline https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#multiline-strings
+
+
+Job outputs https://stackoverflow.com/questions/59175332/using-output-from-a-previous-job-in-a-new-one-in-a-github-action

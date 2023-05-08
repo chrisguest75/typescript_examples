@@ -44,7 +44,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Build using NX
     outputs:
-      matrix: ${{ steps.set-matrix.outputs.matrix }}    
+      matrix: ${{ steps.set-matrix.outputs.JSON_RESPONSE }}    
     steps:
     - name: Checkout
       uses: actions/checkout@v3
@@ -119,6 +119,7 @@ jobs:
           echo '${{ toJSON( needs.nx-affected.outputs) }}'
           echo "${{ needs.nx-affected.outputs.JSON_RESPONSE }}"
           echo "${{ needs.nx-affected.steps.set-matrix.outputs.JSON_RESPONSE }}"
+          echo "${{ needs.nx-affected.outputs.matrix }}"
 
 
 
