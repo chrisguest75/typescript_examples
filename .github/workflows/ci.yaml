@@ -87,6 +87,7 @@ jobs:
 
         # multiline output
         EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+        echo "JSON_RESPONSE<<$EOF" >> "$GITHUB_OUTPUT"
         ./nx print-affected --type=lib --base=${{ steps.setSHAs.outputs.base }} --head=${{ steps.setSHAs.outputs.head }} | jq -c .projects >> "$GITHUB_OUTPUT"
         echo "$EOF" >> "$GITHUB_OUTPUT"
 
