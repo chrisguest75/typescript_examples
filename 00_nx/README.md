@@ -123,6 +123,7 @@ npm run nx generate ./apps/01_basic_cmdline
 
 ## Resources
 
+* Intro to Nx [here](https://nx.dev/getting-started/intro_)  
 * Adding Nx to NPM/Yarn/PNPM Workspace [here](https://nx.dev/recipes/adopting-nx/adding-to-monorepo)  
 * Getting Started with Package-Based Repos [here](https://nx.dev/tutorials/package-based-repo-tutorial)  
 * Set up a New Nx Workspace [here](https://nx.dev/recipes/getting-started/set-up-a-new-workspace)
@@ -132,8 +133,7 @@ npm run nx generate ./apps/01_basic_cmdline
 * Nx Core Tutorial [here](https://nx.dev/core-tutorial)  
 * The fastest growing monorepo solution in the JS ecosystem [here](https://dev.to/nx/nx-the-fastest-growing-monorepo-solution-in-the-js-ecosystem-5en9)  
 * Setting Up A DevOps Pipeline With Nx [here](https://christianlydemann.com/setting-up-a-devops-pipeline-with-nx/)  
-
-https://github.com/nrwl/nx-set-shas
+* nrwl/nx-set-shas repo [here](https://github.com/nrwl/nx-set-shas)
 
 https://nx.dev/community#plugin-directory
 
@@ -142,7 +142,5 @@ https://stackoverflow.com/questions/57493902/does-nx-need-to-be-installed-global
 Nx affected…  https://github.com/gperdomor/nx-tools/tree/main/packages/nx-docker
 
 https://nx.dev/getting-started/nx-and-typescript
-
-Nx - https://nx.dev/getting-started/intro
 
 https://docs.volta.sh/guide/getting-started

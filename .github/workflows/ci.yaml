@@ -44,7 +44,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Build using NX
     outputs:
-      matrix: ${{ steps.set-matrix.outputs.matrix }}    
+      matrix: ${{ steps.set-matrix.outputs.JSON_RESPONSE }}    
     steps:
     - name: Checkout
       uses: actions/checkout@v3
@@ -64,6 +64,12 @@ jobs:
         echo "BASE: ${{ env.NX_BASE }}"
         echo "HEAD: ${{ env.NX_HEAD }}"
 
+    - name: Derive appropriate SHAs for base and head for `nx affected` commands
+      id: setSHAs
+      uses: nrwl/nx-set-shas@v3
+      with:
+        main-branch-name: 'master'
+
     - name: NX info
       run: |
         echo "BASE: ${{ steps.setSHAs.outputs.base }}"
@@ -76,14 +82,25 @@ jobs:
 
     - id: set-matrix
       run: |
-        echo "::set-output name=matrix::$(./nx print-affected --type=lib --base=${{ steps.setSHAs.outputs.base }} --head=${{ steps.setSHAs.outputs.head }} | jq .projects)"
-  
+        echo "Affected"
+        ./nx print-affected --type=lib --base=${{ steps.setSHAs.outputs.base }} --head=${{ steps.setSHAs.outputs.head }} | jq -c .projects
 
+        # multiline output
+        EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+        echo "JSON_RESPONSE<<$EOF" >> "$GITHUB_OUTPUT"
+        ./nx print-affected --type=lib --base=${{ steps.setSHAs.outputs.base }} --head=${{ steps.setSHAs.outputs.head }} | jq -c .projects >> "$GITHUB_OUTPUT"
+        echo "$EOF" >> "$GITHUB_OUTPUT"
+
+    - id: get-matrix
+      run: |
+        echo "${{ steps.set-matrix.outputs.JSON_RESPONSE }}"
+  
   nx-project-builds:
     name: NX project builds
     needs: nx-affected
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         projects: ${{fromJSON(needs.nx-affected.outputs.matrix)}}
 
@@ -97,10 +114,16 @@ jobs:
         with:
           node-version: 14
   
-      - name: Build ${{ matrix.projects }}
+      - name: Build ${{ needs.nx-affected.outputs }}
         run: |
+          echo "${{fromJSON(needs.nx-affected.outputs.matrix)}}"
+          echo "${{ matrix.projects }}"
+
           TARGET=build
-          ./nx run 01_basic_cmdline:${TARGET}
+          if [[ ${{ matrix.projects }} == terraform* ]]; then
+            TARGET=plan
+          fi
+          ./nx run "${{ matrix.projects }}:${TARGET}"
 
 
 
