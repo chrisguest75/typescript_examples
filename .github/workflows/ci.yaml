@@ -91,6 +91,10 @@ jobs:
         ./nx print-affected --type=lib --base=${{ steps.setSHAs.outputs.base }} --head=${{ steps.setSHAs.outputs.head }} | jq -c .projects >> "$GITHUB_OUTPUT"
         echo "$EOF" >> "$GITHUB_OUTPUT"
 
+    - id: get-matrix
+      run: |
+        echo "${{ steps.set-matrix.outputs.JSON_RESPONSE }}"
+  
   nx-project-builds:
     name: NX project builds
     needs: nx-affected
