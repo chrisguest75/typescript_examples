@@ -76,16 +76,15 @@ jobs:
 
     - id: set-matrix
       run: |
-        echo "::set-output name=matrix::$(./nx print-affected --type=lib --base=${{ steps.setSHAs.outputs.base }} --head=${{ steps.setSHAs.outputs.head }} | jq .projects)"
-  
+        ./nx print-affected --type=lib --base=${{ steps.setSHAs.outputs.base }} --head=${{ steps.setSHAs.outputs.head }} | jq .projects >> $GITHUB_OUTPUT
 
   nx-project-builds:
     name: NX project builds
     needs: nx-affected
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        projects: ${{fromJSON(needs.nx-affected.outputs.matrix)}}
+    # strategy:
+    #   matrix:
+    #     projects: ${{fromJSON(needs.nx-affected.outputs.matrix)}}
 
     steps:
       - name: Checkout
@@ -99,6 +98,7 @@ jobs:
   
       - name: Build ${{ matrix.projects }}
         run: |
+          echo "${{ needs.nx-affected.outputs }}"
           TARGET=build
           ./nx run 01_basic_cmdline:${TARGET}
 
