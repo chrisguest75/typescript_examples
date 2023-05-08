@@ -85,7 +85,10 @@ jobs:
         echo "Affected"
         ./nx print-affected --type=lib --base=${{ steps.setSHAs.outputs.base }} --head=${{ steps.setSHAs.outputs.head }} | jq -c .projects
 
-        ./nx print-affected --type=lib --base=${{ steps.setSHAs.outputs.base }} --head=${{ steps.setSHAs.outputs.head }} | jq -c .projects >> $GITHUB_OUTPUT
+        # multiline output
+        EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+        ./nx print-affected --type=lib --base=${{ steps.setSHAs.outputs.base }} --head=${{ steps.setSHAs.outputs.head }} | jq -c .projects >> "$GITHUB_OUTPUT"
+        echo "$EOF" >> "$GITHUB_OUTPUT"
 
   nx-project-builds:
     name: NX project builds
