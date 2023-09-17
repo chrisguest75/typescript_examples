@@ -10,6 +10,9 @@
     "lint": "eslint . --ext .ts",
     "start:dev": "nodemon",
     "start": "node ./build/index.js",
+    "audit": "better-npm-audit audit --production",
+    "pack": "pack build tsbuildpackexample --builder gcr.io/buildpacks/builder --env GOOGLE_ENTRYPOINT='node ./build/index.js'",
+    "start:pack": "docker run tsbuildpackexample",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -21,7 +24,7 @@
     "rimraf": "^3.0.2",
     "ts-node": "^10.0.0",
     "typescript": "^4.3.2"
-  },  
+  },
   "nodemonConfig": {
     "watch": [
       "src",
@@ -34,6 +37,9 @@
     "exec": "ts-node ./src/index.ts"
   },
   "engines": {
-    "node": "14.16.0"
-  }  
+    "node": "18.13.0"
+  },
+  "dependencies": {
+    "better-npm-audit": "^3.7.3"
+  }
 }

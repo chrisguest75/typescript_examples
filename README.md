@@ -38,13 +38,7 @@ NX help [00_nx/README.md](./00_nx/README.md)
 
 ## Upgrading
 
-```sh
-# use outdated to show newer package versions 
-npm outdated
-
-# also show 
-npm audit
-```
+If we're upgrading NPM packages there's some advice in [UPGRADING.md](UPGRADING.md)  
 
 ## 00 - Project templates using hygen
 
