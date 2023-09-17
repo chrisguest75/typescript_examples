@@ -1,19 +1,24 @@
 # README
-Demonstrates how to use pino logger in typescript 
+
+Demonstrates how to use pino logger in typescript  
 
 ## How to run
+
 ```sh
 npm install
 npm run start:dev
 ```
 
 ## How to recreate
+
 Create folder  
+
 ```sh
 mkdir xx_project_name
 ```
 
-Setup typescript for a basic nodejs project
+Setup typescript for a basic nodejs project  
+
 ```sh
 npm init -y   
 npm install typescript @types/node ts-node nodemon rimraf --save-dev  
@@ -28,6 +33,7 @@ npx tsc --init --rootDir src --outDir build \
 ```
 
 Add a nodemon.json  
+
 ```json
 {
   "watch": ["src", "nodemon.json", "tsconfig.json", "package.json"],
@@ -45,6 +51,7 @@ cp ./src ../xx_project_name
 ```
 
 Copy over the package.json scripts
+
 ```json
   "scripts": {
     "build": "rimraf ./build && tsc",
@@ -58,13 +65,16 @@ Copy over the package.json scripts
 #add the nodemon.json and run
 npm run start:dev
 ```
+
 ## Add pino
+
 ```sh
 npm install pino     
 npm install --save-dev @types/pino   
 ```
 
-# Add linting 
+## Add linting
+
 Add a basic linter
 
 ```sh
@@ -73,8 +83,10 @@ npm install --save-dev eslint @typescript-eslint/parser @typescript-eslint/eslin
 # add an .eslintrc
 ```
 
-## Debugging 
-Ensure that the sourcemap output is enabled. 
+## Debugging
+
+Ensure that the sourcemap output is enabled.  
+
 ```json
     "sourceMap": true,  
 ```
@@ -82,11 +94,11 @@ Ensure that the sourcemap output is enabled.
 Add a tasks file that is for npm "tsc: build - xx_project_name/tsconfig.json"  
 
 Add a prelaunch task to transpile the code.  
+
 ```json
     "preLaunchTask": "tsc: build - xx_project_name/tsconfig.json",
 ```
 
-
-
 ## Resources
+
 * https://blog.morizyun.com/javascript/library-typescript-pino-logger.html
