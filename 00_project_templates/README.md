@@ -20,7 +20,7 @@ Templates:
 
 ```sh
 npx hygen cli help
-# create new project
+# create new project (make sure you're in 00_project_templates)
 npx hygen cli new 99_test --docker
 
 # recreate
