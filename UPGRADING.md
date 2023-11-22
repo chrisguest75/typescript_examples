@@ -52,6 +52,8 @@ npm run audit
 
 ## Resources
 
-* Updating packages downloaded from the registry [here](https://docs.npmjs.com/updating-packages-downloaded-from-the-registry)
-* npm-check [here](https://www.npmjs.com/package/npm-check)
-* Better NPM Audit [here](https://www.npmjs.com/package/better-npm-audit?activeTab=readme)
+* Updating packages downloaded from the registry [here](https://docs.npmjs.com/updating-packages-downloaded-from-the-registry)  
+* npm-check [here](https://www.npmjs.com/package/npm-check)  
+* Better NPM Audit [here](https://www.npmjs.com/package/better-npm-audit?activeTab=readme)  
+* npm audit: Broken by Design [here](https://overreacted.io/npm-audit-broken-by-design/)  
+* The Better Npm Audit [here](https://medium.com/sandworm/the-better-npm-audit-baba6551e381)  
