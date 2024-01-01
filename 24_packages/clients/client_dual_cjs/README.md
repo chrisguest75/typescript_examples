@@ -1,6 +1,6 @@
-# CJS CLIENT
+# CJS CLIENT (using dual library)
 
-Setup typescript for a basic nodejs CJS package.  
+Setup typescript for a basic nodejs dual CJS and EJS package.  
 
 NOTES:
 
@@ -9,7 +9,7 @@ NOTES:
 
 ## Contents
 
-- [CJS CLIENT](#cjs-client)
+- [CJS CLIENT (using dual library)](#cjs-client-using-dual-library)
   - [Contents](#contents)
   - [Add custom cjs module (after creation)](#add-custom-cjs-module-after-creation)
   - [Create](#create)
@@ -22,12 +22,12 @@ NOTES:
 
 ```sh
 # NOTE: you have to build the dist folder
-pushd ../../packages/spellcheck_cjs
+pushd ../../packages/spellcheck_dual
 npm run build
-ls -la ./dist
+ls -laR ./dist
 popd
 
-npm install ../../packages/spellcheck_cjs
+npm install ../../packages/spellcheck_dual
 npm install
 ```
 

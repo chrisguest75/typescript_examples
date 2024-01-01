@@ -58,3 +58,12 @@ test-all:
   npm run rebuild
   npm run start
   cd ../..
+  echo "*************************************"
+  echo "** client_dual_cjs"
+  echo "*************************************"  
+  cd clients/client_dual_cjs
+  npm install
+  npm run test
+  npm run rebuild
+  npm run start
+  cd ../..

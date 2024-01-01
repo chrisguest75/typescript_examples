@@ -138,7 +138,7 @@ Add more targets to `scripts` section in `package.json`
 
 ```js
   "scripts": {
-    "test": "jest",
+    "test": "jest --detectOpenHandles --forceExit",    
     "coverage": "jest --coverage"
   },
 ```

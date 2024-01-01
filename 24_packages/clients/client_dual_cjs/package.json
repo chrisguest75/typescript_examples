@@ -1,41 +1,23 @@
 {
-  "name": "@chrisguest75/spellcheck_dual",
+  "name": "@chrisguest75/client_dual_cjs",
   "version": "1.0.0",
-  "description": "NOTES:",
-  "main": "dist/cjs/index.js",
+  "description": "Setup typescript for a basic nodejs dual CJS and EJS package.",
+  "main": "index.js",
   "scripts": {
-    "clean": "rimraf dist",
-    "clean:all": "rimraf dist && rimraf node_modules",
-    "build": "npm run build:esm && npm run build:cjs",
-    "build:esm": "tsc --module esnext --target esnext --outDir dist/esm",
-    "build:cjs": "tsc --module commonjs --target es2016 --outDir dist/cjs",
+    "clean": "rimraf build",
+    "clean:all": "rimraf build && rimraf node_modules",
+    "build": "tsc",
     "rebuild": "npm run clean && npm run build",
     "clean:build": "npm run rebuild",
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",
     "start:dev": "npm run rebuild && nodemon",
+    "start": "npm run rebuild && node ./build/index.js -- --test",
     "test": "jest --detectOpenHandles --forceExit",
     "coverage": "jest --coverage",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
-    "docs": "typedoc --out docs src",
-    "publint": "npx publint"
-  },
-  "engines": {
-    "node": ">=18.17.1"
-  },
-  "files": [
-    "dist/**/*"
-  ],
-  "exports": {
-    ".": {
-      "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.js"
-    },
-    "./*": {
-      "import": "./dist/esm/*.js",
-      "require": "./dist/cjs/*.js"
-    }
+    "docs": "typedoc --out docs src"
   },
   "keywords": [],
   "author": "",
@@ -57,13 +39,18 @@
     "typedoc": "^0.25.6",
     "typescript": "^5.3.3"
   },
-  "watch": [
-    "src",
-    "nodemon.json",
-    "tsconfig.json",
-    "package.json"
-  ],
-  "ext": "ts",
-  "ignore": [],
-  "exec": "ts-node ./src/index.ts"
+  "nodemonConfig": {
+    "watch": [
+      "src",
+      "nodemon.json",
+      "tsconfig.json",
+      "package.json"
+    ],
+    "ext": "ts",
+    "ignore": [],
+    "exec": "ts-node ./src/index.ts"
+  },
+  "dependencies": {
+    "@chrisguest75/spellcheck_dual": "file:../../packages/spellcheck_dual"
+  }
 }
