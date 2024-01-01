@@ -1,5 +1,9 @@
 # CJS PACKAGE
 
+NOTES:
+
+* Add `type: "commonjs"` to the `package.json`
+
 ## Create
 
 Setup typescript for a basic nodejs CJS package.  
