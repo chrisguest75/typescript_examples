@@ -15,7 +15,7 @@ TODO:
 DEMONSTRATES:
 
 * Different module systems; CJS and ESM.  
-* How to import local packages from the same repo.  
+* How to import local packages from the same repo. When installed it creates a symbolic link.  
 * CommonJS modules inherently have module and exports objects.  
 
 ## Idea

@@ -214,3 +214,4 @@ npm run docs
 
 ## Resources
 
+* Jest ECMAScript Modules [here](https://jestjs.io/docs/ecmascript-modules)
