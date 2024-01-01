@@ -125,6 +125,11 @@ Demonstrate how to work `JSONSchema` to validate and generate types.
 Demonstrates generating fake json data.  
 [README.md](./23_faking_json_data/README.md)  
 
+## 24 - Packages
+
+Demonstrate some examples of how to develop and use custom packages.  
+[README.md](./24_packages/README.md)  
+
 ## 26 - Job Server
 
 Demonstrates building a job monitor in an express server.  
