@@ -8,7 +8,7 @@
       "executor": "nx:run-commands",
       "dependsOn": ["^build:lib"],
       "options": {
-        "command": "./justfile test-all",
+        "command": "just -f ./justfile test-all",
         "cwd": "24_packages"
       }
     }

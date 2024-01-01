@@ -32,3 +32,7 @@ gh run view 4913698673 --log-failed
 * GitHub Actions: Deprecating save-state and set-output commands [here](https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/)  
 * Multiline strings [here](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#multiline-strings)
 * Using output from a previous job in a new one in a GitHub Action [here](https://stackoverflow.com/questions/59175332/using-output-from-a-previous-job-in-a-new-one-in-a-github-action)  
+
+### Actions
+
+* This GitHub Action will install a release of the just command runner for you. [here](https://github.com/marketplace/actions/setup-just)  
