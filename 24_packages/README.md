@@ -12,12 +12,16 @@ TODO:
 * Create a package that supports both ESM and CJS.  
 * Testable in jest
 
+## Idea
+
+Build a quick little testbed for playing with CJS and ESM packages. There will be three packages; CJS, ESM and a dual build.  
+
 ## Create
 
 Setup typescript for a basic nodejs project  
 
 ```sh
-mkdir -p spellcheck
+mkdir -p spellcheck_cjs
 
 nvm use --lts
 node --version > .nvmrc
@@ -200,12 +204,18 @@ npm run lint
 ```sh
 # install typedoc
 npm install --savedev typedoc  
-
-# generate docs
-npx typedoc src/index.ts
 ```
 
+```js
+  "scripts": {
+      "docs": "typedoc --out docs src"
+  },
+```
 
+```sh
+# generate docs
+npm run docs   
+```
 
 ## Resources
 

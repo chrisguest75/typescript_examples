@@ -1,5 +1,5 @@
 {
-  "name": "@chrisguest/spellcheck",
+  "name": "@chrisguest/spellcheck_cjs",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -14,7 +14,8 @@
     "test": "jest",
     "coverage": "jest --coverage",
     "lint": "eslint . --ext .ts",
-    "lint:fix": "eslint . --ext .ts --fix"
+    "lint:fix": "eslint . --ext .ts --fix",
+    "docs": "typedoc --out docs src"
   },
   "author": "",
   "license": "ISC",
