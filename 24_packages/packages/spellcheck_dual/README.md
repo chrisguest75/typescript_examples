@@ -222,4 +222,5 @@ npm run docs
 
 ## Resources
 
-* Jest ECMAScript Modules [here](https://jestjs.io/docs/ecmascript-modules)
+* Jest ECMAScript Modules [here](https://jestjs.io/docs/ecmascript-modules)  
+* Specifics of npm's package.json handling [here](https://docs.npmjs.com/cli/v10/configuring-npm/package-json)  

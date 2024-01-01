@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "prebuild": "npm install",    
+    "prebuild": "npm install",
     "audit": "better-npm-audit audit",
     "clean": "rimraf build",
     "build": "tsc",
@@ -13,7 +13,7 @@
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",
     "start:dev": "npm run rebuild && nodemon -- --in='./json/pokemon.json' --out='./types/pokemon/pokemon.d.ts' --schema='./schema/pokemon.schema.json'",
-    "test": "jest",
+    "test": "jest --detectOpenHandles --forceExit",
     "test:coverage": "jest --coverage",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix"

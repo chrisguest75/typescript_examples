@@ -12,13 +12,19 @@
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",
     "start:dev": "npm run rebuild && nodemon",
-    "test": "jest",
+    "test": "jest --detectOpenHandles --forceExit",
     "coverage": "jest --coverage",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "docs": "typedoc --out docs src",
     "publint": "npx publint"
   },
+  "engines": {
+    "node": ">=18.17.1"
+  },
+  "files": [
+    "dist/**/*"
+  ],
   "keywords": [],
   "author": "",
   "license": "ISC",
