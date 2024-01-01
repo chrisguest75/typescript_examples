@@ -47,5 +47,8 @@
     "ext": "ts",
     "ignore": [],
     "exec": "ts-node ./src/index.ts"
+  },
+  "dependencies": {
+    "@chrisguest/spellcheck_cjs": "file:../../packages/spellcheck_cjs"
   }
 }

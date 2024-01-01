@@ -1,6 +1,7 @@
 import * as readline from 'readline/promises'
 import { stdin as input, stdout as output } from 'node:process'
 import { add } from './add'
+import { greet } from '@chrisguest/spellcheck_cjs'
 
 export async function main() {
   const rl = readline.createInterface({ input, output })
@@ -9,6 +10,8 @@ export async function main() {
   console.log('Starting')
 
   try {
+    const name = await rl.question('Please enter your name: ')
+    console.log(`Hello ${greet(name)}`)
     const number1 = await rl.question('Please enter a number: ')
     const number2 = await rl.question('Please enter another number: ')
     console.log(`You entered: ${number1} and ${number2}`)

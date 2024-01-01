@@ -3,6 +3,19 @@
 NOTES:
 
 * Add `type: "commonjs"` to the `package.json`
+* If you modify a package dependency you might need to "Reload Window" in `vscode`.  
+
+## Added
+
+```sh
+# NOTE: you have to build the dist folder
+pushd ../../packages/spellcheck_cjs
+npm run build
+popd
+
+npm install ../../packages/spellcheck_cjs
+npm install
+```
 
 ## Create
 
