@@ -9,16 +9,14 @@ TODO:
 * Rebuild when code is modified - fixing the nonsense undetected dependency changes
 * Add dependencies to the package omit or something.
 * Spellcheck
-* Directory to Markdown
-* Build types for packages that don't have them.
-* Could also be a package to create markdown directories.  
+* Directory to Markdown - a package to create markdown directories. 
+* Build types for packages that don't have them. 
 
 DEMONSTRATES:
 
 * Different module systems; CJS and ESM.  
 * How to import local packages from the same repo.  
 * CommonJS modules inherently have module and exports objects.  
-* 
 
 ## Idea
 
@@ -27,6 +25,7 @@ Build a quick little testbed for playing with CJS and ESM packages. There will b
 ## CJS
 
 * [packages/spellcheck_cjs/README.md](./packages/spellcheck_cjs/README.md)
+* [packages/spellcheck_esm/README.md](./packages/spellcheck_esm/README.md)
 
 ## Validating Conformance
 
