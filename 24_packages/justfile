@@ -19,6 +19,7 @@ test-all:
   npm install
   npm run test
   npm run rebuild
+  npm run publint
   cd ../..
   echo "*************************************"
   echo "** spellcheck_esm"
@@ -27,6 +28,7 @@ test-all:
   npm install
   npm run test
   npm run rebuild
+  npm run publint
   cd ../..
   echo "*************************************"
   echo "** spellcheck_dual"
@@ -35,6 +37,7 @@ test-all:
   npm install
   npm run test
   npm run rebuild
+  #npm run publint
   cd ../..
 
   echo "*************************************"

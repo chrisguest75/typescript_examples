@@ -2,8 +2,8 @@
   "name": "@chrisguest75/spellcheck_esm",
   "version": "1.0.0",
   "description": "NOTES:",
-  "main": "dist/index.js",
   "type": "module",
+  "main": "dist/index.js",
   "scripts": {
     "clean": "rimraf dist",
     "clean:all": "rimraf dist && rimraf node_modules",
@@ -26,6 +26,14 @@
   "files": [
     "dist/**/*"
   ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js"
+    },
+    "./*": {
+      "import": "./dist/*.js"
+    }
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
