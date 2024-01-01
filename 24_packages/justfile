@@ -8,7 +8,7 @@ set dotenv-load := true
 default:
   @just -f justfile --list
 
-test-all:
+test-spellcheck-cjs:
   #!/usr/bin/env bash
   set -eufo pipefail
 
@@ -22,25 +22,6 @@ test-all:
   npm run publint
   cd ../..
   echo "*************************************"
-  echo "** spellcheck_esm"
-  echo "*************************************"  
-  cd packages/spellcheck_esm
-  npm install
-  npm run test
-  npm run rebuild
-  npm run publint
-  cd ../..
-  echo "*************************************"
-  echo "** spellcheck_dual"
-  echo "*************************************"  
-  cd packages/spellcheck_dual
-  npm install
-  npm run test
-  npm run rebuild
-  #npm run publint
-  cd ../..
-
-  echo "*************************************"
   echo "** client_cjs"
   echo "*************************************"  
   cd clients/client_cjs
@@ -48,6 +29,20 @@ test-all:
   npm run test
   npm run rebuild
   npm run start
+  cd ../..
+
+test-spellcheck-esm:
+  #!/usr/bin/env bash
+  set -eufo pipefail
+
+  echo "*************************************"
+  echo "** spellcheck_esm"
+  echo "*************************************"  
+  cd packages/spellcheck_esm
+  npm install
+  npm run test
+  npm run rebuild
+  npm run publint
   cd ../..
   echo "*************************************"
   echo "** client_esm"
@@ -58,6 +53,21 @@ test-all:
   npm run rebuild
   npm run start
   cd ../..
+
+
+test-spellcheck-dual:
+  #!/usr/bin/env bash
+  set -eufo pipefail
+
+  echo "*************************************"
+  echo "** spellcheck_dual"
+  echo "*************************************"  
+  cd packages/spellcheck_dual
+  npm install
+  npm run test
+  npm run rebuild
+  #npm run publint
+  cd ../..
   echo "*************************************"
   echo "** client_dual_cjs"
   echo "*************************************"  
@@ -67,3 +77,15 @@ test-all:
   npm run rebuild
   npm run start
   cd ../..
+  echo "*************************************"
+  echo "** client_dual_esm"
+  echo "*************************************"  
+  cd clients/client_dual_esm
+  npm install
+  npm run test
+  npm run rebuild
+  npm run start
+  cd ../..
+
+test-all: test-spellcheck-cjs test-spellcheck-esm test-spellcheck-dual
+

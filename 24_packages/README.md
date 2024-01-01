@@ -44,6 +44,12 @@ REF: [github.com/chrisguest75/shell_examples75_just/README.md](https://github.co
 
 ```sh
 ./justfile test-all
+
+./justfile test-spellcheck-cjs
+./justfile test-spellcheck-esm
+
+# build both esm and cjs for a dual library
+./justfile test-spellcheck-dual
 ```
 
 ## Validating Conformance
