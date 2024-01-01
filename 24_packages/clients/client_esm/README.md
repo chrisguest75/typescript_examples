@@ -1,15 +1,39 @@
-# ESM PACKAGE
+# ESM CLIENT
+
+Setup typescript for a basic nodejs ESM package.  
 
 NOTES:
 
 * Add `type: "module"` to the `package.json`
+* If you modify a package dependency you might need to "Reload Window" in `vscode`.  
+
+## Contents
+
+- [ESM CLIENT](#esm-client)
+  - [Contents](#contents)
+  - [Add custom esm module (after creation)](#add-custom-esm-module-after-creation)
+  - [Create](#create)
+  - [Testing](#testing)
+  - [Add linting](#add-linting)
+  - [Documentation](#documentation)
+  - [Resources](#resources)
+
+## Add custom esm module (after creation)
+
+```sh
+# NOTE: you have to build the dist folder
+pushd ../../packages/spellcheck_esm
+npm run build
+popd
+
+npm install ../../packages/spellcheck_esm
+npm install
+```
 
 ## Create
 
-Setup typescript for a basic nodejs CJS package.  
-
 ```sh
-mkdir -p spellcheck_esm
+mkdir -p client_esm
 
 nvm use --lts
 node --version > .nvmrc
@@ -21,13 +45,13 @@ npm install typescript @types/node ts-node nodemon rimraf --save-dev
 npm exec tsc -- --version 
 
 # create tsconfig.json
-npx tsc --init --rootDir src --outDir dist \
+npx tsc --init --rootDir src --outDir build \
 --esModuleInterop --resolveJsonModule --lib esnext --target esnext \
 --module esnext --allowJs false --noImplicitAny true --declaration true --declarationMap true --sourceMap true
 
 cat << EOF > ./.gitignore
 node_modules
-dist
+build
 docs
 EOF
 ```
@@ -39,7 +63,7 @@ Add a nodemonConfig to package.json
     "watch": ["src", "nodemon.json", "tsconfig.json", "package.json"],
     "ext": "ts",
     "ignore": [],
-    "exec": "ts-node ./src/index.ts"
+    "exec": "ts-node-esm ./src/index.ts"
   }
 ```
 
@@ -55,7 +79,8 @@ Copy over the package.json scripts
 
 ```json
   "scripts": {
-    "clean": "rimraf dist",
+    "clean": "rimraf build",
+    "clean:all": "rimraf build && rimraf node_modules",
     "build": "tsc",
     "rebuild": "npm run clean && npm run build",
     "clean:build": "npm run rebuild",
@@ -141,7 +166,7 @@ npm install eslint-plugin-prettier@latest eslint-config-prettier --save-dev
 # add an .eslintrc
 cat << EOF > ./.eslintignore
 node_modules
-dist
+build
 EOF
 
 cat << EOF > ./.eslintrc
@@ -212,14 +237,5 @@ npm install --save-dev typedoc
 npm run docs   
 ```
 
-## Conformance
-
-```js
-  "scripts": {
-      "publint": "npx publint"
-  },
-```
-
 ## Resources
 
-* Jest ECMAScript Modules [here](https://jestjs.io/docs/ecmascript-modules)

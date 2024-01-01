@@ -211,5 +211,13 @@ npm install --save-dev typedoc
 npm run docs   
 ```
 
+## Conformance
+
+```js
+  "scripts": {
+      "publint": "npx publint"
+  },
+```
+
 ## Resources
 
