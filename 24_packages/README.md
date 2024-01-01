@@ -5,7 +5,7 @@ Demonstrate some examples of how to develop and use custom packages.
 TODO:
 
 * Create a package that supports both ESM and CJS.  
-* Testable in jest
+* Testable in jest with ESM.  CJS is working.
 * Rebuild when code is modified - fixing the nonsense undetected dependency changes
 * Add dependencies to the package omit or something.
 * Spellcheck
