@@ -1,4 +1,4 @@
-# CJS PACKAGE
+# CJS CLIENT
 
 NOTES:
 
@@ -9,7 +9,7 @@ NOTES:
 Setup typescript for a basic nodejs CJS package.  
 
 ```sh
-mkdir -p spellcheck_cjs
+mkdir -p client_cjs
 
 nvm use --lts
 node --version > .nvmrc
@@ -21,7 +21,7 @@ npm install typescript @types/node ts-node nodemon rimraf --save-dev
 npm exec tsc -- --version 
 
 # create tsconfig.json
-npx tsc --init --rootDir src --outDir dist \
+npx tsc --init --rootDir src --outDir build \
 --esModuleInterop --resolveJsonModule --lib es6 \
 --module commonjs --allowJs false --noImplicitAny true --declaration true --declarationMap true --sourceMap true
 
@@ -54,7 +54,7 @@ Copy over the package.json scripts
 
 ```json
   "scripts": {
-    "clean": "rimraf dist",
+    "clean": "rimraf build",
     "build": "tsc",
     "rebuild": "npm run clean && npm run build",
     "clean:build": "npm run rebuild",
@@ -140,7 +140,7 @@ npm install eslint-plugin-prettier@latest eslint-config-prettier --save-dev
 # add an .eslintrc
 cat << EOF > ./.eslintignore
 node_modules
-dist
+build
 EOF
 
 cat << EOF > ./.eslintrc

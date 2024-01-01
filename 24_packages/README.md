@@ -18,6 +18,7 @@ TODO:
 DEMONSTRATES:
 
 * Different module systems; CJS and ESM.  
+* CommonJS modules inherently have module and exports objects.  
 
 ## Idea
 
