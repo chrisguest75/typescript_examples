@@ -55,6 +55,7 @@ Copy over the package.json scripts
 ```json
   "scripts": {
     "clean": "rimraf dist",
+    "clean:all": "rimraf dist && rimraf node_modules",
     "build": "tsc",
     "rebuild": "npm run clean && npm run build",
     "clean:build": "npm run rebuild",

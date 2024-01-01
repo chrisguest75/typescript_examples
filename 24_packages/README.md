@@ -6,6 +6,7 @@ TODO:
 
 * Create a package that supports both ESM and CJS.  
 * Testable in jest with ESM.  CJS is working.
+* Remove the tests from the package
 * Rebuild when code is modified - fixing the nonsense undetected dependency changes
 * Add dependencies to the package omit or something.
 * Spellcheck
@@ -25,7 +26,18 @@ Build a quick little testbed for playing with CJS and ESM packages. There will b
 ## CJS
 
 * [packages/spellcheck_cjs/README.md](./packages/spellcheck_cjs/README.md)
+* [clients/client_cjs/README.md](./clients/client_cjs/README.md)
+
+## ESM
+
 * [packages/spellcheck_esm/README.md](./packages/spellcheck_esm/README.md)
+* [clients/client_esm/README.md](./clients/client_esm/README.md)
+
+## Dual ESM and CJS
+
+* [packages/spellcheck_dual/README.md](./packages/spellcheck_dual/README.md)
+* [clients/client_dual/README.md](./clients/client_dual/README.md)
+
 
 ## Validating Conformance
 

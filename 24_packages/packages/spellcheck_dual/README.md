@@ -1,15 +1,14 @@
-# ESM PACKAGE
+# DUAL ESM/CJS PACKAGE
 
 NOTES:
 
-* Add `type: "module"` to the `package.json`
 
 ## Create
 
-Setup typescript for a basic nodejs CJS package.  
+Setup typescript for a basic nodejs ESM and CJS package.  
 
 ```sh
-mkdir -p spellcheck_esm
+mkdir -p spellcheck_dual
 
 nvm use --lts
 node --version > .nvmrc
