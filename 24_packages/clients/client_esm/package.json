@@ -49,5 +49,8 @@
     "ext": "ts",
     "ignore": [],
     "exec": "node --no-warnings --experimental-specifier-resolution=node --loader ts-node/esm ./src/index.ts"
+  },
+  "dependencies": {
+    "@chrisguest75/spellcheck_esm": "file:../../packages/spellcheck_esm"
   }
 }

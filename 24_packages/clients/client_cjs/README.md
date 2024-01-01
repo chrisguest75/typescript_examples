@@ -18,13 +18,13 @@ NOTES:
   - [Documentation](#documentation)
   - [Resources](#resources)
 
-
 ## Add custom cjs module (after creation)
 
 ```sh
 # NOTE: you have to build the dist folder
 pushd ../../packages/spellcheck_cjs
 npm run build
+ls -la ./dist
 popd
 
 npm install ../../packages/spellcheck_cjs

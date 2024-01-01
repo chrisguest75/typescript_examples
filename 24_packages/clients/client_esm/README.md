@@ -26,6 +26,7 @@ NOTES:
 # NOTE: you have to build the dist folder
 pushd ../../packages/spellcheck_esm
 npm run build
+ls -la ./dist
 popd
 
 npm install ../../packages/spellcheck_esm

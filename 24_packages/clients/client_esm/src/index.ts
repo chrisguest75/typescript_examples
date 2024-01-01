@@ -1,7 +1,7 @@
 import * as readline from 'readline/promises'
 import { stdin as input, stdout as output } from 'node:process'
 import { add } from './add.js'
-//import { greet } from '@chrisguest/spellcheck_esm'
+import { greet } from '@chrisguest75/spellcheck_esm'
 
 export async function main() {
   const rl = readline.createInterface({ input, output })
@@ -11,7 +11,7 @@ export async function main() {
 
   try {
     const name = await rl.question('Please enter your name: ')
-    //console.log(`Hello ${greet(name)}`)
+    console.log(`Hello ${greet(name)}`)
     const number1 = await rl.question('Please enter a number: ')
     const number2 = await rl.question('Please enter another number: ')
     console.log(`You entered: ${number1} and ${number2}`)
