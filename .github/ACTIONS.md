@@ -6,7 +6,7 @@ Demonstrate a few monorepo techniques for nx.
 
 * We let NX decide the affected projects and then build them as subtasks.  
 
-## Watching pipelines
+## Watching pipelines using gh cli
 
 ```sh
 export PAGER=  
@@ -29,10 +29,10 @@ gh run view 4913698673 --log-failed
 * Using jobs in a workflow [here](https://docs.github.com/en/actions/using-jobs/using-jobs-in-a-workflow)
 * dflook/terraform-github-actions repo [here](https://github.com/dflook/terraform-github-actions)  
 * Getting Started: Scanning Terraform using Semgrep [here](https://medium.com/@tysiew/getting-started-scanning-terraform-using-semgrep-408b6722347c)  
+* GitHub Actions: Deprecating save-state and set-output commands [here](https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/)  
+* Multiline strings [here](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#multiline-strings)
+* Using output from a previous job in a new one in a GitHub Action [here](https://stackoverflow.com/questions/59175332/using-output-from-a-previous-job-in-a-new-one-in-a-github-action)  
 
-https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/
+### Actions
 
-Multiline https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#multiline-strings
-
-
-Job outputs https://stackoverflow.com/questions/59175332/using-output-from-a-previous-job-in-a-new-one-in-a-github-action
+* This GitHub Action will install a release of the just command runner for you. [here](https://github.com/marketplace/actions/setup-just)  

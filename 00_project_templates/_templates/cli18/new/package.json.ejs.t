@@ -17,7 +17,7 @@ to: <%= name %>/package.json
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",
     "start:dev": "npm run rebuild && nodemon",
-    "test": "jest",
+    "test": "jest --detectOpenHandles --forceExit",
     "test:coverage": "jest --coverage",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",

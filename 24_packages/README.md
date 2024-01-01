@@ -6,6 +6,7 @@ TODO:
 
 * Create a package that supports both ESM and CJS.  
 * Testable in jest with ESM.  CJS is working.
+* Remove the tests from the package
 * Rebuild when code is modified - fixing the nonsense undetected dependency changes
 * Add dependencies to the package omit or something.
 * Spellcheck
@@ -25,7 +26,25 @@ Build a quick little testbed for playing with CJS and ESM packages. There will b
 ## CJS
 
 * [packages/spellcheck_cjs/README.md](./packages/spellcheck_cjs/README.md)
+* [clients/client_cjs/README.md](./clients/client_cjs/README.md)
+
+## ESM
+
 * [packages/spellcheck_esm/README.md](./packages/spellcheck_esm/README.md)
+* [clients/client_esm/README.md](./clients/client_esm/README.md)
+
+## Dual ESM and CJS
+
+* [packages/spellcheck_dual/README.md](./packages/spellcheck_dual/README.md)
+* [clients/client_dual/README.md](./clients/client_dual/README.md)
+
+## Justfile
+
+REF: [github.com/chrisguest75/shell_examples75_just/README.md](https://github.com/chrisguest75/shell_examples/blob/master/75_just/README.md)  
+
+```sh
+./justfile test-all
+```
 
 ## Validating Conformance
 
@@ -45,6 +64,8 @@ npx publint
 * Webpack: Providing CommonJs and ESM version (stateful) [here](https://webpack.js.org/guides/package-exports/#providing-commonjs-and-esm-version-stateful)
 
 * [publint.dev](https://publint.dev/)  
+* Are the types wrong? [here](https://arethetypeswrong.github.io/)
+* arethetypeswrong/cli [here](https://github.com/arethetypeswrong/arethetypeswrong.github.io/blob/main/packages/cli/README.md)
 
 * https://publint.dev/apollo-server-logging@1.0.2
 

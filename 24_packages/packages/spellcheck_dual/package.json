@@ -1,13 +1,14 @@
 {
-  "name": "@chrisguest75/spellcheck_esm",
+  "name": "@chrisguest75/spellcheck_dual",
   "version": "1.0.0",
   "description": "NOTES:",
-  "type": "module",
-  "main": "dist/index.js",
+  "main": "index.js",
   "scripts": {
     "clean": "rimraf dist",
     "clean:all": "rimraf dist && rimraf node_modules",
-    "build": "tsc",
+    "build": "npm run build:esm && npm run build:cjs",
+    "build:esm": "tsc --module esnext --target esnext --outDir dist/esm",
+    "build:cjs": "tsc --module commonjs --target es2016 --outDir dist/cjs",
     "rebuild": "npm run clean && npm run build",
     "clean:build": "npm run rebuild",
     "type-check": "tsc --noEmit",
@@ -28,10 +29,12 @@
   ],
   "exports": {
     ".": {
-      "import": "./dist/index.js"
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
     },
     "./*": {
-      "import": "./dist/*.js"
+      "import": "./dist/esm/*.js",
+      "require": "./dist/cjs/*.js"
     }
   },
   "keywords": [],
@@ -40,8 +43,8 @@
   "devDependencies": {
     "@types/jest": "^29.5.11",
     "@types/node": "^20.10.6",
-    "@typescript-eslint/eslint-plugin": "^6.16.0",
-    "@typescript-eslint/parser": "^6.16.0",
+    "@typescript-eslint/eslint-plugin": "^6.17.0",
+    "@typescript-eslint/parser": "^6.17.0",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.2",
@@ -51,18 +54,16 @@
     "rimraf": "^5.0.5",
     "ts-jest": "^29.1.1",
     "ts-node": "^10.9.2",
-    "typedoc": "^0.25.5",
+    "typedoc": "^0.25.6",
     "typescript": "^5.3.3"
   },
-  "nodemonConfig": {
-    "watch": [
-      "src",
-      "nodemon.json",
-      "tsconfig.json",
-      "package.json"
-    ],
-    "ext": "ts",
-    "ignore": [],
-    "exec": "ts-node ./src/index.ts"
-  }
+  "watch": [
+    "src",
+    "nodemon.json",
+    "tsconfig.json",
+    "package.json"
+  ],
+  "ext": "ts",
+  "ignore": [],
+  "exec": "ts-node ./src/index.ts"
 }

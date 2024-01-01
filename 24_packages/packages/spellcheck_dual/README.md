@@ -1,15 +1,14 @@
-# ESM PACKAGE
+# DUAL ESM/CJS PACKAGE
 
 NOTES:
 
-* Add `type: "module"` to the `package.json`
 
 ## Create
 
-Setup typescript for a basic nodejs CJS package.  
+Setup typescript for a basic nodejs ESM and CJS package.  
 
 ```sh
-mkdir -p spellcheck_esm
+mkdir -p spellcheck_dual
 
 nvm use --lts
 node --version > .nvmrc
@@ -199,7 +198,7 @@ npm run lint
 
 ```sh
 # install typedoc
-npm install --save-dev typedoc  
+npm install --save-dev typedoc
 ```
 
 ```js
@@ -210,7 +209,7 @@ npm install --save-dev typedoc
 
 ```sh
 # generate docs
-npm run docs   
+npm run docs
 ```
 
 ## Conformance
@@ -223,4 +222,5 @@ npm run docs
 
 ## Resources
 
-* Jest ECMAScript Modules [here](https://jestjs.io/docs/ecmascript-modules)
+* Jest ECMAScript Modules [here](https://jestjs.io/docs/ecmascript-modules)  
+* Specifics of npm's package.json handling [here](https://docs.npmjs.com/cli/v10/configuring-npm/package-json)  

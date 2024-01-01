@@ -13,6 +13,7 @@
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",
     "start:dev": "npm run rebuild && nodemon",
+    "start": "npm run rebuild && node ./build/index.js -- --test",
     "test": "jest",
     "coverage": "jest --coverage",
     "lint": "eslint . --ext .ts",

@@ -1,0 +1,16 @@
+{
+  "name": "24_packages",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "24_packages",
+  "projectType": "app",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["^build:lib"],
+      "options": {
+        "command": "just -f ./justfile test-all",
+        "cwd": "24_packages"
+      }
+    }
+  }
+}

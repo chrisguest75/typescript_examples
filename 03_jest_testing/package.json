@@ -7,8 +7,8 @@
     "prebuild": "npm install",
     "clean": "",
     "build": "",
-    "test": "jest",
-    "test:debug": "jest --runInBand --detectOpenHandles",  
+    "test": "jest --detectOpenHandles --forceExit",
+    "test:debug": "jest --runInBand --detectOpenHandles",
     "coverage": "jest --coverage",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix"
