@@ -38,6 +38,13 @@ Build a quick little testbed for playing with CJS and ESM packages. There will b
 * [packages/spellcheck_dual/README.md](./packages/spellcheck_dual/README.md)
 * [clients/client_dual/README.md](./clients/client_dual/README.md)
 
+## Justfile
+
+REF: [github.com/chrisguest75/shell_examples75_just/README.md](https://github.com/chrisguest75/shell_examples/blob/master/75_just/README.md)  
+
+```sh
+./justfile test-all
+```
 
 ## Validating Conformance
 
@@ -57,6 +64,8 @@ npx publint
 * Webpack: Providing CommonJs and ESM version (stateful) [here](https://webpack.js.org/guides/package-exports/#providing-commonjs-and-esm-version-stateful)
 
 * [publint.dev](https://publint.dev/)  
+* Are the types wrong? [here](https://arethetypeswrong.github.io/)
+* arethetypeswrong/cli [here](https://github.com/arethetypeswrong/arethetypeswrong.github.io/blob/main/packages/cli/README.md)
 
 * https://publint.dev/apollo-server-logging@1.0.2
 

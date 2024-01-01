@@ -1,0 +1,57 @@
+#!/usr/bin/env just --justfile
+# ^ A shebang isn't required, but allows a justfile to be executed
+#   like a script, with `./justfile test`, for example.
+
+set dotenv-load := true
+
+# default lists actions
+default:
+  @just -f justfile --list
+
+test-all:
+  #!/usr/bin/env bash
+  set -eufo pipefail
+
+  echo "*************************************"
+  echo "** spellcheck_cjs"
+  echo "*************************************"
+  cd packages/spellcheck_cjs
+  npm install
+  npm run test
+  npm run rebuild
+  cd ../..
+  echo "*************************************"
+  echo "** spellcheck_esm"
+  echo "*************************************"  
+  cd packages/spellcheck_esm
+  npm install
+  npm run test
+  npm run rebuild
+  cd ../..
+  echo "*************************************"
+  echo "** spellcheck_dual"
+  echo "*************************************"  
+  cd packages/spellcheck_dual
+  npm install
+  npm run test
+  npm run rebuild
+  cd ../..
+
+  echo "*************************************"
+  echo "** client_cjs"
+  echo "*************************************"  
+  cd clients/client_cjs
+  npm install
+  npm run test
+  npm run rebuild
+  npm run start
+  cd ../..
+  echo "*************************************"
+  echo "** client_esm"
+  echo "*************************************"  
+  cd clients/client_esm
+  npm install
+  npm run test
+  npm run rebuild
+  npm run start
+  cd ../..

@@ -198,7 +198,7 @@ npm run lint
 
 ```sh
 # install typedoc
-npm install --save-dev typedoc  
+npm install --save-dev typedoc
 ```
 
 ```js
@@ -209,7 +209,7 @@ npm install --save-dev typedoc
 
 ```sh
 # generate docs
-npm run docs   
+npm run docs
 ```
 
 ## Conformance
