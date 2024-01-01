@@ -6,6 +6,8 @@ NOTES:
 
 * Add `type: "module"` to the `package.json`
 * If you modify a package dependency you might need to "Reload Window" in `vscode`.  
+* ts-node-esm wasn't working so had to use `"node --no-warnings --experimental-specifier-resolution=node --loader ts-node/esm ./src/index.ts"` instead.  
+* I'm prettty sure the `jest` tests are running with commonjs.  
 
 ## Contents
 
@@ -239,3 +241,4 @@ npm run docs
 
 ## Resources
 
+* Can't run my Node.js Typescript project TypeError [ERR_UNKNOWN_FILE_EXTENSION]: Unknown file extension ".ts" for /app/src/App.ts [here](https://stackoverflow.com/questions/62096269/cant-run-my-node-js-typescript-project-typeerror-err-unknown-file-extension)  

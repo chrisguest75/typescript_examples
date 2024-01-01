@@ -38,21 +38,20 @@ npx publint
 ## Resources
 
 * How to Create a Hybrid NPM Module for ESM and CommonJS. [here](https://www.sensedeep.com/blog/posts/2021/how-to-create-single-source-npm-module.html)  
-* The Modern Guide to Packaging your JavaScript library [here](https://github.com/frehner/modern-guide-to-packaging-js-library)
+* The Modern Guide to Packaging your JavaScript library [here](https://github.com/frehner/modern-guide-to-packaging-js-library)  
+* Node Modules at War: Why CommonJS and ES Modules Can’t Get Along [here](https://redfin.engineering/node-modules-at-war-why-commonjs-and-es-modules-cant-get-along-9617135eeca1)  
+* Dual CommonJS/ES module packages [here](https://nodejs.org/api/packages.html#dual-package-hazard)  
+* Migrating an NPM package to use ES Modules [here](https://medium.com/digio-australia/migrating-an-npm-package-to-use-es-modules-d59877963d61)  
+* Webpack: Providing CommonJs and ESM version (stateful) [here](https://webpack.js.org/guides/package-exports/#providing-commonjs-and-esm-version-stateful)
+
 * [publint.dev](https://publint.dev/)  
+
 * https://publint.dev/apollo-server-logging@1.0.2
 
 * https://antfu.me/posts/types-for-sub-modules
 * https://antfu.me/posts/publish-esm-and-cjs
 
-* https://webpack.js.org/guides/package-exports/#providing-commonjs-and-esm-version-stateful
-
-* https://redfin.engineering/node-modules-at-war-why-commonjs-and-es-modules-cant-get-along-9617135eeca1
-
-* https://nodejs.org/api/packages.html#dual-package-hazard
-
 * https://github.com/kodie/md5-file
 * https://github.com/orangewise/s3-zip
 * https://github.com/tubbo/apollo-server-logging
 
-* https://medium.com/digio-australia/migrating-an-npm-package-to-use-es-modules-d59877963d61
