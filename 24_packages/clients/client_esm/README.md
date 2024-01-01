@@ -1,15 +1,42 @@
-# CJS PACKAGE
+# ESM CLIENT
+
+Setup typescript for a basic nodejs ESM package.  
 
 NOTES:
 
-* Add `type: "commonjs"` to the `package.json`
+* Add `type: "module"` to the `package.json`
+* If you modify a package dependency you might need to "Reload Window" in `vscode`.  
+* ts-node-esm wasn't working so had to use `"node --no-warnings --experimental-specifier-resolution=node --loader ts-node/esm ./src/index.ts"` instead.  
+* I'm prettty sure the `jest` tests are running with commonjs.  
+
+## Contents
+
+- [ESM CLIENT](#esm-client)
+  - [Contents](#contents)
+  - [Add custom esm module (after creation)](#add-custom-esm-module-after-creation)
+  - [Create](#create)
+  - [Testing](#testing)
+  - [Add linting](#add-linting)
+  - [Documentation](#documentation)
+  - [Resources](#resources)
+
+## Add custom esm module (after creation)
+
+```sh
+# NOTE: you have to build the dist folder
+pushd ../../packages/spellcheck_esm
+npm run build
+ls -la ./dist
+popd
+
+npm install ../../packages/spellcheck_esm
+npm install
+```
 
 ## Create
 
-Setup typescript for a basic nodejs CJS package.  
-
 ```sh
-mkdir -p spellcheck_cjs
+mkdir -p client_esm
 
 nvm use --lts
 node --version > .nvmrc
@@ -21,13 +48,13 @@ npm install typescript @types/node ts-node nodemon rimraf --save-dev
 npm exec tsc -- --version 
 
 # create tsconfig.json
-npx tsc --init --rootDir src --outDir dist \
---esModuleInterop --resolveJsonModule --lib es6 \
---module commonjs --allowJs false --noImplicitAny true --declaration true --declarationMap true --sourceMap true
+npx tsc --init --rootDir src --outDir build \
+--esModuleInterop --resolveJsonModule --lib esnext --target esnext \
+--module esnext --allowJs false --noImplicitAny true --declaration true --declarationMap true --sourceMap true
 
 cat << EOF > ./.gitignore
 node_modules
-dist
+build
 docs
 EOF
 ```
@@ -39,7 +66,7 @@ Add a nodemonConfig to package.json
     "watch": ["src", "nodemon.json", "tsconfig.json", "package.json"],
     "ext": "ts",
     "ignore": [],
-    "exec": "ts-node ./src/index.ts"
+    "exec": "ts-node-esm ./src/index.ts"
   }
 ```
 
@@ -47,6 +74,7 @@ Add a nodemonConfig to package.json
 #run
 Copy the template ./src folder to the new project
 ```sh
+mkdir -p ./src
 cp ./src ../xx_project_name
 ```
 
@@ -54,7 +82,8 @@ Copy over the package.json scripts
 
 ```json
   "scripts": {
-    "clean": "rimraf dist",
+    "clean": "rimraf build",
+    "clean:all": "rimraf build && rimraf node_modules",
     "build": "tsc",
     "rebuild": "npm run clean && npm run build",
     "clean:build": "npm run rebuild",
@@ -140,7 +169,7 @@ npm install eslint-plugin-prettier@latest eslint-config-prettier --save-dev
 # add an .eslintrc
 cat << EOF > ./.eslintignore
 node_modules
-dist
+build
 EOF
 
 cat << EOF > ./.eslintrc
@@ -211,13 +240,6 @@ npm install --save-dev typedoc
 npm run docs   
 ```
 
-## Conformance
-
-```js
-  "scripts": {
-      "publint": "npx publint"
-  },
-```
-
 ## Resources
 
+* Can't run my Node.js Typescript project TypeError [ERR_UNKNOWN_FILE_EXTENSION]: Unknown file extension ".ts" for /app/src/App.ts [here](https://stackoverflow.com/questions/62096269/cant-run-my-node-js-typescript-project-typeerror-err-unknown-file-extension)  

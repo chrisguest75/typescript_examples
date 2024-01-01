@@ -1,16 +1,30 @@
 # CJS CLIENT
 
+Setup typescript for a basic nodejs CJS package.  
+
 NOTES:
 
 * Add `type: "commonjs"` to the `package.json`
 * If you modify a package dependency you might need to "Reload Window" in `vscode`.  
 
-## Added
+## Contents
+
+- [CJS CLIENT](#cjs-client)
+  - [Contents](#contents)
+  - [Add custom cjs module (after creation)](#add-custom-cjs-module-after-creation)
+  - [Create](#create)
+  - [Testing](#testing)
+  - [Add linting](#add-linting)
+  - [Documentation](#documentation)
+  - [Resources](#resources)
+
+## Add custom cjs module (after creation)
 
 ```sh
 # NOTE: you have to build the dist folder
 pushd ../../packages/spellcheck_cjs
 npm run build
+ls -la ./dist
 popd
 
 npm install ../../packages/spellcheck_cjs
@@ -18,8 +32,6 @@ npm install
 ```
 
 ## Create
-
-Setup typescript for a basic nodejs CJS package.  
 
 ```sh
 mkdir -p client_cjs
@@ -68,6 +80,7 @@ Copy over the package.json scripts
 ```json
   "scripts": {
     "clean": "rimraf build",
+    "clean:all": "rimraf build && rimraf node_modules",
     "build": "tsc",
     "rebuild": "npm run clean && npm run build",
     "clean:build": "npm run rebuild",

@@ -1,15 +1,15 @@
-# CJS PACKAGE
+# ESM PACKAGE
 
 NOTES:
 
-* Add `type: "commonjs"` to the `package.json`
+* Add `type: "module"` to the `package.json`
 
 ## Create
 
 Setup typescript for a basic nodejs CJS package.  
 
 ```sh
-mkdir -p spellcheck_cjs
+mkdir -p spellcheck_esm
 
 nvm use --lts
 node --version > .nvmrc
@@ -22,8 +22,8 @@ npm exec tsc -- --version
 
 # create tsconfig.json
 npx tsc --init --rootDir src --outDir dist \
---esModuleInterop --resolveJsonModule --lib es6 \
---module commonjs --allowJs false --noImplicitAny true --declaration true --declarationMap true --sourceMap true
+--esModuleInterop --resolveJsonModule --lib esnext --target esnext \
+--module esnext --allowJs false --noImplicitAny true --declaration true --declarationMap true --sourceMap true
 
 cat << EOF > ./.gitignore
 node_modules
@@ -47,6 +47,7 @@ Add a nodemonConfig to package.json
 #run
 Copy the template ./src folder to the new project
 ```sh
+mkdir -p ./src
 cp ./src ../xx_project_name
 ```
 
@@ -221,3 +222,4 @@ npm run docs
 
 ## Resources
 
+* Jest ECMAScript Modules [here](https://jestjs.io/docs/ecmascript-modules)
