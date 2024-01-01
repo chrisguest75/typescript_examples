@@ -29,7 +29,7 @@ Build a quick little testbed for playing with CJS and ESM packages. There will b
 
 ## Validating Conformance
 
-Lint if a package is published right [publint.dev/](https://publint.dev/)  
+Lint if a package is published right [publint.dev](https://publint.dev/)  
 
 ```sh
 npx publint
@@ -38,11 +38,12 @@ npx publint
 ## Resources
 
 * How to Create a Hybrid NPM Module for ESM and CommonJS. [here](https://www.sensedeep.com/blog/posts/2021/how-to-create-single-source-npm-module.html)  
+* The Modern Guide to Packaging your JavaScript library [here](https://github.com/frehner/modern-guide-to-packaging-js-library)
+* [publint.dev](https://publint.dev/)  
+* https://publint.dev/apollo-server-logging@1.0.2
+
 * https://antfu.me/posts/types-for-sub-modules
 * https://antfu.me/posts/publish-esm-and-cjs
-
-* https://publint.dev/
-* https://publint.dev/apollo-server-logging@1.0.2
 
 * https://webpack.js.org/guides/package-exports/#providing-commonjs-and-esm-version-stateful
 
