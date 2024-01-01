@@ -2,19 +2,40 @@
 
 A set of simple Typescript examples.
 
-TODO:
+## Contents
 
-* envelope encryption example
-* dockerise cypress
-* rest client
-* nvm install-latest-npm
-* npx example
-* get jest working with node18 template
-* Build all projects?
-* functional maps
-* events
-* generators
-* mocking
+- [README](#readme)
+  - [Contents](#contents)
+  - [Snippets](#snippets)
+  - [Troubleshooting](#troubleshooting)
+  - [Github Actions](#github-actions)
+  - [NX](#nx)
+  - [Upgrading](#upgrading)
+  - [00 - Project templates using hygen](#00---project-templates-using-hygen)
+  - [01 - Basic cmdline](#01---basic-cmdline)
+  - [02 - Templating](#02---templating)
+  - [03 - Testing](#03---testing)
+  - [05 - Promises](#05---promises)
+  - [06 - Dockerise Browser based Typescript](#06---dockerise-browser-based-typescript)
+  - [08 - Use pino logger in typescript](#08---use-pino-logger-in-typescript)
+  - [09 - Publish npm package for use as npx](#09---publish-npm-package-for-use-as-npx)
+  - [11 - Simple swagger typescript](#11---simple-swagger-typescript)
+  - [12 - Buildpack](#12---buildpack)
+  - [13 - Echo Service using TSOA](#13---echo-service-using-tsoa)
+  - [15 - Demoscene Banner](#15---demoscene-banner)
+  - [16 - OpenTelemetry Honeycomb](#16---opentelemetry-honeycomb)
+  - [17 - Redis](#17---redis)
+  - [20 - Hygen Templates](#20---hygen-templates)
+  - [21 - JSON Schema](#21---json-schema)
+  - [23 - Faking json data](#23---faking-json-data)
+  - [24 - Packages](#24---packages)
+  - [26 - Job Server](#26---job-server)
+  - [27 - quokka](#27---quokka)
+  - [28 - container debugging](#28---container-debugging)
+  - [29 - container debugging for express](#29---container-debugging-for-express)
+  - [30 - dockerignore filter commit](#30---dockerignore-filter-commit)
+  - [32 - scripting AWS](#32---scripting-aws)
+  - [Resources](#resources)
 
 ## Snippets
 
@@ -28,7 +49,7 @@ If having trouble with `nvm use` with xcode crashing with exceptions.
 xcodebuild -runFirstLaunch
 ```
 
-## Actions
+## Github Actions
 
 Actions help [.github/ACTIONS.md](.github/ACTIONS.md)  
 
