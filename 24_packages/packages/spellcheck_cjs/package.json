@@ -16,7 +16,8 @@
     "coverage": "jest --coverage",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
-    "docs": "typedoc --out docs src"
+    "docs": "typedoc --out docs src",
+    "publint": "npx publint"
   },
   "author": "",
   "license": "ISC",
