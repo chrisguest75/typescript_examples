@@ -1,10 +1,8 @@
 import { greet } from './index'
 
-test('empty test', () => {
+test('Greets with username provided', () => {
   // ARRANGE
-  const a = 0
   // ACT
-
   // ASSERT
   expect(greet('Chris')).toBe('Hello, Chris!')
 })
