@@ -1,12 +1,6 @@
 # PACKAGES
 
-* Spellcheck
-* Directory to Markdown
-* Build types for packages that don't have them.
-
-NOTE:
-
-* Could also be a package to create markdown directories.  
+Demonstrate some examples of how to develop and use custom packages.  
 
 TODO:
 
@@ -14,11 +8,17 @@ TODO:
 * Testable in jest
 * Rebuild when code is modified - fixing the nonsense undetected dependency changes
 * Add dependencies to the package omit or something.
+* Spellcheck
+* Directory to Markdown
+* Build types for packages that don't have them.
+* Could also be a package to create markdown directories.  
 
 DEMONSTRATES:
 
 * Different module systems; CJS and ESM.  
+* How to import local packages from the same repo.  
 * CommonJS modules inherently have module and exports objects.  
+* 
 
 ## Idea
 
