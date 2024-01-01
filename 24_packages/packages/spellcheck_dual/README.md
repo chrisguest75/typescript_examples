@@ -224,3 +224,5 @@ npm run docs
 
 * Jest ECMAScript Modules [here](https://jestjs.io/docs/ecmascript-modules)  
 * Specifics of npm's package.json handling [here](https://docs.npmjs.com/cli/v10/configuring-npm/package-json)  
+* Support .mjs output #18442 [here](https://github.com/microsoft/TypeScript/issues/18442)
+* jwalton/solox repo [here](https://github.com/jwalton/solox)

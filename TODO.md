@@ -4,10 +4,10 @@
 * dockerise cypress
 * rest client
 * nvm install-latest-npm
-* npx example
 * get jest working with node18 template
-* Build all projects?
+* Build all projects? (requires switching node versions in nx)
 * functional maps
 * events
 * generators
 * mocking
+* Adding types to an example of a package doesn't have types.

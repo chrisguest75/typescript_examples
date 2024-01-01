@@ -1,6 +1,6 @@
 import * as readline from 'readline/promises'
 import { stdin as input, stdout as output } from 'node:process'
-import { add } from './add'
+import { add } from './add.js'
 import { greet } from '@chrisguest75/spellcheck_dual'
 
 export async function main() {

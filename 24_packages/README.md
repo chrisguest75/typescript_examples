@@ -4,14 +4,11 @@ Demonstrate some examples of how to develop and use custom packages.
 
 TODO:
 
-* Create a package that supports both ESM and CJS.  
 * Testable in jest with ESM.  CJS is working.
-* Remove the tests from the package
 * Rebuild when code is modified - fixing the nonsense undetected dependency changes
 * Add dependencies to the package omit or something.
 * Spellcheck
 * Directory to Markdown - a package to create markdown directories. 
-* Build types for packages that don't have them. 
 
 DEMONSTRATES:
 
@@ -36,13 +33,18 @@ Build a quick little testbed for playing with CJS and ESM packages. There will b
 ## Dual ESM and CJS
 
 * [packages/spellcheck_dual/README.md](./packages/spellcheck_dual/README.md)
-* [clients/client_dual/README.md](./clients/client_dual/README.md)
+* [clients/client_dual_cjs/README.md](./clients/client_dual_cjs/README.md)
+* [clients/client_dual_esm/README.md](./clients/client_dual_esm/README.md)
 
 ## Justfile
 
 REF: [github.com/chrisguest75/shell_examples75_just/README.md](https://github.com/chrisguest75/shell_examples/blob/master/75_just/README.md)  
 
 ```sh
+# make sure you're switch to correct version of node
+nvm use 
+
+# run all tests
 ./justfile test-all
 
 ./justfile test-spellcheck-cjs

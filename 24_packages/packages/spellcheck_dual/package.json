@@ -2,11 +2,13 @@
   "name": "@chrisguest75/spellcheck_dual",
   "version": "1.0.0",
   "description": "NOTES:",
-  "main": "dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "main": "./dist/cjs/index.js",
+  "types": "./dist/esm/index.d.ts",
   "scripts": {
     "clean": "rimraf dist",
     "clean:all": "rimraf dist && rimraf node_modules",
-    "build": "npm run build:esm && npm run build:cjs",
+    "build": "npm run build:esm && npm run build:cjs && ./scripts/create_package_json.sh",
     "build:esm": "tsc --module esnext --target esnext --outDir dist/esm",
     "build:cjs": "tsc --module commonjs --target es2016 --outDir dist/cjs",
     "rebuild": "npm run clean && npm run build",
@@ -30,11 +32,8 @@
   "exports": {
     ".": {
       "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.js"
-    },
-    "./*": {
-      "import": "./dist/esm/*.js",
-      "require": "./dist/cjs/*.js"
+      "require": "./dist/cjs/index.js",
+      "default": "./dist/cjs/index.js"
     }
   },
   "keywords": [],

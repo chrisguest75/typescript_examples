@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Setup typescript for a basic nodejs dual CJS and EJS package.",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "clean": "rimraf build",
     "clean:all": "rimraf build && rimraf node_modules",
@@ -48,6 +49,9 @@
     ],
     "ext": "ts",
     "ignore": [],
-    "exec": "ts-node-esm ./src/index.ts"
+    "exec": "node --no-warnings --experimental-specifier-resolution=node --loader ts-node/esm ./src/index.ts"
+  },
+  "dependencies": {
+    "@chrisguest75/spellcheck_dual": "file:../../packages/spellcheck_dual"
   }
 }

@@ -16,6 +16,7 @@ test-spellcheck-cjs:
   echo "** spellcheck_cjs"
   echo "*************************************"
   cd packages/spellcheck_cjs
+  node --version
   npm install
   npm run test
   npm run rebuild
@@ -25,6 +26,7 @@ test-spellcheck-cjs:
   echo "** client_cjs"
   echo "*************************************"  
   cd clients/client_cjs
+  node --version  
   npm install
   npm run test
   npm run rebuild
@@ -39,6 +41,7 @@ test-spellcheck-esm:
   echo "** spellcheck_esm"
   echo "*************************************"  
   cd packages/spellcheck_esm
+  node --version
   npm install
   npm run test
   npm run rebuild
@@ -48,6 +51,7 @@ test-spellcheck-esm:
   echo "** client_esm"
   echo "*************************************"  
   cd clients/client_esm
+  node --version
   npm install
   npm run test
   npm run rebuild
@@ -63,6 +67,7 @@ test-spellcheck-dual:
   echo "** spellcheck_dual"
   echo "*************************************"  
   cd packages/spellcheck_dual
+  node --version
   npm install
   npm run test
   npm run rebuild
@@ -72,6 +77,7 @@ test-spellcheck-dual:
   echo "** client_dual_cjs"
   echo "*************************************"  
   cd clients/client_dual_cjs
+  node --version
   npm install
   npm run test
   npm run rebuild
@@ -81,6 +87,7 @@ test-spellcheck-dual:
   echo "** client_dual_esm"
   echo "*************************************"  
   cd clients/client_dual_esm
+  node --version
   npm install
   npm run test
   npm run rebuild
