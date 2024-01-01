@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "clean": "rimraf dist",
+    "clean:all": "rimraf dist && rimraf node_modules",
     "build": "tsc",
     "rebuild": "npm run clean && npm run build",
     "clean:build": "npm run rebuild",
@@ -19,6 +20,9 @@
     "docs": "typedoc --out docs src",
     "publint": "npx publint"
   },
+  "files": [
+    "dist/**/*"
+  ],
   "keywords": [],
   "author": "",
   "license": "ISC",
