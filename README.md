@@ -2,9 +2,22 @@
 
 A set of simple Typescript examples.
 
+## Conventional Commits
+
+NOTE: This repo has switched to [conventional commits](https://www.conventionalcommits.org/en/v1.0.0). It requires `pre-commit` and `commitizen` to help with controlling this.  
+
+```sh
+# install pre-commmit (prerequisite for commitizen)
+brew install pre-commit
+brew install commitizen
+# conventional commits extension
+code --install-extension vivaxy.vscode-conventional-commits
+```
+
 ## Contents
 
 - [README](#readme)
+  - [Conventional Commits](#conventional-commits)
   - [Contents](#contents)
   - [Snippets](#snippets)
   - [Troubleshooting](#troubleshooting)
