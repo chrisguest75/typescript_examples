@@ -2,7 +2,7 @@
 to: <%= name %>/Dockerfile
 skip_if: <%= (typeof docker == 'undefined') %>
 message: |
-- <%= "Include Dockerfile:" + !(typeof docker == 'undefined') %>
+  - <%= "Include Dockerfile:" + !(typeof docker == 'undefined') %>
 ---
 # syntax=docker/dockerfile:1.4
 FROM node:18.13.0-bullseye AS BUILDER
