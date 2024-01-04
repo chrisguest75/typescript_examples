@@ -53,5 +53,4 @@ The code should break on the breakpoint.
 ## Resources
 
 * My basic typecript cmdline [01_basic_cmdline](https://github.com/chrisguest75/typescript_examples/tree/master/01_basic_cmdline)
-
-https://kulshekhar.github.io/ts-jest/docs/guides/esm-support/#support-mts-extension
+* ts-jest ESM Support [here](https://kulshekhar.github.io/ts-jest/docs/guides/esm-support/#support-mts-extension)  

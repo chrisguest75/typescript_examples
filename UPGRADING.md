@@ -42,7 +42,7 @@ npm-check
 
 ```sh
 # add to the project or install globally 
-npm install --save better-npm-audit
+npm install --save-dev better-npm-audit
 ```
 
 Add the following script to `package.json` if installing into the project.

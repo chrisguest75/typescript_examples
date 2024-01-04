@@ -10,6 +10,7 @@ to: <%= name %>/package.json
   "scripts": {
     "tsc": "tsc",    
     "audit": "better-npm-audit audit",
+    "audit:production": "better-npm-audit audit --production",
     "clean": "rimraf build",
     "build": "tsc",
     "rebuild": "npm run clean && npm run build",

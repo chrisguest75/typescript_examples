@@ -2,7 +2,7 @@
 to: <%= name %>/Dockerfile
 skip_if: <%= (typeof docker == 'undefined') %>
 message: |
-  - <%= "Include Dockerfile:" + !(typeof docker == 'undefined') %>
+- <%= "Include Dockerfile:" + !(typeof docker == 'undefined') %>
 ---
 # syntax=docker/dockerfile:1.4
 FROM node:18.13.0-bullseye AS BUILDER
@@ -22,7 +22,7 @@ COPY tests ./tests
 RUN npm run lint
 #RUN npm run test:coverage
 RUN npm run build
-RUN npm audit
+RUN npm run audit:production
 RUN npm ci --only=production && npm cache clean --force
 
 # prune the node_modules
