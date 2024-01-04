@@ -4,7 +4,6 @@ to: <%= name %>/src/index.ts
 import { logger } from './logger.js'
 import * as dotenv from 'dotenv'
 import minimist from 'minimist'
-import * as readline from 'readline/promises'
 
 /*
 Entrypoint

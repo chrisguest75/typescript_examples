@@ -36,6 +36,7 @@ to: <%= name %>/package.json
     "@types/minimist": "^1.2.2",    
     "@typescript-eslint/eslint-plugin": "^5.7.0",
     "@typescript-eslint/parser": "^5.7.0",
+    "better-npm-audit": "^3.7.3",
     "eslint": "^8.5.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
