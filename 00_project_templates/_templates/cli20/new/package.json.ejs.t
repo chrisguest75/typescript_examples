@@ -58,7 +58,7 @@ to: <%= name %>/package.json
     ],
     "ext": "ts",
     "ignore": [],
-    "exec": "ts-node-esm ./src/index.ts"
+    "exec": "node --no-warnings --experimental-specifier-resolution=node --loader ts-node/esm ./src/index.ts"
   },
   "dependencies": {
     "minimist": "^1.2.5",
