@@ -1,0 +1,11 @@
+---
+to: <%= name %>/.prettierrc
+---
+{
+  "useTabs": false,
+  "semi":  false,
+  "trailingComma":  "all",
+  "singleQuote":  true,
+  "printWidth":  120,
+  "tabWidth":  2
+}
