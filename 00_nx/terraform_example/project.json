@@ -3,7 +3,6 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "terraform_example",
   "projectType": "app",
-  "tags": ["category:terraform"],
   "targets": {
     "plan": {
       "executor": "nx:run-commands",
