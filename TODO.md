@@ -11,3 +11,4 @@
 * generators
 * mocking
 * Adding types to an example of a package doesn't have types.
+* Switching node versions in nx https://pnpm.io/npmrc#use-node-version
