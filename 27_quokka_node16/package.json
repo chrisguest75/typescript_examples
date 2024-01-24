@@ -1,0 +1,15 @@
+{
+  "name": "27_quokka_node16",
+  "version": "1.0.0",
+  "description": "Demonstrate using node v16 with Quokka in VSCode.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv-quokka-plugin": "^1.0.0",
+    "ts-node": "^10.9.2"
+  }
+}
