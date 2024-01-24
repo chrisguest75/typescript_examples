@@ -37,3 +37,6 @@ console.log(b);
 // objects
 console.log(b.test ? b.test : 0);
 console.log(b?.test ? b.test : 0);
+
+b.test = 1;
+console.log(b?.test ? b.test : 0);
