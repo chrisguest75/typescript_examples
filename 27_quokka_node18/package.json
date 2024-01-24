@@ -12,6 +12,7 @@
     "@types/node": "^18.14.2",
     "dotenv-quokka-plugin": "^1.0.0",
     "expect": "^29.4.3",
-    "jest-extended": "^3.2.4"
+    "jest-extended": "^3.2.4",
+    "ts-node": "^10.9.2"
   }
 }
