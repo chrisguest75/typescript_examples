@@ -1,3 +1,4 @@
+import fs from 'fs';
 
 function sleep(ms: number): Promise<string> {
   return new Promise((resolve) => {
@@ -58,12 +59,38 @@ function example_return_promise() {
   return promise;
 }
 
+type FileRecord = {
+  filePath: string;
+  contents: string;
+  stats: fs.Stats;
+}
+
+async function load_a_file(filePath: string): Promise<FileRecord> {
+  try {
+    const stats = fs.promises.stat(filePath);
+    const data = fs.promises.readFile(filePath, 'utf-8');
+    
+    const out = await Promise.all([stats, data]);
+    
+    return { filePath: filePath, contents: out[1], stats: out[0] } as FileRecord;
+  } catch (error) {
+    throw new Error(`Failed to load file: ${error}`);
+  }
+}
+
+
+
 async function main() {
     console.log('Promises Examples')
 
     example_success();
     example_failure();
     example();
+    const filePath = './.nvmrc';
+    const filedata = await load_a_file(filePath);
+    console.log(`filePath: '${filedata.filePath}'`);
+    console.log(`contents: '${filedata.contents}'`);
+    console.log(`stats: '${JSON.stringify(filedata.stats)}'`);
 
     const retuned_promise = example_return_promise();
 
