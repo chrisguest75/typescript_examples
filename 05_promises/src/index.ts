@@ -1,11 +1,20 @@
 
+function sleep(ms: number): Promise<string> {
+  return new Promise((resolve) => {
+      // logger.info(`Sleep for ${ms}`);
+      setTimeout(() => {
+          resolve('Sleep complete')
+      }, ms)
+  })
+}
+
 function example_success() {
     const promise = new Promise((resolve, reject) => {
         return resolve(27);
       })
 
     console.log(promise);
-    promise.then(number => console.log(number)); // 27
+    promise.then(number => console.log(`example_success: ${number}`)); // 27
 }
 
 function example_failure() {
@@ -15,11 +24,11 @@ function example_failure() {
       })    
 
     console.log(promise);
-    promise.catch(err => console.log(err)); // 💩💩💩 
+    promise.catch(err => console.log(`example_failure: ${err}`)); // 💩💩💩 
 }
 
 async function example() {
-  const jeffBuysCake = (cakeType: String) => {
+  const jeffBuysCake = (cakeType: string) => {
     return new Promise((resolve, reject) => {
       setTimeout(()=> {
         if (cakeType === 'black forest') {
@@ -35,16 +44,32 @@ async function example() {
   console.log(promise);
 }
 
-async function example_fs_promise() {
+function example_return_promise() {
+  const promise = new Promise((resolve, reject) => {
+      sleep(1000).then(() => {
+        const d = Date.now();
+        console.log(`d = ${d}`);
+        d % 2 === 0 ? reject('💩💩💩') : resolve("🎉🎉🎉");
+      })
+    })
+
+  console.log(promise);
+
+  return promise;
 }
 
 async function main() {
-    console.log('Promises')
+    console.log('Promises Examples')
 
     example_success();
     example_failure();
     example();
 
+    const retuned_promise = example_return_promise();
+
+    const waited = await retuned_promise;
+    console.log(waited);
+
 }
 
-main()
+main().then(() => console.log('Done')).catch(err => console.log(err));

@@ -6,7 +6,9 @@ Demonstrates how to use promises
 
 ```sh
 npm install
-npm run start:dev      
+
+# start ts-node
+npm run start:dev
 ```
 
 ## Resources
