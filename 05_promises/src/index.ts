@@ -1,4 +1,5 @@
 import fs from 'fs';
+import { waitBothURLs } from './url_any';
 
 function sleep(ms: number): Promise<string> {
   return new Promise((resolve) => {
@@ -82,7 +83,7 @@ async function load_a_file(filePath: string): Promise<FileRecord> {
 
 async function main() {
     console.log('Promises Examples')
-
+    console.log('********************')
     example_success();
     example_failure();
     example();
@@ -96,6 +97,27 @@ async function main() {
 
     const waited = await retuned_promise;
     console.log(waited);
+
+
+    // TESTS:
+    // 1. Both URLs are slow
+    // 2. One URL is slow
+    // 3. Url is invalid
+    // 4. first one to respond 
+
+    /*
+    for (let index = 0; index < 10; index++) {
+      const response = await waitBothURLs('http://www.google.com', 'http://www.bing.com');
+      console.log(response);
+      
+    }
+  */
+
+    for (let index = 0; index < 1; index++) {
+      const response = await waitBothURLs('https://httpbin.org/delay/2', 'https://httpbin.org/delay/5');
+      console.log(response);
+      
+    }
 
 }
 
