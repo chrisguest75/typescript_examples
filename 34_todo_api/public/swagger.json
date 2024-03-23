@@ -7,6 +7,18 @@
 		"requestBodies": {},
 		"responses": {},
 		"schemas": {
+			"TodoResponse": {
+				"properties": {
+					"message": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"message"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"PingResponse": {
 				"properties": {
 					"message": {
@@ -31,6 +43,25 @@
 		"contact": {}
 	},
 	"paths": {
+		"/todo": {
+			"get": {
+				"operationId": "GetTodo",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/TodoResponse"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": []
+			}
+		},
 		"/ping": {
 			"get": {
 				"operationId": "GetMessage",

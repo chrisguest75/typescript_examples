@@ -72,3 +72,8 @@ npm install --save-dev @types/swagger-ui-express
 
 * Chainguard LTS images [here](https://images.chainguard.dev/directory/image/node-lts/versions)
 * Node prune [here](https://github.com/tj/node-prune/tree/master)  
+
+
+https://kulshekhar.github.io/ts-jest/docs/guides/esm-support/
+https://codedamn.com/news/nodejs/cannot-use-import-statement-outside-a-module
+
