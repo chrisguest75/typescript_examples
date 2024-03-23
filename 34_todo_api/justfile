@@ -23,6 +23,8 @@ local-test-pipeline:
   npm run start
   npm run docker:build
   npm run docker:run
+  npm run docker:build:chainguard
+  npm run docker:run:chainguard
 
 test-all: local-test-pipeline
 

@@ -23,7 +23,11 @@
     "docker:build": "docker build --target PRODUCTION -f Dockerfile --label \"org.opencontainers.image.created=$(date '+%Y-%m-%dT%H:%M:%SZ')\" --label \"org.opencontainers.image.version=${githubsha}\" --label \"org.opencontainers.image.url=$(git remote get-url origin)\" -t 34_todo_api .",
     "docker:run": "npm run docker:build && docker run --rm -it --name 34_todo_api 34_todo_api",
     "docker:rebuild": "docker build --no-cache --target PRODUCTION -f Dockerfile --label \"org.opencontainers.image.created=$(date '+%Y-%m-%dT%H:%M:%SZ')\" --label \"org.opencontainers.image.version=${githubsha}\" --label \"org.opencontainers.image.url=$(git remote get-url origin)\" -t 34_todo_api .",
-    "docker:stop": "docker stop 34_todo_api"
+    "docker:stop": "docker stop 34_todo_api",
+    "docker:build:chainguard": "docker build --target PRODUCTION -f Dockerfile.chainguard --label \"org.opencontainers.image.created=$(date '+%Y-%m-%dT%H:%M:%SZ')\" --label \"org.opencontainers.image.version=${githubsha}\" --label \"org.opencontainers.image.url=$(git remote get-url origin)\" -t 34_todo_api_chainguard .",
+    "docker:run:chainguard": "npm run docker:build:chainguard && docker run --rm -it --name 34_todo_api_chainguard 34_todo_api_chainguard",
+    "docker:rebuild:chainguard": "docker build --no-cache --target PRODUCTION -f Dockerfile.chainguard --label \"org.opencontainers.image.created=$(date '+%Y-%m-%dT%H:%M:%SZ')\" --label \"org.opencontainers.image.version=${githubsha}\" --label \"org.opencontainers.image.url=$(git remote get-url origin)\" -t 34_todo_api_chainguard .",
+    "docker:stop:chainguard": "docker stop 34_todo_api_chainguard"
   },
   "keywords": [],
   "author": "",
