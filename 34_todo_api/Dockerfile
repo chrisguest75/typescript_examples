@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1.4
-FROM node:20.10.0-bullseye AS BUILDER
-LABEL dockerfile.baseimage="node:20.10.0-bullseye" dockerfile.description="34_todo_api" dockerfile.stage="BUILDER"
+FROM node:20.11.1-bullseye AS BUILDER
+LABEL dockerfile.baseimage="node:20.11.1-bullseye" dockerfile.description="34_todo_api" dockerfile.stage="BUILDER"
 
 WORKDIR /scratch
 
