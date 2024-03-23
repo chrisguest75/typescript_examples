@@ -37,6 +37,9 @@ HYGEN_OVERWRITE=1 npx hygen cli20 new 99_test20 --docker
 
 # recreate express with node20
 HYGEN_OVERWRITE=1 npx hygen express20 new 99_express20 --docker
+
+# recreate express and tsoa with node20
+HYGEN_OVERWRITE=1 npx hygen express_tsoa20 new 99_expresstsoa20 --docker
 ```
 
 ## Creating templates

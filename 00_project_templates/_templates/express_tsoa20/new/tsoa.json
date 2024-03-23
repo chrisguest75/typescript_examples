@@ -1,0 +1,17 @@
+---
+to: <%= name %>/tsoa.json
+---
+{
+    "entryFile": "src/index.ts",
+    "noImplicitAdditionalProperties": "throw-on-extras",
+    "controllerPathGlobs": ["src/**/*Controller.ts"],    
+    "spec": {
+      "basePath": "/",
+      "outputDirectory": "public",
+      "specVersion": 3
+    },
+    "routes": {
+      "routesDir": "src/routes",
+      "middleware": "express"
+    }
+  }
