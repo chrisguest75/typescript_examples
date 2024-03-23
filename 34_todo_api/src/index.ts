@@ -39,6 +39,20 @@ export async function main(args: minimist.ParsedArgs) {
   app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
 }
 
+function shutDown(signal: string) {
+  return new Promise(() => {
+    logger.info(`shutDown - ${signal}`)
+    process.exit(0)
+  })
+}
+
+process.on('SIGTERM', () => {
+  shutDown('SIGTERM')
+})
+process.on('SIGINT', () => {
+  shutDown('SIGINT')
+})
+
 process.on('exit', async () => {
   logger.warn('exit signal received')
   process.exit(1)
