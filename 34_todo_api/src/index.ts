@@ -1,28 +1,47 @@
 import { logger } from './logger.js'
 import * as dotenv from 'dotenv'
 import minimist from 'minimist'
+import express from 'express'
+import pino from 'express-pino-logger'
+import bodyParser from 'body-parser'
+
+const port = process.env.PORT || 8000
+
+export const app = express()
+
+// Use body parser to read sent json payloads
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  }),
+)
+app.use(bodyParser.json())
+app.use(express.static('public'))
+app.use(pino())
 
 /*
 Entrypoint
 */
 export async function main(args: minimist.ParsedArgs) {
+  logger.info({ node_env: process.env.NODE_ENV })
+  logger.info({ 'node.version': process.version })
+
   logger.trace('TRACE - level message')
   logger.debug('DEBUG - level message')
   logger.info('INFO - level message')
   logger.warn('WARN - level message')
   logger.error('ERROR - level message')
   logger.fatal('FATAL - level message')
-  logger.info({ node_env: process.env.NODE_ENV })
-  logger.info({ 'node.version': process.version })
 
-  if (args['throwError']) {
-    throw new Error("I'm an error")
-  }
+  logger.info(args)
+
+  console.log('Starting server...')
+  app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
 }
 
 process.on('exit', async () => {
   logger.warn('exit signal received')
-  //process.exit(1)
+  process.exit(1)
 })
 
 process.on('uncaughtException', async (error: Error) => {
@@ -53,7 +72,8 @@ const args: minimist.ParsedArgs = minimist(process.argv.slice(2), {
 
 try {
   await main(args)
-  process.exit(0)
+  // if we exit, the process will kill the listener
+  //process.exit(0)
 } catch (error) {
   logger.error(error)
   process.exit(1)

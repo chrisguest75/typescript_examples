@@ -10,6 +10,7 @@ RUN npm ci
 
 COPY tsconfig.json .prettierrc jest.config.cjs .eslintrc ./
 COPY src ./src
+COPY public ./public
 COPY tests ./tests
 RUN npm run lint
 #RUN npm run test:coverage
@@ -32,5 +33,6 @@ WORKDIR /work
 COPY --from=BUILDER /scratch/package.json /scratch/package-lock.json ./
 COPY --from=BUILDER /scratch/node_modules ./node_modules
 COPY --from=BUILDER /scratch/build ./
+COPY --from=BUILDER /scratch/public ./public
 
 CMD ["/work/src/index.js"]

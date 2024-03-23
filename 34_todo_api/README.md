@@ -51,6 +51,19 @@ code .
 
 The code should break on the breakpoint.  
 
+## How it was created
+
+```sh
+npm install --save express 
+npm install --save-dev @types/express
+npm install express-pino-logger
+npm install --save-dev @types/express-pino-logger
+
+npm install --save tsoa swagger-ui-express
+npm install --save-dev @types/swagger-ui-express
+npm install --save-dev concurrently
+```
+
 ## Resources
 
 * My basic typecript cmdline [01_basic_cmdline](https://github.com/chrisguest75/typescript_examples/tree/master/01_basic_cmdline)
