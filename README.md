@@ -1,5 +1,7 @@
 # README
 
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-%23FE5196?logo=conventionalcommits&logoColor=white)](https://conventionalcommits.org) [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)  
+
 A set of simple Typescript examples.
 
 ## Conventional Commits
@@ -12,6 +14,9 @@ brew install pre-commit
 brew install commitizen
 # conventional commits extension
 code --install-extension vivaxy.vscode-conventional-commits
+
+# install hooks
+pre-commit install --install-hooks --overwrite --config .pre-commit-config.yaml
 ```
 
 ## Contents
