@@ -34,6 +34,9 @@ HYGEN_OVERWRITE=1 npx hygen cli18 new 99_test18 --docker
 
 # recreate with node20
 HYGEN_OVERWRITE=1 npx hygen cli20 new 99_test20 --docker
+
+# recreate express with node20
+HYGEN_OVERWRITE=1 npx hygen express20 new 99_express20 --docker
 ```
 
 ## Creating templates
