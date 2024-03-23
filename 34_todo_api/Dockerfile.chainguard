@@ -1,10 +1,8 @@
 # syntax=docker/dockerfile:1.4
-FROM cgr.dev/chainguard/node-lts:latest AS BUILDER
-LABEL dockerfile.baseimage="cgr.dev/chainguard/node-lts:latest" dockerfile.description="34_todo_api" dockerfile.stage="BUILDER"
+FROM cgr.dev/chainguard/node-lts:latest-dev AS BUILDER
+LABEL dockerfile.baseimage="cgr.dev/chainguard/node-lts:latest-dev" dockerfile.description="34_todo_api" dockerfile.stage="BUILDER"
 
 WORKDIR /scratch
-
-#RUN curl -sf -o /bin/node-prune https://gobinaries.com/tj/node-prune && chmod +x /bin/node-prune && /bin/node-prune
 
 COPY package.json package-lock.json ./
 # https://docs.npmjs.com/cli/v7/commands/npm-ci
@@ -20,7 +18,10 @@ RUN npm run audit:production
 RUN npm ci --only=production && npm cache clean --force
 
 # prune the node_modules
-#RUN /usr/local/bin/node-prune --verbose ./node_modules
+USER root
+RUN apk add curl
+RUN curl -sf https://gobinaries.com/github.com/tj/node-prune@v1.2.0 | PREFIX=. sh
+RUN ./node-prune --verbose ./node_modules
 
 FROM cgr.dev/chainguard/node-lts:latest AS PRODUCTION
 LABEL dockerfile.baseimage="cgr.dev/chainguard/node-lts:latest" dockerfile.description="34_todo_api" dockerfile.stage="PRODUCTION"
