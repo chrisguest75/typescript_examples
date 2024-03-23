@@ -22,6 +22,10 @@ npm run lint
 # docker build
 npm run docker:build
 npm run docker:run
+
+
+# run all tests
+just local-test-pipeline
 ```
 
 ## Debugging
@@ -54,3 +58,6 @@ The code should break on the breakpoint.
 
 * My basic typecript cmdline [01_basic_cmdline](https://github.com/chrisguest75/typescript_examples/tree/master/01_basic_cmdline)
 * ts-jest ESM Support [here](https://kulshekhar.github.io/ts-jest/docs/guides/esm-support/#support-mts-extension)  
+
+* Chainguard LTS images [here](https://images.chainguard.dev/directory/image/node-lts/versions)
+* Node prune [here](https://github.com/tj/node-prune/tree/master)  

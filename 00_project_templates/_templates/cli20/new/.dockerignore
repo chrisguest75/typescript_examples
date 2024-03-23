@@ -4,4 +4,5 @@ skip_if: <%= (typeof docker == 'undefined') %>
 message: |
   - <%= "Include .dockerignore:" + !(typeof docker == 'undefined') %>
 ---
+build
 node_modules

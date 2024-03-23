@@ -1,16 +1,14 @@
 ---
-to: <%= name %>/Dockerfile
+to: <%= name %>/Dockerfile.chainguard
 skip_if: <%= (typeof docker == 'undefined') %>
 message: |
   - <%= "Include Dockerfile:" + !(typeof docker == 'undefined') %>
 ---
 # syntax=docker/dockerfile:1.4
-FROM node:20.11.1-bullseye AS BUILDER
-LABEL dockerfile.baseimage="node:20.11.1-bullseye" dockerfile.description="<%= name %>" dockerfile.stage="BUILDER"
+FROM cgr.dev/chainguard/node-lts:latest-dev AS BUILDER
+LABEL dockerfile.baseimage="cgr.dev/chainguard/node-lts:latest-dev" dockerfile.description="<%= name %>" dockerfile.stage="BUILDER"
 
 WORKDIR /scratch
-
-RUN curl -sf -o /bin/node-prune https://gobinaries.com/tj/node-prune && chmod +x /bin/node-prune && /bin/node-prune
 
 COPY package.json package-lock.json ./
 # https://docs.npmjs.com/cli/v7/commands/npm-ci
@@ -26,10 +24,13 @@ RUN npm run audit:production
 RUN npm ci --only=production && npm cache clean --force
 
 # prune the node_modules
-RUN /usr/local/bin/node-prune --verbose ./node_modules
+USER root
+RUN apk add curl
+RUN curl -sf https://gobinaries.com/github.com/tj/node-prune@v1.2.0 | PREFIX=. sh
+RUN ./node-prune --verbose ./node_modules
 
-FROM gcr.io/distroless/nodejs20-debian11:debug AS PRODUCTION
-LABEL dockerfile.baseimage="gcr.io/distroless/nodejs:20" dockerfile.description="<%= name %>" dockerfile.stage="PRODUCTION"
+FROM cgr.dev/chainguard/node-lts:latest AS PRODUCTION
+LABEL dockerfile.baseimage="cgr.dev/chainguard/node-lts:latest" dockerfile.description="<%= name %>" dockerfile.stage="PRODUCTION"
 
 ENV NODE_ENV production
 
