@@ -8,6 +8,7 @@
     "tsc": "tsc",
     "audit": "better-npm-audit audit",
     "audit:production": "better-npm-audit audit --production",
+    "swagger": "tsoa spec && tsoa routes",
     "clean": "rimraf build",
     "build": "tsc",
     "rebuild": "npm run clean && npm run build",
@@ -38,6 +39,7 @@
     "@types/jest": "^29.5.12",
     "@types/minimist": "^1.2.5",
     "@types/node": "^20.11.30",
+    "@types/swagger-ui-express": "^4.1.6",
     "@typescript-eslint/eslint-plugin": "^7.3.1",
     "@typescript-eslint/parser": "^7.3.1",
     "better-npm-audit": "^3.7.3",
@@ -69,6 +71,8 @@
     "express": "^4.19.1",
     "express-pino-logger": "^7.0.0",
     "minimist": "^1.2.8",
-    "pino": "^8.19.0"
+    "pino": "^8.19.0",
+    "swagger-ui-express": "^5.0.0",
+    "tsoa": "^6.1.5"
   }
 }

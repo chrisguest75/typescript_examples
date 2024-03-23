@@ -1,6 +1,8 @@
 # README
 
-Demonstrates 34_todo_api
+Demonstrates an example of a TSOA TODO API.
+
+REF: [github.com/chrisguest75/typescript_examples/13_echo_service](https://github.com/chrisguest75/typescript_examples/tree/master/13_echo_service)  
 
 ## How to run
 
@@ -61,7 +63,6 @@ npm install --save-dev @types/express-pino-logger
 
 npm install --save tsoa swagger-ui-express
 npm install --save-dev @types/swagger-ui-express
-npm install --save-dev concurrently
 ```
 
 ## Resources

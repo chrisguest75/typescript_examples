@@ -4,6 +4,8 @@ import minimist from 'minimist'
 import express from 'express'
 import pino from 'express-pino-logger'
 import bodyParser from 'body-parser'
+import swaggerUi from 'swagger-ui-express'
+import { RegisterRoutes } from './routes/routes.js'
 
 const port = process.env.PORT || 8000
 
@@ -18,6 +20,19 @@ app.use(
 app.use(bodyParser.json())
 app.use(express.static('public'))
 app.use(pino())
+
+app.use(
+  '/docs',
+  swaggerUi.serve,
+  swaggerUi.setup(undefined, {
+      swaggerUrl: '/swagger.json',
+      swaggerOptions: {
+          validatorUrl: null,
+      },
+  }),
+)
+
+RegisterRoutes(app)
 
 /*
 Entrypoint
