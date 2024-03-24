@@ -25,10 +25,10 @@ app.use(
   '/docs',
   swaggerUi.serve,
   swaggerUi.setup(undefined, {
-      swaggerUrl: '/swagger.json',
-      swaggerOptions: {
-          validatorUrl: null,
-      },
+    swaggerUrl: '/swagger.json',
+    swaggerOptions: {
+      validatorUrl: null,
+    },
   }),
 )
 

@@ -74,6 +74,6 @@ npm install --save-dev @types/swagger-ui-express
 * Node prune [here](https://github.com/tj/node-prune/tree/master)  
 
 
-https://kulshekhar.github.io/ts-jest/docs/guides/esm-support/
-https://codedamn.com/news/nodejs/cannot-use-import-statement-outside-a-module
+* https://kulshekhar.github.io/ts-jest/docs/guides/esm-support/
+* https://codedamn.com/news/nodejs/cannot-use-import-statement-outside-a-module
 
