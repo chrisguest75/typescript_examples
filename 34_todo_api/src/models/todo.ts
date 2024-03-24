@@ -13,16 +13,18 @@ interface TodoItem {
 type NewTodoItem = Pick<TodoItem, 'title' | 'details'>
 
 export class Todo {
-  private _items: TodoItem[] = []
+  private _id: number = 0
+  private _items: Record<number, TodoItem> = {}
 
   public items(): number {
-    return this._items.length
+    return Object.keys(this._items).length
   }
 
   public add(item: NewTodoItem) {
-    const id = 0
+    const id = this._id
     const todo = {id, ...item, created: new Date(), updated: new Date(), completed: false }
-    this._items.push(todo)
+    this._items[id] = todo
+    this._id += 1
     return id
   }
 
@@ -53,6 +55,4 @@ export class Todo {
     const item = { ...this._items[id], ...values}
     this._items[id] = item
   }
-
-
 }

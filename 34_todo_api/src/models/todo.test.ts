@@ -13,16 +13,20 @@ test('Items can be added', () => {
   // ARRANGE
   const todo = new Todo()
   // ACT
-  todo.add({
+  const id1 = todo.add({
     title: 'Go shopping',
     details: 'Get milk'
   })
-  todo.add({
+  const id2 = todo.add({
     title: 'Do code',
     details: 'Write a simple API'
   })
   // ASSERT
   expect(todo.items()).toBe(2)
+  const todo1 = todo.get(id1)
+  const todo2 = todo.get(id2)
+  expect(todo1.id).not.toBe(todo2.id)
+
 })
 
 test('Items can be retrieved by id', () => {

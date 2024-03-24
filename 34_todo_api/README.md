@@ -4,6 +4,15 @@ Demonstrates an example of a TSOA TODO API.
 
 REF: [github.com/chrisguest75/typescript_examples/13_echo_service](https://github.com/chrisguest75/typescript_examples/tree/master/13_echo_service)  
 
+TODO:
+
+* Tighten up the id checks on the methods
+* Add prisma
+* Add typedoc examples.
+* Add mocks for date to make updated times correct.
+* Link the controller in API
+* Add a get all function
+
 ## How to run
 
 ```sh
@@ -22,9 +31,11 @@ npm run lint
 npm run docker:build
 npm run docker:run
 
-
 # run all tests
 just local-test-pipeline
+
+# build docs
+npm run docs
 ```
 
 ## Debugging
@@ -74,7 +85,8 @@ npm install --save-dev @types/swagger-ui-express
 * Node prune [here](https://github.com/tj/node-prune/tree/master)  
 
 
-* https://kulshekhar.github.io/ts-jest/docs/guides/esm-support/
-* https://codedamn.com/news/nodejs/cannot-use-import-statement-outside-a-module
+* ts-jest ESM Support [here](https://kulshekhar.github.io/ts-jest/docs/guides/esm-support/)
+* How to fix “Cannot use import statement outside a module” [here](https://codedamn.com/news/nodejs/cannot-use-import-statement-outside-a-module)
 
-* https://typedoc.org/guides/overview/
+* What is TypeDoc? [here](https://typedoc.org/guides/overview/)
+* Building a type-safe dictionary in TypeScript [here](https://blog.logrocket.com/building-type-safe-dictionary-typescript/#)
