@@ -37,6 +37,22 @@ export class Todo {
    * Marks a todo item as completed
    */
   public complete(id: number) {
+    if (id < 0) {
+      throw new RangeError('id is invalid')
+    }    
     this._items[id].completed = true
   }
+
+  public update(id: number, values: Partial<NewTodoItem>) {
+    if (id < 0) {
+      throw new RangeError('id is invalid')
+    } 
+    if (this._items[id].completed) {
+      throw new Error('Cannot update a completed item')
+    }
+    const item = { ...this._items[id], ...values}
+    this._items[id] = item
+  }
+
+
 }
