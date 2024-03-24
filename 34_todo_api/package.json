@@ -9,6 +9,7 @@
     "audit": "better-npm-audit audit",
     "audit:production": "better-npm-audit audit --production",
     "swagger": "tsoa spec && tsoa routes",
+    "docs": "typedoc",
     "clean": "rimraf build",
     "build": "tsc",
     "rebuild": "npm run clean && npm run build",

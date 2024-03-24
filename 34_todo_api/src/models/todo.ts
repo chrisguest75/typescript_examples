@@ -1,3 +1,6 @@
+/**
+ * @interface
+ */
 interface TodoItem {
   id: number
   title: string
@@ -24,6 +27,16 @@ export class Todo {
   }
 
   public get(id: number) {
+    if (id < 0) {
+      throw new RangeError('id is invalid')
+    }
     return this._items[id]
+  }
+
+  /**
+   * Marks a todo item as completed
+   */
+  public complete(id: number) {
+    this._items[id].completed = true
   }
 }

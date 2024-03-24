@@ -36,5 +36,33 @@ test('Items can be retrieved by id', () => {
   // ASSERT
   expect(todo.items()).toBe(1)
   expect(todo.get(id)).toMatchObject({id, title: 'Go shopping', details: 'Get milk', completed: false})
+})
 
+test('Get items throws if id does not exist', () => {
+  // ARRANGE
+  const todo = new Todo()
+  // ACT
+  const id = todo.add({
+    title: 'Go shopping',
+    details: 'Get milk'
+  })
+  // ASSERT
+  expect(todo.items()).toBe(1)
+  expect(() => {
+    todo.get(-1)
+  }).toThrow(RangeError);
+})
+
+test('Items can be marked complete', () => {
+  // ARRANGE
+  const todo = new Todo()
+  // ACT
+  const id = todo.add({
+    title: 'Go shopping',
+    details: 'Get milk'
+  })
+  todo.complete(id)
+  // ASSERT
+  expect(todo.items()).toBe(1)
+  expect(todo.get(id)).toMatchObject({id, title: 'Go shopping', details: 'Get milk', completed: true})
 })

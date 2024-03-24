@@ -77,3 +77,4 @@ npm install --save-dev @types/swagger-ui-express
 * https://kulshekhar.github.io/ts-jest/docs/guides/esm-support/
 * https://codedamn.com/news/nodejs/cannot-use-import-statement-outside-a-module
 
+* https://typedoc.org/guides/overview/
