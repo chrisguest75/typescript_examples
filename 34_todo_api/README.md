@@ -24,7 +24,8 @@ npm run tsc -- --version
 
 # run targets
 npm run start:dev
-npm run test
+# unit testing
+npm run test -- --watch --silent=false
 npm run lint
 
 # docker build
@@ -90,3 +91,7 @@ npm install --save-dev @types/swagger-ui-express
 
 * What is TypeDoc? [here](https://typedoc.org/guides/overview/)
 * Building a type-safe dictionary in TypeScript [here](https://blog.logrocket.com/building-type-safe-dictionary-typescript/#)
+
+
+https://stackoverflow.com/questions/29719631/how-do-i-set-a-mock-date-in-jest
+https://stackoverflow.com/questions/5511323/calculate-the-date-yesterday-in-javascript

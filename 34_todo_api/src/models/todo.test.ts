@@ -1,5 +1,12 @@
 import { Todo } from './todo'
 
+const yesterday = new Date(new Date().setDate(new Date().getDate()-1))
+
+beforeEach(() => {
+  jest.useFakeTimers({
+    now: yesterday,
+  });
+});
 
 test('New todo has empty items', () => {
   // ARRANGE
@@ -26,7 +33,9 @@ test('Items can be added', () => {
   const todo1 = todo.get(id1)
   const todo2 = todo.get(id2)
   expect(todo1.id).not.toBe(todo2.id)
-
+  // we have not modified them so the created and updated should be the same
+  expect(todo1.created).toBe(todo1.updated)
+  expect(todo1.created).toEqual(yesterday)
 })
 
 test('Items can be retrieved by id', () => {
@@ -65,10 +74,13 @@ test('Items can be marked complete', () => {
     title: 'Go shopping',
     details: 'Get milk'
   })
+  jest.advanceTimersByTime(1000)
   todo.complete(id)
   // ASSERT
   expect(todo.items()).toBe(1)
-  expect(todo.get(id)).toMatchObject({id, title: 'Go shopping', details: 'Get milk', completed: true})
+  const todo1 = todo.get(id)
+  expect(todo1).toMatchObject({id, title: 'Go shopping', details: 'Get milk', completed: true})
+  expect(todo1.created).not.toEqual(todo1.updated)
 })
 
 test('Complete item throws if id does not exist', () => {

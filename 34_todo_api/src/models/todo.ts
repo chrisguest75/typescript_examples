@@ -22,7 +22,8 @@ export class Todo {
 
   public add(item: NewTodoItem) {
     const id = this._id
-    const todo = {id, ...item, created: new Date(), updated: new Date(), completed: false }
+    const now = new Date()
+    const todo = {id, ...item, created: now, updated: now, completed: false }
     this._items[id] = todo
     this._id += 1
     return id
@@ -42,6 +43,7 @@ export class Todo {
     if (id < 0) {
       throw new RangeError('id is invalid')
     }    
+    this._items[id].updated = new Date() 
     this._items[id].completed = true
   }
 
