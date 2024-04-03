@@ -13,12 +13,42 @@ import type { Request as ExRequest, Response as ExResponse, RequestHandler, Rout
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 
 const models: TsoaRoute.Models = {
-    "TodoResponse": {
+    "TodoItem": {
         "dataType": "refObject",
         "properties": {
-            "message": {"dataType":"string","required":true},
+            "id": {"dataType":"double","required":true},
+            "title": {"dataType":"string","required":true},
+            "details": {"dataType":"string","required":true},
+            "created": {"dataType":"datetime","required":true},
+            "updated": {"dataType":"datetime","required":true},
+            "completed": {"dataType":"boolean","required":true},
         },
         "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "GetTodoResponse": {
+        "dataType": "refAlias",
+        "type": {"dataType":"array","array":{"dataType":"refObject","ref":"TodoItem"},"validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "Pick_TodoItem.id_": {
+        "dataType": "refAlias",
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"id":{"dataType":"double","required":true}},"validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "PostTodoResponse": {
+        "dataType": "refAlias",
+        "type": {"ref":"Pick_TodoItem.id_","validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "Pick_TodoItem.title-or-details_": {
+        "dataType": "refAlias",
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"title":{"dataType":"string","required":true},"details":{"dataType":"string","required":true}},"validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "NewTodoItem": {
+        "dataType": "refAlias",
+        "type": {"ref":"Pick_TodoItem.title-or-details_","validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "PingResponse": {
@@ -57,6 +87,36 @@ export function RegisterRoutes(app: Router) {
 
               templateService.apiHandler({
                 methodName: 'getTodo',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: undefined,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.post('/todo',
+            ...(fetchMiddlewares<RequestHandler>(TodoController)),
+            ...(fetchMiddlewares<RequestHandler>(TodoController.prototype.postTodo)),
+
+            function TodoController_postTodo(request: ExRequest, response: ExResponse, next: any) {
+            const args: Record<string, TsoaRoute.ParameterSchema> = {
+                    body: {"in":"body","name":"body","required":true,"ref":"NewTodoItem"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args, request, response });
+
+                const controller = new TodoController();
+
+              templateService.apiHandler({
+                methodName: 'postTodo',
                 controller,
                 response,
                 next,
