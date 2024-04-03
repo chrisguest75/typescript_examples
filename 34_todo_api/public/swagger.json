@@ -1,0 +1,182 @@
+{
+	"openapi": "3.0.0",
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"TodoItem": {
+				"description": "TodoItem",
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"title": {
+						"type": "string"
+					},
+					"details": {
+						"type": "string"
+					},
+					"created": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updated": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"completed": {
+						"type": "boolean"
+					}
+				},
+				"required": [
+					"id",
+					"title",
+					"details",
+					"created",
+					"updated",
+					"completed"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"GetTodoResponse": {
+				"items": {
+					"$ref": "#/components/schemas/TodoItem"
+				},
+				"type": "array"
+			},
+			"Pick_TodoItem.id_": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"id"
+				],
+				"type": "object",
+				"description": "From T, pick a set of properties whose keys are in the union K"
+			},
+			"PostTodoResponse": {
+				"$ref": "#/components/schemas/Pick_TodoItem.id_"
+			},
+			"Pick_TodoItem.title-or-details_": {
+				"properties": {
+					"title": {
+						"type": "string"
+					},
+					"details": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"title",
+					"details"
+				],
+				"type": "object",
+				"description": "From T, pick a set of properties whose keys are in the union K"
+			},
+			"NewTodoItem": {
+				"$ref": "#/components/schemas/Pick_TodoItem.title-or-details_"
+			},
+			"PingResponse": {
+				"properties": {
+					"message": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"message"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
+		"securitySchemes": {}
+	},
+	"info": {
+		"title": "34_todo_api",
+		"version": "1.0.0",
+		"license": {
+			"name": "ISC"
+		},
+		"contact": {}
+	},
+	"paths": {
+		"/todo": {
+			"get": {
+				"operationId": "GetTodo",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GetTodoResponse"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": []
+			},
+			"post": {
+				"operationId": "PostTodo",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/PostTodoResponse"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/NewTodoItem"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/ping": {
+			"get": {
+				"operationId": "GetMessage",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/PingResponse"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": []
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/"
+		}
+	]
+}

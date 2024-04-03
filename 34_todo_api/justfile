@@ -1,0 +1,30 @@
+#!/usr/bin/env just --justfile
+# ^ A shebang isn't required, but allows a justfile to be executed
+#   like a script, with `./justfile test`, for example.
+
+set dotenv-load := true
+
+# default lists actions
+default:
+  @just -f justfile --list
+
+local-test-pipeline:
+  #!/usr/bin/env bash
+  set -eufo pipefail
+
+  echo "*************************************"
+  echo "** Local pipeline"
+  echo "*************************************"
+  node --version
+  #npm outdated
+  #npm install
+  #npm run lint
+  #npm run test
+  npm run start
+  npm run docker:build
+  npm run docker:run
+  npm run docker:build:chainguard
+  npm run docker:run:chainguard
+
+test-all: local-test-pipeline
+
