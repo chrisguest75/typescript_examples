@@ -6,12 +6,13 @@ REF: [github.com/chrisguest75/typescript_examples/13_echo_service](https://githu
 
 TODO:
 
-* Tighten up the id checks on the methods
+* Zod checking on the inputs
+* Fix the docker builds and runs
+* Express is failing audit
 * Add prisma
 * Add typedoc examples.
-* Add mocks for date to make updated times correct.
 * Link the controller in API
-* Add a get all function
+* Add OTEL
 
 ## How to run
 
@@ -93,5 +94,5 @@ npm install --save-dev @types/swagger-ui-express
 * Building a type-safe dictionary in TypeScript [here](https://blog.logrocket.com/building-type-safe-dictionary-typescript/#)
 
 
-https://stackoverflow.com/questions/29719631/how-do-i-set-a-mock-date-in-jest
-https://stackoverflow.com/questions/5511323/calculate-the-date-yesterday-in-javascript
+* https://stackoverflow.com/questions/29719631/how-do-i-set-a-mock-date-in-jest
+* https://stackoverflow.com/questions/5511323/calculate-the-date-yesterday-in-javascript
