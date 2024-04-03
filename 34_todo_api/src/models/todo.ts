@@ -1,4 +1,7 @@
 /**
+ * TodoItem
+ * @property id uniqueid for the todo
+ * @property title 
  * @interface
  */
 interface TodoItem {
@@ -16,10 +19,16 @@ export class Todo {
   private _id: number = 0
   private _items: Record<number, TodoItem> = {}
 
+  /**
+   * Get the number of items
+   */
   public items(): number {
     return Object.keys(this._items).length
   }
 
+  /**
+   * Add a todo item
+   */
   public add(item: NewTodoItem) {
     const id = this._id
     const now = new Date()
@@ -29,8 +38,11 @@ export class Todo {
     return id
   }
 
+  /**
+   * Get the todo for an id
+   */
   public get(id: number) {
-    if (id < 0) {
+    if (id < 0 || !(id in this._items)) {
       throw new RangeError('id is invalid')
     }
     return this._items[id]
@@ -40,15 +52,18 @@ export class Todo {
    * Marks a todo item as completed
    */
   public complete(id: number) {
-    if (id < 0) {
+    if (id < 0 || !(id in this._items)) {
       throw new RangeError('id is invalid')
     }    
     this._items[id].updated = new Date() 
     this._items[id].completed = true
   }
 
+  /**
+   * Update fields in a todo
+   */
   public update(id: number, values: Partial<NewTodoItem>) {
-    if (id < 0) {
+    if (id < 0 || !(id in this._items)) {
       throw new RangeError('id is invalid')
     } 
     if (this._items[id].completed) {

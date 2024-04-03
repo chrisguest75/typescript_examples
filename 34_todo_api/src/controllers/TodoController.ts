@@ -8,6 +8,8 @@ interface TodoResponse {
 // limit, skip, filter
 // GET todo/ - returns all todos
 // GET todo/{id} - returns a todo
+// POST todo - create a todo {}
+// PATCH todo/{id} - update todo
 
 @Route('todo')
 export class TodoController {

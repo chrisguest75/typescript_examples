@@ -64,6 +64,9 @@ test('Get items throws if id does not exist', () => {
   expect(() => {
     todo.get(-1)
   }).toThrow(RangeError);
+  expect(() => {
+    todo.get(10)
+  }).toThrow(RangeError);
 })
 
 test('Items can be marked complete', () => {
@@ -95,6 +98,9 @@ test('Complete item throws if id does not exist', () => {
   expect(todo.items()).toBe(1)
   expect(() => {
     todo.complete(-1)
+  }).toThrow(RangeError);
+  expect(() => {
+    todo.complete(10)
   }).toThrow(RangeError);
 })
 
@@ -144,5 +150,8 @@ test('Update item throws if id does not exist', () => {
   expect(todo.items()).toBe(1)
   expect(() => {
     todo.update(-1, { details: 'Get beans'})
+  }).toThrow(RangeError);
+  expect(() => {
+    todo.update(10, { details: 'Get beans'})
   }).toThrow(RangeError);
 })
