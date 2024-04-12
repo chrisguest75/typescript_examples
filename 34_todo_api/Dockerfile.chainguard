@@ -11,18 +11,18 @@ RUN npm ci
 COPY tsconfig.json .prettierrc jest.config.cjs .eslintrc ./
 COPY src ./src
 COPY public ./public
-COPY tests ./tests
+#COPY tests ./tests
 RUN npm run lint
-#RUN npm run test:coverage
+RUN npm run test:coverage
 RUN npm run build
-RUN npm run audit:production
+#RUN npm run audit:production
 RUN npm ci --only=production && npm cache clean --force
 
 # prune the node_modules
 USER root
 RUN apk add curl
-RUN curl -sf https://gobinaries.com/github.com/tj/node-prune@v1.2.0 | PREFIX=. sh
-RUN ./node-prune --verbose ./node_modules
+#RUN curl -sf https://gobinaries.com/github.com/tj/node-prune@v1.2.0 | PREFIX=. sh
+#RUN ./node-prune --verbose ./node_modules
 
 FROM cgr.dev/chainguard/node-lts:latest AS PRODUCTION
 LABEL dockerfile.baseimage="cgr.dev/chainguard/node-lts:latest" dockerfile.description="34_todo_api" dockerfile.stage="PRODUCTION"

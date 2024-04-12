@@ -4,7 +4,9 @@ to: <%= name %>/TEMPLATE_README.md
 # README
 
 Demonstrates <%= name %>
-REF: [github.com/chrisguest75/typescript_examples/13_echo_service](https://github.com/chrisguest75/typescript_examples/tree/master/13_echo_service)  
+
+* REF: [github.com/chrisguest75/typescript_examples/13_echo_service](https://github.com/chrisguest75/typescript_examples/tree/master/13_echo_service)  
+* REF: [github.com/chrisguest75/typescript_examples/34_todo_api](https://github.com/chrisguest75/typescript_examples/tree/master/34_todo_api)  
 
 ## How to run
 

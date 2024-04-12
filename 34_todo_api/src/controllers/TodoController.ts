@@ -1,6 +1,9 @@
 import { Get, Post, Route, Body } from 'tsoa'
-import { Todo } from '../models/todo'
 import type { TodoItem, NewTodoItem } from '../models/todo'
+/*********
+ *  NOT WORKING FOR TESTS import { Todo } from '../models/todo'
+ */
+import { Todo } from '../models/todo.js'
 
 // limit, skip, filter
 // GET todo/ - returns all todos

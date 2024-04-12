@@ -4,10 +4,19 @@ Demonstrates an example of a TSOA TODO API.
 
 REF: [github.com/chrisguest75/typescript_examples/13_echo_service](https://github.com/chrisguest75/typescript_examples/tree/master/13_echo_service)  
 
+NOTES:
+
+* Use `esm:true` in the `tsoa.json` to enable .js extensions.  
+* Testing:
+    * `npm run build:run` - from build directory
+    * `npm run start:dev` - using ts-node
+    * `npm run test` - run with jest
+    * `npm run docker:run` - run inside docker
+
 TODO:
 
+* Test with jest or run with node are not working both together because of .js import  
 * Zod checking on the inputs
-* Fix the docker builds and runs
 * Express is failing audit
 * Add prisma
 * Add typedoc examples.
@@ -96,3 +105,4 @@ npm install --save-dev @types/swagger-ui-express
 
 * https://stackoverflow.com/questions/29719631/how-do-i-set-a-mock-date-in-jest
 * https://stackoverflow.com/questions/5511323/calculate-the-date-yesterday-in-javascript
+* https://github.com/Microsoft/TypeScript/wiki/TypeScript-Design-Goals

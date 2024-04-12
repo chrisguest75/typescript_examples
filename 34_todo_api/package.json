@@ -12,6 +12,8 @@
     "docs": "typedoc",
     "clean": "rimraf build",
     "build": "tsc",
+    "build:run": "tsc && node --no-warnings --experimental-specifier-resolution=node ./build/src/index.js",
+    "run": "node --no-warnings --experimental-specifier-resolution=node ./build/src/index.js",
     "rebuild": "npm run clean && npm run build",
     "clean:build": "npm run rebuild",
     "type-check": "tsc --noEmit",

@@ -95,8 +95,8 @@ dotenv.config()
 logger.info(`Pino:${logger.version}`)
 const args: minimist.ParsedArgs = minimist(process.argv.slice(2), {
   string: ['ssmName'],
-  boolean: ['verbose', 'ssmRead', 'ssmWrite', 'throwError'],
-  default: { verbose: true, throwError: false, ssmRead: false, ssmWrite: false, ssmName: 'testssmdocument' },
+  boolean: ['verbose'],
+  default: { verbose: true, ssmName: 'testssmdocument' },
 })
 
 try {
