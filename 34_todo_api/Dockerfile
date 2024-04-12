@@ -15,7 +15,7 @@ COPY src ./src
 COPY public ./public
 #COPY tests ./tests
 RUN npm run lint
-#RUN npm run test:coverage
+RUN npm run test:coverage
 RUN npm run build
 #RUN npm run audit:production
 RUN npm ci --only=production && npm cache clean --force

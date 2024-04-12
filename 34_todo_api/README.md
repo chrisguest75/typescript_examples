@@ -6,16 +6,17 @@ REF: [github.com/chrisguest75/typescript_examples/13_echo_service](https://githu
 
 NOTES:
 
+* I've commented out node-prune because it was removing required dependencies.  
 * Use `esm:true` in the `tsoa.json` to enable .js extensions.  
-* Testing:
+* Testing required because of esm, ts-node, jest and node:
     * `npm run build:run` - from build directory
     * `npm run start:dev` - using ts-node
     * `npm run test` - run with jest
     * `npm run docker:run` - run inside docker
+    * `npm run docker:run:chainguard` - run inside docker with chainguard
 
 TODO:
 
-* Test with jest or run with node are not working both together because of .js import  
 * Zod checking on the inputs
 * Express is failing audit
 * Add prisma

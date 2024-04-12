@@ -7,4 +7,8 @@ module.exports = {
     testEnvironment: 'node',
     testRegex: 'src/.*\\.(test|spec)?\\.(mts|ts|tsx|cts)$',
     moduleFileExtensions: ['mts', 'ts', 'cts', 'tsx', 'js', 'jsx', 'json', 'node'],
-  }
+    moduleNameMapper: {
+      '(.+)\\.js': '$1'
+    },
+    extensionsToTreatAsEsm: ['.ts']
+}
