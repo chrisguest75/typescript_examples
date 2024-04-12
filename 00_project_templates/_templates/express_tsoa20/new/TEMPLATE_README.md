@@ -8,6 +8,17 @@ Demonstrates <%= name %>
 * REF: [github.com/chrisguest75/typescript_examples/13_echo_service](https://github.com/chrisguest75/typescript_examples/tree/master/13_echo_service)  
 * REF: [github.com/chrisguest75/typescript_examples/34_todo_api](https://github.com/chrisguest75/typescript_examples/tree/master/34_todo_api)  
 
+NOTES:
+
+* Commented out node-prune because it was removing required dependencies.  
+* Use `esm:true` in the `tsoa.json` to enable .js extensions.  
+* Testing required because of esm, ts-node, jest and node:
+    * `npm run build:run` - from build directory
+    * `npm run start:dev` - using ts-node
+    * `npm run test` - run with jest
+    * `npm run docker:run` - run inside docker
+    * `npm run docker:run:chainguard` - run inside docker with chainguard
+
 ## How to run
 
 ```sh

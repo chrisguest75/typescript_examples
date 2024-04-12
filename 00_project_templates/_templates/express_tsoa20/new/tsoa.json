@@ -11,6 +11,7 @@ to: <%= name %>/tsoa.json
       "specVersion": 3
     },
     "routes": {
+      "esm": true,
       "routesDir": "src/routes",
       "middleware": "express"
     }

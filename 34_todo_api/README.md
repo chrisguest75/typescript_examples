@@ -107,3 +107,4 @@ npm install --save-dev @types/swagger-ui-express
 * https://stackoverflow.com/questions/29719631/how-do-i-set-a-mock-date-in-jest
 * https://stackoverflow.com/questions/5511323/calculate-the-date-yesterday-in-javascript
 * https://github.com/Microsoft/TypeScript/wiki/TypeScript-Design-Goals
+* https://stackoverflow.com/questions/73735202/typescript-jest-imports-with-js-extension-cause-error-cannot-find-module

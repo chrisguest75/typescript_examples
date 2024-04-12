@@ -29,12 +29,11 @@ LABEL dockerfile.baseimage="gcr.io/distroless/nodejs:20" dockerfile.description=
 ENV NODE_ENV production
 
 WORKDIR /work
-COPY --from=BUILDER /scratch/package.json /scratch/package-lock.json /scratch/tsoa.json ./
+COPY --from=BUILDER /scratch/package.json /scratch/package-lock.json ./
 COPY --from=BUILDER /scratch/node_modules ./node_modules
 COPY --from=BUILDER /scratch/build ./
 COPY --from=BUILDER /scratch/public ./public
 
-ENTRYPOINT [ "/nodejs/bin/node" ]
-CMD ["--no-warnings", "--experimental-specifier-resolution=node", "/work/src/index.js"]
-#CMD ["/nodejs/bin/node", "--no-warnings", "--experimental-specifier-resolution=node", "--loader",  "ts-node/esm", "/work/src/index.js"]
-#CMD ["/work/src/index.js"]
+CMD ["/work/src/index.js"]
+#ENTRYPOINT [ "/nodejs/bin/node" ]
+#CMD ["--no-warnings", "--experimental-specifier-resolution=node", "/work/src/index.js"]

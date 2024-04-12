@@ -1,5 +1,5 @@
 ---
-to: <%= name %>/tests/index.test.mts
+to: <%= name %>/src/index.test.mts
 ---
 //import { main } from '../src/index.js'
 
