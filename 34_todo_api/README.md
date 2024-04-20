@@ -50,6 +50,18 @@ just local-test-pipeline
 npm run docs
 ```
 
+## How to run (nix)
+
+NOTE: The `flake.nix` has to be staged othwewise it complains "git is dirty"  
+
+```sh
+# enter the flake
+nix develop
+
+# run in zsh 
+nix-shell --run zsh -p nodejs_20 nodePackages_latest.npm just
+```
+
 ## Debugging
 
 Ensure that the sourcemap output is enabled.  
