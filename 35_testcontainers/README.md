@@ -5,8 +5,7 @@ Demonstrates using `testcontainers`
 TODO:
 
 * Prisma postgres
-* jest tests
-* node-fetch or axios requests
+* compose
 
 ## How to run
 

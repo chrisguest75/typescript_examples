@@ -1,6 +1,7 @@
 import { logger } from '../src/logger.js'
 import path from 'path'
-import { TestContainer, StartedTestContainer, GenericContainer, Wait } from 'testcontainers'
+import { TestContainer, StartedTestContainer, StoppedTestContainer, GenericContainer, Wait } from 'testcontainers'
+import fetch from 'node-fetch'
 
 export default async function nginx() {
   const imageName = 'nginx:1.25.5'
@@ -20,12 +21,12 @@ export default async function nginx() {
       target: '/usr/share/nginx/html',
     },
   ])
-  container.withWaitStrategy(
+  /*container.withWaitStrategy(
     Wait.forHttp('/', 8080).forStatusCodeMatching((statusCode) => {
       logger.info({ statusCode })
       return statusCode === 200
     }),
-  )
+  )*/
   const startedContainer: StartedTestContainer = await container.start()
 
   logger.info({
@@ -34,15 +35,13 @@ export default async function nginx() {
     host: startedContainer.getHost(),
   })
 
-  const logs = await startedContainer.logs()
-  logs
-    .on('data', (line) => logger.info(line))
-    .on('err', (line) => logger.error(line))
-    .on('end', () => logger.info('Stream closed'))
+  const response = await fetch('http://localhost:8080/')
+  const body = await response.text()
 
-  /*if (args['throwError']) {
-      throw new Error("I'm an error")
-  }*/
+  console.log(body)
 
-  //const stoppedContainer: StoppedTestContainer = await startedContainer.stop()
+  const stoppedContainer: StoppedTestContainer = await startedContainer.stop()
+  logger.info({
+    id: stoppedContainer.getId(),
+  })
 }
