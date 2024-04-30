@@ -1,7 +1,7 @@
+import path from 'path'
 import { logger } from './logger.js'
 import * as dotenv from 'dotenv'
 import minimist from 'minimist'
-import { nginx } from '../examples/nginx.js'
 
 /*
 Entrypoint
@@ -16,14 +16,9 @@ export async function main(args: minimist.ParsedArgs) {
   logger.info({ node_env: process.env.NODE_ENV })
   logger.info({ 'node.version': process.version })
 
-  switch (args.testName) {
-    case 'nginx':
-      await nginx()
-      break
-    default:
-      logger.error(`${args.testName} not supported`)
-      break
-  }
+  // dynamic module load
+  const module = await import(path.join('../examples/', args.testName))
+  module.default()
 }
 
 process.on('exit', async () => {

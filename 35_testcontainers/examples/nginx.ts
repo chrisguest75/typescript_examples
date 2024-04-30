@@ -2,7 +2,7 @@ import { logger } from '../src/logger.js'
 import path from 'path'
 import { TestContainer, StartedTestContainer, GenericContainer, Wait } from 'testcontainers'
 
-export async function nginx() {
+export default async function nginx() {
   const imageName = 'nginx:1.25.5'
   const container: TestContainer = new GenericContainer(imageName)
   //container.withReuse()
@@ -21,7 +21,7 @@ export async function nginx() {
     },
   ])
   container.withWaitStrategy(
-    Wait.forHttp('', 8080).forStatusCodeMatching((statusCode) => {
+    Wait.forHttp('/', 8080).forStatusCodeMatching((statusCode) => {
       logger.info({ statusCode })
       return statusCode === 200
     }),

@@ -19,7 +19,7 @@ npm run tsc -- --version
 
 # run targets (with debug logging)
 DEBUG=testcontainers* npm run start:dev -- --testName=nginx 
-DEBUG=testcontainers* npm run start:dev -- --testName=tst
+DEBUG=testcontainers* npm run start:dev -- --testName=redis
 
 npm run test
 npm run lint
