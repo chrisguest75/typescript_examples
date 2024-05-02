@@ -4,6 +4,7 @@ import { DockerComposeEnvironment, Wait } from 'testcontainers'
 import fetch from 'node-fetch'
 
 export default async function compose() {
+  logger.info('Compose - PodInfo')
   const cwd = process.cwd()
   const environment = await new DockerComposeEnvironment(path.join(cwd, 'data/compose'), 'docker-compose.podinfo.yaml')
   environment.withWaitStrategy('podinfo', Wait.forListeningPorts())

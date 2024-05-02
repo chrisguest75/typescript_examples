@@ -30,7 +30,7 @@ process.on('uncaughtException', async (error: Error) => {
   logger.error(error)
   // for nice printing
   console.log(error)
-  process.exit(1)
+  //process.exit(1)
 })
 
 process.on('unhandledRejection', async (reason, promise) => {
@@ -40,7 +40,7 @@ process.on('unhandledRejection', async (reason, promise) => {
     msg: 'Unhandled Rejection',
   })
   console.log(reason)
-  process.exit(1)
+  //process.exit(1)
 })
 
 // load config
@@ -54,6 +54,7 @@ const args: minimist.ParsedArgs = minimist(process.argv.slice(2), {
 
 try {
   await main(args)
+  logger.info('Exited main')
   //process.exit(0)
 } catch (error) {
   logger.error(error)

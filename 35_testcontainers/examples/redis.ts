@@ -13,6 +13,8 @@ async function connectTo(container: StartedRedisContainer) {
 }
 
 export default async function redis() {
+  logger.info('Redis')
+
   const container = new RedisContainer()
   container.withPassword('test')
   const cwd = process.cwd()

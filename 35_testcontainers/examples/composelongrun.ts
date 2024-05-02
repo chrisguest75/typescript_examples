@@ -3,6 +3,8 @@ import path from 'path'
 import { DockerComposeEnvironment, Wait } from 'testcontainers'
 
 export default async function compose() {
+  logger.info('Compose - Longrun')
+
   const cwd = process.cwd()
   const environment = await new DockerComposeEnvironment(path.join(cwd, 'data/compose'), 'docker-compose.longrun.yaml')
   environment.withStartupTimeout(5000)
@@ -17,6 +19,12 @@ export default async function compose() {
 
   // sleep
   await new Promise((resolve) => setTimeout(resolve, 5000))
+
+  logger.info({
+    id: startedContainer.getId(),
+    name: startedContainer.getName(),
+    host: startedContainer.getHost(),
+  })
 
   live.stop()
 }

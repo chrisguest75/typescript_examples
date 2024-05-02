@@ -4,6 +4,8 @@ import { TestContainer, StartedTestContainer, StoppedTestContainer, GenericConta
 import fetch from 'node-fetch'
 
 export default async function nginx() {
+  logger.info('NGinx')
+
   const imageName = 'nginx:1.25.5'
   const container: TestContainer = new GenericContainer(imageName)
   //container.withReuse()
