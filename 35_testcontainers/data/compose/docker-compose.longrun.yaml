@@ -1,0 +1,11 @@
+services:
+    longrun:
+        build: 
+            context: .
+            dockerfile: Dockerfile.longrun
+        environment:
+            - EXAMPLE=${EXAMPLE}
+            - MORE_VALUES=${MORE_VALUES}
+
+
+

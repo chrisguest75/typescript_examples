@@ -1,0 +1,14 @@
+services:
+    podinfo:
+        image: "stefanprodan/podinfo:6.6.2"
+        environment:
+            - VERSION=0.0.1   
+            - PODNAME=info                    
+        ports:
+            - "9898:9898"
+        command: [ "./podinfo", "--level=debug" ]            
+
+
+
+
+
