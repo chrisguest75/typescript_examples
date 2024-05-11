@@ -66,8 +66,11 @@ npm exec better-npm-audit audit
 # perform updates and save back to package.json
 npm update --save
 
-# upgrade package example
-npm install dotenv@16.3.1 --save  
+# upgrade single package example
+npm install dotenv@16.3.1 --save
+
+# npm audit upgrade the audit failing packages
+npm audit fix --force
 ```
 
 ## Resources
