@@ -44,27 +44,28 @@ const watchHandler = async (request: Request, response: Response) => {
     const bucketName = request.params.bucketname
     const bucketPath = request.params.bucketpath
 
-    addWatch({ bucketRegion: 'us-east-1', bucketName: bucketName, bucketPath: bucketPath })
+    const files = addWatch({ bucketRegion: 'us-east-1', bucketName: bucketName, bucketPath: bucketPath })
 
     response.status(200).json({
         name: bucketName,
         path: bucketPath,
+        files: files,
     })
 }
 
 const syncHandler = async (request: Request, response: Response) => {
-    logger.info({ handler: 'syncHandler', reqid: request.id })
+    const logchild = logger.child({ handler: 'syncHandler', reqid: request.id })
+    logchild.info(request.body)
 
-    const bucketName = request.params.bucketname
-    const bucketPath = request.params.bucketpath
+    const { sourcePath, bucketName, bucketPath } = request.body
 
-    logger.info(`syncHandler ${bucketPath} ${bucketName}`)
+    logchild.info({ sourcePath, bucketName, bucketPath })
     const client = new S3Client({
         region: 'us-east-1',
     })
     const { sync } = new S3SyncClient({ client: client })
 
-    await sync('./sync', `s3://${bucketName}/${bucketPath}`)
+    await sync(sourcePath, `s3://${bucketName}/${bucketPath}`)
 
     response.status(200).json({
         name: bucketName,
@@ -72,10 +73,10 @@ const syncHandler = async (request: Request, response: Response) => {
     })
 }
 
-router.get('/', bucketsHandler)
 router.get('/watch/:bucketname/:bucketpath', watchHandler)
+router.get('/list', bucketsHandler)
 router.get('/list/:bucketname', listHandler)
 router.get('/list/:bucketname/:bucketpath', listHandler)
-router.get('/sync/:bucketname/:bucketpath', syncHandler)
+router.post('/sync', syncHandler)
 
 export { router as bucketsRouter }
