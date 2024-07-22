@@ -20,4 +20,7 @@ code .
 ## Resources
 
 * jest-extended [here](https://jest-extended.jestcommunity.dev/docs/)
-
+* https://momentjs.com/
+* https://github.com/moment/moment/
+* https://momentjs.com/docs/#/-project-status/
+* https://blog.esteetey.dev/a-strange-momentjs-3-gotchas-for-working-and-testing-with-datetimes
