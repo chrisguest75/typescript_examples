@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@types/node": "^18.14.2",
+    "date-fns": "^3.6.0",
     "dotenv-quokka-plugin": "^1.0.0",
     "expect": "^29.4.3",
     "jest-extended": "^3.2.4",

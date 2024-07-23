@@ -20,7 +20,6 @@ code .
 ## Resources
 
 * jest-extended [here](https://jest-extended.jestcommunity.dev/docs/)
-* https://momentjs.com/
-* https://github.com/moment/moment/
-* https://momentjs.com/docs/#/-project-status/
-* https://blog.esteetey.dev/a-strange-momentjs-3-gotchas-for-working-and-testing-with-datetimes
+* MomentJS - Parse, validate, manipulate, and display dates and times in JavaScript. [here](https://momentjs.com)
+* A Strange Moment.js — 3 Gotchas for Working & Testing with Datetimes [here](https://blog.esteetey.dev/a-strange-momentjs-3-gotchas-for-working-and-testing-with-datetimes)
+* Tags for Identifying Languages [here](https://datatracker.ietf.org/doc/html/rfc5646)
