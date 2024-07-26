@@ -74,12 +74,16 @@ class trie_node {
 export class trie implements wordstore {
   // number of words stored in the trie
   private _size: number
+  private _shortest: string
+  private _longest: string
 
   // root of the trie
   private nodes: trie_node = new trie_node()
 
   constructor() {
     this._size = 0
+    this._shortest = ""
+    this._longest = ""
   }
 
   public get size(): number {
@@ -90,6 +94,13 @@ export class trie implements wordstore {
   public add(word: string) {
     // add only if word has letters
     if (this.nodes.add(word)) {
+      // determine longest and shortest
+      if (this._size == 0 || word.length < this._shortest.length) {
+        this._shortest = word
+      }
+      if (this._size == 0 || word.length > this._longest.length) {
+        this._longest = word
+      }
       this._size++
     }
   }
@@ -103,4 +114,32 @@ export class trie implements wordstore {
       return false
     }
   }
+
+  // find a shortest word
+  public shortest(): string {
+    return this._shortest
+  }
+
+  // find a longest word
+  public longest(): string {
+    return this._longest
+  }
+
+  // generate a random word
+  // This has issues with equal weighting given to each letter.
+  // Also as soon as a end word is met it will quit potentially hiding other longer words. 
+  public random(): string {
+    let current = this.nodes
+    
+    let word = ""
+    let stop = false
+    while (!stop) {
+      const index = Math.floor(Math.random() * current.nodes.size)
+      let node = Array.from(current.nodes)[index]
+      word = word + node[0]
+      stop = node[1].endWord
+      current = node[1]
+    }
+    return word
+  }  
 }

@@ -1,3 +1,4 @@
+import 'jest-extended';
 import { trie } from '../src/trie'
 import { wordset } from '../src/wordset'
 import { loadwords } from '../src/loadwords'
@@ -176,6 +177,67 @@ describe.each`
     expect(t.contains('mechanotherapeutic')).toBe(true)
     expect(t.contains('mechanolater')).toBe(true)
     expect(t.contains('ghijklm')).toBe(false)
+  })
+
+  test('find shortest word test', () => {
+    // ARRANGE
+    const t = new wordstoretype()
+    // ACT
+    t.add('hell')
+    t.add('helloworld')
+    t.add('helloworldagain')
+
+    // ASSERT
+    expect(t.size).toBe(3)
+    expect(t.contains('helloworld')).toBe(true)
+    expect(t.contains('helloworldagain')).toBe(true)
+    expect(t.shortest()).toBe('hell')
+  })
+
+  test('find longest word test', () => {
+    // ARRANGE
+    const t = new wordstoretype()
+    // ACT
+    t.add('hell')
+    t.add('helloworld')
+    t.add('helloworldagain')
+
+    // ASSERT
+    expect(t.size).toBe(3)
+    expect(t.contains('helloworld')).toBe(true)
+    expect(t.contains('hell')).toBe(true)
+    expect(t.longest()).toBe('helloworldagain')
+  })
+
+  test('find random word test', () => {
+    // ARRANGE
+    const t = new wordstoretype()
+    // ACT
+    t.add('hell')
+    t.add('helloworld')
+    t.add('helloworldagain')
+
+    // ASSERT
+    expect(t.size).toBe(3)
+    expect(t.contains('helloworld')).toBe(true)
+    expect(t.contains('helloworldagain')).toBe(true)
+    expect(t.random()).toBeOneOf(['hell', 'helloworld', 'helloworldagain']);
+  })
+
+  test('full random test', () => {
+    // ARRANGE
+    const t = new wordstoretype()
+    // ACT
+    const words = new loadwords('./tests/data/words.txt')
+    for (const word of words.words) {
+      if (word.length > 7) { 
+        t.add(word)
+      }
+    }
+
+    // ASSERT
+    expect(t.random() + "_" + t.random()).toBe("")
+
   })
 
   test.skip('skip this test', () => {
