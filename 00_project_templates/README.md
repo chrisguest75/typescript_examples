@@ -40,6 +40,9 @@ HYGEN_OVERWRITE=1 npx hygen express20 new 99_express20 --docker
 
 # recreate express and tsoa with node20
 HYGEN_OVERWRITE=1 npx hygen express_tsoa20 new 99_expresstsoa20 --docker
+
+# recreate node20 package supporting esm/cjs
+HYGEN_OVERWRITE=1 npx hygen package20_cjs_esm new 99_package20_cjs_esm
 ```
 
 ## Creating templates
