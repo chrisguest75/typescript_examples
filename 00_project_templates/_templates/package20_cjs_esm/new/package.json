@@ -4,7 +4,7 @@ to: <%= name %>/package.json
 {
   "name": "<%= name %>",
   "version": "1.0.0",
-  "description": "NOTES:",
+  "description": "Description for <%= name %>",
   "module": "./dist/esm/index.js",
   "main": "./dist/cjs/index.js",
   "types": "./dist/esm/index.d.ts",

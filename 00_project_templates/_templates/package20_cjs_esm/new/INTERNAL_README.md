@@ -22,8 +22,11 @@ npm run tsc -- --version
 npm run test
 npm run lint
 npm run publint
+```
 
-# publish
+## Publish
+
+```sh
 just publish
 ```
 
