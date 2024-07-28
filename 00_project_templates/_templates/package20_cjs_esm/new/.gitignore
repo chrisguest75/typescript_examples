@@ -4,3 +4,4 @@ to: <%= name %>/.gitignore
 node_modules
 dist
 docs
+out
