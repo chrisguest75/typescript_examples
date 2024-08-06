@@ -16,6 +16,18 @@
             "request": "launch",
             "type": "node-terminal"
         },
-
+        {
+        "name": "03_jest_testing",
+        "type": "node",
+          "request": "launch",
+          "program": "${workspaceFolder}/03_jest_testing/node_modules/.bin/jest",
+          "args": [],
+          "console": "integratedTerminal",
+          "cwd": "${workspaceFolder}/03_jest_testing",
+          "internalConsoleOptions": "neverOpen",
+          "windows": {
+            "program": "${workspaceFolder}/03_jest_testing/node_modules/jest/bin/jest"
+          }
+        }    
     ]
 }

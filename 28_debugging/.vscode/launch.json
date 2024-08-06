@@ -15,6 +15,14 @@
                 "<node_internals>/**"
             ],
             "type": "node"
+        },
+        {
+            // THIS IS NOT WORKING
+            "name": "LOCAL 28_debugging",
+            "command": "npm run start:dev:debug",
+            "request": "launch",
+            "type": "node-terminal",
+            "cwd": "${workspaceFolder}/28_debugging",
         }
     ]
 }

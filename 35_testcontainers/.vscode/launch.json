@@ -1,0 +1,34 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+        "name": "JEST 35_testcontainers",
+        "type": "node",
+          "request": "launch",
+          "program": "${workspaceFolder}/35_testcontainers/node_modules/.bin/jest",
+          "args": [],
+          "console": "integratedTerminal",
+          "cwd": "${workspaceFolder}/35_testcontainers",
+          "internalConsoleOptions": "neverOpen",
+          "windows": {
+            "program": "${workspaceFolder}/35_testcontainers/node_modules/jest/bin/jest"
+          }
+        },
+        {
+          // THIS IS NOT WORKING
+          "name": "INDEX 35_testcontainers",
+          "type": "node",
+          "request": "launch",
+          "skipFiles": [
+              "<node_internals>/**"
+          ],
+          "program": "${workspaceFolder}/35_testcontainers/src/index.ts",
+          "outFiles": [
+              "${workspaceFolder}/**/*.js"
+          ]
+      }    
+    ]
+}

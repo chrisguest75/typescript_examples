@@ -10,6 +10,7 @@ This should also allow us to debug on kubernetes or ECS clusters.
 TODO:
 
 * ensure source is same locally as in container - copy the maps from container to local.
+* Using auto attach in the terminal https://code.visualstudio.com/docs/nodejs/nodejs-debugging#_auto-attach
 
 ## Build
 
