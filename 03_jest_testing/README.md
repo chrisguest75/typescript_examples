@@ -2,10 +2,28 @@
 
 Demonstrates how to test typescript code (including debugging) in Jest  
 
+## Contents
+
+- [README](#readme)
+  - [Contents](#contents)
+  - [Reason](#reason)
+  - [Using Jest](#using-jest)
+  - [Filtering tests](#filtering-tests)
+  - [Single step debugging](#single-step-debugging)
+  - [How to recreate](#how-to-recreate)
+  - [Resources](#resources)
+    - [Jest](#jest)
+    - [Typescript](#typescript)
+    - [AWS](#aws)
+
 ## Reason
 
 Pretty obvious why I need to use a test framework. The examples included here will show various examples of what is required to write tests; Mocking, Partial Mocking, Spies, Assertions, etc.  
 There is an example of using asssertions with `strictNullChecks` in the [s3watcher.test.ts](./tests/s3watcher.test.ts)
+
+NOTES:
+
+* To run a single test when debugging.  Name the test to something you can set in the test pattern like 'ONLY'  `npm run test --  tests/loadwords.test.ts -t "ONLY"`.  
 
 TODO:
 
@@ -60,21 +78,27 @@ npx tsc --init --rootDir src --outDir build \
 
 ## Resources
 
-* [jestio](https://jestjs.io/)  
-* [example blog](https://medium.com/@RupaniChirag/writing-unit-tests-in-typescript-d4719b8a0a40)  
-* [example](https://github.com/ChiragRupani/TSUnitTestsSetup/ blob/master/HelloJest/package.json)  
-* [ts-jest](https://github.com/kulshekhar/ts-jest)  
-* [ts-jest-debugging](https://kulshekhar.github.io/ts-jest/docs/debugging/)  
-* [testing with jest](https://itnext.io/testing-with-jest-in-typescript-cc1cd0095421)  
+### Jest
+
+* Jest is a delightful JavaScript Testing Framework with a focus on simplicity [here](https://jestjs.io/)  
+* Debugging ts-jest [here](https://kulshekhar.github.io/ts-jest/docs/debugging/)  
+* ts-jest repo [here](https://github.com/kulshekhar/ts-jest)  
 * Get Jest test name within beforeEach() and afterEach() [here](https://stackoverflow.com/questions/61640896/get-jest-test-name-within-beforeeach-and-aftereach)
-* https://github.com/m-radzikowski/aws-sdk-client-mock
+* Take advantage of typescript 3.7 assertions functions [jest issue #10094](https://github.com/facebook/jest/issues/10094)
+* https://jestjs.io/docs/mock-functions
+* https://www.emgoto.com/jest-partial-match/
+* https://dev.to/codedivoire/how-to-mock-an-imported-typescript-class-with-jest-2g7j
+
+### Typescript
+
+* Writing unit tests in TypeScript [here](https://medium.com/@RupaniChirag/writing-unit-tests-in-typescript-d4719b8a0a40)  
+* strictNullChecks does not detect assertions done before property access [typescript issue #13652](https://github.com/microsoft/TypeScript/issues/13652)
+* type narrowing for common testing patterns  [typescript issue #9693](https://github.com/microsoft/TypeScript/issues/9693)
+* Control flow based type narrowing for assert(...) calls [typescript issue #8655](https://github.com/microsoft/TypeScript/issues/8655)
+* Add support for TypeScript's Assertion Functions https://github.com/DefinitelyTyped/DefinitelyTyped/issues/41179
+
+### AWS
+
+* aws-sdk-client-mock [here](https://github.com/m-radzikowski/aws-sdk-client-mock)
 * https://github.com/trivikr/aws-sdk-client-mock-test
 * https://stackoverflow.com/questions/68526571/how-do-i-mock-aws-s3-getobjectcommand-with-jest-using-the-v3-sdk
-* strictNullChecks does not detect assertions done before property access https://github.com/microsoft/TypeScript/issues/13652
-* type narrowing for common testing patterns https://github.com/microsoft/TypeScript/issues/9693
-* Control flow based type narrowing for assert(...) calls https://github.com/microsoft/TypeScript/issues/8655
-* Take advantage of typescript 3.7 assertions functions https://github.com/facebook/jest/issues/10094
-* Add support for TypeScript's Assertion Functions https://github.com/DefinitelyTyped/DefinitelyTyped/issues/41179
-* https://www.emgoto.com/jest-partial-match/
-* https://jestjs.io/docs/mock-functions
-* https://dev.to/codedivoire/how-to-mock-an-imported-typescript-class-with-jest-2g7j

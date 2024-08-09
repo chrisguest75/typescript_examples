@@ -14,7 +14,7 @@ const test2 = myObject.empty.length > 0 ? myObject.empty.length : 0;
 console.log(test2);
 
 // An undefined value with length > 0. But guarded by the ? operator
-// Up to implementation to decide semnatics of undefined length or default 0.
+// Up to implementation to decide semantics of undefined length or default 0.
 const test3 =
   myObject.novalues?.length > 0 ? myObject.novalues.length : undefined;
 console.log(test3);
