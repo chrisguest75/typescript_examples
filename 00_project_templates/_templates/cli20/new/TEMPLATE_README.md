@@ -28,6 +28,12 @@ npm run docker:run
 just local-test-pipeline
 ```
 
+## Build docs
+
+```sh
+npm run docs:serve
+```
+
 ## Debugging
 
 Ensure that the sourcemap output is enabled.  
