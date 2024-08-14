@@ -6,6 +6,7 @@ TODO:
 
 * Pass in an output path
 * express should use npm install express-json-error-handler
+* Add `typedoc` to the other templates
 
 Templates:
 
