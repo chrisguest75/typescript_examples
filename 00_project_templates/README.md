@@ -7,6 +7,7 @@ TODO:
 * Pass in an output path
 * express should use npm install express-json-error-handler
 * Add `typedoc` to the other templates
+* the tsoa example is not binding to 0.0.0.0
 
 Templates:
 

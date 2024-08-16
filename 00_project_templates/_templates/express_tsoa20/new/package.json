@@ -12,7 +12,6 @@ to: <%= name %>/package.json
     "audit": "better-npm-audit audit",
     "audit:production": "better-npm-audit audit --production",
     "swagger": "tsoa spec && tsoa routes",
-    "docs": "typedoc",
     "clean": "rimraf build",
     "build": "tsc",
     "build:run": "tsc && node --no-warnings --experimental-specifier-resolution=node ./build/src/index.js",
@@ -27,6 +26,8 @@ to: <%= name %>/package.json
     "test:coverage": "jest --coverage",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
+    "docs": "typedoc --out docs src",
+    "docs:serve": "npm run docs && docker run -v $(pwd)/docs:/usr/share/nginx/html -it --rm -p 8080:80 nginx:1.27.0",
     "docker:build": "docker build --target PRODUCTION -f Dockerfile --label \"org.opencontainers.image.created=$(date '+%Y-%m-%dT%H:%M:%SZ')\" --label \"org.opencontainers.image.version=${githubsha}\" --label \"org.opencontainers.image.url=$(git remote get-url origin)\" -t <%= name %> .",
     "docker:run": "npm run docker:build && docker run --rm -it -p 8000:8000 --name <%= name %> <%= name %>",
     "docker:rebuild": "docker build --no-cache --target PRODUCTION -f Dockerfile --label \"org.opencontainers.image.created=$(date '+%Y-%m-%dT%H:%M:%SZ')\" --label \"org.opencontainers.image.version=${githubsha}\" --label \"org.opencontainers.image.url=$(git remote get-url origin)\" -t <%= name %> .",
@@ -58,7 +59,9 @@ to: <%= name %>/package.json
     "rimraf": "^5.0.5",
     "ts-jest": "^29.1.2",
     "ts-node": "^10.9.2",
-    "typedoc": "^0.25.12",
+    "typedoc": "^0.26.5",
+    "typedoc-plugin-mermaid": "^1.12.0",
+    "typedoc-plugin-missing-exports": "^3.0.0",
     "typescript": "^5.4.3"
   },
   "nodemonConfig": {
