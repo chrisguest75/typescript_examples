@@ -2,6 +2,13 @@
 
 Tool to simplify SVG files to reduce size.  
 
+TODO:
+
+* unit tests
+* Output statistics
+* How to measure and compare render time?
+* Deres tests.
+
 ## How to run
 
 ```sh
@@ -23,6 +30,13 @@ npm run docker:run
 # run all tests
 just local-test-pipeline
 ```
+
+## Start
+
+```sh
+npm run start:dev -- --file ./examples/frames.json
+```
+
 
 ## Build docs
 
@@ -58,6 +72,7 @@ The code should break on the breakpoint.
 
 ## Resources
 
+* https://github.com/nfroidure/svg-pathdata
 * https://github.com/googlefonts/picosvg
 * https://luncheon.github.io/simplify-svg-path/index.html
 * https://mourner.github.io/simplify-js

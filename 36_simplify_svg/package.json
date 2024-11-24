@@ -71,6 +71,7 @@
     "dotenv": "^16.4.5",
     "minimist": "^1.2.8",
     "pino": "^9.5.0",
-    "simplify-js": "^1.2.4"
+    "simplify-js": "^1.2.4",
+    "svg-pathdata": "^7.1.0"
   }
 }

@@ -1,6 +1,10 @@
 import { logger } from './logger.js'
 import * as dotenv from 'dotenv'
 import minimist from 'minimist'
+import fs from 'fs'
+//import { simplify } from 'simplify-js'
+import simplifySvgPath from '@luncheon/simplify-svg-path'
+import { SVGPathData, SVGCommand } from 'svg-pathdata'
 
 /*
 Entrypoint
@@ -15,9 +19,37 @@ export async function main(args: minimist.ParsedArgs) {
   logger.info({ node_env: process.env.NODE_ENV })
   logger.info({ 'node.version': process.version })
 
-  if (args['throwError']) {
-    throw new Error("I'm an error")
+  //if (args['throwError']) {
+  //  throw new Error("I'm an error")
+  //}
+
+  // load the file
+  const inputPath = args['file']
+  const outputPath = inputPath.replace('.json', '_simplified.json')
+  const frames = JSON.parse(fs.readFileSync(inputPath, 'utf8'))
+
+  // parse the file
+  const pathData = new SVGPathData(frames.frames[0].path).toAbs()
+
+  console.log(pathData.commands)
+
+  // simplify
+  const points = []
+  for (const command of pathData.commands) {
+    if (command.type === SVGPathData.MOVE_TO || command.type === SVGPathData.LINE_TO) {
+      const p = { x: command.x, y: command.y }
+      points.push(p)
+    }
   }
+
+  const newpoints = simplifySvgPath(points, { closed: false, tolerance: 2.5, precision:5})
+
+  for (const p of newpoints) {
+    console.log(p)
+  }
+
+  // save the file
+  fs.writeFileSync(outputPath, newpoints, 'utf8')
 }
 
 process.on('exit', async () => {
@@ -46,9 +78,9 @@ process.on('unhandledRejection', async (reason, promise) => {
 dotenv.config()
 logger.info(`Pino:${logger.version}`)
 const args: minimist.ParsedArgs = minimist(process.argv.slice(2), {
-  string: ['ssmName'],
-  boolean: ['verbose', 'ssmRead', 'ssmWrite', 'throwError'],
-  default: { verbose: true, throwError: false, ssmRead: false, ssmWrite: false, ssmName: 'testssmdocument' },
+  string: ['file'],
+  boolean: ['verbose'],
+  default: { verbose: true, file: '' },
 })
 
 try {
