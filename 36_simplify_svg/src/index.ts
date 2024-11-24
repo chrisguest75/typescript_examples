@@ -6,6 +6,24 @@ import fs from 'fs'
 import simplifySvgPath from '@luncheon/simplify-svg-path'
 import { SVGPathData, SVGCommand } from 'svg-pathdata'
 
+function extractPoints(path: string): { x: number; y: number }[] {
+  const pathData = new SVGPathData(path).toAbs()
+  const points = []
+  for (const command of pathData.commands) {
+    if (
+      command.type === SVGPathData.MOVE_TO ||
+      command.type === SVGPathData.LINE_TO ||
+      command.type === SVGPathData.CURVE_TO
+    ) {
+      const p = { x: command.x, y: command.y }
+      points.push(p)
+    } else {
+      console.log('command not supported', command)
+    }
+  }
+  return points
+}
+
 /*
 Entrypoint
 */
@@ -29,27 +47,20 @@ export async function main(args: minimist.ParsedArgs) {
   const frames = JSON.parse(fs.readFileSync(inputPath, 'utf8'))
 
   // parse the file
-  const pathData = new SVGPathData(frames.frames[0].path).toAbs()
+  for (const frame of frames.frames) {
+    logger.info({ frame: frame.number, name: frame.name })
+    const points = extractPoints(frame.path)
 
-  console.log(pathData.commands)
+    const newpath = simplifySvgPath(points, { closed: true, tolerance: 2.5, precision:5})
+    const newpoints = extractPoints(newpath)
+    frame.path = newpath
 
-  // simplify
-  const points = []
-  for (const command of pathData.commands) {
-    if (command.type === SVGPathData.MOVE_TO || command.type === SVGPathData.LINE_TO) {
-      const p = { x: command.x, y: command.y }
-      points.push(p)
-    }
+    logger.info({ old: points.length, new: newpoints.length })
   }
 
-  const newpoints = simplifySvgPath(points, { closed: false, tolerance: 2.5, precision:5})
+  // save the file pretty printed
 
-  for (const p of newpoints) {
-    console.log(p)
-  }
-
-  // save the file
-  fs.writeFileSync(outputPath, newpoints, 'utf8')
+  fs.writeFileSync(outputPath, JSON.stringify(frames), 'utf8')
 }
 
 process.on('exit', async () => {
@@ -90,3 +101,5 @@ try {
   logger.error(error)
   process.exit(1)
 }
+
+

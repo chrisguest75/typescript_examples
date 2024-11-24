@@ -5,7 +5,6 @@ Tool to simplify SVG files to reduce size.
 TODO:
 
 * unit tests
-* Output statistics
 * How to measure and compare render time?
 * Deres tests.
 
@@ -34,7 +33,8 @@ just local-test-pipeline
 ## Start
 
 ```sh
-npm run start:dev -- --file ./examples/frames.json
+# extract
+npm run start:dev -- --file ./examples/frames_example.json
 ```
 
 
