@@ -24,6 +24,24 @@ function extractPoints(path: string): { x: number; y: number }[] {
   return points
 }
 
+/*function pathFromPoints(path: Point[]): string {
+  const pathData = new SVGPathData(path).toAbs()
+  const points = []
+  for (const command of pathData.commands) {
+    if (
+      command.type === SVGPathData.MOVE_TO ||
+      command.type === SVGPathData.LINE_TO ||
+      command.type === SVGPathData.CURVE_TO
+    ) {
+      const p = { x: command.x, y: command.y }
+      points.push(p)
+    } else {
+      console.log('command not supported', command)
+    }
+  }
+  return points
+}*/
+
 /*
 Entrypoint
 */
@@ -37,13 +55,15 @@ export async function main(args: minimist.ParsedArgs) {
   logger.info({ node_env: process.env.NODE_ENV })
   logger.info({ 'node.version': process.version })
 
-  //if (args['throwError']) {
-  //  throw new Error("I'm an error")
-  //}
-
   // load the file
-  const inputPath = args['file']
-  const outputPath = inputPath.replace('.json', '_simplified.json')
+  const inputPath = args['in']
+  if (inputPath === '') {
+    throw new Error('input file not provided')
+  }
+  const outputPath = args['out']
+  if (outputPath === '') {
+    throw new Error('output file not provided')
+  }
   const frames = JSON.parse(fs.readFileSync(inputPath, 'utf8'))
 
   // parse the file
@@ -51,16 +71,17 @@ export async function main(args: minimist.ParsedArgs) {
     logger.info({ frame: frame.number, name: frame.name })
     const points = extractPoints(frame.path)
 
-    const newpath = simplifySvgPath(points, { closed: true, tolerance: 2.5, precision:5})
+    const newpath = simplifySvgPath(points, { closed: true, tolerance: 1.5, precision: 0.1 })
     const newpoints = extractPoints(newpath)
-    frame.path = newpath
+
+    //const newpoints = simplify(points, 1.5, true)
+    //frame.path = newpath
 
     logger.info({ old: points.length, new: newpoints.length })
   }
 
   // save the file pretty printed
-
-  fs.writeFileSync(outputPath, JSON.stringify(frames), 'utf8')
+  fs.writeFileSync(outputPath, JSON.stringify(frames, null, 2), 'utf8')
 }
 
 process.on('exit', async () => {
@@ -89,9 +110,9 @@ process.on('unhandledRejection', async (reason, promise) => {
 dotenv.config()
 logger.info(`Pino:${logger.version}`)
 const args: minimist.ParsedArgs = minimist(process.argv.slice(2), {
-  string: ['file'],
+  string: ['in', 'out'],
   boolean: ['verbose'],
-  default: { verbose: true, file: '' },
+  default: { verbose: true, in: '', out: '' },
 })
 
 try {
@@ -101,5 +122,3 @@ try {
   logger.error(error)
   process.exit(1)
 }
-
-
