@@ -40,7 +40,7 @@ to: <%= name %>/package.json
   "devDependencies": {
     "@types/jest": "^29.5.14",
     "@types/minimist": "^1.2.5",
-    "@types/node": "^20.17.7",
+    "@types/node": "^22.9.3",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
     "better-npm-audit": "^3.11.0",
@@ -50,7 +50,7 @@ to: <%= name %>/package.json
     "jest": "^29.7.0",
     "nodemon": "^3.1.7",
     "prettier": "^3.3.3",
-    "rimraf": "^5.0.10",
+    "rimraf": "^6.0.1",
     "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2",
     "typedoc": "^0.26.11",
@@ -72,6 +72,6 @@ to: <%= name %>/package.json
   "dependencies": {
     "dotenv": "^16.4.5",
     "minimist": "^1.2.8",
-    "pino": "^8.21.0"
+    "pino": "^9.5.0"
   }
 }
