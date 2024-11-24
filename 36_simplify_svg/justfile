@@ -1,0 +1,51 @@
+#!/usr/bin/env just --justfile
+# ^ A shebang isn't required, but allows a justfile to be executed
+#   like a script, with `./justfile test`, for example.
+
+set dotenv-load := true
+export IMAGE_NAME:="36_simplify_svg"
+
+# default lists actions
+default:
+  @just -f justfile --list
+
+local-test-pipeline:
+  #!/usr/bin/env bash
+  set -eufo pipefail
+
+  echo "*************************************"
+  echo "** Local pipeline"
+  echo "*************************************"
+  node --version
+  #npm outdated
+  #npm install
+  #npm run lint
+  #npm run test
+  npm run start
+  npm run docker:build
+  npm run docker:run
+  npm run docker:build:chainguard
+  npm run docker:run:chainguard
+
+test-all: local-test-pipeline
+
+docker_build type="bookworm": 
+  #!/usr/bin/env bash
+  docker build --target PRODUCTION --progress=plain -f Dockerfile.{{ type }} --label "org.opencontainers.image.created=$(date '+%Y-%m-%dT%H:%M:%SZ')" --label "org.opencontainers.image.version=${githubsha}" --label "org.opencontainers.image.url=$(git remote get-url origin)" -t $IMAGE_NAME .
+
+docker_rebuild type="bookworm": 
+  #!/usr/bin/env bash
+  docker build --no-cache --target PRODUCTION --progress=plain -f Dockerfile.{{ type }} --label "org.opencontainers.image.created=$(date '+%Y-%m-%dT%H:%M:%SZ')" --label "org.opencontainers.image.version=${githubsha}" --label "org.opencontainers.image.url=$(git remote get-url origin)" -t $IMAGE_NAME .
+
+docker_run type="bookworm": (docker_build type)
+  #!/usr/bin/env bash
+  docker run --rm -it --name $IMAGE_NAME $IMAGE_NAME
+    
+    
+
+    
+    # "docker:stop": "docker stop 36_simplify_svg",
+    # "docker:build:chainguard": "docker build --target PRODUCTION -f Dockerfile.chainguard --label \"org.opencontainers.image.created=$(date '+%Y-%m-%dT%H:%M:%SZ')\" --label \"org.opencontainers.image.version=${githubsha}\" --label \"org.opencontainers.image.url=$(git remote get-url origin)\" -t 36_simplify_svg_chainguard .",
+    # "docker:run:chainguard": "npm run docker:build:chainguard && docker run --rm -it --name 36_simplify_svg_chainguard 36_simplify_svg_chainguard",
+    # "docker:rebuild:chainguard": "docker build --no-cache --target PRODUCTION -f Dockerfile.chainguard --label \"org.opencontainers.image.created=$(date '+%Y-%m-%dT%H:%M:%SZ')\" --label \"org.opencontainers.image.version=${githubsha}\" --label \"org.opencontainers.image.url=$(git remote get-url origin)\" -t 36_simplify_svg_chainguard .",
+    # "docker:stop:chainguard": "docker stop 36_simplify_svg_chainguard"
