@@ -1,0 +1,277 @@
+# README
+
+Demonstrates some typescript concepts.
+
+TODO:
+
+* eventemitter
+* json documents
+
+## How to run
+
+NOTE: Filtering tests can be done in `jest.config.js`  
+
+```sh
+npm install
+
+# tests demonstrate a few concepts
+npm run test
+npm run lint
+
+# run targets (nothing really to run)
+npm run start:dev
+```
+
+## How to recreate
+
+Create folder  
+
+```sh
+mkdir xx_project_name
+cd ./xx_project_name
+
+nvm ls
+nvm use v16.13.2     
+
+# write out an .nvmrc file
+node --version > .nvmrc        
+```
+
+Setup typescript for a basic nodejs project
+
+```sh
+npm init -y   
+npm install typescript @types/node ts-node nodemon rimraf --save-dev  
+
+# get typescript version
+./node_modules/typescript/bin/tsc --version 
+
+# create tsconfig.json
+npx tsc --init --rootDir "." --outDir build \
+--esModuleInterop --resolveJsonModule --lib es6 \
+--module commonjs --allowJs true --noImplicitAny true --sourceMap
+```
+
+Add `scripts` section to `package.json`
+
+```js
+  "scripts": {
+    "clean": "rimraf build",
+    "build": "tsc",
+    "rebuild": "npm run clean && npm run build",
+    "clean:build": "npm run rebuild",
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "npm run type-check -- --watch",
+    "start:dev": "npm run rebuild && nodemon"
+  },
+```
+
+Add a `nodemonConfig` to `package.json`
+
+```json
+  "nodemonConfig": {
+    "watch": ["src", "nodemon.json", "tsconfig.json", "package.json"],
+    "ext": "ts",
+    "ignore": [],
+    "exec": "ts-node ./src/index.ts"
+  }
+```
+
+Add an `index.ts` to `src`
+
+```bash
+mkdir -p ./src
+cat << EOF  > ./src/index.ts
+export function main(): number {
+  // var a = 0
+  console.log('Hello world!!!!')
+  return 0
+}
+
+main()
+EOF
+```
+
+Install prettier
+
+```sh
+code --install-extension esbenp.prettier-vscode
+npm install --save-dev prettier 
+
+cat << EOF  > ./.prettierrc
+{
+  "useTabs": false,
+  "semi":  false,
+  "trailingComma":  "all",
+  "singleQuote":  true,
+  "printWidth":  120,
+  "tabWidth":  2
+}
+EOF
+```
+
+```sh
+#run it
+npm run start:dev
+```
+
+## Testing
+
+```sh
+npm install jest @types/jest ts-jest --save-dev  
+```
+
+Add an `index.test.ts` to `tests`
+
+```bash
+mkdir -p ./tests
+cat << EOF  > ./tests/index.test.ts
+import { main } from '../src/index'
+
+test('empty test', () => {
+  // ARRANGE
+  const a = 0
+  // ACT
+
+  // ASSERT
+  expect(main()).toBe(0)
+})
+EOF
+```
+
+Add more targets to `scripts` section in `package.json`
+
+```js
+  "scripts": {
+    "test": "jest",
+    "coverage": "jest --coverage"
+  },
+```
+
+Add a `jest.config.js` file
+
+```sh
+cat << EOF > ./jest.config.js
+module.exports = {
+  transform: {
+    '^.+\\\\.ts?$': 'ts-jest',
+  },
+  testEnvironment: 'node',
+  testRegex: 'tests/.*\\\\.(test|spec)?\\\\.(ts|tsx|js)$',
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
+}
+EOF
+```
+
+```sh
+#test it
+npm run test
+```
+
+## Add linting
+
+Add a basic linter
+
+```sh
+npm install --save-dev eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin
+npm install eslint-plugin-prettier@latest eslint-config-prettier --save-dev 
+
+# add an .eslintrc
+cat << EOF > ./.eslintignore
+node_modules
+build
+EOF
+
+cat << EOF > ./.eslintrc
+{
+  "env": {
+      "browser": false,
+      "es2021": true
+  },
+  "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:prettier/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+      "ecmaVersion": 2019,
+      "sourceType": "module"
+  },
+  "plugins": [
+      "@typescript-eslint", 
+      "prettier"
+  ],
+  "rules": {
+      "prettier/prettier": [
+          "error",
+          {
+              "useTabs": false,
+              "semi":  false,
+              "trailingComma":  "all",
+              "singleQuote":  true,
+              "printWidth":  120,
+              "tabWidth":  2
+          }]
+  }
+}
+EOF
+```
+
+Add more targets to `scripts` section in `package.json`
+
+```js
+  "scripts": {
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
+  },
+```
+
+```sh
+#test it
+npm run lint
+```
+
+## Debugging
+
+Ensure that the sourcemap output is enabled.  
+
+```json
+  "sourceMap": true,  
+```
+
+Open `vscode` in the correct directory.  
+
+```sh
+# you must be in the code directory and not in the git root
+cd ./xx_project_name
+nvm install
+
+# if the code is built it will use the version in here to debug
+npm run clean
+code .
+```
+
+1. Select `./src/index.ts` and put a breakpoint on the log line.  
+2. Click the debug icon. Click on create a `launch.json` and select `node.js` NOTE: If you select Run and Debug it will fail because the code is not built.  
+3. Click the debug icon again and then drop down the selection to select node.js and select a target of "start:dev"
+
+The code should break on the breakpoint.  
+
+## Resources
+
+* How to Setup a TypeScript + Node.js Project [node-starter-project](https://khalilstemmler.com/blogs/typescript/node-starter-project/)  
+* How to use ESLint with TypeScript [eslint-for-typescript](https://khalilstemmler.com/blogs/typescript/eslint-for-typescript/)  
+
+
+
+
+https://www.npmjs.com/package/redis
+https://dev.to/dstrekelj/how-to-mock-imported-functions-with-jest-3pfl#
+https://hackwild.com/article/event-handling-techniques/
+https://gist.github.com/sidola/3b267f21c872e449ef4bbdae9e2baeab
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol
+
+https://www.npmjs.com/package/pubsub-js
+https://khalilstemmler.com/articles/test-driven-development/how-to-mock-typescript/
