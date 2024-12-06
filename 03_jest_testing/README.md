@@ -76,6 +76,16 @@ npx tsc --init --rootDir src --outDir build \
 --module commonjs --allowJs true --noImplicitAny true --sourceMap
 ```
 
+## Jest Tricks
+
+```bash
+# run a command in the npm environment
+npm run env -- jest
+
+# filter tests
+npm run env -- jest 'tests/wordstore.test.ts'         
+```
+
 ## Resources
 
 ### Jest
