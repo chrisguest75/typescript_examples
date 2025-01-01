@@ -1,0 +1,28 @@
+{
+    "$schema": "https://typedoc.org/schema.json",
+    "entryPoints": [
+        "src/*.ts",
+        "tests/*.test.mts",
+    ],
+    "externalPattern": [
+        "**/node_modules/**"
+    ],
+    "out": "docs",
+    "jsDocCompatibility": {
+        "inheritDocTag": true,
+        "ignoreUnescapedBraces": true
+    },
+    "includeVersion": false,
+    "logLevel": "Verbose",
+    "plugin": [
+        "typedoc-plugin-mermaid",
+        "typedoc-plugin-missing-exports"
+    ],
+    "entryPointStrategy": "expand",
+    "cleanOutputDir": true,
+    "excludeNotDocumented": false,
+    "excludePrivate": false,
+    "excludeProtected": false,
+    "excludeInternal": false,
+    "excludeReferences": false
+}
