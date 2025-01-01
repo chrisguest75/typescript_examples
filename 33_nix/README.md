@@ -30,7 +30,7 @@ cd ./33_nix
 # python311 pure
 nix-shell --pure -p nodejs_20
 
-nix develop
+nix develop --command zsh
 ```
 
 ## How to run

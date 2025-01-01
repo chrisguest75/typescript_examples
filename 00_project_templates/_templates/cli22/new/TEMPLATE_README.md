@@ -8,8 +8,16 @@ Demonstrates <%= name %>
 ## How to run
 
 ```sh
+# non-nix
 nvm use
+# or nix flake
+just nix 
+# or
+nix develop --command zsh
+
+# install packages
 npm install
+just install
 
 # use typescript compiler
 npm run tsc -- --version  
@@ -25,7 +33,7 @@ npm run docker:run
 
 
 # run all tests
-just local-test-pipeline
+just build-all
 ```
 
 ## Build docs

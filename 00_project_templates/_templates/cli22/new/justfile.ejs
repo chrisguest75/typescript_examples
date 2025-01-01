@@ -11,12 +11,35 @@ set dotenv-load := true
 default:
   @just -f justfile --list
 
-local-test-pipeline:
+
+clean:
+  rm -rf ./node_modules || true
+
+
+nix:
+  #!/usr/bin/env bash
+  set -xeufo pipefail
+  nix develop --command zsh
+
+
+install:
+  #!/usr/bin/env bash
+  set -xeufo pipefail
+  npm install
+
+
+start-dev:
+  #!/usr/bin/env bash
+  set -xeufo pipefail
+  npm run dev
+
+
+build-all:
   #!/usr/bin/env bash
   set -eufo pipefail
 
   echo "*************************************"
-  echo "** Local pipeline"
+  echo "** build-all"
   echo "*************************************"
   node --version
   #npm outdated
@@ -29,5 +52,4 @@ local-test-pipeline:
   npm run docker:build:chainguard
   npm run docker:run:chainguard
 
-test-all: local-test-pipeline
 
