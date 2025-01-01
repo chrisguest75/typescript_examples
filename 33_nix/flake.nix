@@ -1,6 +1,6 @@
 # flake.nix
 {
-    description = "A flake for developing with python 3.11.8";
+    description = "A flake for developing with node20";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
