@@ -5,7 +5,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "tsc": "tsc",    
+    "tsc": "tsc",
     "audit": "better-npm-audit audit",
     "audit:production": "better-npm-audit audit --production",
     "clean": "rimraf build",
@@ -67,6 +67,8 @@
     "exec": "node --no-warnings --experimental-specifier-resolution=node --loader ts-node/esm ./src/index.ts"
   },
   "dependencies": {
+    "@faker-js/faker": "^9.3.0",
+    "@ngneat/falso": "^7.2.0",
     "dotenv": "^16.4.5",
     "minimist": "^1.2.8",
     "pino": "^9.5.0"
