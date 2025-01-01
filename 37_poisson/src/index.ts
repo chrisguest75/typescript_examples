@@ -3,6 +3,7 @@ import * as dotenv from 'dotenv'
 import minimist from 'minimist'
 import { fakeTrades } from './trades.js'
 import { saveAsCsv } from './csv.js'
+import { saveAsJson } from './json.js'
 
 function generateTrades(numberOfTrades: number) {
   const trades = fakeTrades(numberOfTrades)
@@ -15,6 +16,8 @@ function generateTrades(numberOfTrades: number) {
 
   // save as csv
   saveAsCsv(trades, 'out/trades.csv')
+  saveAsJson(trades, 'out/trades.json')
+
 }
 
 /*
