@@ -11,7 +11,7 @@ export function saveAsCsv(trades: any[], filepath: string) {
     }
 
     const csv = trades.map((trade) => {
-        return `${trade.type},${trade.id},${trade.value},${trade.email},${trade.name},${trade.sold}`
+        return `${trade.type},${trade.id},${trade.value},${trade.email},${trade.name},${trade.at.toISOString()}`
     }).join('\n')
 
     fs.writeFileSync(filepath, csv)

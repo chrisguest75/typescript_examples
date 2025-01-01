@@ -1,10 +1,73 @@
 import { logger } from './logger.js'
 import * as dotenv from 'dotenv'
 import minimist from 'minimist'
-import { fakeTrades } from './trades.js'
+import { fakeTrades, TradeEvent } from './trades.js'
 import { saveAsCsv } from './csv.js'
 import { saveAsJson } from './json.js'
+import { ag } from '@faker-js/faker/dist/airline-BnpeTvY9.js'
 
+/**
+ * aggregate trades
+ * calculate averages, min, max, counts 
+ * @param trades 
+ * @returns 
+ */
+function aggregateTrades(trades: TradeEvent[]) {
+  const aggregated = trades.reduce((acc, trade) => {
+    if (trade.type === 'buy') {
+      acc.buy += trade.value
+      acc.numBuys++
+      if ((acc.minBuy == 0) || (trade.value < acc.minBuy)) {
+        acc.minBuy = trade.value
+      }
+      if (trade.value > acc.maxBuy) {
+        acc.maxBuy = trade.value
+      }
+    } else {
+      acc.sell += trade.value
+      acc.numSells++
+      if ((acc.minSell == 0) || (trade.value < acc.minSell)) {
+        acc.minSell = trade.value
+      }
+      if (trade.value > acc.maxSell) {
+        acc.maxSell = trade.value
+      }
+    }
+    acc.profit = acc.sell - acc.buy
+    return acc
+  }, { buy: 0, sell: 0, numTrades: trades.length, numBuys: 0, numSells: 0, minSell: 0, maxSell: 0, minBuy: 0, maxBuy: 0, avgBuy: 0, avgSell: 0, profit: 0})
+
+  // calculate averages to 3 given decimal places
+  aggregated.avgBuy = aggregated.buy / aggregated.numBuys
+  aggregated.avgSell = aggregated.sell / aggregated.numSells
+
+  aggregated.avgBuy = Math.round(aggregated.avgBuy * 1000) / 1000
+  aggregated.avgSell = Math.round(aggregated.avgSell * 1000) / 1000
+
+  return aggregated
+}
+
+/**
+ * group trades by day
+ * @param trades 
+ * */ 
+function groupTradesByDay(trades: TradeEvent[]) {
+  const grouped = trades.reduce((acc, trade) => {
+    const day = trade.at.toISOString().split('T')[0]
+    if (!acc[day]) {
+      acc[day] = []
+    }
+    acc[day].push(trade)
+    return acc
+  }, {} as Record<string, TradeEvent[]>)
+
+  return grouped
+}
+
+/**
+ * Generate trades
+ * @param numberOfTrades 
+ */
 function generateTrades(numberOfTrades: number) {
   const trades = fakeTrades(numberOfTrades)
   
@@ -18,6 +81,17 @@ function generateTrades(numberOfTrades: number) {
   saveAsCsv(trades, 'out/trades.csv')
   saveAsJson(trades, 'out/trades.json')
 
+  const aggregated = aggregateTrades(trades)
+  logger.info(aggregated)
+
+  const grouped = groupTradesByDay(trades)
+  logger.info(grouped)
+
+  for (const [day, trades] of Object.entries(grouped)) {
+    const aggregated = aggregateTrades(trades)
+    //logger.info(aggregated)
+    logger.info(`Day: ${day} - ${aggregated.numTrades} trades, ${aggregated.numBuys} buys, ${aggregated.numSells} sells, avg buy: ${aggregated.avgBuy}, avg sell: ${aggregated.avgSell} min sell: ${aggregated.minSell}, max sell: ${aggregated.maxSell}, min buy: ${aggregated.minBuy}, max buy: ${aggregated.maxBuy}, profit: ${aggregated.profit}`)
+  }
 }
 
 /*
