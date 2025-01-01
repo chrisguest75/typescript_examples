@@ -21,6 +21,9 @@ Templates:
 ## Use templates
 
 ```sh
+# if using nix (enter the env before running npx)
+nix-shell -p nodejs_22 --command zsh  
+
 npx hygen cli help
 # create new project (make sure you're in 00_project_templates)
 npx hygen cli new 99_test --docker
