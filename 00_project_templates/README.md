@@ -8,6 +8,7 @@ TODO:
 * express should use npm install express-json-error-handler
 * Add `typedoc` to the other templates
 * the tsoa example is not binding to 0.0.0.0
+* The cli22 fails either running unittests or docker ATM.
 
 Templates:
 

@@ -5,7 +5,7 @@ message: |
   - <%= "Include Dockerfile:" + !(typeof docker == 'undefined') %>
 ---
 # syntax=docker/dockerfile:1.4
-FROM cgr.dev/chainguard/node-lts:latest-dev AS BUILDER
+FROM cgr.dev/chainguard/node:latest-dev AS BUILDER
 LABEL dockerfile.baseimage="cgr.dev/chainguard/node-lts:latest-dev" dockerfile.description="<%= name %>" dockerfile.stage="BUILDER"
 
 WORKDIR /scratch
@@ -29,7 +29,7 @@ RUN apk add curl
 RUN curl -sf https://gobinaries.com/github.com/tj/node-prune@v1.2.0 | PREFIX=. sh
 RUN ./node-prune --verbose ./node_modules
 
-FROM cgr.dev/chainguard/node-lts:latest AS PRODUCTION
+FROM cgr.dev/chainguard/node:latest AS PRODUCTION
 LABEL dockerfile.baseimage="cgr.dev/chainguard/node-lts:latest" dockerfile.description="<%= name %>" dockerfile.stage="PRODUCTION"
 
 ENV NODE_ENV production
