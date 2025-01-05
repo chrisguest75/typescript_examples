@@ -15,6 +15,7 @@
 
       packages = [ 
           pkgs.nodejs_22 
+          pkgs.watchexec
        ];
       # ...
       env = {
@@ -25,7 +26,8 @@
         echo "*** Welcome to node"
         echo "***************************************************"
         echo ""
-        node --version
+        echo node:$(node --version)
+        echo $(watchexec --version)
       '';
 
     };

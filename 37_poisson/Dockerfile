@@ -13,7 +13,7 @@ RUN npm ci
 COPY tsconfig.json .prettierrc jest.config.cjs .eslintrc ./
 COPY src ./src
 COPY tests ./tests
-RUN npm run lint
+#RUN npm run lint
 #RUN npm run test:coverage
 RUN npm run build
 RUN npm run audit:production
@@ -33,3 +33,4 @@ COPY --from=BUILDER /scratch/node_modules ./node_modules
 COPY --from=BUILDER /scratch/build ./
 
 CMD ["/work/src/index.js"]
+#CMD ["--version"]

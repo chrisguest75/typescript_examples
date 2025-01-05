@@ -1,6 +1,6 @@
-# README
+# POISSON
 
-Demonstrates 37_poisson
+Demonstrates using poisson distribution to generate faked trade events.  
 
 ## How to run
 
