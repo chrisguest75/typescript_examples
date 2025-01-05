@@ -26,4 +26,8 @@ export class Stock {
     }
     throw new Error('No items in stock')
   }
+
+  public totalValue(): number {
+    return this._items.reduce((acc, item) => acc + item.price, 0)
+  }
 }

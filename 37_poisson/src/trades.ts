@@ -1,12 +1,13 @@
 import {
   randNumber,
-  randUuid,
   randEmail,
   randFullName,
   randBoolean,
 } from '@ngneat/falso'
 import { logger } from './logger'
 import { poissonArrivalGenerator } from './poisson'
+import { Stock } from './stock'
+import { createRandomItem } from '../src/stockitem'
 
 export type TradeEvent = {
   type: 'buy' | 'sell'
@@ -14,6 +15,7 @@ export type TradeEvent = {
   value: number
   email: string
   name: string
+  category: 'electronic' | 'clothing' | 'food' | 'book'
   at: Date
 }
 
@@ -22,8 +24,8 @@ export type TradeEvent = {
  * @param trades The number of trades to generate.
  * @returns A list of fake trades.
  */
-export function fakeTrades(trades: number = 20): TradeEvent[] {
-  const fakedSales: Array<TradeEvent> = []
+export function fakeTrades(stock: Stock, trades: number = 20): TradeEvent[] {
+  const fakedTrades: Array<TradeEvent> = []
   const baseTime = new Date()
   const rate = 2.0 // Average x arrivals per timeperiod
   const timePeriod = 60 * 60 * 24 // 1 arrival per day
@@ -31,17 +33,39 @@ export function fakeTrades(trades: number = 20): TradeEvent[] {
 
   for (let i = 0; i < trades; i++) {
     const atDate = generator.next().value || new Date()
-    const sale: TradeEvent = {
-      type: randBoolean() ? 'sell' : 'buy',
-      id: randUuid(),
-      value: randNumber({ min: 5, max: 150 }),
-      email: randEmail(),
-      name: randFullName(),
-      at: atDate,
-    }
+    const tradeType = randBoolean() ? 'sell' : 'buy'
 
-    fakedSales.push(sale)
+    if (tradeType === 'buy') {
+      const buyItem = createRandomItem(randNumber({ min: 5, max: 40 }))
+      stock.add(buyItem)
+      const buy: TradeEvent = {
+        type: tradeType,
+        id: buyItem.id,
+        value: buyItem.price,
+        category: buyItem.category,
+        email: randEmail(),
+        name: randFullName(),
+        at: atDate,
+      }
+      fakedTrades.push(buy)
+    } else {
+      if (stock.count === 0) {
+        logger.warn('No stock to sell')
+        continue
+      }
+      const sellItem = stock.take()
+      const sell: TradeEvent = {
+        type: tradeType,
+        id: sellItem.id,
+        value: sellItem.price + randNumber({ min: 0, max: 40 }),
+        category: sellItem.category,
+        email: randEmail(),
+        name: randFullName(),
+        at: atDate,
+      }
+      fakedTrades.push(sell)
+    }
   }
 
-  return fakedSales
+  return fakedTrades
 }

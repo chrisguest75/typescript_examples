@@ -1,9 +1,10 @@
-import { logger } from './logger.js'
+import { logger } from './logger'
 import * as dotenv from 'dotenv'
 import minimist from 'minimist'
-import { fakeTrades, TradeEvent } from './trades.js'
-import { saveAsCsv } from './csv.js'
-import { saveAsJson } from './json.js'
+import { fakeTrades, TradeEvent } from './trades'
+import { saveAsCsv } from './csv'
+import { saveAsJson } from './json'
+import { Stock } from './stock'
 
 /**
  * aggregate trades
@@ -87,7 +88,8 @@ function groupTradesByDay(trades: TradeEvent[]) {
  * @param numberOfTrades
  */
 function generateTrades(numberOfTrades: number) {
-  const trades = fakeTrades(numberOfTrades)
+  const stock = new Stock()
+  const trades = fakeTrades(stock, numberOfTrades)
 
   trades.forEach((trade) => {
     logger.info(trade)
@@ -112,6 +114,8 @@ function generateTrades(numberOfTrades: number) {
       `Day: ${day} - ${aggregated.numTrades} trades, ${aggregated.numBuys} buys, ${aggregated.numSells} sells, avg buy: ${aggregated.avgBuy}, avg sell: ${aggregated.avgSell} min sell: ${aggregated.minSell}, max sell: ${aggregated.maxSell}, min buy: ${aggregated.minBuy}, max buy: ${aggregated.maxBuy}, profit: ${aggregated.profit}`,
     )
   }
+
+  logger.info(`Stock Value: ${stock.totalValue()}`)
 }
 
 /*

@@ -7,10 +7,10 @@ export type StockItem = {
   category: 'electronic' | 'clothing' | 'food' | 'book'
 }
 
-export function createRandomItem(): StockItem {
+export function createRandomItem(price: number): StockItem {
   return {
     id: randUuid(),
-    price: randNumber({ min: 1, max: 200 }),
+    price,
     category: ['electronic', 'clothing', 'food', 'book'][randNumber({ min: 0, max: 3 })] as
       | 'electronic'
       | 'clothing'
@@ -23,7 +23,7 @@ export function fakeItems(items: number = 20): StockItem[] {
   const fakedItems: Array<StockItem> = []
 
   for (let i = 0; i < items; i++) {
-    fakedItems.push(createRandomItem())
+    fakedItems.push(createRandomItem(randNumber({ min: 1, max: 200 })))
   }
 
   return fakedItems
