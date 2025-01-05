@@ -17,7 +17,8 @@ to: <%= name %>/flake.nix
     devShells.${system}.default = pkgs.mkShell {
 
       packages = [ 
-          pkgs.nodejs_22 
+          pkgs.nodejs_22
+          pkgs.watchexec
        ];
       # ...
       env = {
@@ -28,7 +29,8 @@ to: <%= name %>/flake.nix
         echo "*** Welcome to node"
         echo "***************************************************"
         echo ""
-        node --version
+        echo node:$(node --version)
+        echo $(watchexec --version)
       '';
 
     };

@@ -5,6 +5,10 @@ to: <%= name %>/TEMPLATE_README.md
 
 Demonstrates <%= name %>
 
+NOTES:
+
+* `jest` does not wok well with ESM, so tests are running using experimental `--experimental-vm-modules` features.  
+
 ## How to run
 
 ```sh

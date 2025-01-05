@@ -28,10 +28,22 @@ install:
   npm install
 
 
-start-dev:
+start-dev *args:
   #!/usr/bin/env bash
   set -xeufo pipefail
-  npm run start:dev
+  npm run start:dev {{ args }}
+
+
+test:
+  #!/usr/bin/env bash
+  set -xeufo pipefail
+  npm run test
+
+  
+watch:
+  #!/usr/bin/env bash
+  set -xeufo pipefail
+  watchexec --exts ts npm run test
 
 
 build-all:

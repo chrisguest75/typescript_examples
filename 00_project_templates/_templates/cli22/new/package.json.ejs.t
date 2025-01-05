@@ -19,7 +19,7 @@ to: <%= name %>/package.json
     "type-check:watch": "npm run type-check -- --watch",
     "start": "npm run rebuild && node --no-warnings --experimental-specifier-resolution=node --loader ts-node/esm ./src/index.ts",
     "start:dev": "npm run rebuild && nodemon",
-    "test": "jest --detectOpenHandles --forceExit",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --detectOpenHandles --forceExit",
     "test:coverage": "jest --coverage",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
