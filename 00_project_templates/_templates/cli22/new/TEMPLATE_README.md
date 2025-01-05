@@ -14,7 +14,7 @@ NOTES:
 ```sh
 # non-nix
 nvm use
-# or nix flake
+# or nix flake (remember to add flake.nix to git staged)
 just nix 
 # or
 nix develop --command zsh
