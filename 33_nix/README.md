@@ -1,6 +1,6 @@
-# README
+# NIX
 
-Demonstrates 33_nix
+Demonstrates how to use Nix with typescript projects.  
 
 NOTES:
 

@@ -10,6 +10,7 @@ This should also allow us to debug on kubernetes or ECS clusters.
 TODO:
 
 * ensure source is same locally as in container - copy the maps from container to local.
+* Examine rules and plugins for eslint https://www.npmjs.com/package/eslint-plugin-jest
 
 ## Build
 
