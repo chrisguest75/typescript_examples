@@ -1,0 +1,22 @@
+set dotenv-load := true
+
+# default lists actions
+default:
+  @just -f justfile --list
+
+
+compose-up:
+  docker compose up --build 
+
+compose-down:
+  docker compose --profile all down
+
+compose-ps:
+  docker compose ps 
+
+compose-shell service='redis':
+  docker compose exec -it {{ service }} bash
+
+compose-logs service='redis':
+  docker compose logs {{ service }} 
+  
