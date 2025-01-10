@@ -4,10 +4,10 @@ import minimist from 'minimist'
 import express from 'express'
 import pino from 'express-pino-logger'
 import bodyParser from 'body-parser'
-import { createClient } from 'redis'
-import { Server } from 'socket.io'
+import * as redis from 'redis'
+import * as socketio from 'socket.io'
 import cors from 'cors'
-import { createServer } from 'http'
+import * as http from 'http'
 
 const port = process.env.PORT || 8000
 
@@ -40,7 +40,7 @@ export async function main(args: minimist.ParsedArgs) {
 
   logger.info(args)
 
-  const client = createClient({
+  const client = redis.createClient({
     url: 'redis://0.0.0.0:6379',
   })
   client.on('error', (err) => console.log('Redis Client Error', err))
@@ -53,19 +53,19 @@ export async function main(args: minimist.ParsedArgs) {
       })
     })
   })
-  const server = createServer(app) // http
+  const httpserver = http.createServer(app) // http
 
-  const io = new Server(server, {
+  const io = new socketio.Server(httpserver, {
     cors: { origin: '*', methods: ['GET', 'POST'] },
   })
 
   io.on('connection', (socket) => {
-    console.log('a user connected')
+    logger.info(`user connected: ${socket.id}`)
 
-    socket.on('disconnect', () => console.log('user disconnected'))
+    socket.on('disconnect', () => logger.info(`user disconnected`))
   })
 
-  console.log('Starting server...')
+  logger.info('Starting server...')
   app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
 }
 
