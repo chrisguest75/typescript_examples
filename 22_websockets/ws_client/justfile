@@ -1,0 +1,64 @@
+#!/usr/bin/env just --justfile
+# ^ A shebang isn't required, but allows a justfile to be executed
+#   like a script, with `./justfile test`, for example.
+
+set dotenv-load := true
+
+# default lists actions
+default:
+  @just -f justfile --list
+
+
+clean:
+  rm -rf ./node_modules || true
+
+
+nix:
+  #!/usr/bin/env bash
+  set -xeufo pipefail
+  nix develop --command zsh
+
+
+install:
+  #!/usr/bin/env bash
+  set -xeufo pipefail
+  npm install
+
+
+start-dev *args:
+  #!/usr/bin/env bash
+  set -xeufo pipefail
+  NODE_DEBUG=http,http2 DEBUG=engine,socket*  npm run start:dev {{ args }}
+
+
+test:
+  #!/usr/bin/env bash
+  set -xeufo pipefail
+  npm run test
+
+  
+watch:
+  #!/usr/bin/env bash
+  set -xeufo pipefail
+  watchexec --exts ts npm run test
+
+
+build-all:
+  #!/usr/bin/env bash
+  set -eufo pipefail
+
+  echo "*************************************"
+  echo "** build-all"
+  echo "*************************************"
+  node --version
+  #npm outdated
+  #npm install
+  #npm run lint
+  #npm run test
+  npm run start
+  npm run docker:build
+  npm run docker:run
+  npm run docker:build:chainguard
+  npm run docker:run:chainguard
+
+
