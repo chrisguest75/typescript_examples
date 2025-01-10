@@ -9,21 +9,6 @@ import * as socketio from 'socket.io'
 import cors from 'cors'
 import * as http from 'http'
 
-const port = process.env.PORT || 8000
-
-export const app = express()
-
-// Use body parser to read sent json payloads
-app.use(
-  bodyParser.urlencoded({
-    extended: true,
-  }),
-)
-app.use(bodyParser.json())
-app.use(express.static('public'))
-app.use(pino())
-app.use(cors())
-
 /*
 Entrypoint
 */
@@ -31,42 +16,62 @@ export async function main(args: minimist.ParsedArgs) {
   logger.info({ node_env: process.env.NODE_ENV })
   logger.info({ 'node.version': process.version })
 
-  logger.trace('TRACE - level message')
+  /*logger.trace('TRACE - level message')
   logger.debug('DEBUG - level message')
   logger.info('INFO - level message')
   logger.warn('WARN - level message')
   logger.error('ERROR - level message')
-  logger.fatal('FATAL - level message')
+  logger.fatal('FATAL - level message')*/
 
   logger.info(args)
 
-  const client = redis.createClient({
+  const redisClient = redis.createClient({
     url: 'redis://0.0.0.0:6379',
   })
-  client.on('error', (err) => console.log('Redis Client Error', err))
-
-  logger.info(`My test`)
-  client.connect().then(() => {
-    client.set('key', 'myvalue').then(() => {
-      client.get('key').then((value) => {
-        logger.info(`${value}`)
+  redisClient.on('error', (err) => console.log('Redis Client Error', err))
+  redisClient.connect().then(() => {
+    redisClient.set('key', 'myvalue').then(() => {
+      redisClient.get('key').then((value) => {
+        logger.info(`Stored in redis - ${value}`)
       })
     })
   })
-  const httpserver = http.createServer(app) // http
+  const port = process.env.PORT || 8000
 
+  const app = express()
+
+  // Use body parser to read sent json payloads
+  app.use(
+   bodyParser.urlencoded({
+     extended: true,
+   }),
+  )
+  app.use(bodyParser.json())
+  app.use(express.static('public'))
+  app.use(pino())
+  app.use(cors())
+
+  const httpserver = http.createServer(app)
   const io = new socketio.Server(httpserver, {
     cors: { origin: '*', methods: ['GET', 'POST'] },
   })
 
   io.on('connection', (socket) => {
-    logger.info(`user connected: ${socket.id}`)
+    logger.info(`User connected: ${socket.id}`)
 
-    socket.on('disconnect', () => logger.info(`user disconnected`))
+    socket.on('payload', () => {
+      logger.info(`Payload received`)
+
+      socket.emit('response', { message: 'response' })
+    })
+
+    socket.on('disconnect', () => logger.info(`User disconnected`))
   })
 
   logger.info('Starting server...')
-  app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
+  httpserver.listen(port, () => {
+    logger.info(`Listening at http://localhost:${port}`)
+  })
 }
 
 function shutDown(signal: string) {

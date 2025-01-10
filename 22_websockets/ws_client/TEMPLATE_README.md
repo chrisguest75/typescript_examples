@@ -1,6 +1,10 @@
 # README
 
-Demonstrates ws_server
+Demonstrates ws_client
+
+NOTES:
+
+* `jest` does not wok well with ESM, so tests are running using experimental `--experimental-vm-modules` features.  
 
 ## How to run
 
@@ -30,7 +34,13 @@ npm run docker:run
 
 
 # run all tests
-just local-test-pipeline
+just build-all
+```
+
+## Build docs
+
+```sh
+npm run docs:serve
 ```
 
 ## Debugging
@@ -59,15 +69,6 @@ code .
 
 The code should break on the breakpoint.  
 
-## How it was created
-
-```sh
-npm install --save express 
-npm install --save-dev @types/express
-npm install express-pino-logger
-npm install --save-dev @types/express-pino-logger
-```
-
 ## Resources
 
 * My basic typecript cmdline [01_basic_cmdline](https://github.com/chrisguest75/typescript_examples/tree/master/01_basic_cmdline)
@@ -75,6 +76,3 @@ npm install --save-dev @types/express-pino-logger
 
 * Chainguard LTS images [here](https://images.chainguard.dev/directory/image/node-lts/versions)
 * Node prune [here](https://github.com/tj/node-prune/tree/master)  
-* https://expressjs.com/en/guide/debugging.html
-* https://medium.com/kocfinanstech/socket-io-with-node-js-express-5cc75aa67cae
-* https://stackoverflow.com/questions/42318773/how-to-log-every-http-request-made-in-node

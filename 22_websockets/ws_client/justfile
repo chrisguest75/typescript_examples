@@ -28,7 +28,7 @@ install:
 start-dev *args:
   #!/usr/bin/env bash
   set -xeufo pipefail
-  NODE_DEBUG=http,http2 DEBUG=engine,express:*,socket*  npm run start:dev {{ args }}
+  NODE_DEBUG=http,http2 DEBUG=engine,socket*  npm run start:dev {{ args }}
 
 
 test:
