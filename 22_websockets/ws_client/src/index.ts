@@ -23,6 +23,10 @@ export async function main(args: minimist.ParsedArgs) {
     logger.info(`connected ${socket.id}`)
   })
 
+  socket.on('payload_ack', (payload) => {
+    logger.info(`payload_ack: ${payload}`)
+  })
+
   socket.on('disconnect', () => {
     logger.info(`disconnect`)
   })

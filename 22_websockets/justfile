@@ -14,9 +14,9 @@ compose-down:
 compose-ps:
   docker compose ps 
 
-compose-shell service='redis':
+compose-shell service='redisdb':
   docker compose exec -it {{ service }} bash
 
-compose-logs service='redis':
+compose-logs service='redisdb':
   docker compose logs {{ service }} 
   

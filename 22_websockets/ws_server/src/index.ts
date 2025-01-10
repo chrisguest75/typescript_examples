@@ -28,7 +28,7 @@ export async function main(args: minimist.ParsedArgs) {
   const redisClient = redis.createClient({
     url: 'redis://0.0.0.0:6379',
   })
-  redisClient.on('error', (err) => console.log('Redis Client Error', err))
+  redisClient.on('error', (err) => logger.info('Redis Client Error', err))
   redisClient.connect().then(() => {
     redisClient.set('key', 'myvalue').then(() => {
       redisClient.get('key').then((value) => {
@@ -56,13 +56,15 @@ export async function main(args: minimist.ParsedArgs) {
     cors: { origin: '*', methods: ['GET', 'POST'] },
   })
 
+  let counter = 0
   io.on('connection', (socket) => {
     logger.info(`User connected: ${socket.id}`)
 
-    socket.on('payload', () => {
-      logger.info(`Payload received`)
+    socket.on('payload', (payload) => {
+      logger.info(`Payload received - ${payload.message}`)
 
-      socket.emit('response', { message: 'response' })
+      counter++
+      socket.emit('payload_ack', { message: 'payload received', counter: counter })
     })
 
     socket.on('disconnect', () => logger.info(`User disconnected`))
