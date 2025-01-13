@@ -28,8 +28,14 @@ npm run lint
 npm run docker:build
 npm run docker:run
 
-# run all tests
+# run tests
+just test
+
+# generate trades
 just start-dev -- --trades --total 100
+
+# simulate
+just start-dev -- --simulate
 ```
 
 ## Build docs

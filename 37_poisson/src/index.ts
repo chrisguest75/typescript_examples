@@ -5,6 +5,7 @@ import { fakeTrades, TradeEvent } from './trades'
 import { saveAsCsv } from './csv'
 import { saveAsJson } from './json'
 import { Stock } from './stock'
+import { simulate } from './simulate'
 
 /**
  * aggregate trades
@@ -135,6 +136,11 @@ export async function main(args: minimist.ParsedArgs) {
     logger.level = 'trace'
   }
 
+  if (args.simulate) {
+    logger.info('simulate')
+    await simulate()
+  }
+
   if (args.trades) {
     generateTrades(parseInt(args.total, 10))
   }
@@ -167,8 +173,8 @@ dotenv.config()
 logger.info(`Pino:${logger.version}`)
 const args: minimist.ParsedArgs = minimist(process.argv.slice(2), {
   string: ['total'],
-  boolean: ['verbose', 'trades'],
-  default: { verbose: true, trades: false, total: '10' },
+  boolean: ['verbose', 'trades', 'simulate'],
+  default: { verbose: true, trades: false, total: '10', simulate: false },
 })
 
 try {

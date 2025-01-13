@@ -14,6 +14,8 @@ TODO:
 * Zod schema checking
 * Metrics
 * Poisson generation of events
+* Switchable debugging
+* ECS?
 
 ## Startup
 
