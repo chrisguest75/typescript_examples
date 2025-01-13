@@ -6,4 +6,5 @@ module.exports = {
   testEnvironment: 'node',
   testRegex: 'tests/.*\\.(test|spec)?\\.(mts|ts|tsx|cts)$',
   moduleFileExtensions: ['mts', 'ts', 'cts', 'tsx', 'js', 'jsx', 'json', 'node'],
+  setupFilesAfterEnv: ['jest-extended/all'],
 }
