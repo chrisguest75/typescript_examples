@@ -12,7 +12,7 @@ type Context = {
 function sendEvents(generator: Generator, wsClient: WebsocketClient, context: Context) {
   const next = generator.next().value || new Date()
   const interval = next.getTime() - context.last.getTime()
-  logger.info(`last ${context.last} next ${next} with interval ${interval}`)
+  logger.info({ last: context.last, next: next, interval: interval })
   context.last = next
 
   wsClient.sendPayload({ counter: context.counter, message: 'hello from the client' })

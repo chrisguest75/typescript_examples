@@ -4,10 +4,10 @@ import minimist from 'minimist'
 import express from 'express'
 import pino from 'express-pino-logger'
 import bodyParser from 'body-parser'
-import * as redis from 'redis'
 import * as socketio from 'socket.io'
 import cors from 'cors'
 import * as http from 'http'
+import { RedisClient } from './redis'
 
 /*
 Entrypoint
@@ -16,35 +16,17 @@ export async function main(args: minimist.ParsedArgs) {
   logger.info({ node_env: process.env.NODE_ENV })
   logger.info({ 'node.version': process.version })
 
-  /*logger.trace('TRACE - level message')
-  logger.debug('DEBUG - level message')
-  logger.info('INFO - level message')
-  logger.warn('WARN - level message')
-  logger.error('ERROR - level message')
-  logger.fatal('FATAL - level message')*/
-
   logger.info(args)
 
-  const redisClient = redis.createClient({
-    url: 'redis://0.0.0.0:6379',
-  })
-  redisClient.on('error', (err) => logger.info('Redis Client Error', err))
-  redisClient.connect().then(() => {
-    redisClient.set('key', 'myvalue').then(() => {
-      redisClient.get('key').then((value) => {
-        logger.info(`Stored in redis - ${value}`)
-      })
-    })
-  })
   const port = process.env.PORT || 8000
 
   const app = express()
 
   // Use body parser to read sent json payloads
   app.use(
-   bodyParser.urlencoded({
-     extended: true,
-   }),
+    bodyParser.urlencoded({
+      extended: true,
+    }),
   )
   app.use(bodyParser.json())
   app.use(express.static('public'))
@@ -56,14 +38,21 @@ export async function main(args: minimist.ParsedArgs) {
     cors: { origin: '*', methods: ['GET', 'POST'] },
   })
 
+  const redisClient = new RedisClient()
+  await redisClient.connect(process.env.REDIS_URL || 'redis://0.0.0.0:6379')
+  redisClient.set('key', 'myvalue')
+
   let counter = 0
   io.on('connection', (socket) => {
     logger.info(`User connected: ${socket.id}`)
 
-    socket.on('payload', (payload) => {
+    socket.on('payload', async (payload) => {
       logger.info({ ...payload })
 
       counter++
+      const value = await redisClient.get('key')
+      logger.info({ message: 'redisValue', value })
+
       socket.emit('payload_ack', { message: 'payload received', counter: counter })
     })
 
