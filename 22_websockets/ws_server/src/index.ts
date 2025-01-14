@@ -1,18 +1,12 @@
-import { logger } from './logger.js'
+import { logger } from './logger'
 import * as dotenv from 'dotenv'
 import minimist from 'minimist'
 import express from 'express'
 import pino from 'express-pino-logger'
 import bodyParser from 'body-parser'
-import * as socketio from 'socket.io'
 import cors from 'cors'
 import * as http from 'http'
-import { RedisClient } from './redis'
-
-export type EventPayload = {
-  counter: number
-  message: string
-}
+import { WebsocketServer } from './websocketServer'
 
 /*
 Entrypoint
@@ -39,31 +33,10 @@ export async function main(args: minimist.ParsedArgs) {
   app.use(cors())
 
   const httpserver = http.createServer(app)
-  const io = new socketio.Server(httpserver, {
-    cors: { origin: '*', methods: ['GET', 'POST'] },
-  })
 
-  const redisClient = new RedisClient()
-  await redisClient.connect(process.env.REDIS_URL || 'redis://0.0.0.0:6379')
-  const current = await redisClient.get('current')
-  const value = await redisClient.get(current || 'not found')
-  logger.info({ current, value })
-
-  let counter = 0
-  io.on('connection', (socket) => {
-    logger.info(`User connected: ${socket.id}`)
-
-    socket.on('payload', async (payload: EventPayload) => {
-      logger.info({ ...payload })
-      await redisClient.set(payload.counter.toString(), payload.message)
-      await redisClient.set('current', payload.counter.toString())
-
-      counter++
-      socket.emit('payload_ack', { message: 'payload received', counter: counter })
-    })
-
-    socket.on('disconnect', () => logger.info(`User disconnected`))
-  })
+  // Start the server
+  const server = new WebsocketServer(httpserver)
+  await server.start()
 
   logger.info('Starting server...')
   httpserver.listen(port, () => {
