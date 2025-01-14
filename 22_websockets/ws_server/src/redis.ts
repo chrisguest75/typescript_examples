@@ -13,10 +13,12 @@ export class RedisClient {
   }
 
   public async set(key: string, value: string) {
-    this.redisClient?.set(key, value)
+    logger.debug({ message: 'redis:set', key, value })
+    return this.redisClient?.set(key, value)
   }
 
   public async get(key: string) {
+    logger.debug({ message: 'redis:get', key })
     return this.redisClient?.get(key)
   }
 }

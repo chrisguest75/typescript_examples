@@ -3,6 +3,7 @@ import * as dotenv from 'dotenv'
 import minimist from 'minimist'
 import { WebsocketClient } from './websocketClient'
 import { poissonArrivalGenerator } from './poisson'
+import { randCatchPhrase } from '@ngneat/falso'
 
 type Context = {
   last: Date
@@ -15,7 +16,8 @@ function sendEvents(generator: Generator, wsClient: WebsocketClient, context: Co
   logger.info({ last: context.last, next: next, interval: interval })
   context.last = next
 
-  wsClient.sendPayload({ counter: context.counter, message: 'hello from the client' })
+  const message = randCatchPhrase()
+  wsClient.sendPayload({ counter: context.counter, message })
   context.counter++
 
   setTimeout(() => {

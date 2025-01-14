@@ -67,6 +67,7 @@
     "exec": "node --no-warnings --experimental-specifier-resolution=node --loader ts-node/esm ./src/index.ts"
   },
   "dependencies": {
+    "@ngneat/falso": "^7.3.0",
     "dotenv": "^16.4.5",
     "minimist": "^1.2.8",
     "pino": "^9.5.0",

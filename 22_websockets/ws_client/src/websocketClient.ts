@@ -14,7 +14,6 @@ export type EventPayload = {
   message: string
 }
 
-
 export class WebsocketClient {
   private manager: Manager
   private socket: Socket

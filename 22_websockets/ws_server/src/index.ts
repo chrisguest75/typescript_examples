@@ -9,6 +9,11 @@ import cors from 'cors'
 import * as http from 'http'
 import { RedisClient } from './redis'
 
+export type EventPayload = {
+  counter: number
+  message: string
+}
+
 /*
 Entrypoint
 */
@@ -40,19 +45,20 @@ export async function main(args: minimist.ParsedArgs) {
 
   const redisClient = new RedisClient()
   await redisClient.connect(process.env.REDIS_URL || 'redis://0.0.0.0:6379')
-  redisClient.set('key', 'myvalue')
+  const current = await redisClient.get('current')
+  const value = await redisClient.get(current || 'not found')
+  logger.info({ current, value })
 
   let counter = 0
   io.on('connection', (socket) => {
     logger.info(`User connected: ${socket.id}`)
 
-    socket.on('payload', async (payload) => {
+    socket.on('payload', async (payload: EventPayload) => {
       logger.info({ ...payload })
+      await redisClient.set(payload.counter.toString(), payload.message)
+      await redisClient.set('current', payload.counter.toString())
 
       counter++
-      const value = await redisClient.get('key')
-      logger.info({ message: 'redisValue', value })
-
       socket.emit('payload_ack', { message: 'payload received', counter: counter })
     })
 
