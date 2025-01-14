@@ -61,7 +61,7 @@ export async function main(args: minimist.ParsedArgs) {
     logger.info(`User connected: ${socket.id}`)
 
     socket.on('payload', (payload) => {
-      logger.info(`Payload received - ${payload.message}`)
+      logger.info({ ...payload })
 
       counter++
       socket.emit('payload_ack', { message: 'payload received', counter: counter })

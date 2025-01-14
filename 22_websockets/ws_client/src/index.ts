@@ -18,9 +18,11 @@ export async function main(args: minimist.ParsedArgs) {
 
   const wsClient = new WebsocketClient(args.ws_url)
   wsClient.connect()
+  let counter = 0
 
   setInterval(() => {
-    wsClient.sendPayload()
+    wsClient.sendPayload({ counter, message: 'hello from the client' })
+    counter++
   }, 2000)
 
   setInterval(() => {

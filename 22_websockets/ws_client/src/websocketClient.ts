@@ -9,6 +9,12 @@ const PayloadZod = z.object({
 
 export type Payload = z.infer<typeof PayloadZod>
 
+export type EventPayload = {
+  counter: number
+  message: string
+}
+
+
 export class WebsocketClient {
   private manager: Manager
   private socket: Socket
@@ -33,9 +39,9 @@ export class WebsocketClient {
     })
   }
 
-  public sendPayload() {
-    this.socket.emit('payload', () => {
-      logger.info('payload sent')
+  public sendPayload(payload: EventPayload) {
+    this.socket.emit('payload', payload, (ack: Payload) => {
+      logger.info({ ack })
     })
   }
 
