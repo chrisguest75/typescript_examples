@@ -1,7 +1,7 @@
-import { logger } from './logger.js'
+import { logger } from './logger'
 import * as dotenv from 'dotenv'
 import minimist from 'minimist'
-import { Manager } from 'socket.io-client'
+import { WebsocketClient } from './websocketClient'
 
 /*
 Entrypoint
@@ -16,31 +16,15 @@ export async function main(args: minimist.ParsedArgs) {
   logger.info({ node_env: process.env.NODE_ENV })
   logger.info({ 'node.version': process.version })
 
-  const manager = new Manager(args.ws_url)
-  const socket = manager.socket('/')
-
-  socket.on('connect', () => {
-    logger.info(`connected ${socket.id}`)
-  })
-
-  socket.on('payload_ack', (payload) => {
-    logger.info(`payload_ack: ${payload}`)
-  })
-
-  socket.on('disconnect', () => {
-    logger.info(`disconnect`)
-  })
+  const wsClient = new WebsocketClient(args.ws_url)
+  wsClient.connect()
 
   setInterval(() => {
-    socket.emit('payload', () => {
-      logger.info('payload sent')
-    })
+    wsClient.sendPayload()
   }, 2000)
 
   setInterval(() => {
-    socket.emit('ping', () => {
-      logger.info('pong')
-    })
+    wsClient.sendPing()
   }, 1000)
 
   logger.info(`waiting for connection ${args.ws_url}`)
