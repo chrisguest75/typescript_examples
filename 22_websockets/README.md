@@ -10,10 +10,7 @@ TODO:
 * Get it setup and scale test it.
 * Namespaces
 * Build some d3 charts based on connections.
-* Store the data in redis
-* Zod schema checking
 * Metrics
-* Poisson generation of events
 * Switchable debugging
 * ECS?
 
