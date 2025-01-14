@@ -30,6 +30,9 @@ just start-dev
 # client
 cd 22_websockets/ws_client
 just start-dev
+
+#or
+just start-tmux 
 ```
 
 ## Connect

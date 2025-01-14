@@ -20,3 +20,20 @@ compose-shell service='redisdb':
 compose-logs service='redisdb':
   docker compose logs {{ service }} 
   
+start-server:
+  #!/usr/bin/env bash
+  set -eufo pipefail
+  cd ws_server
+  just start-dev
+
+start-client:
+  #!/usr/bin/env bash
+  set -eufo pipefail
+  cd ws_client
+  ls -l
+  just start-dev
+
+start-tmux:
+  #!/usr/bin/env bash
+  set -eufo pipefail
+  tmuxinator start -p ./tmux.yaml

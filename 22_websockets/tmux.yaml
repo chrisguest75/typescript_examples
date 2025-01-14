@@ -1,0 +1,10 @@
+name: Test Websockets 
+root: .
+
+windows:
+  - main:
+      layout: even-vertical
+      panes:
+        - command3: echo "** REDIS **" && just compose-up 
+        - command2: echo "** SERVER **" && just start-server
+        - command1: echo "** CLIENT **" && just start-client
