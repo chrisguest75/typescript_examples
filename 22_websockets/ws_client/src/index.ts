@@ -2,28 +2,43 @@ import { logger } from './logger'
 import * as dotenv from 'dotenv'
 import minimist from 'minimist'
 import { WebsocketClient } from './websocketClient'
+import { poissonArrivalGenerator } from './poisson'
+
+type Context = {
+  last: Date
+  counter: number
+}
+
+function sendEvents(generator: Generator, wsClient: WebsocketClient, context: Context) {
+  const next = generator.next().value || new Date()
+  const interval = next.getTime() - context.last.getTime()
+  logger.info(`last ${context.last} next ${next} with interval ${interval}`)
+  context.last = next
+
+  wsClient.sendPayload({ counter: context.counter, message: 'hello from the client' })
+  context.counter++
+
+  setTimeout(() => {
+    sendEvents(generator, wsClient, context)
+  }, interval)
+}
 
 /*
 Entrypoint
 */
 export async function main(args: minimist.ParsedArgs) {
-  /*logger.trace('TRACE - level message')
-  logger.debug('DEBUG - level message')
-  logger.info('INFO - level message')
-  logger.warn('WARN - level message')
-  logger.error('ERROR - level message')
-  logger.fatal('FATAL - level message')*/
   logger.info({ node_env: process.env.NODE_ENV })
   logger.info({ 'node.version': process.version })
 
   const wsClient = new WebsocketClient(args.ws_url)
   wsClient.connect()
-  let counter = 0
 
-  setInterval(() => {
-    wsClient.sendPayload({ counter, message: 'hello from the client' })
-    counter++
-  }, 2000)
+  const baseTime = new Date()
+  const rate = 10
+  const timePeriod = 30
+  const generator = poissonArrivalGenerator(baseTime, rate, timePeriod)
+  const context: Context = { last: baseTime, counter: 0 }
+  sendEvents(generator, wsClient, context)
 
   setInterval(() => {
     wsClient.sendPing()
