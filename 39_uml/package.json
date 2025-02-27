@@ -1,0 +1,14 @@
+{
+  "name": "39_uml",
+  "version": "1.0.0",
+  "description": "Generate UML diagrams.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "tsuml2": "^0.17.1"
+  }
+}
