@@ -9,7 +9,7 @@ Generate UML diagrams.
 nix-shell -p nodejs_20 --command zsh
 
 # just svg
-npm exec -- tsuml2  --glob "../34_todo_api/**/*.ts" --tsconfig "../34_todo_api/tsconfig.json" --out ./out/34_todo_api.svg
+npm exec -- tsuml2  --glob "../34_todo_api/**/*.ts" --tsconfig "../34_todo_api/tsconfig.json" --outFile ./out/34_todo_api.svg
 
 # mermaid
 npm exec -- tsuml2  --glob "../34_todo_api/**/*.ts" --tsconfig "../34_todo_api/tsconfig.json" --outMermaidDsl ./out/34_todo_api.mermaid
