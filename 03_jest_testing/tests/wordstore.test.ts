@@ -230,14 +230,15 @@ describe.each`
     // ACT
     const words = new loadwords('./tests/data/words.txt')
     for (const word of words.words) {
-      if (word.length > 7) { 
+      if (word.length > 7) {
         t.add(word)
       }
     }
 
     // ASSERT
-    expect(t.random() + "_" + t.random()).toBe("")
-
+    const first = t.random() + '_' + t.random()
+    const next = t.random() + '_' + t.random()
+    expect(first).not.toBe(next)
   })
 
   test.skip('skip this test', () => {
