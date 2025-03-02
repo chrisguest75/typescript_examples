@@ -11,7 +11,9 @@
     "typescript": "^5.4.2"
   },
   "dependencies": {
-    "dotenv-quokka-plugin": "^1.0.0"
+    "dotenv-quokka-plugin": "^1.0.0",
+    "fetch-retry-ts": "^1.3.1",
+    "node-fetch": "^3.3.2"
   },
   "scripts": {
     "start:verbose": "ts-node -vvv ./quokka_versions.ts",
